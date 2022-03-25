@@ -27,15 +27,15 @@
   -webkit-transform-style: preserve-3d;
   -webkit-backface-visibility: hidden;
 }
-@media (max-width: 100vh) {
+@media (max-width: 90vh) {
   header {
-    max-height: 100vw;
+    max-height: 111.11111111111111vw;
   }
   #board {
     margin-top: -1rem !important;
   }
 }
-@media (max-width: 79.99vh) {
+@media (max-width: 99.99vh) {
   .scroll-down-bar {
     display: none;
   }
@@ -294,7 +294,7 @@ sup > a::before,
   color: #ff4500;
 }
 html {
-  font-size: 20px;
+  font-size: 18px;
   letter-spacing: 0.02em;
 }
 html,
@@ -1234,7 +1234,7 @@ a.fancybox:hover {
   text-decoration: none;
 }
 #nprogress .bar {
-  height: 6px !important;
+  height: 3px !important;
   background-color: #29d !important;
 }
 #nprogress .peg {

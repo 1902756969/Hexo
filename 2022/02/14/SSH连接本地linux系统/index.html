@@ -1,0 +1,583 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo/img/csdn.png">
+  <link rel="icon" href="/Hexo/img/csdn.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#DAA520">
+  <meta name="author" content="啊星">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="SSH连接本地linux系统前提：安装好centerOS系统并能启动   目标：连通外网并设置SSH 1.网卡配置文件路径打开linux本地终端 快捷键一般是ctrl+alt+f2(f1~f3)  这里是管理员登录,密码是隐藏式的输入(输入看不见) 这样就显示成功登录了！ 下面查看网卡配置： 首先查看网卡地址： 输入 1ip addr    地址为：ens32 输入cat &#x2F;etc&amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SSH连接本地linux系统">
+<meta property="og:url" content="https://1902756969.github.io/Hexo/2022/02/14/SSH%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0linux%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="啊星的博客">
+<meta property="og:description" content="SSH连接本地linux系统前提：安装好centerOS系统并能启动   目标：连通外网并设置SSH 1.网卡配置文件路径打开linux本地终端 快捷键一般是ctrl+alt+f2(f1~f3)  这里是管理员登录,密码是隐藏式的输入(输入看不见) 这样就显示成功登录了！ 下面查看网卡配置： 首先查看网卡地址： 输入 1ip addr    地址为：ens32 输入cat &#x2F;etc&amp;#x">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/lin-liangxing/pictuer/raw/master/202202221216777.png">
+<meta property="article:published_time" content="2022-02-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-03-04T11:58:50.081Z">
+<meta property="article:author" content="啊星">
+<meta property="article:tag" content="linux✔">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/lin-liangxing/pictuer/raw/master/202202221216777.png">
+  
+  
+  <title>SSH连接本地linux系统 - 啊星的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/Hexo/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+  </script>
+  <script  src="/Hexo/js/utils.js" ></script>
+  <script  src="/Hexo/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/Hexo/">
+      <strong>啊星的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/Hexo/img/bg5.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="SSH连接本地linux系统">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-14 00:00" pubdate>
+        2022年2月14日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.6k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      14 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">SSH连接本地linux系统</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：21 天前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="SSH连接本地linux系统"><a href="#SSH连接本地linux系统" class="headerlink" title="SSH连接本地linux系统"></a>SSH连接本地linux系统</h1><p><font color='red'>前提：安装好centerOS系统并能启动</font></p>
+<img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203041957180.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220304172854525" style="zoom:50%;" />
+
+<p>目标：<strong>连通外网并设置SSH</strong></p>
+<h2 id="1-网卡配置文件路径"><a href="#1-网卡配置文件路径" class="headerlink" title="1.网卡配置文件路径"></a><strong>1.网卡配置文件路径</strong></h2><p>打开linux本地终端 快捷键一般是ctrl+alt+f2(f1~f3)</p>
+<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203041736019.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220304173653989"></p>
+<p>这里是管理员登录,密码是<font color='red'>隐藏式的输入(输入看不见)</font></p>
+<p>这样就显示成功登录了！</p>
+<p>下面查看网卡配置：</p>
+<p>首先查看网卡地址：</p>
+<p>输入</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs ebnf"><span class="hljs-attribute">ip addr</span><br></code></pre></div></td></tr></table></figure>
+
+<img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203041741917.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220304174114876"  />
+
+<p>地址为：ens32</p>
+<p>输入cat &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-<font color='red'>ens32</font></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs linux">cat /etc/sysconfig/network-scripts/ifcfg-ens32<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203041745725.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p>我们需要配置以下参数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs linux">BOOTPROTO=static<br>IPADDR=192.168.44.3<br>NETMASK=255.255.255.0<br>GATEWAY=192.168.44.1<br>ONBOOT=ye<br></code></pre></div></td></tr></table></figure>
+
+<p>一般采用vi编辑模式,我这里不知道什么原因，就采用命令方式配置了</p>
+<h2 id="2-修改ONBOOT值从no改为yes：-激活网卡"><a href="#2-修改ONBOOT值从no改为yes：-激活网卡" class="headerlink" title="2.修改ONBOOT值从no改为yes： 激活网卡"></a>2.<strong>修改ONBOOT值从no改为yes： 激活网卡</strong></h2><figure class="highlight awk"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs awk">sed -i <span class="hljs-string">&#x27;s/ONBOOT=no/ONBOOT=yes/g&#x27;</span> <span class="hljs-regexp">/etc/</span>sysconfig<span class="hljs-regexp">/network-scripts/i</span>fcfg-ens32<br></code></pre></div></td></tr></table></figure>
+
+<p>或者用下面这条命令</p>
+<figure class="highlight awk"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs awk">sed -i <span class="hljs-string">&#x27;s/ONBOOT=.*/ONBOOT=yes/g&#x27;</span> <span class="hljs-regexp">/etc/</span>sysconfig<span class="hljs-regexp">/network-scripts/i</span>fcfg-ens32<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="3-修改BOOTPROTO值从dhcp改为static：-静态IP"><a href="#3-修改BOOTPROTO值从dhcp改为static：-静态IP" class="headerlink" title="3.修改BOOTPROTO值从dhcp改为static： 静态IP"></a>3.<strong>修改BOOTPROTO值从dhcp改为static： 静态IP</strong></h2><figure class="highlight awk"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs awk">sed -i <span class="hljs-string">&#x27;s/BOOTPROTO=dhcp/BOOTPROTO=static/g&#x27;</span> <span class="hljs-regexp">/etc/</span>sysconfig<span class="hljs-regexp">/network-scripts/i</span>fcfg-ens32<br></code></pre></div></td></tr></table></figure>
+
+<p>或者用下面这条命令</p>
+<figure class="highlight awk"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs awk">sed -i <span class="hljs-string">&#x27;s/BOOTPROTO=.* /BOOTPROTO=static/g&#x27;</span> <span class="hljs-regexp">/etc/</span>sysconfig<span class="hljs-regexp">/network-scripts/i</span>fcfg-ens3<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="4-配置网卡IP"><a href="#4-配置网卡IP" class="headerlink" title="4.配置网卡IP"></a>4.<strong>配置网卡IP</strong></h2><p>配置虚拟机网络设置</p>
+<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203041756034.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220304175639996"></p>
+<p>配置网络虚拟</p>
+<img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203041758209.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220304175841165" style="zoom:50%;" />
+
+<figure class="highlight awk"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs awk">echo <span class="hljs-string">&#x27;IPADDR=192.168.248.11&#x27;</span> &gt;&gt;  <span class="hljs-regexp">/etc/</span>sysconfig<span class="hljs-regexp">/network-scripts/i</span>fcfg-ens33<br></code></pre></div></td></tr></table></figure>
+
+<p>注意：这里的<font color='red'>192.168.248.11</font> 要和你的VMnet8网卡保持在同一网段(ssh连接地址)</p>
+<p>VMWare软件左上角 编辑–&gt;虚拟网络编辑器–&gt;VMnet8后面是 192.168.42.1</p>
+<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203041750223.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220304175010191"></p>
+<h2 id="5-配置网络掩码"><a href="#5-配置网络掩码" class="headerlink" title="5.配置网络掩码"></a>5.<strong>配置网络掩码</strong></h2><figure class="highlight awk"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs awk">echo <span class="hljs-string">&#x27;PREFIX=24&#x27;</span> &gt;&gt;  <span class="hljs-regexp">/etc/</span>sysconfig<span class="hljs-regexp">/network-scripts/i</span>fcfg-ens32<br></code></pre></div></td></tr></table></figure>
+
+
+
+<h2 id="6-配置网关"><a href="#6-配置网关" class="headerlink" title="6.配置网关"></a>6.<strong>配置网关</strong></h2><figure class="highlight awk"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs awk">echo <span class="hljs-string">&#x27;GATEWAY=192.168.42.1&#x27;</span> &gt;&gt;  <span class="hljs-regexp">/etc/</span>sysconfig<span class="hljs-regexp">/network-scripts/i</span>fcfg-ens32<br></code></pre></div></td></tr></table></figure>
+
+<p>VMWare软件左上角 编辑–&gt;虚拟网络编辑器–&gt;VMnet8 NAT设置里可以看到是192.168.42.1</p>
+<h2 id="7-配置DNS"><a href="#7-配置DNS" class="headerlink" title="7.配置DNS"></a>7.<strong>配置DNS</strong></h2><figure class="highlight awk"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs awk">echo <span class="hljs-string">&#x27;DNS1=119.29.29.29&#x27;</span> &gt;&gt;  <span class="hljs-regexp">/etc/</span>sysconfig<span class="hljs-regexp">/network-scripts/i</span>fcfg-ens33<br></code></pre></div></td></tr></table></figure>
+
+<p>这里是255.255.255.0以内</p>
+<h2 id="8-重启网卡"><a href="#8-重启网卡" class="headerlink" title="8.重启网卡"></a>8.<strong>重启网卡</strong></h2><figure class="highlight ebnf"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs ebnf"><span class="hljs-attribute">systemctl restart network</span><br></code></pre></div></td></tr></table></figure>
+
+<h2 id="9-检查是否连通外网"><a href="#9-检查是否连通外网" class="headerlink" title="9.检查是否连通外网"></a>9.<strong>检查是否连通外网</strong></h2><figure class="highlight less"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs less"><span class="hljs-selector-tag">ping</span> <span class="hljs-selector-attr">[www.baidu.com]</span>(<span class="hljs-attribute">http</span>:<span class="hljs-comment">//www.baidu.com)</span><br></code></pre></div></td></tr></table></figure>
+
+<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203041755083.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220304175523054"></p>
+<p>出现数据传输说明成功了！</p>
+<h2 id="10-配置本机windows"><a href="#10-配置本机windows" class="headerlink" title="10.配置本机windows"></a>10.配置本机windows</h2><p>找到这个</p>
+<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203041759401.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220304175939371"></p>
+<img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203041800739.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220304180058700" style="zoom:67%;" />
+
+<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203041804215.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220304180445191">配置参照自己配的虚拟机参数！</p>
+<p>！</p>
+<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203041803195.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220304180306155"></p>
+<h2 id="11-连接SSH"><a href="#11-连接SSH" class="headerlink" title="11.连接SSH"></a>11.连接SSH</h2><p>我们使用xshell连接虚拟机</p>
+<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203041808563.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220304180803510"></p>
+<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203041808659.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220304180816632"></p>
+<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203041808487.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220304180829449"></p>
+<p>输入账户密码</p>
+<h2 id="12-尝试网络连接"><a href="#12-尝试网络连接" class="headerlink" title="12.尝试网络连接"></a>12.尝试网络连接</h2><p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203041809911.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220304180938879"></p>
+<p>成功！</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/Hexo/categories/linux%E2%9C%94/">linux✔</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/Hexo/tags/linux%E2%9C%94/">linux✔</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Hexo/2022/02/14/Spring%E9%9D%A2%E8%AF%95%E9%A2%98/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Spring基本面试题</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Hexo/2022/02/10/Springboot%E5%9F%BA%E7%A1%80%E8%AE%B2%E4%B9%89/">
+                        <span class="hidden-mobile">Springboot基础讲义</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/Hexo/js/events.js" ></script>
+<script  src="/Hexo/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/Hexo/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/Hexo/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/Hexo/js/boot.js" ></script>
+
+
+<script src="/Hexo/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
