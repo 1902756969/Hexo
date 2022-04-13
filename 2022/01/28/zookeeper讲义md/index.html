@@ -26,13 +26,13 @@
 <meta property="og:site_name" content="啊星的博客">
 <meta property="og:description" content="Zookeeper1)初识 Zookeeper1.1)Zookeeper概念•Zookeeper 是 Apache Hadoop 项目下的一个子项目，是一个树形目录服务。 •Zookeeper 翻译过来就是 动物园管理员，他是用来管 Hadoop（大象）、Hive(蜜蜂)、Pig(小 猪)的管理员。简称zk •Zookeeper 是一个分布式的、开源的分布式应用程序的协调服务。 •Zookeepe">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/lin-liangxing/pictuer/raw/master/202203101244091.png">
+<meta property="og:image" content="https://1902756969.github.io/img/202203101244091.png">
 <meta property="article:published_time" content="2022-01-28T14:30:03.000Z">
-<meta property="article:modified_time" content="2022-03-13T13:16:56.989Z">
+<meta property="article:modified_time" content="2022-03-26T05:25:50.403Z">
 <meta property="article:author" content="啊星">
 <meta property="article:tag" content="zookeeper">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://gitee.com/lin-liangxing/pictuer/raw/master/202203101244091.png">
+<meta name="twitter:image" content="https://1902756969.github.io/img/202203101244091.png">
   
   
   <title>zookeeper讲义 - 啊星的博客</title>
@@ -256,7 +256,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：12 天前
+                  本文最后更新于：18 天前
                 
               </p>
             
@@ -268,8 +268,8 @@
 <p>•配置管理</p>
 <p>•分布式锁</p>
 <p>•集群管理</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203121507475.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592054580488"></p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203121507388.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592054603167"></p>
+<p><img src="/Hexo/../img/202203121507475.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592054580488"></p>
+<p><img src="/Hexo/../img/202203121507388.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592054603167"></p>
 <h2 id="2-ZooKeeper-安装与配置"><a href="#2-ZooKeeper-安装与配置" class="headerlink" title="2)ZooKeeper 安装与配置"></a>2)ZooKeeper 安装与配置</h2><h3 id="2-1-下载安装"><a href="#2-1-下载安装" class="headerlink" title="2.1) 下载安装"></a>2.1) 下载安装</h3><h4 id="2-1-1、环境准备"><a href="#2-1-1、环境准备" class="headerlink" title="2.1.1、环境准备"></a><strong>2.1.1、环境准备</strong></h4><p>ZooKeeper服务器是用Java创建的，它运行在JVM之上。需要安装JDK 7或更高版本。</p>
 <h4 id="2-1-2、上传"><a href="#2-1-2、上传" class="headerlink" title="2.1.2、上传"></a><strong>2.1.2、上传</strong></h4><p>将下载的ZooKeeper放到&#x2F;opt&#x2F;ZooKeeper目录下</p>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="language-bash">上传zookeeper alt+p</span><br>put f:/setup/apache-zookeeper-3.5.6-bin.tar.gz<br><span class="hljs-meta">#</span><span class="language-bash">打开 opt目录</span><br>cd /opt<br><span class="hljs-meta">#</span><span class="language-bash">创建zooKeeper目录</span><br>mkdir  zooKeeper<br><span class="hljs-meta">#</span><span class="language-bash">将zookeeper安装包移动到 /opt/zooKeeper</span><br>mv apache-zookeeper-3.5.6-bin.tar.gz /opt/zookeeper/<br></code></pre></div></td></tr></table></figure>
@@ -285,19 +285,19 @@
 <p>修改zoo.cfg</p>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="language-bash">打开目录</span><br>cd /opt/zooKeeper/<br><span class="hljs-meta">#</span><span class="language-bash">创建zooKeeper存储目录</span><br>mkdir  zkdata<br><span class="hljs-meta">#</span><span class="language-bash">修改zoo.cfg</span><br>vim /opt/zooKeeper/apache-zooKeeper-3.5.6-bin/conf/zoo.cfg<br></code></pre></div></td></tr></table></figure>
 
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203121507501.png" srcset="/Hexo/img/loading.gif" lazyload alt="1577548250377"></p>
+<p><img src="/Hexo/../img/202203121507501.png" srcset="/Hexo/img/loading.gif" lazyload alt="1577548250377"></p>
 <p>修改存储目录：dataDir&#x3D;&#x2F;opt&#x2F;zookeeper&#x2F;zkdata</p>
 <h4 id="2-2-2、启动ZooKeeper"><a href="#2-2-2、启动ZooKeeper" class="headerlink" title="2.2.2、启动ZooKeeper"></a><strong>2.2.2、启动ZooKeeper</strong></h4><figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">cd /opt/zooKeeper/apache-zooKeeper-3.5.6-bin/bin/<br><span class="hljs-meta">#</span><span class="language-bash">启动</span><br> ./zkServer.sh  start<br></code></pre></div></td></tr></table></figure>
 
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203121511797.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151138755"></p>
+<p><img src="/Hexo/../img/202203121511797.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151138755"></p>
 <p>看到上图表示ZooKeeper成功启动</p>
 <p><strong>3、查看ZooKeeper状态</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">./zkServer.sh status<br></code></pre></div></td></tr></table></figure>
 
 <p>zookeeper启动成功。standalone代表zk没有搭建集群，现在是单节点</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203121511659.png" srcset="/Hexo/img/loading.gif" lazyload alt="1577548175232"></p>
+<p><img src="/Hexo/../img/202203121511659.png" srcset="/Hexo/img/loading.gif" lazyload alt="1577548175232"></p>
 <p>zookeeper没有启动</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203121511702.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151128652"></p>
+<p><img src="/Hexo/../img/202203121511702.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151128652"></p>
 <h3 id=""><a href="#" class="headerlink" title=""></a></h3><h2 id="3-ZooKeeper-命令操作"><a href="#3-ZooKeeper-命令操作" class="headerlink" title="3)ZooKeeper 命令操作"></a>3)ZooKeeper 命令操作</h2><h3 id="3-1-Zookeeper命令操作数据模型"><a href="#3-1-Zookeeper命令操作数据模型" class="headerlink" title="3.1)Zookeeper命令操作数据模型"></a>3.1)Zookeeper命令操作数据模型</h3><p>•ZooKeeper 是一个<font color='red'>树形目录</font>服务,其数据模型和Unix的文件系统目录树很类似，拥有一个层次化结构。</p>
 <p>•这里面的每一个节点都被称为： ZNode，每个节点上都会保存自己的数据和节点信息。 </p>
 <p>• 节点可以拥有子节点，同时也允许少量（1MB）数据存储在该节点之下。</p>
@@ -306,13 +306,13 @@
 <p>•EPHEMERAL 临时节点 ：-e</p>
 <p>•PERSISTENT_SEQUENTIAL 持久化顺序节点 ：-s</p>
 <p>•EPHEMERAL_SEQUENTIAL 临时顺序节点  ：-es</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203121512484.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151241438"></p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203121509147.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592054844023"></p>
+<p><img src="/Hexo/../img/202203121512484.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151241438"></p>
+<p><img src="/Hexo/../img/202203121509147.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592054844023"></p>
 <h3 id="3-2-Zookeeper命令操作服务端命令"><a href="#3-2-Zookeeper命令操作服务端命令" class="headerlink" title="3.2)Zookeeper命令操作服务端命令"></a><strong>3.2)Zookeeper命令操作服务端命令</strong></h3><p>•启动 ZooKeeper 服务: .&#x2F;zkServer.sh start</p>
 <p>•查看 ZooKeeper 服务状态: .&#x2F;zkServer.sh status</p>
 <p>•停止 ZooKeeper 服务: .&#x2F;zkServer.sh stop </p>
 <p>•重启 ZooKeeper 服务: .&#x2F;zkServer.sh restart </p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203121512852.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592055088686"></p>
+<p><img src="/Hexo/../img/202203121512852.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592055088686"></p>
 <h3 id="3-3-Zookeeper客户端常用命令"><a href="#3-3-Zookeeper客户端常用命令" class="headerlink" title="3.3)Zookeeper客户端常用命令"></a><strong>3.3)Zookeeper客户端常用命令</strong></h3><p>•连接ZooKeeper服务端</p>
 <p><font color='red'>注意-不可复制</font></p>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">./zkCli.sh –server ip:port<br> ./zkCli.sh -server localhost:2181<br></code></pre></div></td></tr></table></figure>
@@ -341,8 +341,8 @@
 <p>•删除带有子节点的节点</p>
 <figure class="highlight dos"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs dos">deleteall /节点<span class="hljs-built_in">path</span><br></code></pre></div></td></tr></table></figure>
 
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203121512697.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592055332198"></p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203121512020.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592055345400"></p>
+<p><img src="/Hexo/../img/202203121512697.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592055332198"></p>
+<p><img src="/Hexo/../img/202203121512020.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592055345400"></p>
 <h3 id="3-4-客户端命令-创建临时有序节点"><a href="#3-4-客户端命令-创建临时有序节点" class="headerlink" title="3.4)客户端命令-创建临时有序节点"></a>3.4)客户端命令-创建临时有序节点</h3><p>•创建临时节点</p>
 <figure class="highlight n1ql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs n1ql"><span class="hljs-keyword">create</span> -<span class="hljs-built_in">e</span> /节点<span class="hljs-keyword">path</span> <span class="hljs-keyword">value</span><br></code></pre></div></td></tr></table></figure>
 
@@ -366,8 +366,8 @@
 <p>•ephemeralOwner：用于临时节点，代表临时节点的事务ID，如果为持久节点则为0 </p>
 <p>•dataLength：节点存储的数据的长度 </p>
 <p>•numChildren：当前节点的子节点个数 </p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203121512699.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592055462588"></p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203122111362.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312211150283"></p>
+<p><img src="/Hexo/../img/202203121512699.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592055462588"></p>
+<p><img src="/Hexo/../img/202203122111362.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312211150283"></p>
 <h6 id="2022年3月12日21-16-02"><a href="#2022年3月12日21-16-02" class="headerlink" title="2022年3月12日21:16:02"></a>2022年3月12日21:16:02</h6><h2 id="4-ZooKeeper-JavaAPI-操作"><a href="#4-ZooKeeper-JavaAPI-操作" class="headerlink" title="4)ZooKeeper JavaAPI 操作"></a>4)ZooKeeper JavaAPI 操作</h2><h3 id="4-1-urator介绍"><a href="#4-1-urator介绍" class="headerlink" title="4.1)urator介绍"></a>4.1)urator介绍</h3><p>•Curator 是 Apache ZooKeeper 的Java客户端库。</p>
 <p>•常见的ZooKeeper Java API ：</p>
 <p>•原生Java API</p>
@@ -380,7 +380,7 @@
 <p>创建项目curator-zk</p>
 <p>引入pom和日志文件</p>
 <p>资料文件夹下pom.xml和log4j.properties</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203121512563.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592055569716"></p>
+<p><img src="/Hexo/../img/202203121512563.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592055569716"></p>
 <p>2、创建测试类，使用curator连接zookeeper</p>
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Before</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testConnect</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-comment">//重试策略</span><br>    <span class="hljs-type">RetryPolicy</span> <span class="hljs-variable">retryPolicy</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ExponentialBackoffRetry</span>(<span class="hljs-number">3000</span>, <span class="hljs-number">10</span>);<br>    <span class="hljs-comment">//2.第二种方式</span><br>    <span class="hljs-comment">//CuratorFrameworkFactory.builder();</span><br>    client = CuratorFrameworkFactory.builder()<br>        .connectString(<span class="hljs-string">&quot;192.168.200.130:2181&quot;</span>)<br>        .sessionTimeoutMs(<span class="hljs-number">60</span> * <span class="hljs-number">1000</span>)<br>        .connectionTimeoutMs(<span class="hljs-number">15</span> * <span class="hljs-number">1000</span>)<br>        .retryPolicy(retryPolicy)<br>        .namespace(<span class="hljs-string">&quot;itheima&quot;</span>)<br>        .build();<br>    <span class="hljs-comment">//开启连接</span><br>    client.start();<br>&#125;<br></code></pre></div></td></tr></table></figure>
 
@@ -393,8 +393,6 @@
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs JAVA"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testGet2</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">// 2. 查询子节点： ls</span><br>    List&lt;String&gt; path = client.getChildren().forPath(<span class="hljs-string">&quot;/&quot;</span>);<br>    System.out.println(path);<br>&#125;<br><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testGet3</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-type">Stat</span> <span class="hljs-variable">status</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Stat</span>();<br>    System.out.println(status);<br>    <span class="hljs-comment">//3. 查询节点状态信息：ls -s</span><br>    client.getData().storingStatIn(status).forPath(<span class="hljs-string">&quot;/app1&quot;</span>);<br>    System.out.println(status);<br>&#125;<br></code></pre></div></td></tr></table></figure>
 
 <p>Stat类</p>
-<img src="../../../../AppData/Roaming/Typora/typora-user-images/image-20220313201953125.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220313201953125" style="zoom:33%;" />
-
 <h3 id="4-5-Zookeeper-JavaAPI操作-修改节点"><a href="#4-5-Zookeeper-JavaAPI操作-修改节点" class="headerlink" title="4.5)Zookeeper JavaAPI操作-修改节点"></a>4.5)Zookeeper JavaAPI操作-修改节点</h3><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs JAVA"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 修改数据</span><br><span class="hljs-comment">* 1. 基本修改数据：setData().forPath()</span><br><span class="hljs-comment">* 2. 根据版本修改: setData().withVersion().forPath()</span><br><span class="hljs-comment">* * version 是通过查询出来的。目的就是为了让其他客户端或者线程不干扰我。</span><br><span class="hljs-comment">*</span><br><span class="hljs-comment">* <span class="hljs-doctag">@throws</span> Exception</span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testSet</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>	client.setData().forPath(<span class="hljs-string">&quot;/app1&quot;</span>, <span class="hljs-string">&quot;itcast&quot;</span>.getBytes());<br>&#125;<br></code></pre></div></td></tr></table></figure>
 
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs JAVA"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testSetForVersion</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-type">Stat</span> <span class="hljs-variable">status</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Stat</span>();<br>    <span class="hljs-comment">//3. 查询节点状态信息：ls -s</span><br>    client.getData().storingStatIn(status).forPath(<span class="hljs-string">&quot;/app1&quot;</span>);<br>    <span class="hljs-type">int</span> <span class="hljs-variable">version</span> <span class="hljs-operator">=</span> status.getVersion();<span class="hljs-comment">//查询出来的 3</span><br>    System.out.println(version);<br>    client.setData().withVersion(version).forPath(<span class="hljs-string">&quot;/app1&quot;</span>, <span class="hljs-string">&quot;hehe&quot;</span>.getBytes());<br>&#125;<br></code></pre></div></td></tr></table></figure>
@@ -406,13 +404,14 @@
 <h6 id="2022年3月13日21-15-26"><a href="#2022年3月13日21-15-26" class="headerlink" title="2022年3月13日21:15:26"></a>2022年3月13日21:15:26</h6><h3 id="4-7-Zookeeper-JavaAPI操作-Watch监听概述"><a href="#4-7-Zookeeper-JavaAPI操作-Watch监听概述" class="headerlink" title="4.7)Zookeeper JavaAPI操作-Watch监听概述"></a>4.7)Zookeeper JavaAPI操作-Watch监听概述</h3><p>•ZooKeeper 允许用户在指定节点上注册一些Watcher，并且在一些特定事件触发的时候，ZooKeeper 服务端会将事件通知到感兴趣的客户端上去，该机制是 ZooKeeper 实现分布式协调服务的重要特性。</p>
 <p>•ZooKeeper 中引入了Watcher机制来实现了发布&#x2F;订阅功能能，能够让多个订阅者同时监听某一个对象，当一个对象自身状态变化时，会通知所有订阅者。</p>
 <p>•ZooKeeper 原生支持通过注册Watcher来进行事件监听，但是其使用并不是特别方便</p>
-<p>​    需要开发人员自己反复注册Watcher，比较繁琐。</p>
+<div class="hljs code-wrapper"><pre><code class="hljs">需要开发人员自己反复注册Watcher，比较繁琐。
+</code></pre></div>
 <p>•Curator引入了 Cache 来实现对 ZooKeeper 服务端事件的监听。</p>
 <p>•ZooKeeper提供了三种Watcher：</p>
 <p>•NodeCache : 只是监听某一个特定的节点</p>
 <p>•PathChildrenCache : 监控一个ZNode的子节点. </p>
 <p>•TreeCache : 可以监控整个树上的所有节点，类似于PathChildrenCache和NodeCache的组合</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203121513884.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592057429708"></p>
+<p><img src="/Hexo/../img/202203121513884.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592057429708"></p>
 <h3 id="4-8Zookeeper-JavaAPI操作-Watch监听-NodeCache"><a href="#4-8Zookeeper-JavaAPI操作-Watch监听-NodeCache" class="headerlink" title="4.8Zookeeper JavaAPI操作-Watch监听-NodeCache"></a>4.8Zookeeper JavaAPI操作-Watch监听-NodeCache</h3><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 演示 NodeCache：给指定一个节点注册监听器</span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testNodeCache</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">//1. 创建NodeCache对象</span><br>    <span class="hljs-keyword">final</span> <span class="hljs-type">NodeCache</span> <span class="hljs-variable">nodeCache</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">NodeCache</span>(client,<span class="hljs-string">&quot;/app1&quot;</span>);<br>    <span class="hljs-comment">//2. 注册监听</span><br>   	nodeCache.getListenable().addListener(<span class="hljs-keyword">new</span> <span class="hljs-title class_">NodeCacheListener</span>() &#123;<br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">nodeChanged</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>            System.out.println(<span class="hljs-string">&quot;节点变化了~&quot;</span>);<br>            <span class="hljs-comment">//获取修改节点后的数据</span><br>            <span class="hljs-type">byte</span>[] data = nodeCache.getCurrentData().getData();<br>            System.out.println(<span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(data));<br>            &#125;<br>        &#125;);<br>    	<span class="hljs-comment">//3. 开启监听.如果设置为true，则开启监听是，加载缓冲数据</span><br>    	nodeCache.start(<span class="hljs-literal">true</span>);<br>    	<span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>)&#123;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
 
 <h3 id="4-9-Zookeeper-JavaAPI操作-Watch监听-PathChildrenCache"><a href="#4-9-Zookeeper-JavaAPI操作-Watch监听-PathChildrenCache" class="headerlink" title="4.9)Zookeeper JavaAPI操作-Watch监听-PathChildrenCache"></a><strong>4.9)Zookeeper</strong> JavaAPI操作-Watch监听-PathChildrenCache</h3><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testPathChildrenCache</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">//1.创建监听对象</span><br>    <span class="hljs-type">PathChildrenCache</span> <span class="hljs-variable">pathChildrenCache</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PathChildrenCache</span>(client,<span class="hljs-string">&quot;/app2&quot;</span>,<span class="hljs-literal">true</span>);<br>    <span class="hljs-comment">//2. 绑定监听器</span><br>    pathChildrenCache.getListenable().addListener(<span class="hljs-keyword">new</span> <span class="hljs-title class_">PathChildrenCacheListener</span>() &#123;    			<span class="hljs-meta">@Override</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">childEvent</span><span class="hljs-params">(CuratorFramework client, PathChildrenCacheEvent event)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>            System.out.println(<span class="hljs-string">&quot;子节点变化了~&quot;</span>);<br>            System.out.println(event);<br>            <span class="hljs-comment">//监听子节点的数据变更，并且拿到变更后的数据</span><br>            <span class="hljs-comment">//1.获取类型</span><br>            PathChildrenCacheEvent.<span class="hljs-type">Type</span> <span class="hljs-variable">type</span> <span class="hljs-operator">=</span> event.getType();<br>            <span class="hljs-comment">//2.判断类型是否是update</span><br>            <span class="hljs-keyword">if</span>(type.equals(PathChildrenCacheEvent.Type.CHILD_UPDATED))&#123;<br>                System.out.println(<span class="hljs-string">&quot;数据变了！！！&quot;</span>);<br>                <span class="hljs-type">byte</span>[] data = event.getData().getData();<br>                System.out.println(<span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(data));<br>            &#125;<br>        &#125;<br>    &#125;);<br>    <span class="hljs-comment">//3. 开启</span><br>    pathChildrenCache.start();<br>    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>)&#123;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
@@ -422,17 +421,21 @@
 <h3 id="4-11-Zookeeper分布式锁-概念"><a href="#4-11-Zookeeper分布式锁-概念" class="headerlink" title="4.11)Zookeeper分布式锁-概念"></a>4.11)Zookeeper分布式锁-概念</h3><p>•在我们进行单机应用开发，涉及并发同步的时候，我们往往采用synchronized或者Lock的方式来解决多线程间的代码同步问题，这时多线程的运行都是在同一个JVM之下，没有任何问题。</p>
 <p>•但当我们的应用是分布式集群工作的情况下，属于多JVM下的工作环境，跨JVM之间已经无法通过多线程的锁解决同步问题。</p>
 <p>•那么就需要一种更加高级的锁机制，来处理种跨机器的进程之间的数据同步问题——这就是分布式锁。</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203121513619.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592057871141"></p>
+<p><img src="/Hexo/../img/202203121513619.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592057871141"></p>
 <h3 id="4-12-Zookeeper-分布式锁-zookeeper分布式锁原理"><a href="#4-12-Zookeeper-分布式锁-zookeeper分布式锁原理" class="headerlink" title="4.12)Zookeeper 分布式锁-zookeeper分布式锁原理"></a><strong>4.12)Zookeeper</strong> 分布式锁-zookeeper分布式锁原理</h3><p>•核心思想：当客户端要获取锁，则创建节点，使用完锁，则删除该节点。</p>
 <p>1.客户端获取锁时，在lock节点下创建临时顺序节点。</p>
 <p>2.然后获取lock下面的所有子节点，客户端获取到所有的子节点之后，如果发现自己创建的子节点序号最小，那么就认为该客户端获取到了锁。使用完锁后，将该节点删除。</p>
 <p>3.如果发现自己创建的节点并非lock所有子节点中最小的，说明自己还没有获取到锁，此时客户端需要找到比自己小的那个节点，同时对其注册事件监听器，监听删除事件。</p>
 <p>4.如果发现比自己小的那个节点被删除，则客户端的</p>
-<p>​    Watcher会收到相应通知，此时再次判断自己创建的节点</p>
-<p>​    是否是lock子节点中序号最小的，如果是则获取到了锁，</p>
-<p>​    如果不是则重复以上步骤继续获取到比自己小的一个节点</p>
-<p>​    并注册监听。</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203121513004.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592057925831"></p>
+<div class="hljs code-wrapper"><pre><code class="hljs">Watcher会收到相应通知，此时再次判断自己创建的节点
+
+是否是lock子节点中序号最小的，如果是则获取到了锁，
+
+如果不是则重复以上步骤继续获取到比自己小的一个节点
+
+并注册监听。
+</code></pre></div>
+<p><img src="/Hexo/../img/202203121513004.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592057925831"></p>
 <h3 id="4-13-Zookeeper-分布式锁-模拟12306售票案例"><a href="#4-13-Zookeeper-分布式锁-模拟12306售票案例" class="headerlink" title="4.13)Zookeeper 分布式锁-模拟12306售票案例"></a><strong>4.13)Zookeeper</strong> 分布式锁-模拟12306售票案例</h3><p><strong>Curator实现分布式锁API</strong></p>
 <ul>
 <li><p>在Curator中有五种锁方案：</p>
@@ -450,7 +453,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203121513467.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592058017457"></p>
+<p><img src="/Hexo/../img/202203121513467.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592058017457"></p>
 <p>1,创建线程进行加锁设置</p>
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Ticket12306</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Runnable</span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-variable">tickets</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<span class="hljs-comment">//数据库的票数</span><br>    <span class="hljs-keyword">private</span> InterProcessMutex lock ;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;<br>            <span class="hljs-comment">//获取锁</span><br>            <span class="hljs-keyword">try</span> &#123;<br>            lock.acquire(<span class="hljs-number">3</span>, TimeUnit.SECONDS);<br>                <span class="hljs-keyword">if</span>(tickets &gt; <span class="hljs-number">0</span>)&#123;<br>                    System.out.println(Thread.currentThread()+<span class="hljs-string">&quot;:&quot;</span>+tickets);<br>                    Thread.sleep(<span class="hljs-number">100</span>);<br>                    tickets--;<br>                &#125;<br>            &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>                e.printStackTrace();<br>            &#125;<span class="hljs-keyword">finally</span> &#123;<br>                <span class="hljs-comment">//释放锁</span><br>                <span class="hljs-keyword">try</span> &#123;<br>                    lock.release();<br>                &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>                    e.printStackTrace();<br>                &#125;<br><br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
 
@@ -467,8 +470,10 @@
 <p>•Zxid：数据ID</p>
 <p>  服务器中存放的最大数据ID.值越大说明数据  越新，在选举算法中数据越新权重越大。</p>
 <p>•在Leader选举的过程中，如果某台ZooKeeper</p>
-<p>​    获得了超过半数的选票，</p>
-<p>​    则此ZooKeeper就可以成为Leader了。</p>
+<div class="hljs code-wrapper"><pre><code class="hljs">获得了超过半数的选票，
+
+则此ZooKeeper就可以成为Leader了。
+</code></pre></div>
 <h3 id="5-2-搭建要求"><a href="#5-2-搭建要求" class="headerlink" title="5.2)搭建要求"></a>5.2)搭建要求</h3><p>真实的集群是需要部署在不同的服务器上的，但是在我们测试时同时启动很多个虚拟机内存会吃不消，所以我们通常会搭建<strong>伪集群</strong>，也就是把所有的服务都搭建在一台虚拟机上，用端口进行区分。</p>
 <p>我们这里要求搭建一个三个节点的Zookeeper集群（伪集群）。</p>
 <h3 id="5-3-准备工作"><a href="#5-3-准备工作" class="headerlink" title="5.3)准备工作"></a><strong>5.3)准备工作</strong></h3><p>重新部署一台虚拟机作为我们搭建集群的测试服务器。</p>
@@ -515,42 +520,42 @@
 
 
 
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203121513508.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151332448"> </p>
+<p><img src="/Hexo/../img/202203121513508.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151332448"> </p>
 <p>启动后我们查询一下每个实例的运行状态</p>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">/usr/local/zookeeper-cluster/zookeeper-1/bin/zkServer.sh status<br>/usr/local/zookeeper-cluster/zookeeper-2/bin/zkServer.sh status<br>/usr/local/zookeeper-cluster/zookeeper-3/bin/zkServer.sh status<br></code></pre></div></td></tr></table></figure>
 
 
 
 <p>先查询第一个服务</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203121513326.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151343292"> </p>
+<p><img src="/Hexo/../img/202203121513326.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151343292"> </p>
 <p>Mode为follower表示是<strong>跟随者</strong>（从）</p>
 <p>再查询第二个服务Mod 为leader表示是<strong>领导者</strong>（主）</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203121513560.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151351510"> </p>
+<p><img src="/Hexo/../img/202203121513560.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151351510"> </p>
 <p>查询第三个为跟随者（从）</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203121514253.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151401203"> </p>
+<p><img src="/Hexo/../img/202203121514253.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151401203"> </p>
 <h3 id="5-6-模拟集群异常"><a href="#5-6-模拟集群异常" class="headerlink" title="5.6)模拟集群异常"></a><strong>5.6)模拟集群异常</strong></h3><p>（1）首先我们先测试如果是从服务器挂掉，会怎么样</p>
 <p>把3号服务器停掉，观察1号和2号，发现状态并没有变化</p>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">/usr/local/zookeeper-cluster/zookeeper-3/bin/zkServer.sh stop<br><br>/usr/local/zookeeper-cluster/zookeeper-1/bin/zkServer.sh status<br>/usr/local/zookeeper-cluster/zookeeper-2/bin/zkServer.sh status<br></code></pre></div></td></tr></table></figure>
 
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203121514251.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151408189"> </p>
+<p><img src="/Hexo/../img/202203121514251.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151408189"> </p>
 <p>由此得出结论，3个节点的集群，从服务器挂掉，集群正常</p>
 <p>（2）我们再把1号服务器（从服务器）也停掉，查看2号（主服务器）的状态，发现已经停止运行了。</p>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">/usr/local/zookeeper-cluster/zookeeper-1/bin/zkServer.sh stop<br><br>/usr/local/zookeeper-cluster/zookeeper-2/bin/zkServer.sh status<br></code></pre></div></td></tr></table></figure>
 
 
 
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203121514305.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151421244"> </p>
+<p><img src="/Hexo/../img/202203121514305.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151421244"> </p>
 <p>由此得出结论，3个节点的集群，2个从服务器都挂掉，主服务器也无法运行。因为可运行的机器没有超过集群总数量的半数。</p>
 <p>（3）我们再次把1号服务器启动起来，发现2号服务器又开始正常工作了。而且依然是领导者。</p>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">/usr/local/zookeeper-cluster/zookeeper-1/bin/zkServer.sh start<br><br>/usr/local/zookeeper-cluster/zookeeper-2/bin/zkServer.sh status<br></code></pre></div></td></tr></table></figure>
 
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203121514501.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151438444"> </p>
+<p><img src="/Hexo/../img/202203121514501.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151438444"> </p>
 <p>（4）我们把3号服务器也启动起来，把2号服务器停掉,停掉后观察1号和3号的状态。</p>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">/usr/local/zookeeper-cluster/zookeeper-3/bin/zkServer.sh start<br>/usr/local/zookeeper-cluster/zookeeper-2/bin/zkServer.sh stop<br><br>/usr/local/zookeeper-cluster/zookeeper-1/bin/zkServer.sh status<br>/usr/local/zookeeper-cluster/zookeeper-3/bin/zkServer.sh status<br></code></pre></div></td></tr></table></figure>
 
 
 
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203121514156.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151452088"> </p>
+<p><img src="/Hexo/../img/202203121514156.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151452088"> </p>
 <p>发现新的leader产生了~  </p>
 <p>由此我们得出结论，当集群中的主服务器挂了，集群中的其他服务器会自动进行选举状态，然后产生新得leader </p>
 <p>（5）我们再次测试，当我们把2号服务器重新启动起来启动后，会发生什么？2号服务器会再次成为新的领导吗？我们看结果</p>
@@ -558,21 +563,25 @@
 
 
 
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203121515528.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151501479"> </p>
+<p><img src="/Hexo/../img/202203121515528.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151501479"> </p>
 <p>我们会发现，2号服务器启动后依然是跟随者（从服务器），3号服务器依然是领导者（主服务器），没有撼动3号服务器的领导地位。</p>
 <p>由此我们得出结论，当领导者产生后，再次有新服务器加入集群，不会影响到现任领导者。</p>
 <h2 id="6-Zookeeper-核心理论"><a href="#6-Zookeeper-核心理论" class="headerlink" title="6)Zookeeper 核心理论"></a>6)Zookeeper 核心理论</h2><p><strong>Zookeepe集群角色</strong></p>
 <p>在ZooKeeper集群服中务中有三个角色：</p>
 <p>•Leader 领导者 ：          </p>
-<p>​    1. 处理事务请求</p>
-<p>​    2. 集群内部各服务器的调度者</p>
+<div class="hljs code-wrapper"><pre><code class="hljs">1. 处理事务请求
+
+2. 集群内部各服务器的调度者
+</code></pre></div>
 <p>•Follower 跟随者 ：</p>
-<p>​    1. 处理客户端非事务请求，转发事务请求给Leader服务器</p>
-<p>​    2. 参与Leader选举投票</p>
+<div class="hljs code-wrapper"><pre><code class="hljs">1. 处理客户端非事务请求，转发事务请求给Leader服务器
+
+2. 参与Leader选举投票
+</code></pre></div>
 <p>•Observer 观察者：</p>
 <div class="hljs code-wrapper"><pre><code class="hljs">1. 处理客户端非事务请求，转发事务请求给Leader服务器
 </code></pre></div>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203121515396.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592058451822"></p>
+<p><img src="/Hexo/../img/202203121515396.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592058451822"></p>
 
             </div>
             <hr>

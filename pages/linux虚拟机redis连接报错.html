@@ -1,0 +1,434 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo/img/csdn.png">
+  <link rel="icon" href="/Hexo/img/csdn.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#DAA520">
+  <meta name="author" content="啊星">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="今天测试了一下在本机（win10系统）远程连接 centos下的redis，结果报了以下错误：  -DENIED Redis is running in protected mode because protected mode is enabled, no bind address was specified, no authentication password is requested to">
+<meta property="og:type" content="website">
+<meta property="og:title" content="linux虚拟机redis连接报错">
+<meta property="og:url" content="https://1902756969.github.io/Hexo/pages/linux%E8%99%9A%E6%8B%9F%E6%9C%BAredis%E8%BF%9E%E6%8E%A5%E6%8A%A5%E9%94%99.html">
+<meta property="og:site_name" content="啊星的博客">
+<meta property="og:description" content="今天测试了一下在本机（win10系统）远程连接 centos下的redis，结果报了以下错误：  -DENIED Redis is running in protected mode because protected mode is enabled, no bind address was specified, no authentication password is requested to">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/lin-liangxing/pictuer/raw/master/微信截图_20220214190417.png">
+<meta property="article:published_time" content="2022-02-20T10:29:54.000Z">
+<meta property="article:modified_time" content="2022-03-26T05:06:56.112Z">
+<meta property="article:author" content="啊星">
+<meta property="article:tag" content="Redis">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/lin-liangxing/pictuer/raw/master/微信截图_20220214190417.png">
+  
+  
+  <title>linux虚拟机redis连接报错 - 啊星的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/Hexo/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+  </script>
+  <script  src="/Hexo/js/utils.js" ></script>
+  <script  src="/Hexo/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 60vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/Hexo/">
+      <strong>啊星的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/Hexo/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="linux虚拟机redis连接报错">
+              
+            </span>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<article class="page-content">
+  <p>今天测试了一下在本机（win10系统）远程连接 centos下的redis，结果报了以下错误：</p>
+<p><font color='red'> -DENIED Redis is running in protected mode because protected mode is enabled, no bind address was specified, no authentication password is requested to clients. In this mode connections are only accepted from the loopback interface. If you want to connect</font></p>
+<p>翻译附上….</p>
+<p><img src="/Hexo/../img/202203080928250.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220307230726168"></p>
+<p>英语勉强及格的我勉强看了一下这段恼人的英文，貌似有以下解决方案：</p>
+<p>首先查看了一下进程：</p>
+<figure class="highlight vim"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs vim"><span class="hljs-keyword">ps</span> -ef | <span class="hljs-keyword">grep</span> redis<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="/Hexo/../img/202203072306917.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220307230628875"></p>
+<p>貌似很正常！</p>
+<p>它说没有绑定IP</p>
+<p>我看了看</p>
+<p><img src="/Hexo/../img/202203072309626.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220307230917595"></p>
+<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203072311393.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p>正常！</p>
+<p>难道是端口原因？</p>
+<p>于是：我看了看灭火墙</p>
+<p><img src="/Hexo/../img/202203072313191.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220307231339145"></p>
+<p><img src="/Hexo/../img/202203072314161.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220307231418130"></p>
+<p>很正常！</p>
+<p>（3）对外开发端口</p>
+<figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html">查看想开的端口是否已开：firewall-cmd --query-port=6379/tcp<br>添加指定需要开放的端口：firewall-cmd --add-port=123/tcp --permanent<br>重载入添加的端口：firewall-cmd --reload<br>查询指定端口是否开启成功：firewall-cmd --query-port=123/tcp<br>移除指定端口：firewall-cmd --permanent --remove-port=123/tcp<br><br></code></pre></div></td></tr></table></figure>
+
+<p>于是就剩下了身份验证密码！</p>
+<p>我一baiduo.com后</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/doufuyu/p/10861282.html">https://www.cnblogs.com/doufuyu/p/10861282.html</a></p>
+<h1 id="１-修改redis-conf配置文件，将绑定的ip地址端口号给注释掉。"><a href="#１-修改redis-conf配置文件，将绑定的ip地址端口号给注释掉。" class="headerlink" title="１.修改redis.conf配置文件，将绑定的ip地址端口号给注释掉。"></a>１.修改redis.conf配置文件，将绑定的ip地址端口号给注释掉。</h1><p>（redis默认绑定本机地址，所以其他IP连接不上，将这一行注释掉：# bind 127.0.0.1） </p>
+<p><img src="/Hexo/../img/202203072259869.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220307225923784"></p>
+<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202203072300358.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<h1 id="２-Linux上的redis默认处于安全保护模式，因此我们无法建立连接，提供了两种解决方法，"><a href="#２-Linux上的redis默认处于安全保护模式，因此我们无法建立连接，提供了两种解决方法，" class="headerlink" title="２.Linux上的redis默认处于安全保护模式，因此我们无法建立连接，提供了两种解决方法，"></a>２.Linux上的redis默认处于安全保护模式，因此我们无法建立连接，提供了两种解决方法，</h1><h2 id="2-1-一在redis-conf中设置保护模式为no（protected-mode-no），如下图："><a href="#2-1-一在redis-conf中设置保护模式为no（protected-mode-no），如下图：" class="headerlink" title="2.1 一在redis.conf中设置保护模式为no（protected-mode no），如下图："></a>2.1 一在redis.conf中设置保护模式为no（protected-mode no），如下图：</h2><p><img src="/Hexo/../img/202203072300045.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220307230024918"></p>
+<h2 id="2-2-redis默认是不需要密码的，可以直接登录，在这里我们加上安全认证，即加上连接密码（requirepass-“my-keyword”），见下图"><a href="#2-2-redis默认是不需要密码的，可以直接登录，在这里我们加上安全认证，即加上连接密码（requirepass-“my-keyword”），见下图" class="headerlink" title="2.2 redis默认是不需要密码的，可以直接登录，在这里我们加上安全认证，即加上连接密码（requirepass “my_keyword”），见下图"></a>2.2 redis默认是不需要密码的，可以直接登录，在这里我们加上安全认证，即加上连接密码（requirepass “my_keyword”），见下图</h2><p><img src="/Hexo/../img/202203072302692.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220307230250589"></p>
+<p>最后，<em>杀掉redis的相关进程并重启服务，记得启动时一定要指定配置文件。我的启动命令为：</em>&#x2F;usr&#x2F;local&#x2F;redis&#x2F;bin&#x2F;redis-server &#x2F;usr&#x2F;local&#x2F;redis&#x2F;etc&#x2F;redis.conf</p>
+<p>完美解决！</p>
+
+
+  
+</article>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/Hexo/js/events.js" ></script>
+<script  src="/Hexo/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/Hexo/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/Hexo/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/Hexo/js/boot.js" ></script>
+
+
+<script src="/Hexo/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>

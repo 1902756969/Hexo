@@ -1,0 +1,567 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo/img/csdn.png">
+  <link rel="icon" href="/Hexo/img/csdn.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#DAA520">
+  <meta name="author" content="啊星">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、注解开发的含义1. 注解驱动的意义1.1什么是注解驱动注解启动时使用注解的形式替代xml配置，将繁杂的spring配置文件从工程中彻底消除掉，简化书写   类似于，我们Bean中配置的xml换成java代码和@注解 1.2注解开发的缺点有时候xml的配置比java代码更加清晰明了，所以在某些情况下会吧开发变复杂。 2.常用的注解2.1启动扫描注解功能1&lt;context:component">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Spring使用注解开发">
+<meta property="og:url" content="https://1902756969.github.io/Hexo/pages%20-%20%E7%BD%91%E5%9B%BE%E7%89%88/Spring%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91.html">
+<meta property="og:site_name" content="啊星的博客">
+<meta property="og:description" content="一、注解开发的含义1. 注解驱动的意义1.1什么是注解驱动注解启动时使用注解的形式替代xml配置，将繁杂的spring配置文件从工程中彻底消除掉，简化书写   类似于，我们Bean中配置的xml换成java代码和@注解 1.2注解开发的缺点有时候xml的配置比java代码更加清晰明了，所以在某些情况下会吧开发变复杂。 2.常用的注解2.1启动扫描注解功能1&lt;context:component">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://1902756969.github.io/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220214190156.png">
+<meta property="article:published_time" content="2021-12-12T11:36:05.000Z">
+<meta property="article:modified_time" content="2022-03-26T05:22:29.410Z">
+<meta property="article:author" content="啊星">
+<meta property="article:tag" content="Spring">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://1902756969.github.io/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220214190156.png">
+  
+  
+  <title>Spring使用注解开发 - 啊星的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/Hexo/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+  </script>
+  <script  src="/Hexo/js/utils.js" ></script>
+  <script  src="/Hexo/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 60vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/Hexo/">
+      <strong>啊星的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/Hexo/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Spring使用注解开发">
+              
+            </span>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<article class="page-content">
+  <h1 id="一、注解开发的含义"><a href="#一、注解开发的含义" class="headerlink" title="一、注解开发的含义"></a>一、注解开发的含义</h1><h2 id="1-注解驱动的意义"><a href="#1-注解驱动的意义" class="headerlink" title="1. 注解驱动的意义"></a>1. 注解驱动的意义</h2><h3 id="1-1什么是注解驱动"><a href="#1-1什么是注解驱动" class="headerlink" title="1.1什么是注解驱动"></a>1.1什么是注解驱动</h3><p>注解启动时使用注解的形式替代xml配置，将繁杂的spring配置文件从工程中彻底消除掉，简化书写</p>
+<p><img src="https://img-blog.csdnimg.cn/7e8f0bb2445a43c5850d207cd73c71b3.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAbWFuX29uZQ==,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/Hexo/img/loading.gif" lazyload alt="img"></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<p>类似于，我们Bean中配置的xml换成java代码和@注解</p>
+<h3 id="1-2注解开发的缺点"><a href="#1-2注解开发的缺点" class="headerlink" title="1.2注解开发的缺点"></a>1.2注解开发的缺点</h3><p>有时候xml的配置比java代码更加清晰明了，所以在某些情况下会吧开发变复杂。</p>
+<h2 id="2-常用的注解"><a href="#2-常用的注解" class="headerlink" title="2.常用的注解"></a>2.常用的注解</h2><h2 id="2-1启动扫描注解功能"><a href="#2-1启动扫描注解功能" class="headerlink" title="2.1启动扫描注解功能"></a>2.1启动扫描注解功能</h2><figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs XML"><span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">&quot;packageName&quot;</span>/&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<p>说明：</p>
+<p> - 在进行包所扫描时，会对配置的包及其子包中所有文件进行扫描</p>
+<p> - 扫描过程是以文件夹递归迭代的形式进行的</p>
+<p> - 扫描过程仅读取合法的java文件</p>
+<p> - 扫描时仅读取spring可识别的注解</p>
+<p> - 扫描结束后会将可识别的有效注解转化为spring对应的资源加入IoC容器</p>
+<p>- 注意：</p>
+<p> - 无论是注解格式还是XML配置格式，最终都是将资源加载到IoC容器中，差别仅仅是数据读取方式不同</p>
+<p> - 从加载效率上来说注解优于XML配置文件</p>
+<h2 id="2-2-bean的定义"><a href="#2-2-bean的定义" class="headerlink" title="2.2 bean的定义"></a>2.2 bean的定义</h2><p>名称：@Component   @Controller   @Service   @Repository</p>
+<p> 类型：<strong>类注解</strong></p>
+<p>位置：类定义上方</p>
+<p>作用：设置该类为spring管理的bean</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">```java<br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ClassName</span>&#123;&#125;<br>```<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<p>说明：</p>
+<p> @Controller、@Service 、@Repository是@Component的衍生注解，功能同@Component</p>
+<p>相关属性<br> value（默认）：定义bean的访问id</p>
+<h2 id="2-3-bean的作用域"><a href="#2-3-bean的作用域" class="headerlink" title="2.3 bean的作用域"></a>2.3 bean的作用域</h2><p>名称：@Scope</p>
+<p>类型：<strong>类注解</strong></p>
+<p>位置：类定义上方</p>
+<p>- 作用：设置该类作为bean对应的scope属性</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">```java<br><span class="hljs-meta">@Scope</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ClassName</span>&#123;&#125;<br>```<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<p>- 相关属性</p>
+<p> - value（默认）：定义bean的作用域，默认为singleton</p>
+<h2 id="2-4-bean的生命周期"><a href="#2-4-bean的生命周期" class="headerlink" title="2.4 bean的生命周期"></a>2.4 bean的生命周期</h2><p>- 名称：@PostConstruct、@PreDestroy</p>
+<p>- 类型：<strong>方法注解</strong></p>
+<p>- 位置：方法定义上方</p>
+<p>- 作用：设置该类作为bean对应的生命周期方法</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">```java<br><span class="hljs-meta">@PostConstruct</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">init</span><span class="hljs-params">()</span> &#123; System.out.println(<span class="hljs-string">&quot;init...&quot;</span>); &#125;<br>```<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<h2 id="2-5-加载第三方资源"><a href="#2-5-加载第三方资源" class="headerlink" title="2.5 加载第三方资源"></a>2.5 加载第三方资源</h2><p>名称：@Bean</p>
+<p>类型：<strong>方法注解</strong></p>
+<p>位置：方法定义上方</p>
+<p>作用：设置该方法的返回值作为spring管理的bean</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">```java<br><span class="hljs-meta">@Bean(&quot;dataSource&quot;)</span><br><span class="hljs-keyword">public</span> DruidDataSource <span class="hljs-title function_">createDataSource</span><span class="hljs-params">()</span> &#123;    <span class="hljs-keyword">return</span> ……;    &#125;<br>```<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<p>- 说明：</p>
+<p> - 因为第三方bean无法在其源码上进行修改，使用@Bean解决第三方bean的引入问题</p>
+<p> - 该注解用于替代XML配置中的静态工厂与实例工厂创建bean，不区分方法是否为静态或非静态</p>
+<p> - @Bean所在的类必须被spring扫描加载，否则该注解无法生效</p>
+<p>- 相关属性<br>  - value（默认）：定义bean的访问id</p>
+<h2 id="2-6-bean的非引用类型属性注入"><a href="#2-6-bean的非引用类型属性注入" class="headerlink" title="2.6 bean的非引用类型属性注入"></a>2.6 bean的非引用类型属性注入</h2><p>- 名称：@Value</p>
+<p>- 类型：<strong>属性注解、方法注解</strong></p>
+<p>- 位置：属性定义上方，方法定义上方</p>
+<p>- 作用：设置对应属性的值或对方法进行传参</p>
+<p>- 范例：</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">```java<br><span class="hljs-meta">@Value(&quot;$&#123;jdbc.username&#125;&quot;)</span><br><span class="hljs-keyword">private</span> String username;<br>```<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<p>- 说明：</p>
+<p> - value值仅支持非引用类型数据，赋值时对方法的所有参数全部赋值</p>
+<p> - value值支持读取properties文件中的属性值，通过类属性将properties中数据传入类中</p>
+<p> - value值支持SpEL</p>
+<p> - @value注解如果添加在属性上方，可以省略set方法（set方法的目的是为属性赋值）</p>
+<p>- 相关属性<br>  - value（默认）：定义对应的属性值或参数值</p>
+<h2 id="2-7-bean的引用类型属性注入"><a href="#2-7-bean的引用类型属性注入" class="headerlink" title="2.7 bean的引用类型属性注入"></a>2.7 bean的引用类型属性注入</h2><p>- 名称：@Autowired、@Qualifier</p>
+<p>- 类型：<strong>属性注解、方法注解</strong></p>
+<p>- 位置：属性定义上方，方法定义上方</p>
+<p>- 作用：设置对应属性的对象或对方法进行引用类型传参</p>
+<p>- 范例：</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">```java<br><span class="hljs-meta">@Autowired(required = false)</span><br><span class="hljs-meta">@Qualifier(&quot;userDao&quot;)</span><br><span class="hljs-keyword">private</span> UserDao userDao;<br>```<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<p>- 说明：</p>
+<p> - @Autowired默认按类型装配，指定@Qualifier后可以指定自动装配的bean的id</p>
+<p>- 相关属性<br>  - required：定义该属性是否允许为null</p>
+<h2 id="2-8-bean的引用类型属性注入"><a href="#2-8-bean的引用类型属性注入" class="headerlink" title="2.8 bean的引用类型属性注入"></a>2.8 bean的引用类型属性注入</h2><p>- 名称：@Primary</p>
+<p>- 类型：<strong>类注解</strong></p>
+<p>- 位置：类定义上方</p>
+<p>- 作用：设置类对应的bean按类型装配时优先装配</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">```java<br><span class="hljs-meta">@Primary</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ClassName</span>&#123;&#125;<br>```<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<p>- 说明：</p>
+<p> - @Autowired默认按类型装配，当出现相同类型的bean，使用@Primary提高按类型自动装配的优先级，多个@Primary会导致优先级设置无效</p>
+<h2 id="2-9-bean的引用类型属性注入"><a href="#2-9-bean的引用类型属性注入" class="headerlink" title="2.9 bean的引用类型属性注入"></a>2.9 bean的引用类型属性注入</h2><p>- 名称：@Inject、@Named、@Resource</p>
+<p>- 说明：<br>  - @Inject与@Named是JSR330规范中的注解，功能与@Autowired和@Qualifier完全相同，适用于不同架构场景<br>  - @Resource是JSR250规范中的注解，可以简化书写格式</p>
+<p>- @Resource相关属性</p>
+<p> - name：设置注入的bean的id</p>
+<p> - type：设置注入的bean的类型，接收的参数为Class类型</p>
+<h2 id="2-10-加载properties文件"><a href="#2-10-加载properties文件" class="headerlink" title="2.10 加载properties文件"></a>2.10 加载properties文件</h2><p>- 名称：@PropertySource</p>
+<p>- 类型：<strong>类注解</strong></p>
+<p>- 位置：类定义上方</p>
+<p>- 作用：加载properties文件中的属性值</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">```java<br><span class="hljs-meta">@PropertySource(value = &quot;classpath:filename.properties&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ClassName</span> &#123;<br>    <span class="hljs-meta">@Value(&quot;$&#123;propertiesAttributeName&#125;&quot;)</span><br>    <span class="hljs-keyword">private</span> String attributeName;<br>&#125;<br>```<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<p>- 说明：</p>
+<p> - 不支持*通配格式，一旦加载，所有spring控制的bean中均可使用对应属性值</p>
+<p>- 相关属性</p>
+<p> - value（默认）：设置加载的properties文件名</p>
+<p> - ignoreResourceNotFound：如果资源未找到，是否忽略，默认为false</p>
+<h2 id="2-11-纯注解格式"><a href="#2-11-纯注解格式" class="headerlink" title="2.11 纯注解格式"></a>2.11 纯注解格式</h2><p>- 名称：@Configuration、@ComponentScan</p>
+<p>- 类型：<strong>类注解</strong></p>
+<p>- 位置：类定义上方</p>
+<p>- 作用：设置当前类为spring核心配置加载类</p>
+<p>- 范例：</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">```java<br><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@ComponentScan(&quot;scanPackageName&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SpringConfigClassName</span>&#123;<br>&#125;<br>```<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<p>- 说明：</p>
+<p> - 核心配合类用于替换spring核心配置文件，此类可以设置空的，不设置变量与属性</p>
+<p> - bean扫描工作使用注解@ComponentScan替代</p>
+<p><strong>AnnotationConfigApplicationContext</strong></p>
+<p>- 加载纯注解格式上下文对象，需要使用AnnotationConfigApplicationContext</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">```java<br><span class="hljs-type">AnnotationConfigApplicationContext</span> <span class="hljs-variable">ctx</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">AnnotationConfigApplicationContext</span>(SpringConfig.class);<br>```<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<h2 id="2-12-第三方bean配置与管理"><a href="#2-12-第三方bean配置与管理" class="headerlink" title="2.12 第三方bean配置与管理"></a>2.12 第三方bean配置与管理</h2><p>- 名称：@Import</p>
+<p>- 类型：<strong>类注解</strong></p>
+<p>- 位置：类定义上方</p>
+<p>- 作用：导入第三方bean作为spring控制的资源</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">```java<br><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@Import(OtherClassName.class)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ClassName</span> &#123;<br>&#125;<br>```<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<p>- 说明：</p>
+<p> - @Import注解在同一个类上，仅允许添加一次，如果需要导入多个，使用数组的形式进行设定</p>
+<p> - 在被导入的类中可以继续使用@Import导入其他资源（了解）</p>
+<p> - @Bean所在的类可以使用导入的形式进入spring容器，无需声明为bean</p>
+<h1 id="3、bean加载控制"><a href="#3、bean加载控制" class="headerlink" title="3、bean加载控制"></a>3、bean加载控制</h1><h2 id="3-1依赖加载"><a href="#3-1依赖加载" class="headerlink" title="3.1依赖加载"></a>3.1依赖加载</h2><h3 id="3-1-1-DependsOn"><a href="#3-1-1-DependsOn" class="headerlink" title="3.1.1@DependsOn"></a>3.1.1@DependsOn</h3><p>- 名称：@DependsOn</p>
+<p>- 类型：类注解、方法注解</p>
+<p>- 位置：bean定义的位置（类上或方法上）</p>
+<p>- 作用：控制bean的加载顺序，使其在指定bean加载完毕后再加载</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">```java<br><span class="hljs-meta">@DependsOn(&quot;beanId&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ClassName</span> &#123;<br>&#125;<br>```<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<p>- 说明：</p>
+<p> - 配置在方法上，使@DependsOn指定的bean优先于@Bean配置的bean进行加载</p>
+<p> - 配置在类上，使@DependsOn指定的bean优先于当前类中所有@Bean配置的bean进行加载</p>
+<p> - 配置在类上，使@DependsOn指定的bean优先于@Component等配置的bean进行加载</p>
+<p>- 相关属性<br>  - value（默认）：设置当前bean所依赖的bean的id</p>
+<h3 id="3-1-2-Order"><a href="#3-1-2-Order" class="headerlink" title="3.1.2@Order"></a>3.1.2@Order</h3><p>- 名称：@Order</p>
+<p>- 类型：<strong>配置类注解</strong></p>
+<p>- 位置：配置类定义的位置（类上）</p>
+<p>- 作用：控制配置类的加载顺序</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">```java<br><span class="hljs-meta">@Order(1)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SpringConfigClassName</span> &#123;<br>&#125;<br>```<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<h3 id="3-1-3-Lazy"><a href="#3-1-3-Lazy" class="headerlink" title="3.1.3 @Lazy"></a>3.1.3 @Lazy</h3><p>- 名称：@Lazy</p>
+<p>- 类型：<strong>类注解、方法注解</strong></p>
+<p>- 位置：bean定义的位置（类上或方法上）</p>
+<p>- 作用：控制bean的加载时机，使其延迟加载</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">```java<br><span class="hljs-meta">@Lazy</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ClassName</span> &#123;<br>&#125;<br>```<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<h2 id="3-2-依赖加载应用场景"><a href="#3-2-依赖加载应用场景" class="headerlink" title="3.2 依赖加载应用场景"></a>3.2 依赖加载应用场景</h2><p>@DependsOn</p>
+<p>- 微信订阅号，发布消息和订阅消息的bean的加载顺序控制</p>
+<p>- 双11活动期间，零点前是结算策略A，零点后是结算策略B，策略B操作的数据为促销数据。策略B加载顺序与促销数据的加载顺序</p>
+<p>@Lazy</p>
+<p>- 程序灾难出现后对应的应急预案处理是启动容器时加载时机</p>
+<p>@Order</p>
+<p>- 多个种类的配置出现后，优先加载系统级的，然后加载业务级的，避免细粒度的加载控制</p>
+
+
+  
+</article>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/Hexo/js/events.js" ></script>
+<script  src="/Hexo/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/Hexo/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/Hexo/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/Hexo/js/boot.js" ></script>
+
+
+<script src="/Hexo/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>

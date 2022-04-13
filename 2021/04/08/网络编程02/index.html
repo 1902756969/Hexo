@@ -26,13 +26,13 @@
 <meta property="og:site_name" content="啊星的博客">
 <meta property="og:description" content="1.NIO1.1 NIO通道客户端【应用】 客户端实现步骤  打开通道 指定IP和端口号 写出数据 释放资源   示例代码 12345678910111213141516public class NIOClient &amp;#123;    public static void main(String[] args) throws IOException &amp;#123;        &#x2F;&#x2F;1.打开通道">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/lin-liangxing/pictuer/raw/master/202202171704790.png">
+<meta property="og:image" content="https://1902756969.github.io/img/202202171704790.png">
 <meta property="article:published_time" content="2021-04-08T11:29:54.000Z">
-<meta property="article:modified_time" content="2022-03-02T14:05:16.169Z">
+<meta property="article:modified_time" content="2022-03-26T05:29:45.545Z">
 <meta property="article:author" content="啊星">
 <meta property="article:tag" content="Java基础">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://gitee.com/lin-liangxing/pictuer/raw/master/202202171704790.png">
+<meta name="twitter:image" content="https://1902756969.github.io/img/202202171704790.png">
   
   
   <title>网络编程_2 - 啊星的博客</title>
@@ -256,7 +256,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：23 天前
+                  本文最后更新于：18 天前
                 
               </p>
             
@@ -353,8 +353,8 @@
 <h3 id="1-5NIO选择器【理解】"><a href="#1-5NIO选择器【理解】" class="headerlink" title="1.5NIO选择器【理解】"></a>1.5NIO选择器【理解】</h3><ul>
 <li><p>概述</p>
 <p>选择器可以监视通道的状态,多路复用</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202202221209649.png" srcset="/Hexo/img/loading.gif" lazyload alt="02_选择器概述"></p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202202221209448.png" srcset="/Hexo/img/loading.gif" lazyload alt="01_选择器多路复用"></p>
+<p><img src="/Hexo/../img/202202221209649.png" srcset="/Hexo/img/loading.gif" lazyload alt="02_选择器概述"></p>
+<p><img src="/Hexo/../img/202202221209448.png" srcset="/Hexo/img/loading.gif" lazyload alt="01_选择器多路复用"></p>
 </li>
 <li><p>选择器对象</p>
 <ul>
@@ -390,7 +390,7 @@
 <li><p>如果有客户端来连接了，大爷会遍历所有的服务端通道，谁准备好了，就让谁来连接<br>  连接后，在服务端通道内部，再创建一个客户端延伸通道</p>
 </li>
 <li><p>如果客户端把数据传递过来了，大爷会遍历所有的延伸通道，谁准备好了，谁去接收数据</p>
-<p>  <img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202202221209842.png" srcset="/Hexo/img/loading.gif" lazyload alt="03_选择器改写服务器"></p>
+<p>  <img src="/Hexo/../img/202202221209842.png" srcset="/Hexo/img/loading.gif" lazyload alt="03_选择器改写服务器"></p>
 </li>
 </ol>
 </li>
@@ -405,7 +405,7 @@
 <p>完整的格式为 <a target="_blank" rel="noopener" href="http://bbs.itheima.com/forum.php">http://bbs.itheima.com:80/forum.php</a></p>
 </li>
 <li><p>详解</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202202221209305.png" srcset="/Hexo/img/loading.gif" lazyload alt="04_url"></p>
+<p><img src="/Hexo/../img/202202221209305.png" srcset="/Hexo/img/loading.gif" lazyload alt="04_url"></p>
 </li>
 </ul>
 <h3 id="2-3抓包工具的使用【应用】"><a href="#2-3抓包工具的使用【应用】" class="headerlink" title="2.3抓包工具的使用【应用】"></a>2.3抓包工具的使用【应用】</h3><ul>
@@ -416,7 +416,7 @@
 <li><p>点击network,进入到查看网络相关信息界面</p>
 </li>
 <li><p>这时在浏览器中发起请求,进行访问,工具中就会显示出请求和响应相关的信息</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202202221209705.png" srcset="/Hexo/img/loading.gif" lazyload alt="05_抓包"></p>
+<p><img src="/Hexo/../img/202202221209705.png" srcset="/Hexo/img/loading.gif" lazyload alt="05_抓包"></p>
 </li>
 </ol>
 </li>
@@ -433,7 +433,7 @@
 <li><p>请求行</p>
 <ul>
 <li><p>格式</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202202221209586.png" srcset="/Hexo/img/loading.gif" lazyload alt="06_请求行格式"></p>
+<p><img src="/Hexo/../img/202202221209586.png" srcset="/Hexo/img/loading.gif" lazyload alt="06_请求行格式"></p>
 </li>
 <li><p>请求方式</p>
 <p>GET,POST,HEAD,PUT,DELETE,CONNECT,OPTIONS,TRACE,PATCH</p>
@@ -441,7 +441,7 @@
 </li>
 <li><p>URI</p>
 <p>请求资源路径,统一资源标识符</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202202221209593.png" srcset="/Hexo/img/loading.gif" lazyload alt="07_Uri图示"></p>
+<p><img src="/Hexo/../img/202202221209593.png" srcset="/Hexo/img/loading.gif" lazyload alt="07_Uri图示"></p>
 </li>
 <li><p>协议版本</p>
 <ul>
@@ -454,7 +454,7 @@
 <li><p>请求头</p>
 <ul>
 <li><p>格式</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202202221209257.png" srcset="/Hexo/img/loading.gif" lazyload alt="08_请求头图示"></p>
+<p><img src="/Hexo/../img/202202221209257.png" srcset="/Hexo/img/loading.gif" lazyload alt="08_请求头图示"></p>
 </li>
 <li><p>请求头名称</p>
 <ul>
@@ -465,12 +465,12 @@
 <li>Accept-Encoding: 指定浏览器可以支持的服务器返回内容压缩编码类型</li>
 <li>Accept-Language: 浏览器可接受的语言</li>
 </ul>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202202221209954.png" srcset="/Hexo/img/loading.gif" lazyload alt="09_请求头示例"></p>
+<p><img src="/Hexo/../img/202202221209954.png" srcset="/Hexo/img/loading.gif" lazyload alt="09_请求头示例"></p>
 </li>
 </ul>
 </li>
 <li><p>小结</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202202221209745.png" srcset="/Hexo/img/loading.gif" lazyload alt="10_请求信息小结"></p>
+<p><img src="/Hexo/../img/202202221209745.png" srcset="/Hexo/img/loading.gif" lazyload alt="10_请求信息小结"></p>
 </li>
 </ul>
 <h3 id="2-5响应信息【理解】"><a href="#2-5响应信息【理解】" class="headerlink" title="2.5响应信息【理解】"></a>2.5响应信息【理解】</h3><ul>
@@ -485,7 +485,7 @@
 <li><p>响应行</p>
 <ul>
 <li><p>格式</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202202221209457.png" srcset="/Hexo/img/loading.gif" lazyload alt="11_响应头格式"></p>
+<p><img src="/Hexo/../img/202202221209457.png" srcset="/Hexo/img/loading.gif" lazyload alt="11_响应头格式"></p>
 </li>
 <li><p>协议版本</p>
 <ul>
@@ -524,12 +524,12 @@
 <li>image&#x2F;png —-&gt; png格式文件</li>
 <li>image&#x2F;jpeg —-&gt; jpg格式文件</li>
 </ul>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202202221209401.png" srcset="/Hexo/img/loading.gif" lazyload alt="13_响应头示例"></p>
+<p><img src="/Hexo/../img/202202221209401.png" srcset="/Hexo/img/loading.gif" lazyload alt="13_响应头示例"></p>
 </li>
 </ul>
 </li>
 <li><p>小结</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202202221210841.png" srcset="/Hexo/img/loading.gif" lazyload alt="12_响应信息小结"></p>
+<p><img src="/Hexo/../img/202202221210841.png" srcset="/Hexo/img/loading.gif" lazyload alt="12_响应信息小结"></p>
 </li>
 </ul>
 <h2 id="3-HTTP服务器"><a href="#3-HTTP服务器" class="headerlink" title="3.HTTP服务器"></a>3.HTTP服务器</h2><h3 id="3-1需求【理解】"><a href="#3-1需求【理解】" class="headerlink" title="3.1需求【理解】"></a>3.1需求【理解】</h3><ul>

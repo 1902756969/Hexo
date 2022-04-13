@@ -1,0 +1,457 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo/img/csdn.png">
+  <link rel="icon" href="/Hexo/img/csdn.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#DAA520">
+  <meta name="author" content="啊星">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1.1 下载安装1、环境准备 ZooKeeper服务器是用Java创建的，它运行在JVM之上。需要安装JDK 7或更高版本。 2、上传 将下载的ZooKeeper放到&#x2F;opt&#x2F;ZooKeeper目录下 123456789#上传zookeeper alt+pput f:&#x2F;setup&#x2F;apache-zookeeper-3.5.6-bin.tar.gz#打开 opt目录cd &#x2F;opt">
+<meta property="og:type" content="website">
+<meta property="og:title" content="zookeeper安装">
+<meta property="og:url" content="https://1902756969.github.io/Hexo/pages%20-%20%E7%BD%91%E5%9B%BE%E7%89%88/Zookeeper%E5%AE%89%E8%A3%85.html">
+<meta property="og:site_name" content="啊星的博客">
+<meta property="og:description" content="1.1 下载安装1、环境准备 ZooKeeper服务器是用Java创建的，它运行在JVM之上。需要安装JDK 7或更高版本。 2、上传 将下载的ZooKeeper放到&#x2F;opt&#x2F;ZooKeeper目录下 123456789#上传zookeeper alt+pput f:&#x2F;setup&#x2F;apache-zookeeper-3.5.6-bin.tar.gz#打开 opt目录cd &#x2F;opt">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://1902756969.github.io/img/202203101244091.png">
+<meta property="article:published_time" content="2022-01-23T14:30:03.000Z">
+<meta property="article:modified_time" content="2022-03-26T05:25:12.184Z">
+<meta property="article:author" content="啊星">
+<meta property="article:tag" content="zookeeper">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://1902756969.github.io/img/202203101244091.png">
+  
+  
+  <title>zookeeper安装 - 啊星的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/Hexo/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+  </script>
+  <script  src="/Hexo/js/utils.js" ></script>
+  <script  src="/Hexo/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 60vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/Hexo/">
+      <strong>啊星的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/Hexo/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="zookeeper安装">
+              
+            </span>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<article class="page-content">
+  <h2 id="1-1-下载安装"><a href="#1-1-下载安装" class="headerlink" title="1.1 下载安装"></a>1.1 下载安装</h2><p><strong>1、环境准备</strong></p>
+<p>ZooKeeper服务器是用Java创建的，它运行在JVM之上。需要安装JDK 7或更高版本。</p>
+<p><strong>2、上传</strong></p>
+<p>将下载的ZooKeeper放到&#x2F;opt&#x2F;ZooKeeper目录下</p>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="language-bash">上传zookeeper alt+p</span><br>put f:/setup/apache-zookeeper-3.5.6-bin.tar.gz<br><span class="hljs-meta">#</span><span class="language-bash">打开 opt目录</span><br>cd /opt<br><span class="hljs-meta">#</span><span class="language-bash">创建zooKeeper目录</span><br>mkdir  zooKeeper<br><span class="hljs-meta">#</span><span class="language-bash">将zookeeper安装包移动到 /opt/zooKeeper</span><br>mv apache-zookeeper-3.5.6-bin.tar.gz /opt/zookeeper/<br></code></pre></div></td></tr></table></figure>
+
+<p><strong>3、解压</strong></p>
+<p>将tar包解压到&#x2F;opt&#x2F;zookeeper目录下</p>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">tar -zxvf apache-ZooKeeper-3.5.6-bin.tar.gz <br></code></pre></div></td></tr></table></figure>
+
+<h2 id="1-2-配置启动"><a href="#1-2-配置启动" class="headerlink" title="1.2 配置启动"></a>1.2 配置启动</h2><p><strong>1、配置zoo.cfg</strong></p>
+<p>进入到conf目录拷贝一个zoo_sample.cfg并完成配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="language-bash">进入到conf目录</span><br>cd /opt/zooKeeper/apache-zooKeeper-3.5.6-bin/conf/<br><span class="hljs-meta">#</span><span class="language-bash">拷贝</span><br>cp  zoo_sample.cfg  zoo.cfg<br></code></pre></div></td></tr></table></figure>
+
+
+
+<p>修改zoo.cfg</p>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="language-bash">打开目录</span><br>cd /opt/zooKeeper/<br><span class="hljs-meta">#</span><span class="language-bash">创建zooKeeper存储目录</span><br>mkdir  zkdata<br><span class="hljs-meta">#</span><span class="language-bash">修改zoo.cfg</span><br>vim /opt/zooKeeper/apache-zooKeeper-3.5.6-bin/conf/zoo.cfg<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="/Hexo/../img/202203101143567.png" srcset="/Hexo/img/loading.gif" lazyload alt="1577548250377"></p>
+<p>修改存储目录：dataDir&#x3D;&#x2F;opt&#x2F;zookeeper&#x2F;zkdata</p>
+<p><strong>2、启动ZooKeeper</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">cd /opt/zooKeeper/apache-zooKeeper-3.5.6-bin/bin/<br><span class="hljs-meta">#</span><span class="language-bash">启动</span><br> ./zkServer.sh  start<br><span class="hljs-meta"> #</span><span class="language-bash">停止</span><br> ./zkServer.sh  stop<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="/Hexo/../img/202203101143949.png" srcset="/Hexo/img/loading.gif" lazyload alt="1577548052037"></p>
+<p>看到上图表示ZooKeeper成功启动</p>
+<p><strong>3、查看ZooKeeper状态</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">./zkServer.sh status<br></code></pre></div></td></tr></table></figure>
+
+<p>zookeeper启动成功。standalone代表zk没有搭建集群，现在是单节点</p>
+<p><img src="/Hexo/../img/202203101143853.png" srcset="/Hexo/img/loading.gif" lazyload alt="1577548175232"></p>
+<p>zookeeper没有启动</p>
+<h3 id="1-2-1、端口冲突"><a href="#1-2-1、端口冲突" class="headerlink" title="1.2.1、端口冲突"></a>1.2.1、端口冲突</h3><p>每个端口都有一个守护进程，kill掉这个守护进程就可以了</p>
+<p>每个端口都是一个进程占用着，</p>
+<p>第一步、用下面命令</p>
+<p>netstat -anp |grep 端口</p>
+<p>找出占用这个端口的进程，</p>
+<p>第二步、用下面命令</p>
+<p>kill -9 PID</p>
+<p>杀掉就行了</p>
+<h3 id="1-2-2、通过开启关闭服务的方法来开启-x2F-关闭端口"><a href="#1-2-2、通过开启关闭服务的方法来开启-x2F-关闭端口" class="headerlink" title="1.2.2、通过开启关闭服务的方法来开启&#x2F;关闭端口"></a>1.2.2、通过开启关闭服务的方法来开启&#x2F;关闭端口</h3><p>因为每个端口都有对应的服务，因此要关闭端口只要关闭相应的服务就可以了。</p>
+<p>linux中开机自动启动的服务一般都存放在两个地方：</p>
+<p>&#x2F;etc&#x2F;init.d&#x2F;文件夹下的服务：<br>这个文件夹下的服务都可以通过运行相应的SCRIPT来启动或关闭。<br>例如：启动sendmail服务： .&#x2F;sendmail start (打开了TCP 25端口)<br>关闭sendmail服务： .&#x2F;sendmail stop （关闭TCP 25 端口）</p>
+<p>查看sendmail服务当前状态： .&#x2F;sendmail? status （查看服务是否运行）</p>
+<p>&#x2F;etc&#x2F;xinetd.d&#x2F;文件夹下的服务：<br>这个文件夹下的服务需要通过更改服务的配置文件，并重新启动xinetd才可以。</p>
+<p>例如：要启动其中的auth服务，打开&#x2F;etc&#x2F;xinetd.d&#x2F;auth配置文件，更改“disable&#x3D;no”，保存退出。</p>
+<p>运行&#x2F;etc&#x2F;rc.d&#x2F;init.d&#x2F;xinetd restart </p>
+<p>要停止其中的auth服务，打开&#x2F;etc&#x2F;xinetd.d&#x2F;auth配置文件，更改“disable&#x3D;yes”，保存退出。</p>
+<p>运行&#x2F;etc&#x2F;rc.d&#x2F;init.d&#x2F;xinetd restart</p>
+<h3 id="1-2-3、通过防火墙限制端口"><a href="#1-2-3、通过防火墙限制端口" class="headerlink" title="1.2.3、通过防火墙限制端口"></a>1.2.3、通过防火墙限制端口</h3><p>以下介绍的方法在<a target="_blank" rel="noopener" href="http://www.kubiji.cn/topic-id119.html">Linux命令</a>下使用，很简便。<br>开端口为：</p>
+<p>iptables -A INPUT -p  $port  -j ACCEPT</p>
+<p>关把ACCEPT改为DROP即可，即：</p>
+<p>iptables -A INPUT -p $port  -j DROP<br>其中$port即为端口数字，iptables的具体用法可</p>
+<h3 id="1-2-4-关闭linuxTCP-x2F-6"><a href="#1-2-4-关闭linuxTCP-x2F-6" class="headerlink" title="1.2.4 关闭linuxTCP&#x2F;6"></a>1.2.4 关闭linuxTCP&#x2F;6</h3><p>1、打开&#x2F;etc&#x2F;sysctl.conf</p>
+<p>2、添加如下三条设置</p>
+<p>   net.ipv6.conf.all.disable_ipv6 &#x3D; 1<br>   net.ipv6.conf.default.disable_ipv6 &#x3D; 1<br>   net.ipv6.conf.lo.disable_ipv6 &#x3D; 1<br>3、保存修改<br>4、执行：<br>  sudo sysctl -p<br>5、查看状态：<br> cat &#x2F;proc&#x2F;sys&#x2F;net&#x2F;ipv6&#x2F;conf&#x2F;all&#x2F;disable_ipv6<br> 显示应该是1<br>6、结束</p>
+
+
+  
+</article>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/Hexo/js/events.js" ></script>
+<script  src="/Hexo/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/Hexo/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/Hexo/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/Hexo/js/boot.js" ></script>
+
+
+<script src="/Hexo/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>

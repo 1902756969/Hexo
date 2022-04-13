@@ -26,13 +26,13 @@
 <meta property="og:site_name" content="啊星的博客">
 <meta property="og:description" content="常见面试题1.微服务篇1.1.SpringCloud常见组件有哪些？问题说明：这个题目主要考察对SpringCloud的组件基本了解 难易程度：简单 参考话术： SpringCloud包含的组件很多，有很多功能是重复的。其中最常用组件包括： •注册中心组件：Eureka、Nacos等 •负载均衡组件：Ribbon •远程调用组件：OpenFeign •网关组件：Zuul、Gateway •服务保护">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/lin-liangxing/pictuer/raw/master/202202221216777.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/aFQHKNftA4CPsE3.png">
 <meta property="article:published_time" content="2022-03-03T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-03-04T11:53:22.106Z">
+<meta property="article:modified_time" content="2022-04-11T11:37:37.076Z">
 <meta property="article:author" content="啊星">
 <meta property="article:tag" content="微服务🙌">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://gitee.com/lin-liangxing/pictuer/raw/master/202202221216777.png">
+<meta name="twitter:image" content="https://s2.loli.net/2022/04/11/aFQHKNftA4CPsE3.png">
   
   
   <title>微服务常见面试题 - 啊星的博客</title>
@@ -256,7 +256,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：21 天前
+                  本文最后更新于：2 天前
                 
               </p>
             
@@ -277,7 +277,7 @@
 <p>Nacos采用了数据的分级存储模型，最外层是Namespace，用来隔离环境。然后是Group，用来对服务分组。接下来就是服务（Service）了，一个服务包含多个实例，但是可能处于不同机房，因此Service下有多个集群（Cluster），Cluster下是不同的实例（Instance）。</p>
 <p>对应到Java代码中，Nacos采用了一个多层的Map来表示。结构为Map&lt;String, Map&lt;String, Service&gt;&gt;，其中最外层Map的key就是namespaceId，值是一个Map。内层Map的key是group拼接serviceName，值是Service对象。Service对象内部又是一个Map，key是集群名称，值是Cluster对象。而Cluster对象内部维护了Instance的集合。</p>
 <p>如图：</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202202172146564.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210925215305446"></p>
+<p><img src="https://s2.loli.net/2022/04/11/q5fdnkyabj9Rl1c.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210925215305446"></p>
 <h2 id="1-3-Nacos如何支撑阿里内部数十万服务注册压力？"><a href="#1-3-Nacos如何支撑阿里内部数十万服务注册压力？" class="headerlink" title="1.3.Nacos如何支撑阿里内部数十万服务注册压力？"></a>1.3.Nacos如何支撑阿里内部数十万服务注册压力？</h2><p><strong>问题说明</strong>：考察对Nacos源码的掌握情况</p>
 <p><strong>难易程度</strong>：难</p>
 <p><strong>参考话术</strong>：</p>
@@ -313,7 +313,7 @@
 <p>Hystix默认是基于线程池实现的线程隔离，每一个被隔离的业务都要创建一个独立的线程池，线程过多会带来额外的CPU开销，性能一般，但是隔离性更强。</p>
 <p>Sentinel是基于信号量（计数器）实现的线程隔离，不用创建线程池，性能较好，但是隔离性一般。</p>
 <h1 id="2-MQ篇"><a href="#2-MQ篇" class="headerlink" title="2.MQ篇"></a>2.MQ篇</h1><h2 id="2-1-你们为什么选择了RabbitMQ而不是其它的MQ？"><a href="#2-1-你们为什么选择了RabbitMQ而不是其它的MQ？" class="headerlink" title="2.1.你们为什么选择了RabbitMQ而不是其它的MQ？"></a>2.1.你们为什么选择了RabbitMQ而不是其它的MQ？</h2><p>如图：</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202202172146453.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210925220034702"></p>
+<p><img src="https://s2.loli.net/2022/04/11/SPpDg2iYIVC5kOc.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210925220034702"></p>
 <p><strong>话术：</strong></p>
 <p>kafka是以吞吐量高而闻名，不过其数据稳定性一般，而且无法保证消息有序性。我们公司的日志收集也有使用，业务模块中则使用的RabbitMQ。</p>
 <p>阿里巴巴的RocketMQ基于Kafka的原理，弥补了Kafka的缺点，继承了其高吞吐的优势，其客户端目前以Java为主。但是我们担心阿里巴巴开源产品的稳定性，所以就没有使用。</p>
@@ -428,7 +428,7 @@
 <li><code>集群模式</code>：memcached没有原生的集群模式，需要依靠客户端来实现往集群中分片写入数据；但是 redis 目前是原生支持 cluster 模式的.</li>
 <li><code>Redis使用单线程</code>：Memcached是多线程，非阻塞IO复用的网络模型；Redis使用单线程的多路 IO 复用模型。</li>
 </ul>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202202172146005.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574821356723"></p>
+<p><img src="https://s2.loli.net/2022/04/11/aQX9ARNyIY8E3L4.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574821356723"></p>
 <h2 id="3-2-Redis的单线程问题"><a href="#3-2-Redis的单线程问题" class="headerlink" title="3.2.Redis的单线程问题"></a>3.2.Redis的单线程问题</h2><p><strong>面试官</strong>：Redis采用单线程，如何保证高并发？</p>
 <p><strong>面试话术</strong>：</p>
 <p>Redis快的主要原因是：</p>
@@ -516,12 +516,12 @@
 <li>如果配置了<code>哨兵节点</code>，当master宕机时，哨兵会从salve节点选出一个新的主。</li>
 </ul>
 <p>主从集群分两种：</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202202172146779.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574821993599"> <img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202202172146476.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574822026037"> </p>
+<p><img src="https://s2.loli.net/2022/04/11/g7HREAK8cUeCl6B.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574821993599"> <img src="https://s2.loli.net/2022/04/11/6yMLOjaXdzx7823.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574822026037"> </p>
 <p>带有哨兵的集群：</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202202172146925.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574822077190"></p>
+<p><img src="https://s2.loli.net/2022/04/11/ZNlXTBpod8Mr4wS.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574822077190"></p>
 <p>2）分片集群</p>
 <p>主从集群中，每个节点都要保存所有信息，容易形成木桶效应。并且当数据量较大时，单个机器无法满足需求。此时我们就要使用分片集群了。</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202202172146756.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574822184467"> </p>
+<p><img src="https://s2.loli.net/2022/04/11/wPjEZHoKdItXJNb.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574822184467"> </p>
 <p>集群特征：</p>
 <ul>
 <li><p>每个节点都保存不同数据</p>
@@ -536,9 +536,9 @@
 </li>
 </ul>
 <p>为了保证Redis中每个节点的高可用，我们还可以给每个节点创建replication（slave节点），如图：</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202202172146971.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574822584357"></p>
+<p><img src="https://s2.loli.net/2022/04/11/TGw7xjXMAgUvmyW.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574822584357"></p>
 <p>出现故障时，主从可以及时切换：</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202202172146171.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574822602109"></p>
+<p><img src="https://s2.loli.net/2022/04/11/CUe2yxbwdlf9pno.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574822602109"></p>
 <h2 id="3-4-Redis的常用数据类型有哪些？"><a href="#3-4-Redis的常用数据类型有哪些？" class="headerlink" title="3.4.Redis的常用数据类型有哪些？"></a>3.4.Redis的常用数据类型有哪些？</h2><p>支持多种类型的数据结构，主要区别是value存储的数据格式不同：</p>
 <ul>
 <li><p>string：最基本的数据类型，二进制安全的字符串，最大512M。</p>
@@ -697,7 +697,7 @@
 <li>RocksDB：<a target="_blank" rel="noopener" href="https://rocksdb.org.cn/">https://rocksdb.org.cn/</a></li>
 </ul>
 <p>因此，我们就需要在应用程序与缓存服务之间引入代理，实现Redis和SSD之间的切换，如图：</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202202172147974.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20200521115702956"></p>
+<p><img src="https://s2.loli.net/2022/04/11/vGtaXc54SelkC7E.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20200521115702956"></p>
 <p>这样的代理方案阿里云提供的就有。当然也有一些开源方案，例如：<a target="_blank" rel="noopener" href="https://github.com/JingchengLi/swapdb">https://github.com/JingchengLi/swapdb</a></p>
 <h2 id="3-10-Redis实现分布式锁"><a href="#3-10-Redis实现分布式锁" class="headerlink" title="3.10.Redis实现分布式锁"></a>3.10.Redis实现分布式锁</h2><p>分布式锁要满足的条件：</p>
 <ul>
@@ -726,7 +726,7 @@
 
 
 <h3 id="2）可重入分布式锁"><a href="#2）可重入分布式锁" class="headerlink" title="2）可重入分布式锁"></a>2）可重入分布式锁</h3><p>如果有重入的需求，则除了在锁中记录进程标识，还要记录重试次数，流程如下：</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202202172147891.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574824172228"> </p>
+<p><img src="https://s2.loli.net/2022/04/11/XyDS2k7uK4FiJap.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574824172228"> </p>
 <p>下面我们假设锁的key为“<code>lock</code>”，hashKey是当前线程的id：“<code>threadId</code>”，锁自动释放时间假设为20</p>
 <p>获取锁的步骤：</p>
 <ul>
@@ -823,12 +823,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/Hexo/2022/04/09/Redis%E9%AB%98%E7%BA%A7/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Redis高级</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/Hexo/2022/03/03/nacos%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/">
-                        <span class="hidden-mobile">Nacos集群搭建教程</span>
+                      <a href="/Hexo/2022/03/03/SpringCloud%E5%AE%9E%E7%94%A8%E7%AF%8702/">
+                        <span class="hidden-mobile">SpringCloud——高级①</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

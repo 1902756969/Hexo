@@ -26,13 +26,13 @@
 <meta property="og:site_name" content="啊星的博客">
 <meta property="og:description" content="1.网络编程入门1.1 网络编程概述【理解】 计算机网络 是指将地理位置不同的具有独立功能的多台计算机及其外部设备，通过通信线路连接起来，在网络操作系统，网络管理软件及网络通信协议的管理和协调下，实现资源共享和信息传递的计算机系统  网络编程 在网络通信协议下，不同计算机上运行的程序，可以进行数据传输   1.2 网络编程三要素【理解】 IP地址 要想让网络中的计算机能够互相通信，必须为每台计算机">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/lin-liangxing/pictuer/raw/master/202202171704790.png">
+<meta property="og:image" content="https://1902756969.github.io/img/202202171704790.png">
 <meta property="article:published_time" content="2021-04-06T06:29:54.000Z">
-<meta property="article:modified_time" content="2022-02-22T04:12:24.149Z">
+<meta property="article:modified_time" content="2022-03-26T05:28:44.790Z">
 <meta property="article:author" content="啊星">
 <meta property="article:tag" content="Java基础">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://gitee.com/lin-liangxing/pictuer/raw/master/202202171704790.png">
+<meta name="twitter:image" content="https://1902756969.github.io/img/202202171704790.png">
   
   
   <title>网络编程01 - 啊星的博客</title>
@@ -256,7 +256,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：1 个月前
+                  本文最后更新于：18 天前
                 
               </p>
             
@@ -628,10 +628,10 @@
 <li><p>三次握手和四次挥手</p>
 <ul>
 <li><p>三次握手</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202202221208466.png" srcset="/Hexo/img/loading.gif" lazyload alt="07_TCP三次握手"></p>
+<p><img src="/Hexo/../img/202202221208466.png" srcset="/Hexo/img/loading.gif" lazyload alt="07_TCP三次握手"></p>
 </li>
 <li><p>四次挥手</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202202221208194.png" srcset="/Hexo/img/loading.gif" lazyload alt="08_TCP四次挥手"></p>
+<p><img src="/Hexo/../img/202202221208194.png" srcset="/Hexo/img/loading.gif" lazyload alt="08_TCP四次挥手"></p>
 </li>
 </ul>
 </li>
@@ -769,7 +769,7 @@
 </li>
 <li><p>选择器</p>
 <p>监视通道状态</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202202221208577.png" srcset="/Hexo/img/loading.gif" lazyload alt="09_三大模块"></p>
+<p><img src="/Hexo/../img/202202221208577.png" srcset="/Hexo/img/loading.gif" lazyload alt="09_三大模块"></p>
 </li>
 </ul>
 <h3 id="4-4NIO创建缓冲区对象【应用】"><a href="#4-4NIO创建缓冲区对象【应用】" class="headerlink" title="4.4NIO创建缓冲区对象【应用】"></a>4.4NIO创建缓冲区对象【应用】</h3><ul>
@@ -796,7 +796,7 @@
 </ul>
 <h3 id="4-5NIO缓冲区添加数据【应用】"><a href="#4-5NIO缓冲区添加数据【应用】" class="headerlink" title="4.5NIO缓冲区添加数据【应用】"></a>4.5NIO缓冲区添加数据【应用】</h3><ul>
 <li><p>方法介绍</p>
-<p><img src="https://gitee.com/lin-liangxing/pictuer/raw/master/202202221208336.png" srcset="/Hexo/img/loading.gif" lazyload alt="10_NIO缓冲区添加数据"></p>
+<p><img src="/Hexo/../img/202202221208336.png" srcset="/Hexo/img/loading.gif" lazyload alt="10_NIO缓冲区添加数据"></p>
 </li>
 <li><p>代码示例</p>
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ByteBufferDemo2</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br><span class="hljs-comment">//        int position()		  当前要操作的索引</span><br><span class="hljs-comment">//        int limit() 		  最多能操作到哪个索引</span><br><span class="hljs-comment">//        int capacity()		  缓冲区的总长度</span><br>        <span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">byteBuffer</span> <span class="hljs-operator">=</span> ByteBuffer.allocate(<span class="hljs-number">10</span>);<br>        System.out.println(byteBuffer.position());<span class="hljs-comment">//0</span><br>        System.out.println(byteBuffer.limit());<span class="hljs-comment">//10</span><br>        System.out.println(byteBuffer.capacity());<span class="hljs-comment">//10</span><br><br><span class="hljs-comment">//        put(byte b)		  一次添加一个字节</span><br><span class="hljs-comment">//        byteBuffer.put((byte) 97);</span><br><span class="hljs-comment">//        System.out.println(byteBuffer.position());</span><br><span class="hljs-comment">//        System.out.println(byteBuffer.limit());</span><br><span class="hljs-comment">//        System.out.println(byteBuffer.capacity());</span><br><br><span class="hljs-comment">//        put(byte[] src)		 一次添加一个字节数组</span><br><span class="hljs-comment">//        byteBuffer.put(&quot;aaa&quot;.getBytes());</span><br><span class="hljs-comment">//        System.out.println(byteBuffer.position());//3</span><br><span class="hljs-comment">//        System.out.println(byteBuffer.limit());//10</span><br><span class="hljs-comment">//        System.out.println(byteBuffer.capacity());//10</span><br><br><span class="hljs-comment">//        position(int newPosition) 修改position</span><br><span class="hljs-comment">//        byteBuffer.position(1);</span><br><br><span class="hljs-comment">//        limit(int newLimit)	  修改limit</span><br><span class="hljs-comment">//        byteBuffer.limit(5);</span><br><span class="hljs-comment">//        System.out.println(byteBuffer.position());</span><br><span class="hljs-comment">//        System.out.println(byteBuffer.limit());</span><br><span class="hljs-comment">//        System.out.println(byteBuffer.capacity());</span><br><br><span class="hljs-comment">//        int remaining()		  还有多少能操作</span><br><span class="hljs-comment">//        boolean hasRemaining()	  是否还有能操作的</span><br><br>        byteBuffer.put(<span class="hljs-string">&quot;0123456789&quot;</span>.getBytes());<br>        System.out.println(byteBuffer.remaining());<br>        System.out.println(byteBuffer.hasRemaining());<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure></li>
