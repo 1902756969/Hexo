@@ -26,13 +26,13 @@
 <meta property="og:site_name" content="啊星的博客">
 <meta property="og:description" content="0.学习目标1.Nacos配置管理Nacos除了可以做注册中心，同样可以做配置管理来使用。 1.1.统一配置管理当微服务部署的实例越来越多，达到数十、数百时，逐个修改微服务配置就会让人抓狂，而且很容易出错。我们需要一种统一配置管理方案，可以集中管理所有实例的配置。  Nacos一方面可以将配置集中管理，另一方可以在配置变更时，及时通知微服务，实现配置的热更新。 1.1.1.在nacos中添加配置文">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://1902756969.github.io/img/202202221216777.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/nLvbFrjK8o1fXka.png">
 <meta property="article:published_time" content="2022-03-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-03-26T05:21:21.510Z">
+<meta property="article:modified_time" content="2022-04-17T12:23:16.066Z">
 <meta property="article:author" content="啊星">
 <meta property="article:tag" content="SpringCloud🎶">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://1902756969.github.io/img/202202221216777.png">
+<meta name="twitter:image" content="https://s2.loli.net/2022/04/11/nLvbFrjK8o1fXka.png">
   
   
   <title>SpringCloud——高级① - 啊星的博客</title>
@@ -256,26 +256,26 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：18 天前
+                  本文最后更新于：几秒前
                 
               </p>
             
             <div class="markdown-body">
               <h1 id="0-学习目标"><a href="#0-学习目标" class="headerlink" title="0.学习目标"></a>0.学习目标</h1><h1 id="1-Nacos配置管理"><a href="#1-Nacos配置管理" class="headerlink" title="1.Nacos配置管理"></a>1.Nacos配置管理</h1><p>Nacos除了可以做注册中心，同样可以做配置管理来使用。</p>
 <h2 id="1-1-统一配置管理"><a href="#1-1-统一配置管理" class="headerlink" title="1.1.统一配置管理"></a>1.1.统一配置管理</h2><p>当微服务部署的实例越来越多，达到数十、数百时，逐个修改微服务配置就会让人抓狂，而且很容易出错。我们需要一种统一配置管理方案，可以集中管理所有实例的配置。</p>
-<p><img src="/Hexo/../img/202203021758240.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714164426792"></p>
+<p><img src="https://s2.loli.net/2022/04/17/8WrMauNtZYd9G5l.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714164426792"></p>
 <p>Nacos一方面可以将配置集中管理，另一方可以在配置变更时，及时通知微服务，实现配置的热更新。</p>
 <h3 id="1-1-1-在nacos中添加配置文件"><a href="#1-1-1-在nacos中添加配置文件" class="headerlink" title="1.1.1.在nacos中添加配置文件"></a>1.1.1.在nacos中添加配置文件</h3><p>如何在nacos中管理配置呢？</p>
-<p><img src="/Hexo/../img/202203021758862.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714164742924"></p>
+<p><img src="https://s2.loli.net/2022/04/17/RnIHVNdvAfGY79P.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714164742924"></p>
 <p>然后在弹出的表单中，填写配置信息：</p>
-<p><img src="/Hexo/../img/202203021758893.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714164856664"></p>
+<p><img src="https://s2.loli.net/2022/04/17/rMo2pOWXbQ9jyLE.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714164856664"></p>
 <blockquote>
 <p>注意：项目的核心配置，需要热更新的配置才有放到nacos管理的必要。基本不会变更的一些配置还是保存在微服务本地比较好。</p>
 </blockquote>
 <h3 id="1-1-2-从微服务拉取配置"><a href="#1-1-2-从微服务拉取配置" class="headerlink" title="1.1.2.从微服务拉取配置"></a>1.1.2.从微服务拉取配置</h3><p>微服务要拉取nacos中管理的配置，并且与本地的application.yml配置合并，才能完成项目启动。</p>
 <p>但如果尚未读取application.yml，又如何得知nacos地址呢？</p>
 <p>因此spring引入了一种新的配置文件：bootstrap.yaml文件，会在application.yml之前被读取，流程如下：</p>
-<p><img src="/Hexo/../img/202203021759525.png" srcset="/Hexo/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://s2.loli.net/2022/04/17/wOzfsDrjkKmcTvH.png" srcset="/Hexo/img/loading.gif" lazyload alt="img"></p>
 <p>1）引入nacos-config依赖</p>
 <p>首先，在user-service服务中，引入nacos-config的客户端依赖：</p>
 <figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--nacos配置管理依赖--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-config<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
@@ -287,21 +287,21 @@
 <p>这里会根据spring.cloud.nacos.server-addr获取nacos地址，再根据</p>
 <p><code>$&#123;spring.application.name&#125;-$&#123;spring.profiles.active&#125;.$&#123;spring.cloud.nacos.config.file-extension&#125;</code>作为文件id，来读取配置。</p>
 <p>本例中，就是去读取<code>userservice-dev.yaml</code>：</p>
-<p><img src="/Hexo/../img/202203021759542.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714170845901"></p>
+<p><img src="https://s2.loli.net/2022/04/17/IsCHvBtDRlirue9.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714170845901"></p>
 <p>3）读取nacos配置</p>
 <p>在user-service中的UserController中添加业务逻辑，读取pattern.dateformat配置：</p>
-<p><img src="/Hexo/../img/202203021759396.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714170337448"></p>
+<p><img src="https://s2.loli.net/2022/04/17/TV3SKycNs2kJbpr.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714170337448"></p>
 <p>完整代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> cn.itcast.user.web;<br><br><span class="hljs-keyword">import</span> cn.itcast.user.pojo.User;<br><span class="hljs-keyword">import</span> cn.itcast.user.service.UserService;<br><span class="hljs-keyword">import</span> lombok.extern.slf4j.Slf4j;<br><span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;<br><span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Value;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.*;<br><br><span class="hljs-keyword">import</span> java.time.LocalDateTime;<br><span class="hljs-keyword">import</span> java.time.format.DateTimeFormatter;<br><br><span class="hljs-meta">@Slf4j</span><br><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;/user&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserController</span> &#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> UserService userService;<br><br>    <span class="hljs-meta">@Value(&quot;$&#123;pattern.dateformat&#125;&quot;)</span><br>    <span class="hljs-keyword">private</span> String dateformat;<br>    <br>    <span class="hljs-meta">@GetMapping(&quot;now&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">now</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> LocalDateTime.now().format(DateTimeFormatter.ofPattern(dateformat));<br>    &#125;<br>    <span class="hljs-comment">// ...略</span><br>&#125;<br></code></pre></div></td></tr></table></figure>
 
 
 
 <p>在页面访问，可以看到效果：</p>
-<p><img src="/Hexo/../img/202203021759078.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714170449612"></p>
+<p><img src="/Hexo/image-ypysss.test.upcdn.net/202203021759078.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714170449612"></p>
 <h2 id="1-2-配置热更新"><a href="#1-2-配置热更新" class="headerlink" title="1.2.配置热更新"></a>1.2.配置热更新</h2><p>我们最终的目的，是修改nacos中的配置后，微服务中无需重启即可让配置生效，也就是<strong>配置热更新</strong>。</p>
 <p>要实现配置热更新，可以使用两种方式：</p>
 <h3 id="1-2-1-方式一"><a href="#1-2-1-方式一" class="headerlink" title="1.2.1.方式一"></a>1.2.1.方式一</h3><p>在@Value注入的变量所在类上添加注解@RefreshScope：</p>
-<p><img src="/Hexo/../img/202203021759640.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714171036335"></p>
+<p><img src="https://s2.loli.net/2022/04/17/UgTyw1ZraW93zSK.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714171036335"></p>
 <h3 id="1-2-2-方式二"><a href="#1-2-2-方式二" class="headerlink" title="1.2.2.方式二"></a>1.2.2.方式二</h3><p>使用@ConfigurationProperties注解代替@Value注解。</p>
 <p>在user-service服务中，添加一个类，读取patterrn.dateformat属性：</p>
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> cn.itcast.user.config;<br><br><span class="hljs-keyword">import</span> lombok.Data;<br><span class="hljs-keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Component;<br><br><span class="hljs-meta">@Component</span><br><span class="hljs-meta">@Data</span><br><span class="hljs-meta">@ConfigurationProperties(prefix = &quot;pattern&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">PatternProperties</span> &#123;<br>    <span class="hljs-keyword">private</span> String dateformat;<br>&#125;<br></code></pre></div></td></tr></table></figure>
@@ -309,7 +309,7 @@
 
 
 <p>在UserController中使用这个类代替@Value：</p>
-<p><img src="/Hexo/../img/202203021759285.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714171316124"></p>
+<p><img src="https://s2.loli.net/2022/04/17/hJL4egmqNaj3OXb.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714171316124"></p>
 <p>完整代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> cn.itcast.user.web;<br><br><span class="hljs-keyword">import</span> cn.itcast.user.config.PatternProperties;<br><span class="hljs-keyword">import</span> cn.itcast.user.pojo.User;<br><span class="hljs-keyword">import</span> cn.itcast.user.service.UserService;<br><span class="hljs-keyword">import</span> lombok.extern.slf4j.Slf4j;<br><span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.GetMapping;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.PathVariable;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RestController;<br><br><span class="hljs-keyword">import</span> java.time.LocalDateTime;<br><span class="hljs-keyword">import</span> java.time.format.DateTimeFormatter;<br><br><span class="hljs-meta">@Slf4j</span><br><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;/user&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserController</span> &#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> UserService userService;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> PatternProperties patternProperties;<br><br>    <span class="hljs-meta">@GetMapping(&quot;now&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">now</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> LocalDateTime.now().format(DateTimeFormatter.ofPattern(patternProperties.getDateformat()));<br>    &#125;<br><br>    <span class="hljs-comment">// 略</span><br>&#125;<br></code></pre></div></td></tr></table></figure>
 
@@ -327,14 +327,14 @@
 <p>而<code>[spring.application.name].yaml</code>不包含环境，因此可以被多个环境共享。</p>
 <p>下面我们通过案例来测试配置共享</p>
 <h3 id="1）添加一个环境共享配置"><a href="#1）添加一个环境共享配置" class="headerlink" title="1）添加一个环境共享配置"></a>1）添加一个环境共享配置</h3><p>我们在nacos中添加一个userservice.yaml文件：</p>
-<p><img src="/Hexo/../img/202203021951150.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714173233650"></p>
+<p><img src="https://s2.loli.net/2022/04/17/IuidDhM6qU3NzSk.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714173233650"></p>
 <h3 id="2）在user-service中读取共享配置"><a href="#2）在user-service中读取共享配置" class="headerlink" title="2）在user-service中读取共享配置"></a>2）在user-service中读取共享配置</h3><p>在user-service服务中，修改PatternProperties类，读取新添加的属性：</p>
-<p><img src="/Hexo/../img/202203021951689.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714173324231"></p>
+<p><img src="https://s2.loli.net/2022/04/17/KI1W27e5QhodCpG.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714173324231"></p>
 <p>在user-service服务中，修改UserController，添加一个方法：</p>
-<p><img src="/Hexo/../img/202203021951440.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714173721309"></p>
+<p><img src="https://s2.loli.net/2022/04/17/oXh95b1I2RDuP7Z.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714173721309"></p>
 <h3 id="3）运行两个UserApplication，使用不同的profile"><a href="#3）运行两个UserApplication，使用不同的profile" class="headerlink" title="3）运行两个UserApplication，使用不同的profile"></a>3）运行两个UserApplication，使用不同的profile</h3><p>修改UserApplication2这个启动项，改变其profile值：</p>
-<p><img src="/Hexo/../img/202203021951624.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714173538538"></p>
-<p><img src="/Hexo/../img/202203021951355.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714173519963"></p>
+<p><img src="https://s2.loli.net/2022/04/17/86Vg1YCTa4FNPQo.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714173538538"></p>
+<p><img src="https://s2.loli.net/2022/04/17/8WYHez17slcSFUT.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714173519963"></p>
 <p>这样，UserApplication(8081)使用的profile是dev，UserApplication2(8082)使用的profile是test。</p>
 <p>启动UserApplication和UserApplication2</p>
 <p>访问<a target="_blank" rel="noopener" href="http://localhost:8081/user/prop%EF%BC%8C%E7%BB%93%E6%9E%9C%EF%BC%9A">http://localhost:8081/user/prop，结果：</a></p>
@@ -343,9 +343,9 @@
 <p><img src="/Hexo/../img/202203021954802.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714174424818"></p>
 <p>可以看出来，不管是dev，还是test环境，都读取到了envSharedValue这个属性的值。</p>
 <h3 id="4）配置共享的优先级"><a href="#4）配置共享的优先级" class="headerlink" title="4）配置共享的优先级"></a>4）配置共享的优先级</h3><p>当nacos、服务本地同时出现相同属性时，优先级有高低之分：</p>
-<p><img src="/Hexo/../img/202203022011642.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714174623557"></p>
+<p><img src="https://s2.loli.net/2022/04/17/EW9oO5ZFwcke1NS.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714174623557"></p>
 <h2 id="1-4-搭建Nacos集群"><a href="#1-4-搭建Nacos集群" class="headerlink" title="1.4.搭建Nacos集群"></a>1.4.搭建Nacos集群</h2><p>Nacos生产环境下一定要部署为集群状态，部署方式参考课前资料中的文档：</p>
-<p><img src="/Hexo/../img/202203022011177.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714174728042"></p>
+<p><img src="https://s2.loli.net/2022/04/17/nqG3Rjub1oETZi7.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714174728042"></p>
 <h1 id="2-Feign远程调用"><a href="#2-Feign远程调用" class="headerlink" title="2.Feign远程调用"></a>2.Feign远程调用</h1><p>先来看我们以前利用RestTemplate发起远程调用的代码：</p>
 <p><img src="/Hexo/../img/202203022011423.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714174814204"></p>
 <p>存在下面的问题：</p>
@@ -353,7 +353,7 @@
 <p>•参数复杂URL难以维护</p>
 <p>Feign是一个声明式的http客户端，官方地址：<a target="_blank" rel="noopener" href="https://github.com/OpenFeign/feign">https://github.com/OpenFeign/feign</a></p>
 <p>其作用就是帮助我们优雅的实现http请求的发送，解决上面提到的问题。</p>
-<p><img src="/Hexo/../img/202203022012135.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714174918088"></p>
+<p><img src="https://s2.loli.net/2022/04/17/uJrnwx6B2NCozsQ.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714174918088"></p>
 <h2 id="2-1-Feign替代RestTemplate"><a href="#2-1-Feign替代RestTemplate" class="headerlink" title="2.1.Feign替代RestTemplate"></a>2.1.Feign替代RestTemplate</h2><p>Fegin的使用步骤如下：</p>
 <h3 id="1）引入依赖"><a href="#1）引入依赖" class="headerlink" title="1）引入依赖"></a>1）引入依赖</h3><p>我们在order-service服务的pom文件中引入feign的依赖：</p>
 <figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-openfeign<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
@@ -361,7 +361,7 @@
 
 
 <h3 id="2）添加注解"><a href="#2）添加注解" class="headerlink" title="2）添加注解"></a>2）添加注解</h3><p>在order-service的启动类添加注解开启Feign的功能：</p>
-<p><img src="/Hexo/../img/202203022019835.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714175102524"></p>
+<p><img src="https://s2.loli.net/2022/04/17/vf5iLqV9oyZPAzH.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714175102524"></p>
 <h3 id="3）编写Feign的客户端"><a href="#3）编写Feign的客户端" class="headerlink" title="3）编写Feign的客户端"></a>3）编写Feign的客户端</h3><p>在order-service中新建一个接口，内容如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> cn.itcast.order.client;<br><br><span class="hljs-keyword">import</span> cn.itcast.order.pojo.User;<br><span class="hljs-keyword">import</span> org.springframework.cloud.openfeign.FeignClient;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.GetMapping;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.PathVariable;<br><br><span class="hljs-meta">@FeignClient(&quot;userservice&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">UserClient</span> &#123;<br>    <span class="hljs-meta">@GetMapping(&quot;/user/&#123;id&#125;&quot;)</span><br>    User <span class="hljs-title function_">findById</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable(&quot;id&quot;)</span> Long id)</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
 
@@ -377,7 +377,7 @@
 </ul>
 <p>这样，Feign就可以帮助我们发送http请求，无需自己使用RestTemplate来发送了。</p>
 <h3 id="4）测试"><a href="#4）测试" class="headerlink" title="4）测试"></a>4）测试</h3><p>修改order-service中的OrderService类中的queryOrderById方法，使用Feign客户端代替RestTemplate：</p>
-<p><img src="/Hexo/../img/202203022019383.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714175415087"></p>
+<p><img src="https://s2.loli.net/2022/04/17/JeXGvygbKRmQVtB.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714175415087"></p>
 <p>是不是看起来优雅多了。</p>
 <h3 id="5）总结"><a href="#5）总结" class="headerlink" title="5）总结"></a>5）总结</h3><p>使用Feign的步骤：</p>
 <p>① 引入依赖</p>
@@ -474,9 +474,9 @@
 
 
 <p>接下来，在FeignClientFactoryBean中的loadBalance方法中打断点：</p>
-<p><img src="/Hexo/../img/202203022019964.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714185925910"></p>
+<p><img src="https://s2.loli.net/2022/04/17/1MV2vjCeS3tDmqu.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714185925910"></p>
 <p>Debug方式启动order-service服务，可以看到这里的client，底层就是Apache HttpClient：</p>
-<p><img src="/Hexo/../img/202203022020451.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714190041542"></p>
+<p><img src="https://s2.loli.net/2022/04/17/rTtYwnBaIGCWuHl.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714190041542"></p>
 <p>总结，Feign的优化：</p>
 <p>1.日志级别尽量用basic</p>
 <p>2.使用HttpClient或OKHttp代替URLConnection</p>
@@ -485,14 +485,14 @@
 <h2 id="2-4-最佳实践"><a href="#2-4-最佳实践" class="headerlink" title="2.4.最佳实践"></a>2.4.最佳实践</h2><p>所谓最近实践，就是使用过程中总结的经验，最好的一种使用方式。</p>
 <p>自习观察可以发现，Feign的客户端与服务提供者的controller代码非常相似：</p>
 <p>feign客户端：</p>
-<p><img src="/Hexo/../img/202203022020595.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714190542730"></p>
+<p><img src="https://s2.loli.net/2022/04/17/GNPgY1uSf57wRMq.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714190542730"></p>
 <p>UserController：</p>
-<p><img src="/Hexo/../img/202203022020412.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714190528450"></p>
+<p><img src="https://s2.loli.net/2022/04/17/XRyTMnCdZUELj4z.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714190528450"></p>
 <p>有没有一种办法简化这种重复的代码编写呢？</p>
 <h3 id="2-4-1-继承方式"><a href="#2-4-1-继承方式" class="headerlink" title="2.4.1.继承方式"></a>2.4.1.继承方式</h3><p>一样的代码可以通过继承来共享：</p>
 <p>1）定义一个API接口，利用定义方法，并基于SpringMVC注解做声明。</p>
 <p>2）Feign客户端和Controller都集成改接口</p>
-<p><img src="/Hexo/../img/202203022020923.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714190640857"></p>
+<p><img src="https://s2.loli.net/2022/04/17/LMUpF4mRg9Z6vnW.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714190640857"></p>
 <p>优点：</p>
 <ul>
 <li>简单</li>
@@ -507,18 +507,18 @@
 </ul>
 <h3 id="2-4-2-抽取方式"><a href="#2-4-2-抽取方式" class="headerlink" title="2.4.2.抽取方式"></a>2.4.2.抽取方式</h3><p>将Feign的Client抽取为独立模块，并且把接口有关的POJO、默认的Feign配置都放到这个模块中，提供给所有消费者使用。</p>
 <p>例如，将UserClient、User、Feign的默认配置都抽取到一个feign-api包中，所有微服务引用该依赖包，即可直接使用。</p>
-<p><img src="/Hexo/../img/202203022020364.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714214041796"></p>
+<p><img src="https://s2.loli.net/2022/04/17/JuZIkotWPT7nyS8.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714214041796"></p>
 <h3 id="2-4-3-实现基于抽取的最佳实践"><a href="#2-4-3-实现基于抽取的最佳实践" class="headerlink" title="2.4.3.实现基于抽取的最佳实践"></a>2.4.3.实现基于抽取的最佳实践</h3><h4 id="1）抽取"><a href="#1）抽取" class="headerlink" title="1）抽取"></a>1）抽取</h4><p>首先创建一个module，命名为feign-api：</p>
-<p><img src="/Hexo/../img/202203022020002.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714204557771"></p>
+<p><img src="https://s2.loli.net/2022/04/17/MBvYzdGU2hQlCiI.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714204557771"></p>
 <p>项目结构：</p>
-<p><img src="/Hexo/../img/202203022020315.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714204656214"></p>
+<p><img src="https://s2.loli.net/2022/04/17/URoQbJkvtgF5CeZ.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714204656214"></p>
 <p>在feign-api中然后引入feign的starter依赖</p>
 <figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-openfeign<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
 
 
 
 <p>然后，order-service中编写的UserClient、User、DefaultFeignConfiguration都复制到feign-api项目中</p>
-<p><img src="/Hexo/../img/202203022020820.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714205221970"></p>
+<p><img src="https://s2.loli.net/2022/04/17/pSMxqFJ4o87ArtR.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714205221970"></p>
 <h4 id="2）在order-service中使用feign-api"><a href="#2）在order-service中使用feign-api" class="headerlink" title="2）在order-service中使用feign-api"></a>2）在order-service中使用feign-api</h4><p>首先，删除order-service中的UserClient、User、DefaultFeignConfiguration等类或接口。</p>
 <p>在order-service的pom文件中中引入feign-api的依赖：</p>
 <figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>cn.itcast.demo<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>feign-api<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
@@ -557,7 +557,7 @@
 <li>限流</li>
 </ul>
 <p>架构图：</p>
-<p><img src="/Hexo/../img/202203022020380.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714210131152"></p>
+<p><img src="https://s2.loli.net/2022/04/17/SRrmKJAnslqEdI2.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714210131152"></p>
 <p><strong>权限控制</strong>：网关作为微服务入口，需要校验用户是是否有请求资格，如果没有则进行拦截。</p>
 <p><strong>路由和负载均衡</strong>：一切请求都必须先经过gateway，但网关不处理业务，而是根据某种规则，把请求转发到某个微服务，这个过程叫做路由。当然路由的目标服务有多个时，还需要做负载均衡。</p>
 <p><strong>限流</strong>：当请求流量过高时，在网关中按照下流的微服务能够接受的速度来放行请求，避免服务压力过大。</p>
@@ -575,7 +575,7 @@
 <li>启动网关服务进行测试</li>
 </ol>
 <h3 id="1）创建gateway服务，引入依赖"><a href="#1）创建gateway服务，引入依赖" class="headerlink" title="1）创建gateway服务，引入依赖"></a>1）创建gateway服务，引入依赖</h3><p>创建服务：</p>
-<p><img src="/Hexo/../img/202203022020356.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714210919458"></p>
+<p><img src="https://s2.loli.net/2022/04/17/x8H6bhZvVWQd3ez.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714210919458"></p>
 <p>引入依赖：</p>
 <figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--网关--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-gateway<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-comment">&lt;!--nacos服务发现依赖--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
 
@@ -593,9 +593,9 @@
 <p>我们将符合<code>Path</code> 规则的一切请求，都代理到 <code>uri</code>参数指定的地址。</p>
 <p>本例中，我们将 <code>/user/**</code>开头的请求，代理到<code>lb://userservice</code>，lb是负载均衡，根据服务名拉取服务列表，实现负载均衡。</p>
 <h3 id="4）重启测试"><a href="#4）重启测试" class="headerlink" title="4）重启测试"></a>4）重启测试</h3><p>重启网关，访问<a target="_blank" rel="noopener" href="http://localhost:10010/user/1%E6%97%B6%EF%BC%8C%E7%AC%A6%E5%90%88%60/user/**%60%E8%A7%84%E5%88%99%EF%BC%8C%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E5%88%B0uri%EF%BC%9Ahttp://userservice/user/1%EF%BC%8C%E5%BE%97%E5%88%B0%E4%BA%86%E7%BB%93%E6%9E%9C%EF%BC%9A">http://localhost:10010/user/1时，符合`/user/**`规则，请求转发到uri：http://userservice/user/1，得到了结果：</a></p>
-<p><img src="/Hexo/../img/202203022020227.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714211908341"></p>
+<p><img src="https://s2.loli.net/2022/04/17/NdHFBAhE91QaW4w.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714211908341"></p>
 <h3 id="5）网关路由的流程图"><a href="#5）网关路由的流程图" class="headerlink" title="5）网关路由的流程图"></a>5）网关路由的流程图</h3><p>整个访问的流程如下：</p>
-<p><img src="/Hexo/../img/202203022020101.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714211742956"></p>
+<p><img src="https://s2.loli.net/2022/04/17/DhMWAYQEBbg8PRe.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714211742956"></p>
 <p>总结：</p>
 <p>网关搭建步骤：</p>
 <ol>
@@ -686,7 +686,7 @@
 </tbody></table>
 <p>我们只需要掌握Path这种路由工程就可以了。</p>
 <h2 id="3-4-过滤器工厂"><a href="#3-4-过滤器工厂" class="headerlink" title="3.4.过滤器工厂"></a>3.4.过滤器工厂</h2><p>GatewayFilter是网关中提供的一种过滤器，可以对进入网关的请求和微服务返回的响应做处理：</p>
-<p><img src="/Hexo/../img/202203022020987.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714212312871"></p>
+<p><img src="https://s2.loli.net/2022/04/17/Xrkz5wlGvgIedhB.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714212312871"></p>
 <h3 id="3-4-1-路由过滤器的种类"><a href="#3-4-1-路由过滤器的种类" class="headerlink" title="3.4.1.路由过滤器的种类"></a>3.4.1.路由过滤器的种类</h3><p>Spring提供了31种不同的路由过滤器工厂。例如：</p>
 <table>
 <thead>
@@ -765,7 +765,7 @@
 
 <h3 id="3-5-3-过滤器执行顺序"><a href="#3-5-3-过滤器执行顺序" class="headerlink" title="3.5.3.过滤器执行顺序"></a>3.5.3.过滤器执行顺序</h3><p>请求进入网关会碰到三类过滤器：当前路由的过滤器、DefaultFilter、GlobalFilter</p>
 <p>请求路由后，会将当前路由过滤器和DefaultFilter、GlobalFilter，合并到一个过滤器链（集合）中，排序后依次执行每个过滤器：</p>
-<p><img src="/Hexo/../img/202203022020675.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714214228409"></p>
+<p><img src="https://s2.loli.net/2022/04/17/BaDVrd8CoAcvpWg.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714214228409"></p>
 <p>排序的规则是什么呢？</p>
 <ul>
 <li>每一个过滤器都必须指定一个int类型的order值，<strong>order值越小，优先级越高，执行顺序越靠前</strong>。</li>
@@ -786,10 +786,10 @@
 <p>跨域问题：浏览器禁止请求的发起者与服务端发生跨域ajax请求，请求被浏览器拦截的问题</p>
 <p>解决方案：CORS，这个以前应该学习过，这里不再赘述了。不知道的小伙伴可以查看<a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2016/04/cors.html">https://www.ruanyifeng.com/blog/2016/04/cors.html</a></p>
 <h3 id="3-6-2-模拟跨域问题"><a href="#3-6-2-模拟跨域问题" class="headerlink" title="3.6.2.模拟跨域问题"></a>3.6.2.模拟跨域问题</h3><p>找到课前资料的页面文件：</p>
-<p><img src="/Hexo/../img/202203022020482.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714215713563"></p>
+<p><img src="https://s2.loli.net/2022/04/17/1bdsTmxU26XSKYW.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714215713563"></p>
 <p>放入tomcat或者nginx这样的web服务器中，启动并访问。</p>
 <p>可以在浏览器控制台看到下面的错误：</p>
-<p><img src="/Hexo/../img/202203022020307.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714215832675"></p>
+<p><img src="https://s2.loli.net/2022/04/17/pI7DMX1oux6qfkA.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714215832675"></p>
 <p>从localhost:8090访问localhost:10010，端口不同，显然是跨域的请求。</p>
 <h3 id="3-6-3-解决跨域问题"><a href="#3-6-3-解决跨域问题" class="headerlink" title="3.6.3.解决跨域问题"></a>3.6.3.解决跨域问题</h3><p>在gateway服务的application.yml文件中，添加下面的配置：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-comment"># 。。。</span><br>      <span class="hljs-attr">globalcors:</span> <span class="hljs-comment"># 全局的跨域处理</span><br>        <span class="hljs-attr">add-to-simple-url-handler-mapping:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># 解决options请求被拦截问题</span><br>        <span class="hljs-attr">corsConfigurations:</span><br>          <span class="hljs-string">&#x27;[/**]&#x27;</span><span class="hljs-string">:</span><br>            <span class="hljs-attr">allowedOrigins:</span> <span class="hljs-comment"># 允许哪些网站的跨域请求 </span><br>              <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;http://localhost:8090&quot;</span><br>            <span class="hljs-attr">allowedMethods:</span> <span class="hljs-comment"># 允许的跨域ajax的请求方式</span><br>              <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;GET&quot;</span><br>              <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;POST&quot;</span><br>              <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;DELETE&quot;</span><br>              <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;PUT&quot;</span><br>              <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;OPTIONS&quot;</span><br>            <span class="hljs-attr">allowedHeaders:</span> <span class="hljs-string">&quot;*&quot;</span> <span class="hljs-comment"># 允许在请求中携带的头信息</span><br>            <span class="hljs-attr">allowCredentials:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># 是否允许携带cookie</span><br>            <span class="hljs-attr">maxAge:</span> <span class="hljs-number">360000</span> <span class="hljs-comment"># 这次跨域检测的有效期</span><br></code></pre></div></td></tr></table></figure>
