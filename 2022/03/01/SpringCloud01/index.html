@@ -26,13 +26,13 @@
 <meta property="og:site_name" content="啊星的博客">
 <meta property="og:description" content="SpringCloud011.认识微服务随着互联网行业的发展，对服务的要求也越来越高，服务架构也从单体架构逐渐演变为现在流行的微服务架构。这些架构之间有怎样的差别呢？ 1.0.学习目标了解微服务架构的优缺点 1.1.单体架构单体架构：将业务的所有功能集中在一个项目中开发，打成一个包部署。  单体架构的优缺点如下： 优点：  架构简单 部署成本低  缺点：  耦合度高（维护困难、升级困难）  1.2">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://1902756969.github.io/img/202202221216777.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/8xVXBaD9LUpR7qm.png">
 <meta property="article:published_time" content="2022-02-28T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-03-26T05:20:44.710Z">
+<meta property="article:modified_time" content="2022-04-17T12:49:46.056Z">
 <meta property="article:author" content="啊星">
 <meta property="article:tag" content="SpringCloud🎶">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://1902756969.github.io/img/202202221216777.png">
+<meta name="twitter:image" content="https://s2.loli.net/2022/04/11/8xVXBaD9LUpR7qm.png">
   
   
   <title>SpringCloud入门 - 啊星的博客</title>
@@ -256,7 +256,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：22 天前
+                  本文最后更新于：4 天前
                 
               </p>
             
@@ -264,7 +264,7 @@
               <h1 id="SpringCloud01"><a href="#SpringCloud01" class="headerlink" title="SpringCloud01"></a>SpringCloud01</h1><h1 id="1-认识微服务"><a href="#1-认识微服务" class="headerlink" title="1.认识微服务"></a>1.认识微服务</h1><p>随着互联网行业的发展，对服务的要求也越来越高，服务架构也从单体架构逐渐演变为现在流行的微服务架构。这些架构之间有怎样的差别呢？</p>
 <h2 id="1-0-学习目标"><a href="#1-0-学习目标" class="headerlink" title="1.0.学习目标"></a>1.0.学习目标</h2><p>了解微服务架构的优缺点</p>
 <h2 id="1-1-单体架构"><a href="#1-1-单体架构" class="headerlink" title="1.1.单体架构"></a>1.1.单体架构</h2><p><strong>单体架构</strong>：将业务的所有功能集中在一个项目中开发，打成一个包部署。</p>
-<p><img src="/Hexo/../img/202203011138705.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713202807818"></p>
+<p><img src="https://s2.loli.net/2022/04/17/HJQz28vCqdb9XLc.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713202807818"></p>
 <p>单体架构的优缺点如下：</p>
 <p><strong>优点：</strong></p>
 <ul>
@@ -276,7 +276,7 @@
 <li>耦合度高（维护困难、升级困难）</li>
 </ul>
 <h2 id="1-2-分布式架构"><a href="#1-2-分布式架构" class="headerlink" title="1.2.分布式架构"></a>1.2.分布式架构</h2><p><strong>分布式架构</strong>：根据业务功能对系统做拆分，每个业务功能模块作为独立项目开发，称为一个服务。</p>
-<p><img src="/Hexo/../img/202203011141557.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713203124797"></p>
+<p><img src="https://s2.loli.net/2022/04/17/tVTj7FP4ae3ckbh.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713203124797"></p>
 <p>分布式架构的优缺点：</p>
 <p><strong>优点：</strong></p>
 <ul>
@@ -389,11 +389,11 @@
 
 
 <h3 id="2-3-3-实现远程调用"><a href="#2-3-3-实现远程调用" class="headerlink" title="2.3.3.实现远程调用"></a>2.3.3.实现远程调用</h3><p>修改order-service服务中的cn.itcast.order.service包下的OrderService类中的queryOrderById方法：</p>
-<p><img src="/Hexo/../img/202203011140309.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713213959569"></p>
+<p><img src="https://s2.loli.net/2022/04/17/zInHXZ2UouslpiK.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713213959569"></p>
 <h2 id="2-4-提供者与消费者"><a href="#2-4-提供者与消费者" class="headerlink" title="2.4.提供者与消费者"></a>2.4.提供者与消费者</h2><p>在服务调用关系中，会有两个不同的角色：</p>
 <p><strong>服务提供者</strong>：一次业务中，被其它微服务调用的服务。（提供接口给其它微服务）</p>
 <p><strong>服务消费者</strong>：一次业务中，调用其它微服务的服务。（调用其它微服务提供的接口）</p>
-<p><img src="/Hexo/../img/202203011140414.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713214404481"></p>
+<p><img src="https://s2.loli.net/2022/04/17/rRtzVkuEdbBTS9i.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713214404481"></p>
 <p>但是，服务提供者与服务消费者的角色并不是绝对的，而是相对于业务而言。</p>
 <p>如果服务A调用了服务B，而服务B又调用了服务C，服务B的角色是什么？</p>
 <ul>
@@ -402,7 +402,7 @@
 </ul>
 <p>因此，服务B既可以是服务提供者，也可以是服务消费者。</p>
 <h1 id="3-Eureka注册中心"><a href="#3-Eureka注册中心" class="headerlink" title="3.Eureka注册中心"></a>3.Eureka注册中心</h1><p>假如我们的服务提供者user-service部署了多个实例，如图：</p>
-<p><img src="/Hexo/../img/202203011140894.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713214925388"></p>
+<p><img src="https://s2.loli.net/2022/04/17/ipDe1aMrtNUvzEc.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713214925388"></p>
 <p>大家思考几个问题：</p>
 <ul>
 <li>order-service在发起远程调用的时候，该如何得知user-service实例的ip地址和端口？</li>
@@ -410,7 +410,7 @@
 <li>order-service如何得知某个user-service实例是否依然健康，是不是已经宕机？</li>
 </ul>
 <h2 id="3-1-Eureka的结构和作用"><a href="#3-1-Eureka的结构和作用" class="headerlink" title="3.1.Eureka的结构和作用"></a>3.1.Eureka的结构和作用</h2><p>这些问题都需要利用SpringCloud中的注册中心来解决，其中最广为人知的注册中心就是Eureka，其结构如下：</p>
-<p><img src="/Hexo/../img/202203011140364.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713220104956"></p>
+<p><img src="https://s2.loli.net/2022/04/17/VD9NLgU8TS7FBIM.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713220104956"></p>
 <p>回答之前的各个问题。</p>
 <p>问题1：order-service如何得知user-service实例地址？</p>
 <p>获取地址信息的流程如下：</p>
@@ -434,14 +434,14 @@
 <p>注意：一个微服务，既可以是服务提供者，又可以是服务消费者，因此eureka将服务注册、服务发现等功能统一封装到了eureka-client端</p>
 </blockquote>
 <p>因此，接下来我们动手实践的步骤包括：</p>
-<p><img src="/Hexo/../img/202203011140518.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713220509769"></p>
+<p><img src="https://s2.loli.net/2022/04/17/TqOHvbU13i5zwGA.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713220509769"></p>
 <h2 id="3-2-搭建eureka-server"><a href="#3-2-搭建eureka-server" class="headerlink" title="3.2.搭建eureka-server"></a>3.2.搭建eureka-server</h2><p>首先大家注册中心服务端：eureka-server，这必须是一个独立的微服务</p>
 <h3 id="3-2-1-创建eureka-server服务"><a href="#3-2-1-创建eureka-server服务" class="headerlink" title="3.2.1.创建eureka-server服务"></a>3.2.1.创建eureka-server服务</h3><p>在cloud-demo父工程下，创建一个子模块：</p>
-<p><img src="/Hexo/../img/202203011140989.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713220605881"></p>
+<p><img src="https://s2.loli.net/2022/04/17/9Q4lzkwu7Mcn1dX.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713220605881"></p>
 <p>填写模块信息：</p>
-<p><img src="/Hexo/../img/202203011140846.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713220857396"></p>
+<p><img src="https://s2.loli.net/2022/04/17/FClop7jXV4PqOWT.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713220857396"></p>
 <p>然后填写服务信息：</p>
-<p><img src="/Hexo/../img/202203011143811.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713221339022"></p>
+<p><img src="https://s2.loli.net/2022/04/17/qpnPBYjLv85oiVA.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713221339022"></p>
 <h3 id="3-2-2-引入eureka依赖"><a href="#3-2-2-引入eureka依赖" class="headerlink" title="3.2.2.引入eureka依赖"></a>3.2.2.引入eureka依赖</h3><p>引入SpringCloud为eureka提供的starter依赖：</p>
 <figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-server<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
 
@@ -531,17 +531,17 @@
 <h3 id="3）负载均衡策略IRule"><a href="#3）负载均衡策略IRule" class="headerlink" title="3）负载均衡策略IRule"></a>3）负载均衡策略IRule</h3><p>在刚才的代码中，可以看到获取服务使通过一个<code>getServer</code>方法来做负载均衡:</p>
 <p> <img src="/Hexo/../img/202203011144322.png" srcset="/Hexo/img/loading.gif" lazyload alt="1525620835911"></p>
 <p>我们继续跟入：</p>
-<p><img src="/Hexo/../img/202203011144155.png" srcset="/Hexo/img/loading.gif" lazyload alt="1544361421671"></p>
+<p><img src="https://s2.loli.net/2022/04/17/YJsoeEpkR3jH4Qr.png" srcset="/Hexo/img/loading.gif" lazyload alt="1544361421671"></p>
 <p>继续跟踪源码chooseServer方法，发现这么一段代码：</p>
 <p> <img src="/Hexo/../img/202203011142170.png" srcset="/Hexo/img/loading.gif" lazyload alt="1525622652849"></p>
 <p>我们看看这个rule是谁：</p>
-<p> <img src="/Hexo/../img/202203011142467.png" srcset="/Hexo/img/loading.gif" lazyload alt="1525622699666"></p>
+<p> <img src="https://s2.loli.net/2022/04/17/7ZFvD1IpW2gyabM.png" srcset="/Hexo/img/loading.gif" lazyload alt="1525622699666"></p>
 <p>这里的rule默认值是一个<code>RoundRobinRule</code>，看类的介绍：</p>
-<p> <img src="/Hexo/../img/202203011142675.png" srcset="/Hexo/img/loading.gif" lazyload alt="1525622754316"></p>
+<p> <img src="https://s2.loli.net/2022/04/17/wcpI8b1UP4rzZmg.png" srcset="/Hexo/img/loading.gif" lazyload alt="1525622754316"></p>
 <p>这不就是轮询的意思嘛。</p>
 <p>到这里，整个负载均衡的流程我们就清楚了。</p>
 <h3 id="4）总结"><a href="#4）总结" class="headerlink" title="4）总结"></a>4）总结</h3><p>SpringCloudRibbon的底层采用了一个拦截器，拦截了RestTemplate发出的请求，对地址做了修改。用一幅图来总结一下：</p>
-<p><img src="/Hexo/../img/202203011142331.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713224724673"></p>
+<p><img src="https://s2.loli.net/2022/04/17/zXl6WDSfn4HdFqw.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713224724673"></p>
 <p>基本流程如下：</p>
 <ul>
 <li>拦截我们的RestTemplate请求<a target="_blank" rel="noopener" href="http://userservice/user/1">http://userservice/user/1</a></li>
@@ -552,7 +552,7 @@
 <li>RibbonLoadBalancerClient修改请求地址，用localhost:8081替代userservice，得到<a target="_blank" rel="noopener" href="http://localhost:8081/user/1%EF%BC%8C%E5%8F%91%E8%B5%B7%E7%9C%9F%E5%AE%9E%E8%AF%B7%E6%B1%82">http://localhost:8081/user/1，发起真实请求</a></li>
 </ul>
 <h2 id="4-3-负载均衡策略"><a href="#4-3-负载均衡策略" class="headerlink" title="4.3.负载均衡策略"></a>4.3.负载均衡策略</h2><h3 id="4-3-1-负载均衡策略"><a href="#4-3-1-负载均衡策略" class="headerlink" title="4.3.1.负载均衡策略"></a>4.3.1.负载均衡策略</h3><p>负载均衡的规则都定义在IRule接口中，而IRule有很多不同的实现类：</p>
-<p><img src="/Hexo/../img/202203011142690.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713225653000"></p>
+<p><img src="https://s2.loli.net/2022/04/17/MQFECKfZTmwJeG5.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713225653000"></p>
 <p>不同规则的含义如下：</p>
 <table>
 <thead>
@@ -645,7 +645,7 @@
 <p><strong>注意</strong>：不要忘了注释掉eureka的地址</p>
 </blockquote>
 <h3 id="3）重启"><a href="#3）重启" class="headerlink" title="3）重启"></a>3）重启</h3><p>重启微服务后，登录nacos管理页面，可以看到微服务信息：</p>
-<p><img src="/Hexo/../img/202203011142747.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713231439607"></p>
+<p><img src="https://s2.loli.net/2022/04/17/xdQYD3O1yq2rWiE.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713231439607"></p>
 <h2 id="5-3-服务分级存储模型"><a href="#5-3-服务分级存储模型" class="headerlink" title="5.3.服务分级存储模型"></a>5.3.服务分级存储模型</h2><p>一个<strong>服务</strong>可以有多个<strong>实例</strong>，例如我们的user-service，可以有:</p>
 <ul>
 <li>127.0.0.1:8081</li>
@@ -660,22 +660,22 @@
 </ul>
 <p>Nacos就将同一机房内的实例 划分为一个<strong>集群</strong>。</p>
 <p>也就是说，user-service是服务，一个服务可以包含多个集群，如杭州、上海，每个集群下可以有多个实例，形成分级模型，如图：</p>
-<p><img src="/Hexo/../img/202203011142682.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713232522531"></p>
+<p><img src="https://s2.loli.net/2022/04/17/DwFYrpqhcesB5tC.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713232522531"></p>
 <p>微服务互相访问时，应该尽可能访问同集群实例，因为本地访问速度更快。当本集群内不可用时，才访问其它集群。例如：</p>
-<p><img src="/Hexo/../img/202203011142867.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713232658928"></p>
+<p><img src="https://s2.loli.net/2022/04/17/8qxsOnzwhdmpMf4.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713232658928"></p>
 <p>杭州机房内的order-service应该优先访问同机房的user-service。</p>
 <h3 id="5-3-1-给user-service配置集群"><a href="#5-3-1-给user-service配置集群" class="headerlink" title="5.3.1.给user-service配置集群"></a>5.3.1.给user-service配置集群</h3><p>修改user-service的application.yml文件，添加集群配置：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">nacos:</span><br>      <span class="hljs-attr">server-addr:</span> <span class="hljs-string">localhost:8848</span><br>      <span class="hljs-attr">discovery:</span><br>        <span class="hljs-attr">cluster-name:</span> <span class="hljs-string">HZ</span> <span class="hljs-comment"># 集群名称</span><br></code></pre></div></td></tr></table></figure>
 
 <p>重启两个user-service实例后，我们可以在nacos控制台看到下面结果：</p>
-<p><img src="/Hexo/../img/202203011142715.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713232916215"></p>
+<p><img src="https://s2.loli.net/2022/04/17/Lz7bSnjDWr1sygo.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713232916215"></p>
 <p>我们再次复制一个user-service启动配置，添加属性：</p>
 <figure class="highlight sh"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sh">-Dserver.port=8083 -Dspring.cloud.nacos.discovery.cluster-name=SH<br></code></pre></div></td></tr></table></figure>
 
 <p>配置如图所示：</p>
-<p><img src="/Hexo/../img/202203011142771.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713233528982"></p>
+<p><img src="https://s2.loli.net/2022/04/17/q6GNgHt3rai8I94.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713233528982"></p>
 <p>启动UserApplication3后再次查看nacos控制台：</p>
-<p><img src="/Hexo/../img/202203011142246.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713233727923"></p>
+<p><img src="https://s2.loli.net/2022/04/17/c9Va5xXfAn3RdDl.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713233727923"></p>
 <h3 id="5-3-2-同集群优先的负载均衡"><a href="#5-3-2-同集群优先的负载均衡" class="headerlink" title="5.3.2.同集群优先的负载均衡"></a>5.3.2.同集群优先的负载均衡</h3><p>默认的<code>ZoneAvoidanceRule</code>并不能实现根据同集群优先来实现负载均衡。</p>
 <p>因此Nacos中提供了一个<code>NacosRule</code>的实现，可以优先从同集群中挑选实例。</p>
 <p>1）给order-service配置集群信息</p>
@@ -695,9 +695,9 @@
 <p>但默认情况下NacosRule是同集群内随机挑选，不会考虑机器的性能问题。</p>
 <p>因此，Nacos提供了权重配置来控制访问频率，权重越大则访问频率越高。</p>
 <p>在nacos控制台，找到user-service的实例列表，点击编辑，即可修改权重：</p>
-<p><img src="/Hexo/../img/202203011142765.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713235133225"></p>
+<p><img src="https://s2.loli.net/2022/04/17/UhDsyw7B5WVkF2l.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713235133225"></p>
 <p>在弹出的编辑窗口，修改权重：</p>
-<p><img src="/Hexo/../img/202203011141012.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713235235219"></p>
+<p><img src="https://s2.loli.net/2022/04/17/crqP176UpNyaj9h.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210713235235219"></p>
 <blockquote>
 <p><strong>注意</strong>：如果权重修改为0，则该实例永远不会被访问</p>
 </blockquote>
@@ -707,15 +707,15 @@
 <li>namespace下可以有group、service等</li>
 <li>不同namespace之间相互隔离，例如不同namespace的服务互相不可见</li>
 </ul>
-<p><img src="/Hexo/../img/202203011141125.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714000101516"></p>
+<p><img src="https://s2.loli.net/2022/04/17/31NYERolHCvXkDM.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714000101516"></p>
 <h3 id="5-5-1-创建namespace"><a href="#5-5-1-创建namespace" class="headerlink" title="5.5.1.创建namespace"></a>5.5.1.创建namespace</h3><p>默认情况下，所有service、data、group都在同一个namespace，名为public：</p>
-<p><img src="/Hexo/../img/202203011141772.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714000414781"></p>
+<p><img src="https://s2.loli.net/2022/04/17/R6GBapXkcoDd49x.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714000414781"></p>
 <p>我们可以点击页面新增按钮，添加一个namespace：</p>
-<p><img src="/Hexo/../img/202203011141292.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714000440143"></p>
+<p><img src="https://s2.loli.net/2022/04/17/blfJYrNRuStkQm1.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714000440143"></p>
 <p>然后，填写表单：</p>
-<p><img src="/Hexo/../img/202203011141813.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714000505928"></p>
+<p><img src="https://s2.loli.net/2022/04/17/S5bv7rTZqQlMxmW.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714000505928"></p>
 <p>就能在页面看到一个新的namespace：</p>
-<p><img src="/Hexo/../img/202203011141221.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714000522913"></p>
+<p><img src="https://s2.loli.net/2022/04/17/NtQIRpZy1rWslow.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714000522913"></p>
 <h3 id="5-5-2-给微服务配置namespace"><a href="#5-5-2-给微服务配置namespace" class="headerlink" title="5.5.2.给微服务配置namespace"></a>5.5.2.给微服务配置namespace</h3><p>给微服务配置namespace只能通过修改配置来实现。</p>
 <p>例如，修改order-service的application.yml文件：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">nacos:</span><br>      <span class="hljs-attr">server-addr:</span> <span class="hljs-string">localhost:8848</span><br>      <span class="hljs-attr">discovery:</span><br>        <span class="hljs-attr">cluster-name:</span> <span class="hljs-string">HZ</span><br>        <span class="hljs-attr">namespace:</span> <span class="hljs-string">492a7d5d-237b-46a1-a99a-fa8e98e4b0f9</span> <span class="hljs-comment"># 命名空间，填ID</span><br></code></pre></div></td></tr></table></figure>
@@ -723,10 +723,10 @@
 
 
 <p>重启order-service后，访问控制台，可以看到下面的结果：</p>
-<p><img src="/Hexo/../img/202203011141636.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714000830703"></p>
-<p><img src="/Hexo/../img/202203011141700.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714000837140"></p>
+<p><img src="https://s2.loli.net/2022/04/17/4FWXkClouRf275v.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714000830703"></p>
+<p><img src="https://s2.loli.net/2022/04/17/ItUmuQPL1Tvjq7N.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714000837140"></p>
 <p>此时访问order-service，因为namespace不同，会导致找不到userservice，控制台会报错：</p>
-<p><img src="/Hexo/../img/202203011141524.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714000941256"></p>
+<p><img src="https://s2.loli.net/2022/04/17/ZmeW2pYgCG3SB6l.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714000941256"></p>
 <h2 id="5-6-Nacos与Eureka的区别"><a href="#5-6-Nacos与Eureka的区别" class="headerlink" title="5.6.Nacos与Eureka的区别"></a>5.6.Nacos与Eureka的区别</h2><p>Nacos的服务实例分为两种l类型：</p>
 <ul>
 <li><p>临时实例：如果实例宕机超过一定时间，会从服务列表剔除，默认的类型。</p>
@@ -742,7 +742,7 @@
 
 
 <p>Nacos和Eureka整体结构类似，服务注册、服务拉取、心跳等待，但是也存在一些差异：</p>
-<p><img src="/Hexo/../img/202203011141734.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714001728017"></p>
+<p><img src="https://s2.loli.net/2022/04/17/Cgd1D6kSLuWHxYE.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210714001728017"></p>
 <ul>
 <li><p>Nacos与eureka的共同点</p>
 <ul>
