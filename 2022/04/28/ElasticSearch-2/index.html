@@ -21,21 +21,21 @@
   
     <meta name="description" content="01-今日内容 ElasticSearch 高级操作  ElasticSearch 集群管理   02-ElasticSearch高级操作2.1-bulk批量操作-脚本 脚本： 测试用的5号文档 123456POST &#x2F;person1&#x2F;_doc&#x2F;5&amp;#123;  &quot;name&quot;:&quot;张三5号&quot;,  &quot;age&quot;:18,  &quot;addre">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ElasticSearch 高级操作+集群搭建">
+<meta property="og:title" content="ElasticSearch 高级操作">
 <meta property="og:url" content="https://1902756969.github.io/Hexo/2022/04/28/ElasticSearch-2/index.html">
 <meta property="og:site_name" content="阿星的博客">
 <meta property="og:description" content="01-今日内容 ElasticSearch 高级操作  ElasticSearch 集群管理   02-ElasticSearch高级操作2.1-bulk批量操作-脚本 脚本： 测试用的5号文档 123456POST &#x2F;person1&#x2F;_doc&#x2F;5&amp;#123;  &quot;name&quot;:&quot;张三5号&quot;,  &quot;age&quot;:18,  &quot;addre">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.loli.net/2022/04/24/ub3EGZ17NiL9Jzt.png">
 <meta property="article:published_time" content="2022-04-28T05:37:49.980Z">
-<meta property="article:modified_time" content="2022-04-28T05:37:45.987Z">
+<meta property="article:modified_time" content="2022-04-30T02:23:00.764Z">
 <meta property="article:author" content="星">
 <meta property="article:tag" content="Elasticsearch">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://s2.loli.net/2022/04/24/ub3EGZ17NiL9Jzt.png">
   
   
-  <title>ElasticSearch 高级操作+集群搭建 - 阿星的博客</title>
+  <title>ElasticSearch 高级操作 - 阿星的博客</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -193,7 +193,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="ElasticSearch 高级操作+集群搭建">
+            <span class="h2" id="subtitle" title="ElasticSearch 高级操作">
               
             </span>
 
@@ -252,11 +252,11 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">ElasticSearch 高级操作+集群搭建</h1>
+            <h1 style="display: none">ElasticSearch 高级操作</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：几秒前
+                  本文最后更新于：3 天前
                 
               </p>
             
@@ -529,15 +529,18 @@
 </ul>
 <p><img src="https://s2.loli.net/2022/04/28/97QAJwSGlXp6H3P.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581042245219"></p>
 <h3 id="4-2-ES集群相关概念"><a href="#4-2-ES集群相关概念" class="headerlink" title="4.2-ES集群相关概念"></a><strong>4.2-ES集群相关概念</strong></h3><p> es 集群:</p>
-<p>•ElasticSearch 天然支持分布式</p>
-<p>•ElasticSearch 的设计隐藏了分布式本身的复杂性</p>
+<p>•ElasticSearch<font color='cornflowerblue'> 天然支持分布式</font></p>
+<p>•ElasticSearch 的设计<font color='cornflowerblue'>隐藏了分布式本身的复杂性</font></p>
 <p><strong>ES集群相关概念</strong>:</p>
 <p>•集群（cluster）：一组拥有共同的 cluster name 的 节点。</p>
 <p>•节点（node)  ：集群中的一个 Elasticearch 实例</p>
 <p>•索引（index) ：es存储数据的地方。相当于关系数据库中的database概念</p>
-<p>•分片（shard）：索引可以被拆分为不同的部分进行存储，称为分片。在集群环境下，一个索引的不同分片可以拆分到不同的节点中</p>
+<p><font color='red'>•分片（shard</font>）：索引可以被拆分为不同的部分进行存储，称为分片。在集群环境下，一个索引的不同分片可以拆分到不同的节点中</p>
 <p>•主分片（Primary shard）：相对于副本分片的定义。</p>
 <p>•副本分片（Replica shard）每个主分片可以有一个或者多个副本，数据和主分片一样。</p>
+<p><img src="https://s2.loli.net/2022/04/28/jSteId3BD5sVrhf.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220428151102083"></p>
+<p><img src="https://s2.loli.net/2022/04/28/arvxdMbgHs6UBKj.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220428151156078"></p>
+<p><img src="https://s2.loli.net/2022/04/28/YzOw2gUfNMmSPQh.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220428151633735"></p>
 <h3 id="4-3-集群搭建"><a href="#4-3-集群搭建" class="headerlink" title="4.3-集群搭建"></a><strong>4.3-集群搭建</strong></h3><div class="hljs code-wrapper"><pre><code class="hljs"> 参见ElasticSearch 集群-集群搭建.md
 </code></pre></div>
 <h3 id="4-4-kibina管理集群"><a href="#4-4-kibina管理集群" class="headerlink" title="4.4-kibina管理集群"></a><strong>4.4-kibina管理集群</strong></h3><figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">vim  kibana-7.4.0-linux-x86_64-cluster/config/kibana.yml<br></code></pre></div></td></tr></table></figure>
@@ -580,13 +583,13 @@
 <p><img src="https://s2.loli.net/2022/04/28/fZWYXSDcNmt17Cz.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581044158693"></p>
 <p>2.itcast-3 挂掉</p>
 <p><img src="https://s2.loli.net/2022/04/28/L9eyTgSqHr5ajGw.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581044220349"></p>
-<p>3.将挂掉节点的分片，自平衡到其他节点</p>
+<p>3.将挂掉节点的分片，<font color='red'>自平衡</font>到其他节点</p>
 <p><img src="https://s2.loli.net/2022/04/28/zsYSVt1eNfyaohM.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581044251012"></p>
-<p>4.itcast-3 恢复正常后，节点分片将自平衡回去（并不一定是原来的分片）</p>
+<p>4.itcast-3 恢复正常后，节点分片将<font color='red'>自平衡</font>回去（并不一定是原来的分片）</p>
 <p><img src="https://s2.loli.net/2022/04/28/WEMPc4JBQ9gGmef.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581044368389"></p>
 <p><strong>分片与自平衡</strong></p>
 <p>•当节点挂掉后，挂掉的节点分片会自平衡到其他节点中</p>
-<p>注意：分片数量一旦确定好，不能修改。</p>
+<p>注意：分片数量<font color='red'>一旦确定好，不能修改</font>。</p>
 <p><strong>索引分片推荐配置方案：</strong></p>
 <p>1.每个分片推荐大小10-30GB</p>
 <p>2.分片数量推荐 &#x3D; 节点数量 * 1~3倍</p>
@@ -611,7 +614,7 @@
 <p>​    •一般es集群会在内网部署，也可能在外网部署，比如阿里云。</p>
 <p>​    •内网一般不会出现此问题，外网的网络出现问题的可能性大些。</p>
 <p>2.节点负载</p>
-<p>​    •主节点的角色既为master又为data。数据访问量较大时，可能会导致Master节点停止响应（假死状态）。</p>
+<p>​    •主节点的角色既为master又为data。数据访问量较大时，可能会导致<font color='red'>Master节点停止响应（假死状态</font>）。</p>
 <p>​    <img src="https://s2.loli.net/2022/04/28/vhHKE9yNqFczIJL.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581042578379"></p>
 <ol start="3">
 <li><p>JVM内存回收</p>
@@ -619,15 +622,16 @@
 </li>
 </ol>
 <p><strong>避免脑裂</strong>：</p>
-<p>1.网络原因：discovery.zen.ping.timeout 超时时间配置大一点。默认是3S</p>
-<p>2.节点负载：角色分离策略</p>
+<p>1.网络原因：discovery.zen.ping.timeout <font color='cornflowerblue'>超时时间配置大一点</font>。默认是3S</p>
+<p>2.节点负载：<font color='red'>角色分离</font>策略(大小分离)</p>
 <p>​    •候选主节点配置为</p>
 <p>​        •node.master: true</p>
 <p>​        •node.data: false</p>
 <p>​    •数据节点配置为</p>
 <p>​        •node.master: false</p>
 <p>​        •node.data: true</p>
-<p>3.JVM内存回收：修改 config&#x2F;jvm.options 文件的 -Xms 和 -Xmx 为服务器的内存一半。</p>
+<p>3.JVM内存回收：</p>
+<p>修改 config&#x2F;jvm.options 文件的 -Xms 和 -Xmx 为服务器的内存一半。(<font color='red'>合理增大jvm内存</font>)</p>
 <h3 id="30-ElasticSearch-集群-集群扩容"><a href="#30-ElasticSearch-集群-集群扩容" class="headerlink" title="30-ElasticSearch 集群-集群扩容"></a><strong>30-ElasticSearch 集群-集群扩容</strong></h3><p> 按照集群搭建步骤再复制Es节点进行配置，参见ElasticSearch 集群-集群搭建.md</p>
 
             </div>
@@ -662,6 +666,12 @@
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/Hexo/2022/04/28/ElasticSearch%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ElasticSearch 集群搭建配置</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

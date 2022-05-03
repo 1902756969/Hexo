@@ -1,0 +1,642 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo/img/csdn.png">
+  <link rel="icon" href="/Hexo/img/csdn.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#DAA520">
+  <meta name="author" content="星">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、ElasticSearch 集群1.1 搭建集群Elasticsearch如果做集群的话Master节点至少三台服务器或者三个Master实例加入相同集群，三个Master节点最多只能故障一台Master节点，如果故障两个Master节点，Elasticsearch将无法组成集群.会报错，Kibana也无法启动，因为Kibana无法获取集群中的节点信息。 由于，我们使用只有一台虚拟机，所以我们">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ElasticSearch 集群搭建配置">
+<meta property="og:url" content="https://1902756969.github.io/Hexo/2022/04/28/ElasticSearch%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/index.html">
+<meta property="og:site_name" content="阿星的博客">
+<meta property="og:description" content="一、ElasticSearch 集群1.1 搭建集群Elasticsearch如果做集群的话Master节点至少三台服务器或者三个Master实例加入相同集群，三个Master节点最多只能故障一台Master节点，如果故障两个Master节点，Elasticsearch将无法组成集群.会报错，Kibana也无法启动，因为Kibana无法获取集群中的节点信息。 由于，我们使用只有一台虚拟机，所以我们">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/04/24/ub3EGZ17NiL9Jzt.png">
+<meta property="article:published_time" content="2022-04-28T07:17:39.893Z">
+<meta property="article:modified_time" content="2022-04-30T02:22:39.859Z">
+<meta property="article:author" content="星">
+<meta property="article:tag" content="Elasticsearch">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/04/24/ub3EGZ17NiL9Jzt.png">
+  
+  
+  <title>ElasticSearch 集群搭建配置 - 阿星的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/Hexo/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+  </script>
+  <script  src="/Hexo/js/utils.js" ></script>
+  <script  src="/Hexo/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/Hexo/">
+      <strong>啊星的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/Hexo/img/bg5.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="ElasticSearch 集群搭建配置">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-04-28 15:17" pubdate>
+        2022年4月28日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      6.3k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      53 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">ElasticSearch 集群搭建配置</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：3 天前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="一、ElasticSearch-集群"><a href="#一、ElasticSearch-集群" class="headerlink" title="一、ElasticSearch 集群"></a>一、ElasticSearch 集群</h1><h2 id="1-1-搭建集群"><a href="#1-1-搭建集群" class="headerlink" title="1.1 搭建集群"></a>1.1 搭建集群</h2><p>Elasticsearch如果做集群的话Master节点至少三台服务器或者三个Master实例加入相同集群，三个Master节点最多只能故障一台Master节点，如果故障两个Master节点，Elasticsearch将无法组成集群.会报错，Kibana也无法启动，因为Kibana无法获取集群中的节点信息。</p>
+<p>由于，我们使用只有一台虚拟机，所以我们在虚拟机中安装三个ES实例，搭建伪集群，而ES启动比较耗内存，所以先设置虚拟机的内存3G和CPU个数4个</p>
+<p><img src="https://s2.loli.net/2022/04/28/61cCfREtkGoNQps.png" srcset="/Hexo/img/loading.gif" lazyload alt="1575626474666"></p>
+<h4 id="1-1-1-整体步骤"><a href="#1-1-1-整体步骤" class="headerlink" title="1.1.1 整体步骤"></a>1.1.1 整体步骤</h4><p>步骤如下：</p>
+<ul>
+<li><p>拷贝opt目录下的elasticsearch-7.4.0安装包3个，分别命名：</p>
+<p>elasticsearch-7.4.0-itcast1</p>
+<p>elasticsearch-7.4.0-itcast2</p>
+<p>elasticsearch-7.4.0-itcast3 </p>
+</li>
+<li><p>然后修改elasticsearch.yml文件件。 </p>
+</li>
+<li><p>然后启动启动itcast1、itcast2、itcast3三个节点。 </p>
+</li>
+<li><p>打开浏览器输⼊：<a target="_blank" rel="noopener" href="http://192.168.149.135:9200/_cat/health?v">http://192.168.149.135:9200/_cat/health?v</a> ,如果返回的node.total是3，代表集 群搭建成功</p>
+</li>
+</ul>
+<p><strong>在此，需要我们特别注意的是，像本文这样单服务器多节点（ 3 个节点）的情况，仅供测试使用</strong>，集群环境如下：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>cluster name</td>
+<td>node name</td>
+<td>IP Addr</td>
+<td>http端口  &#x2F; 通信端口</td>
+</tr>
+<tr>
+<td>itcast-es</td>
+<td>itcast1</td>
+<td>192.168.149.135</td>
+<td>9201   &#x2F;  9700</td>
+</tr>
+<tr>
+<td>itcast-es</td>
+<td>itcast2</td>
+<td>192.168.149.135</td>
+<td>9202   &#x2F;   9800</td>
+</tr>
+<tr>
+<td>itcast-es</td>
+<td>itcast3</td>
+<td>192.168.149.135</td>
+<td>9203   &#x2F;  9900</td>
+</tr>
+</tbody></table>
+<h4 id="1-1-2-拷贝副本"><a href="#1-1-2-拷贝副本" class="headerlink" title="1.1.2 拷贝副本"></a>1.1.2 拷贝副本</h4><p>拷贝opt目录下的elasticsearch-7.4.0安装包3个，打开虚拟机到opt目录</p>
+<p>执行 拷贝三份</p>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">cd /opt<br>cp -r  elasticsearch-7.4.0   elasticsearch-7.4.0-itcast1<br>cp -r  elasticsearch-7.4.0   elasticsearch-7.4.0-itcast2<br>cp -r  elasticsearch-7.4.0   elasticsearch-7.4.0-itcast3<br></code></pre></div></td></tr></table></figure>
+
+
+
+<h4 id="1-1-3-修改elasticsearch-yml配置文件"><a href="#1-1-3-修改elasticsearch-yml配置文件" class="headerlink" title="1.1. 3 修改elasticsearch.yml配置文件"></a>1.1. 3 修改elasticsearch.yml配置文件</h4><p><strong>1)、创建日志目录</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">cd /opt<br>mkdir logs<br>mkdir  data<br><span class="hljs-meta"># </span><span class="language-bash">授权给itheima用户</span><br>chown -R axing:axing ./logs<br>chown -R axing:axing ./data<br><br>chown -R axing:axing ./elasticsearch-7.4.0-itcast1<br>chown -R axing:axing ./elasticsearch-7.4.0-itcast2<br>chown -R axing:axing ./elasticsearch-7.4.0-itcast3<br></code></pre></div></td></tr></table></figure>
+
+<p>打开elasticsearch.yml配置，分别配置下面三个节点的配置文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">vim /opt/elasticsearch-7.4.0-itcast1/config/elasticsearch.yml <br>vim /opt/elasticsearch-7.4.0-itcast2/config/elasticsearch.yml <br>vim /opt/elasticsearch-7.4.0-itcast3/config/elasticsearch.yml <br></code></pre></div></td></tr></table></figure>
+
+<p><strong>2)、下面是elasticsearch-7.4.0-itcast1配置文件</strong></p>
+<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><br><span class="hljs-attr">cluster.name:</span> <span class="hljs-string">itcast-es</span><br><span class="hljs-attr">node.name:</span> <span class="hljs-string">itcast-1</span> <br><span class="hljs-attr">node.master:</span> <span class="hljs-literal">true</span><br><span class="hljs-attr">node.data:</span> <span class="hljs-literal">true</span><br><span class="hljs-attr">node.max_local_storage_nodes:</span> <span class="hljs-number">3</span> <br><span class="hljs-attr">network.host:</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span><br><span class="hljs-attr">http.port:</span> <span class="hljs-number">9201</span><br><span class="hljs-attr">transport.tcp.port:</span> <span class="hljs-number">9700</span><br><span class="hljs-attr">discovery.seed_hosts:</span> [<span class="hljs-string">&quot;localhost:9700&quot;</span>,<span class="hljs-string">&quot;localhost:9800&quot;</span>,<span class="hljs-string">&quot;localhost:9900&quot;</span>]<br><span class="hljs-attr">cluster.initial_master_nodes:</span> [<span class="hljs-string">&quot;itcast-1&quot;</span>, <span class="hljs-string">&quot;itcast-2&quot;</span>,<span class="hljs-string">&quot;itcast-3&quot;</span>]<br><span class="hljs-attr">path.data:</span> <span class="hljs-string">/opt/data</span><br><span class="hljs-attr">path.logs:</span> <span class="hljs-string">/opt/logs</span><br></code></pre></div></td></tr></table></figure>
+
+
+
+<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-comment">#集群名称</span><br><span class="hljs-attr">cluster.name:</span> <span class="hljs-string">itcast-es</span><br><span class="hljs-comment">#节点名称</span><br><span class="hljs-attr">node.name:</span> <span class="hljs-string">itcast-1</span> <br><span class="hljs-comment">#是不是有资格主节点</span><br><span class="hljs-attr">node.master:</span> <span class="hljs-literal">true</span><br><span class="hljs-comment">#是否存储数据</span><br><span class="hljs-attr">node.data:</span> <span class="hljs-literal">true</span><br><span class="hljs-comment">#最大集群节点数</span><br><span class="hljs-attr">node.max_local_storage_nodes:</span> <span class="hljs-number">3</span> <br><span class="hljs-comment">#ip地址</span><br><span class="hljs-attr">network.host:</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span><br><span class="hljs-comment">#端口</span><br><span class="hljs-attr">http.port:</span> <span class="hljs-number">9201</span><br><span class="hljs-comment">#内部节点之间沟通端口</span><br><span class="hljs-attr">transport.tcp.port:</span> <span class="hljs-number">9700</span><br><span class="hljs-comment">#es7.x 之后新增的配置，节点发现</span><br><span class="hljs-attr">discovery.seed_hosts:</span> [<span class="hljs-string">&quot;localhost:9700&quot;</span>,<span class="hljs-string">&quot;localhost:9800&quot;</span>,<span class="hljs-string">&quot;localhost:9900&quot;</span>]<br><span class="hljs-comment">#es7.x 之后新增的配置，初始化一个新的集群时需要此配置来选举master</span><br><span class="hljs-attr">cluster.initial_master_nodes:</span> [<span class="hljs-string">&quot;itcast-1&quot;</span>, <span class="hljs-string">&quot;itcast-2&quot;</span>,<span class="hljs-string">&quot;itcast-3&quot;</span>] <br><span class="hljs-comment">#数据和存储路径</span><br><span class="hljs-attr">path.data:</span> <span class="hljs-string">/opt/data</span><br><span class="hljs-attr">path.logs:</span> <span class="hljs-string">/opt/logs</span><br></code></pre></div></td></tr></table></figure>
+
+
+
+<p><strong>3)、下面是elasticsearch-7.4.0-itcast2配置文件</strong></p>
+<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><br><span class="hljs-attr">cluster.name:</span> <span class="hljs-string">itcast-es</span><br><span class="hljs-attr">node.name:</span> <span class="hljs-string">itcast-2</span> <br><span class="hljs-attr">node.master:</span> <span class="hljs-literal">true</span><br><span class="hljs-attr">node.data:</span> <span class="hljs-literal">true</span><br><span class="hljs-attr">node.max_local_storage_nodes:</span> <span class="hljs-number">3</span> <br><span class="hljs-attr">network.host:</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span><br><span class="hljs-attr">http.port:</span> <span class="hljs-number">9202</span><br><span class="hljs-attr">transport.tcp.port:</span> <span class="hljs-number">9800</span><br><span class="hljs-attr">discovery.seed_hosts:</span> [<span class="hljs-string">&quot;localhost:9700&quot;</span>,<span class="hljs-string">&quot;localhost:9800&quot;</span>,<span class="hljs-string">&quot;localhost:9900&quot;</span>]<br><span class="hljs-attr">cluster.initial_master_nodes:</span> [<span class="hljs-string">&quot;itcast-1&quot;</span>, <span class="hljs-string">&quot;itcast-2&quot;</span>,<span class="hljs-string">&quot;itcast-3&quot;</span>]<br><span class="hljs-attr">path.data:</span> <span class="hljs-string">/opt/data</span><br><span class="hljs-attr">path.logs:</span> <span class="hljs-string">/opt/logs</span><br><br></code></pre></div></td></tr></table></figure>
+
+
+
+<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-comment">#集群名称</span><br><span class="hljs-attr">cluster.name:</span> <span class="hljs-string">itcast-es</span><br><span class="hljs-comment">#节点名称</span><br><span class="hljs-attr">node.name:</span> <span class="hljs-string">itcast-2</span> <br><span class="hljs-comment">#是不是有资格主节点</span><br><span class="hljs-attr">node.master:</span> <span class="hljs-literal">true</span><br><span class="hljs-comment">#是否存储数据</span><br><span class="hljs-attr">node.data:</span> <span class="hljs-literal">true</span><br><span class="hljs-comment">#最大集群节点数</span><br><span class="hljs-attr">node.max_local_storage_nodes:</span> <span class="hljs-number">3</span> <br><span class="hljs-comment">#ip地址</span><br><span class="hljs-attr">network.host:</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span><br><span class="hljs-comment">#端口</span><br><span class="hljs-attr">http.port:</span> <span class="hljs-number">9202</span><br><span class="hljs-comment">#内部节点之间沟通端口</span><br><span class="hljs-attr">transport.tcp.port:</span> <span class="hljs-number">9800</span><br><span class="hljs-comment">#es7.x 之后新增的配置，节点发现</span><br><span class="hljs-attr">discovery.seed_hosts:</span> [<span class="hljs-string">&quot;localhost:9700&quot;</span>,<span class="hljs-string">&quot;localhost:9800&quot;</span>,<span class="hljs-string">&quot;localhost:9900&quot;</span>]<br><span class="hljs-comment">#es7.x 之后新增的配置，初始化一个新的集群时需要此配置来选举master</span><br><span class="hljs-attr">cluster.initial_master_nodes:</span> [<span class="hljs-string">&quot;itcast-1&quot;</span>, <span class="hljs-string">&quot;itcast-2&quot;</span>,<span class="hljs-string">&quot;itcast-3&quot;</span>] <br><span class="hljs-comment">#数据和存储路径</span><br><span class="hljs-attr">path.data:</span> <span class="hljs-string">/opt/data</span><br><span class="hljs-attr">path.logs:</span> <span class="hljs-string">/opt/logs</span><br></code></pre></div></td></tr></table></figure>
+
+<p><strong>4)、下面是elasticsearch-7.4.0-itcast3 配置文件</strong></p>
+<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><br><br><span class="hljs-attr">cluster.name:</span> <span class="hljs-string">itcast-es</span><br><span class="hljs-attr">node.name:</span> <span class="hljs-string">itcast-3</span> <br><span class="hljs-attr">node.master:</span> <span class="hljs-literal">true</span><br><span class="hljs-attr">node.data:</span> <span class="hljs-literal">true</span><br><span class="hljs-attr">node.max_local_storage_nodes:</span> <span class="hljs-number">3</span> <br><span class="hljs-attr">network.host:</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span><br><span class="hljs-attr">http.port:</span> <span class="hljs-number">9203</span><br><span class="hljs-attr">transport.tcp.port:</span> <span class="hljs-number">9900</span><br><span class="hljs-attr">discovery.seed_hosts:</span> [<span class="hljs-string">&quot;localhost:9700&quot;</span>,<span class="hljs-string">&quot;localhost:9800&quot;</span>,<span class="hljs-string">&quot;localhost:9900&quot;</span>]<br><span class="hljs-attr">cluster.initial_master_nodes:</span> [<span class="hljs-string">&quot;itcast-1&quot;</span>, <span class="hljs-string">&quot;itcast-2&quot;</span>,<span class="hljs-string">&quot;itcast-3&quot;</span>] <br><span class="hljs-attr">path.data:</span> <span class="hljs-string">/opt/data</span><br><span class="hljs-attr">path.logs:</span> <span class="hljs-string">/opt/logs</span><br></code></pre></div></td></tr></table></figure>
+
+
+
+<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-comment">#集群名称</span><br><span class="hljs-attr">cluster.name:</span> <span class="hljs-string">itcast-es</span><br><span class="hljs-comment">#节点名称</span><br><span class="hljs-attr">node.name:</span> <span class="hljs-string">itcast-3</span> <br><span class="hljs-comment">#是不是有资格主节点</span><br><span class="hljs-attr">node.master:</span> <span class="hljs-literal">true</span><br><span class="hljs-comment">#是否存储数据</span><br><span class="hljs-attr">node.data:</span> <span class="hljs-literal">true</span><br><span class="hljs-comment">#最大集群节点数</span><br><span class="hljs-attr">node.max_local_storage_nodes:</span> <span class="hljs-number">3</span> <br><span class="hljs-comment">#ip地址</span><br><span class="hljs-attr">network.host:</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span><br><span class="hljs-comment">#端口</span><br><span class="hljs-attr">http.port:</span> <span class="hljs-number">9203</span><br><span class="hljs-comment">#内部节点之间沟通端口</span><br><span class="hljs-attr">transport.tcp.port:</span> <span class="hljs-number">9900</span><br><span class="hljs-comment">#es7.x 之后新增的配置，节点发现</span><br><span class="hljs-attr">discovery.seed_hosts:</span> [<span class="hljs-string">&quot;localhost:9700&quot;</span>,<span class="hljs-string">&quot;localhost:9800&quot;</span>,<span class="hljs-string">&quot;localhost:9900&quot;</span>]<br><span class="hljs-comment">#es7.x 之后新增的配置，初始化一个新的集群时需要此配置来选举master</span><br><span class="hljs-attr">cluster.initial_master_nodes:</span> [<span class="hljs-string">&quot;itcast-1&quot;</span>, <span class="hljs-string">&quot;itcast-2&quot;</span>,<span class="hljs-string">&quot;itcast-3&quot;</span>] <br><span class="hljs-comment">#数据和存储路径</span><br><span class="hljs-attr">path.data:</span> <span class="hljs-string">/opt/data</span><br><span class="hljs-attr">path.logs:</span> <span class="hljs-string">/opt/logs</span><br></code></pre></div></td></tr></table></figure>
+
+<h4 id="1-1-4-执行授权"><a href="#1-1-4-执行授权" class="headerlink" title="1.1.4  执行授权"></a>1.1.4  执行授权</h4><figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">在root用户下执行<br>chown -R axing:axing /opt/elasticsearch-7.4.0-itcast1<br>chown -R itheima:itheima /opt/elasticsearch-7.4.0-itcast2<br>chown -R itheima:itheima /opt/elasticsearch-7.4.0-itcast3<br>如果有的日志文件授权失败，可使用(也是在root下执行)<br>cd /opt/elasticsearch-7.4.0-itcast1/logs<br>chown -R itheima:itheima ./* <br>cd /opt/elasticsearch-7.4.0-itcast2/logs<br>chown -R itheima:itheima ./* <br>cd /opt/elasticsearch-7.4.0-itcast3/logs<br>chown -R itheima:itheima ./* <br></code></pre></div></td></tr></table></figure>
+
+<h4 id="1-1-5-启动三个节点"><a href="#1-1-5-启动三个节点" class="headerlink" title="1.1.5 启动三个节点"></a>1.1.5 启动三个节点</h4><p>启动之前，设置ES的JVM占用内存参数，防止内存不足错误</p>
+<p><img src="https://s2.loli.net/2022/04/28/Y1ZbD6oplqUhEeB.png" srcset="/Hexo/img/loading.gif" lazyload alt="1575630754009"></p>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">vim /opt/elasticsearch-7.4.0-itcast1/bin/elasticsearch<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/04/28/BwglOKVub4zrX1W.png" srcset="/Hexo/img/loading.gif" lazyload alt="1575631078654"></p>
+<p>可以发现，ES启动时加载&#x2F;config&#x2F;jvm.options文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">vim /opt/elasticsearch-7.4.0-itcast1/config/jvm.options<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/04/28/AHh6zge31SJ4wIc.png" srcset="/Hexo/img/loading.gif" lazyload alt="1575630948133"></p>
+<p> 默认情况下，ES启动JVM最小内存1G，最大内存1G</p>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">-xms:最小内存<br>-xmx:最大内存<br></code></pre></div></td></tr></table></figure>
+
+<p>修改为256m</p>
+<p><img src="https://s2.loli.net/2022/04/28/ivjEWtc7mAuKDk8.png" srcset="/Hexo/img/loading.gif" lazyload alt="1575631033297"></p>
+<p>启动成功访问节点一：</p>
+<p><img src="https://s2.loli.net/2022/04/28/VnTPoCl8mXjutig.png" srcset="/Hexo/img/loading.gif" lazyload alt="1575628494844"></p>
+<p>可以从日志中看到：master not discovered yet。还没有发现主节点</p>
+<p>访问集群状态信息 <a target="_blank" rel="noopener" href="http://192.168.149.135:9201/_cat/health?v">http://192.168.149.135:9201/_cat/health?v</a> 不成功</p>
+<p><img src="https://s2.loli.net/2022/04/30/T2lOU48Ld5aVtoZ.png" srcset="/Hexo/img/loading.gif" lazyload alt="1575628567827"></p>
+<p>启动成功访问节点二:</p>
+<p><img src="https://s2.loli.net/2022/04/28/6QvRd7iscVqDEjM.png" srcset="/Hexo/img/loading.gif" lazyload alt="1575628735672"></p>
+<p>可以从日志中看到：master not discovered yet。还没有发现主节点master node changed.已经选举出主节点itcast-2</p>
+<p>访问集群状态信息 <a target="_blank" rel="noopener" href="http://192.168.149.135:9201/_cat/health?v">http://192.168.149.135:9201/_cat/health?v</a>  成功</p>
+<p><img src="/Hexo/imgs%5C1575628812009.png" srcset="/Hexo/img/loading.gif" lazyload alt="1575628812009"></p>
+<figure class="highlight tex"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs tex">健康状况结果解释：<br><br>cluster 集群名称<br>status 集群状态 <br>	green代表健康；<br>	yellow代表分配了所有主分片，但至少缺少一个副本，此时集群数据仍旧完整；<br>	red 代表部分主分片不可用，可能已经丢失数据。<br>node.total代表在线的节点总数量<br>node.data代表在线的数据节点的数量<br>shards 存活的分片数量<br>pri 存活的主分片数量 正常情况下 shards的数量是pri的两倍。<br>relo迁移中的分片数量，正常情况为 0<br>init 初始化中的分片数量 正常情况为 0<br>unassign未分配的分片 正常情况为 0<br>pending<span class="hljs-built_in">_</span>tasks准备中的任务，任务指迁移分片等 正常情况为 0<br>max<span class="hljs-built_in">_</span>task<span class="hljs-built_in">_</span>wait<span class="hljs-built_in">_</span>time任务最长等待时间<br>active<span class="hljs-built_in">_</span>shards<span class="hljs-built_in">_</span>percent正常分片百分比 正常情况为 100<span class="hljs-comment">%</span><br></code></pre></div></td></tr></table></figure>
+
+
+
+<p>启动成功访问节点三</p>
+<p>访问集群状态信息 <a target="_blank" rel="noopener" href="http://192.168.149.135:9201/_cat/health?v">http://192.168.149.135:9201/_cat/health?v</a>  成功</p>
+<p><img src="https://s2.loli.net/2022/04/30/WSCDZBIQrX5twOJ.png" srcset="/Hexo/img/loading.gif" lazyload alt="1575628972101"></p>
+<p>可以看到节点已经变为3个，至此，ES集群已经搭建成功~</p>
+<h2 id="1-2-使用Kibana配置和管理集群"><a href="#1-2-使用Kibana配置和管理集群" class="headerlink" title="1.2  使用Kibana配置和管理集群"></a>1.2  使用Kibana配置和管理集群</h2><h4 id="1-2-1-集群配置"><a href="#1-2-1-集群配置" class="headerlink" title="1.2.1 集群配置"></a>1.2.1 集群配置</h4><p>因为之前我们在单机演示的时候也使用到了Kibana，我们先复制出来一个Kibana，然后修改它的集群配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">cd /opt/<br>cp -r kibana-7.4.0-linux-x86_64   kibana-7.4.0-linux-x86_64-cluster<br><span class="hljs-meta"># </span><span class="language-bash">由于 kibana 中文件众多，此处会等待大约1分钟的时间</span><br></code></pre></div></td></tr></table></figure>
+
+<p>修改Kibana的集群配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">vim  kibana-7.4.0-linux-x86_64-cluster/config/kibana.yml<br>加入下面的配置<br>elasticsearch.hosts: [&quot;http://localhost:9201&quot;,&quot;http://localhost:9202&quot;,&quot;http://localhost:9203&quot;]<br></code></pre></div></td></tr></table></figure>
+
+<p>启动Kibana</p>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">sh kibana --allow-root<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/04/30/9fYaXLJZFepgP5u.png" srcset="/Hexo/img/loading.gif" lazyload alt="1575629869248"></p>
+<h4 id="1-2-2-管理集群"><a href="#1-2-2-管理集群" class="headerlink" title="1.2.2 管理集群"></a>1.2.2 管理集群</h4><p>1、打开Kibana，点开 Stack Monitoring 集群监控</p>
+<p><img src="https://s2.loli.net/2022/04/30/mXqJpbt3TrzLfND.png" srcset="/Hexo/img/loading.gif" lazyload alt="1575630589113"></p>
+<p><img src="https://s2.loli.net/2022/04/30/otupDNP1dL6QIMT.png" srcset="/Hexo/img/loading.gif" lazyload alt="1575631125143"></p>
+<p>2、点击【Nodes】查看节点详细信息</p>
+<p><img src="https://s2.loli.net/2022/04/30/wuiR5KalbH7FWTP.png" srcset="/Hexo/img/loading.gif" lazyload alt="1575631203718"></p>
+<p><img src="https://s2.loli.net/2022/04/30/DL2v35QdCEKkzT9.png" srcset="/Hexo/img/loading.gif" lazyload alt="1575631303974"></p>
+<p>在上图可以看到，第一个红框处显示【Green】，绿色，表示集群处理健康状态</p>
+<p>第二个红框是我们集群的三个节点，注意，itcast-3旁边是星星，表示是主节点</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/Hexo/categories/Elasticsearch/">Elasticsearch</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/Hexo/tags/Elasticsearch/">Elasticsearch</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Hexo/2022/04/28/ElasticSearch-2/">
+                        <span class="hidden-mobile">ElasticSearch 高级操作</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/Hexo/js/events.js" ></script>
+<script  src="/Hexo/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/Hexo/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/Hexo/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/Hexo/js/boot.js" ></script>
+
+
+<script src="/Hexo/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>

@@ -204,8 +204,61 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/Hexo/2022/04/28/ElasticSearch%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" target="_self">
+          <img src="https://s2.loli.net/2022/04/24/ub3EGZ17NiL9Jzt.png" srcset="/Hexo/img/loading.gif" lazyload alt="ElasticSearch 集群搭建配置">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/Hexo/2022/04/28/ElasticSearch%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" target="_self">
+          ElasticSearch 集群搭建配置
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/Hexo/2022/04/28/ElasticSearch%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" target="_self">
+          
+          一、ElasticSearch 集群1.1 搭建集群Elasticsearch如果做集群的话Master节点至少三台服务器或者三个Master实例加入相同集群，三个Master节点最多只能故障一台Master节点，如果故障两个Master节点，Elasticsearch将无法组成集群.会报错，Kibana也无法启动，因为Kibana无法获取集群中的节点信息。 由于，我们使用只有一台虚拟机，所以我们
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-04-28 15:17" pubdate>
+              2022-04-28
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/Hexo/categories/Elasticsearch/">Elasticsearch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/Hexo/tags/Elasticsearch/">Elasticsearch</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/Hexo/2022/04/28/ElasticSearch-2/" target="_self">
-          <img src="https://s2.loli.net/2022/04/24/ub3EGZ17NiL9Jzt.png" srcset="/Hexo/img/loading.gif" lazyload alt="ElasticSearch 高级操作+集群搭建">
+          <img src="https://s2.loli.net/2022/04/24/ub3EGZ17NiL9Jzt.png" srcset="/Hexo/img/loading.gif" lazyload alt="ElasticSearch 高级操作">
         </a>
       </div>
     
@@ -213,7 +266,7 @@
       <h1 class="index-header">
         
         <a href="/Hexo/2022/04/28/ElasticSearch-2/" target="_self">
-          ElasticSearch 高级操作+集群搭建
+          ElasticSearch 高级操作
         </a>
       </h1>
 
@@ -568,23 +621,23 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/Hexo/2022/04/20/docker/" target="_self">
-          <img src="https://s2.loli.net/2022/04/21/XUHxOvRc1kdZ46N.png" srcset="/Hexo/img/loading.gif" lazyload alt="Docker架构">
+        <a href="/Hexo/2022/04/20/docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2/" target="_self">
+          <img src="https://s2.loli.net/2022/04/21/XUHxOvRc1kdZ46N.png" srcset="/Hexo/img/loading.gif" lazyload alt="Docker应用部署">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/Hexo/2022/04/20/docker/" target="_self">
-          Docker架构
+        <a href="/Hexo/2022/04/20/docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2/" target="_self">
+          Docker应用部署
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/Hexo/2022/04/20/docker/" target="_self">
+        <a href="/Hexo/2022/04/20/docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2/" target="_self">
           
-          初识 Docker•Docker 是一个开源的应用容器引擎 •诞生于 2013 年初，基于 Go 语言实现， dotCloud 公司出品（后改名为Docker Inc） •Docker 可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的 Linux 机器上。 •容器是完全使用沙箱机制，相互隔离 •容器性能开销极低。 Docker 从 17.03 版本之后分为 C
+          Docker 应用部署一、部署MySQL•容器内的网络服务和外部机器不能直接通信 •外部机器和宿主机可以直接通信 •宿主机和容器可以直接通信 •当容器中的网络服务需要被外部机器访问时，可以将容器中提供服务的端口映射到宿主机的端口上。外部机器访问宿主机的该端口，从而间接访问容器的服务。 •这种操作称为：**端口映射**   搜索mysql镜像  1docker search mysql   拉取my
         </a>
       </p>
 
@@ -638,59 +691,6 @@
         <a href="/Hexo/2022/04/20/dockerfile/" target="_self">
           
           Dockerfile   关键字 作用 备注    FROM 指定父镜像 指定dockerfile基于那个image构建   MAINTAINER 作者信息 用来标明这个dockerfile谁写的   LABEL 标签 用来标明dockerfile的标签 可以使用Label代替Maintainer 最终都是在docker image基本信息中可以查看   RUN 执行命令 执行一段命令 默认是&amp;#
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-20 10:29" pubdate>
-              2022-04-20
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/Hexo/categories/Docker%F0%9F%92%AA%F0%9F%92%AA/">Docker💪💪</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/Hexo/tags/Docker%F0%9F%92%AA%F0%9F%92%AA/">Docker💪💪</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/Hexo/2022/04/20/docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2/" target="_self">
-          <img src="https://s2.loli.net/2022/04/21/XUHxOvRc1kdZ46N.png" srcset="/Hexo/img/loading.gif" lazyload alt="Docker应用部署">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/Hexo/2022/04/20/docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2/" target="_self">
-          Docker应用部署
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/Hexo/2022/04/20/docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2/" target="_self">
-          
-          Docker 应用部署一、部署MySQL•容器内的网络服务和外部机器不能直接通信 •外部机器和宿主机可以直接通信 •宿主机和容器可以直接通信 •当容器中的网络服务需要被外部机器访问时，可以将容器中提供服务的端口映射到宿主机的端口上。外部机器访问宿主机的该端口，从而间接访问容器的服务。 •这种操作称为：**端口映射**   搜索mysql镜像  1docker search mysql   拉取my
         </a>
       </p>
 

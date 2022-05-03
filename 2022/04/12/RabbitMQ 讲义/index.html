@@ -19,23 +19,53 @@
   <meta name="author" content="星">
   <meta name="keywords" content="">
   
-    <meta name="description" content="学习目标   能够说出什么是消息中间件 能够安装RabbitMQ 能够编写RabbitMQ的入门程序 能够说出RabbitMQ的5种模式特征 能够使用Spring整合RabbitMQ  1. 消息中间件概述1.1. 什么是消息中间件MQ全称为Message Queue，消息队列是应用程序和应用程序之间的通信方法。  为什么使用MQ 在项目中，可将一些无需即时返回且耗时的操作提取出来，进行异步处理">
+    <meta name="description" content="title: RabbitMQ基础Skilldate: 2022-04-12 20:29:54tags: RabbitMQcategories: RabbitMQ🐱‍👤index_img: https:&#x2F;&#x2F;s2.loli.net&#x2F;2022&#x2F;04&#x2F;12&#x2F;y8QADPrfG4oIlxZ.png  学习目标   能够说出什么是消息中间件 能够安装RabbitMQ 能够编写RabbitMQ的入门程序">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RabbitMQ基础Skill">
+<meta property="og:title" content="阿星的博客">
 <meta property="og:url" content="https://1902756969.github.io/Hexo/2022/04/12/RabbitMQ%20%E8%AE%B2%E4%B9%89/index.html">
 <meta property="og:site_name" content="阿星的博客">
-<meta property="og:description" content="学习目标   能够说出什么是消息中间件 能够安装RabbitMQ 能够编写RabbitMQ的入门程序 能够说出RabbitMQ的5种模式特征 能够使用Spring整合RabbitMQ  1. 消息中间件概述1.1. 什么是消息中间件MQ全称为Message Queue，消息队列是应用程序和应用程序之间的通信方法。  为什么使用MQ 在项目中，可将一些无需即时返回且耗时的操作提取出来，进行异步处理">
+<meta property="og:description" content="title: RabbitMQ基础Skilldate: 2022-04-12 20:29:54tags: RabbitMQcategories: RabbitMQ🐱‍👤index_img: https:&#x2F;&#x2F;s2.loli.net&#x2F;2022&#x2F;04&#x2F;12&#x2F;y8QADPrfG4oIlxZ.png  学习目标   能够说出什么是消息中间件 能够安装RabbitMQ 能够编写RabbitMQ的入门程序">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://s2.loli.net/2022/04/12/y8QADPrfG4oIlxZ.png">
-<meta property="article:published_time" content="2022-04-12T12:29:54.000Z">
-<meta property="article:modified_time" content="2022-04-17T12:10:52.476Z">
+<meta property="og:image" content="https://s2.loli.net/2022/05/03/K5Py9o4pIaCjgit.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/03/m7gbCsQAcIXhLet.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/L9dpNX3S6VZqnmG.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/86aGA127X5meO3R.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/IufhzWiNbQFVGoA.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/ioXWN7I1F2hfEk8.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/BMCSIDwXjUZLNm1.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/slZICz69tMkDhLu.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/LTw38uxCQUlMqSg.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/OmpTzo9hsiHSC7w.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/4yXQGe8DgvnrfWz.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/PBea2Imt6nXriDd.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/LObEgie21x9aVcU.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/3pWfP7giJ2SNFGT.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/WogblsYXU7BHphR.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/neTD9awJX2kWArV.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/QVjg8HPUKCDbMxi.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/TE8CYIvlDp9yndL.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/Qpg5S3ns6lLvUcy.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/cHnepfiSamCbVs7.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/EevPLHux8wgWVNi.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/WHjqUloGMfCAhB2.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/12/Lgl9mkefA624j7q.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/12/UJBiThtb62N1Wjn.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/12/fmAG9cW4CesypUl.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/hAfd7MP2VgKs4mS.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/IdxwWu6DcpAVSCt.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/WszUHpxQVlreyZM.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/AFtz8De6BSHqoZR.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/qRTpgoOcxSFniQM.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/U8zXWLsH3iK26vh.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/EKpGewsACzFdkBN.png">
+<meta property="article:published_time" content="2022-04-12T12:25:22.267Z">
+<meta property="article:modified_time" content="2022-05-03T05:32:03.106Z">
 <meta property="article:author" content="星">
-<meta property="article:tag" content="RabbitMQ">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://s2.loli.net/2022/04/12/y8QADPrfG4oIlxZ.png">
+<meta name="twitter:image" content="https://s2.loli.net/2022/05/03/K5Py9o4pIaCjgit.png">
   
   
-  <title>RabbitMQ基础Skill - 阿星的博客</title>
+  <title>阿星的博客</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -193,7 +223,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="RabbitMQ基础Skill">
+            <span class="h2" id="subtitle" title="">
               
             </span>
 
@@ -203,7 +233,7 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-04-12 20:29" pubdate>
+      <time datetime="2022-04-12 20:25" pubdate>
         2022年4月12日 晚上
       </time>
     </span>
@@ -223,7 +253,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      416 分钟
+      417 分钟
     </span>
   
 
@@ -252,16 +282,17 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">RabbitMQ基础Skill</h1>
+            <h1 style="display: none"></h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：11 天前
+                  本文最后更新于：1 分钟前
                 
               </p>
             
             <div class="markdown-body">
-              <ol start="0">
+              <p>title: RabbitMQ基础Skill<br>date: 2022-04-12 20:29:54<br>tags: RabbitMQ<br>categories: RabbitMQ🐱‍👤<br>index_img: <a target="_blank" rel="noopener" href="https://s2.loli.net/2022/04/12/y8QADPrfG4oIlxZ.png">https://s2.loli.net/2022/04/12/y8QADPrfG4oIlxZ.png</a></p>
+<ol start="0">
 <li><h1 id="学习目标"><a href="#学习目标" class="headerlink" title="学习目标"></a>学习目标</h1></li>
 </ol>
 <ul>
@@ -283,9 +314,9 @@
 <p>MQ相当于一个中介，生产方通过MQ与消费方交互，它将应用程序进行解耦合。</p>
 <p>3、<strong>削峰填谷</strong></p>
 <p>如订单系统，在下单的时候就会往数据库写数据。但是数据库只能支撑每秒1000左右的并发写入，并发量再高就容易宕机。低峰期的时候并发也就100多个，但是在高峰期时候，并发量会突然激增到5000以上，这个时候数据库肯定卡死了。</p>
-<p><img src="https://s2.loli.net/2022/04/11/NI2P9erAVSalBtT.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://s2.loli.net/2022/05/03/K5Py9o4pIaCjgit.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220503133111986"></p>
 <p>消息被MQ保存起来了，然后系统就可以按照自己的消费能力来消费，比如每秒1000个数据，这样慢慢写入数据库，这样就不会卡死数据库了。</p>
-<p><img src="https://s2.loli.net/2022/04/11/KcCayzWETprI1QF.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://s2.loli.net/2022/05/03/m7gbCsQAcIXhLet.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220503133157833"></p>
 <p>但是使用了MQ之后，限制消费消息的速度为1000，但是这样一来，高峰期产生的数据势必会被积压在MQ中，高峰就被“削”掉了。但是因为消息积压，在高峰期过后的一段时间内，消费消息的速度还是会维持在1000QPS，直到消费完积压的消息,这就叫做“填谷”</p>
 <p><img src="https://s2.loli.net/2022/04/11/L9dpNX3S6VZqnmG.png" srcset="/Hexo/img/loading.gif" lazyload></p>
 </li>
@@ -679,20 +710,6 @@
             <div>
               <div class="post-metas mb-3">
                 
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/Hexo/categories/RabbitMQ%F0%9F%90%B1%E2%80%8D%F0%9F%91%A4/">RabbitMQ🐱‍👤</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/Hexo/tags/RabbitMQ/">RabbitMQ</a>
-                    
-                  </div>
                 
               </div>
               
