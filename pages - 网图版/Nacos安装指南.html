@@ -11,9 +11,6 @@
   <link rel="icon" href="/Hexo/img/csdn.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="referrer" content="no-referrer" />
-  
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#DAA520">
   <meta name="author" content="星">
@@ -51,28 +48,16 @@
   
   <title>Nacos安装使用指南 - 阿星的博客</title>
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
-    
-  
-
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -81,24 +66,43 @@
 
 <link  rel="stylesheet" href="/Hexo/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/Hexo/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/Hexo/js/utils.js" ></script>
   <script  src="/Hexo/js/color-schema.js" ></script>
+
+  
 <meta name="generator" content="Hexo 6.0.0"></head>
 
 
 <body>
-  <header style="height: 60vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/Hexo/">
-      <strong>啊星的博客</strong>
+      <strong>🐛 ZhaFi人</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -189,6 +193,7 @@
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
@@ -201,29 +206,35 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('https://s2.loli.net/2022/04/13/fC3S2FTgBJLYjOq.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Nacos安装使用指南">
-              
-            </span>
+  
 
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/Hexo/img/bg5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Nacos安装使用指南"></span>
           
         </div>
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
     
       <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
+        <div id="board"
           >
           
           <div class="container">
@@ -258,7 +269,7 @@
 <p>然后执行命令即可：</p>
 <ul>
 <li><p>windows命令：</p>
-<figure class="highlight dos"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs dos">startup.<span class="hljs-built_in">cmd</span> -m standalone<br></code></pre></div></td></tr></table></figure></li>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dos">startup.<span class="hljs-built_in">cmd</span> -m standalone<br></code></pre></td></tr></table></figure></li>
 </ul>
 <p>执行后的效果如图：</p>
 <p><img src="https://s2.loli.net/2022/04/30/TtAoJCRH5nsgMqk.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210402162526774"></p>
@@ -272,14 +283,14 @@
 <p><img src="https://s2.loli.net/2022/04/30/x9An3HryCqphkXt.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210402172334810"></p>
 <p>上传到某个目录，例如：<code>/usr/local/</code></p>
 <p>然后解压缩：</p>
-<figure class="highlight sh"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sh">tar -xvf jdk-8u144-linux-x64.tar.gz<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">tar -xvf jdk-8u144-linux-x64.tar.gz<br></code></pre></td></tr></table></figure>
 
 <p>然后重命名为java</p>
 <p>配置环境变量：</p>
-<figure class="highlight sh"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sh"><span class="hljs-built_in">export</span> JAVA_HOME=/usr/local/java<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$JAVA_HOME</span>/bin<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">export</span> JAVA_HOME=/usr/local/java<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$JAVA_HOME</span>/bin<br></code></pre></td></tr></table></figure>
 
 <p>设置环境变量：</p>
-<figure class="highlight sh"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sh"><span class="hljs-built_in">source</span> /etc/profile<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">source</span> /etc/profile<br></code></pre></td></tr></table></figure>
 
 
 
@@ -292,10 +303,10 @@
 <p>上传到Linux服务器的某个目录，例如<code>/usr/local/src</code>目录下：</p>
 <p><img src="https://s2.loli.net/2022/04/30/cmVNnKpvjPB5DJh.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210402163715580"></p>
 <h2 id="2-3-解压"><a href="#2-3-解压" class="headerlink" title="2.3.解压"></a>2.3.解压</h2><p>命令解压缩安装包：</p>
-<figure class="highlight sh"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sh">tar -xvf nacos-server-1.4.1.tar.gz<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">tar -xvf nacos-server-1.4.1.tar.gz<br></code></pre></td></tr></table></figure>
 
 <p>然后删除安装包：</p>
-<figure class="highlight sh"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sh"><span class="hljs-built_in">rm</span> -rf nacos-server-1.4.1.tar.gz<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">rm</span> -rf nacos-server-1.4.1.tar.gz<br></code></pre></td></tr></table></figure>
 
 <p>目录中最终样式：</p>
 <p><img src="https://s2.loli.net/2022/04/30/JTw186OsMynAl4Y.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210402163858429"></p>
@@ -303,7 +314,7 @@
 <p><img src="https://s2.loli.net/2022/04/30/OmjUa4C3kNE5zeh.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210402164414827"></p>
 <h2 id="2-4-端口配置"><a href="#2-4-端口配置" class="headerlink" title="2.4.端口配置"></a>2.4.端口配置</h2><p>与windows中类似</p>
 <h2 id="2-5-启动"><a href="#2-5-启动" class="headerlink" title="2.5.启动"></a>2.5.启动</h2><p>在nacos&#x2F;bin目录中，输入命令启动Nacos：</p>
-<figure class="highlight sh"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sh">sh startup.sh -m standalone<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sh startup.sh -m standalone<br></code></pre></td></tr></table></figure>
 
 
 
@@ -312,17 +323,20 @@
 
 
 <h1 id="3-Nacos的依赖"><a href="#3-Nacos的依赖" class="headerlink" title="3.Nacos的依赖"></a>3.Nacos的依赖</h1><p>父工程：</p>
-<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-alibaba-dependencies<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.5.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">type</span>&gt;</span>pom<span class="hljs-tag">&lt;/<span class="hljs-name">type</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>import<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-alibaba-dependencies<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.5.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">type</span>&gt;</span>pom<span class="hljs-tag">&lt;/<span class="hljs-name">type</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>import<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 
 
 <p>客户端：</p>
-<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- nacos客户端依赖包 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- nacos客户端依赖包 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
 
 
 
   
+
 </article>
+
+
 
               </div>
             </div>
@@ -351,59 +365,37 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
   
-
   
-</footer>
-
-
-  <!-- SCRIPTS -->
   
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
   <script>
     NProgress.configure({"showSpinner":false,"trickleSpeed":100})
@@ -414,15 +406,44 @@
   </script>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
 <script  src="/Hexo/js/events.js" ></script>
 <script  src="/Hexo/js/plugins.js" ></script>
 
-<!-- Plugins -->
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
 
-  <script  src="/Hexo/js/local-search.js" ></script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
 
 
 
@@ -432,71 +453,22 @@
 
 
 
-  
 
-
-
-  
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
-  
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-        typing(title);
-      
-    })(window, document);
-  </script>
+  <script  src="/Hexo/js/local-search.js" ></script>
 
 
 
 
 
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/Hexo/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 <script src="/Hexo/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
 </html>

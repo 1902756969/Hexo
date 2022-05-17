@@ -11,9 +11,6 @@
   <link rel="icon" href="/Hexo/img/csdn.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="referrer" content="no-referrer" />
-  
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#DAA520">
   <meta name="author" content="星">
@@ -37,28 +34,16 @@
   
   <title>zookeeper讲义 - 阿星的博客</title>
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
-    
-  
-
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -67,24 +52,43 @@
 
 <link  rel="stylesheet" href="/Hexo/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/Hexo/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/Hexo/js/utils.js" ></script>
   <script  src="/Hexo/js/color-schema.js" ></script>
+
+  
 <meta name="generator" content="Hexo 6.0.0"></head>
 
 
 <body>
-  <header style="height: 60vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/Hexo/">
-      <strong>啊星的博客</strong>
+      <strong>🐛 ZhaFi人</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -175,6 +179,7 @@
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
@@ -187,29 +192,35 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('https://s2.loli.net/2022/04/13/fC3S2FTgBJLYjOq.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="zookeeper讲义">
-              
-            </span>
+  
 
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/Hexo/img/bg5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="zookeeper讲义"></span>
           
         </div>
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
     
       <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
+        <div id="board"
           >
           
           <div class="container">
@@ -229,27 +240,27 @@
 <p><img src="/Hexo/../img/202203121507388.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592054603167"></p>
 <h2 id="2-ZooKeeper-安装与配置"><a href="#2-ZooKeeper-安装与配置" class="headerlink" title="2)ZooKeeper 安装与配置"></a>2)ZooKeeper 安装与配置</h2><h3 id="2-1-下载安装"><a href="#2-1-下载安装" class="headerlink" title="2.1) 下载安装"></a>2.1) 下载安装</h3><h4 id="2-1-1、环境准备"><a href="#2-1-1、环境准备" class="headerlink" title="2.1.1、环境准备"></a><strong>2.1.1、环境准备</strong></h4><p>ZooKeeper服务器是用Java创建的，它运行在JVM之上。需要安装JDK 7或更高版本。</p>
 <h4 id="2-1-2、上传"><a href="#2-1-2、上传" class="headerlink" title="2.1.2、上传"></a><strong>2.1.2、上传</strong></h4><p>将下载的ZooKeeper放到&#x2F;opt&#x2F;ZooKeeper目录下</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="language-bash">上传zookeeper alt+p</span><br>put f:/setup/apache-zookeeper-3.5.6-bin.tar.gz<br><span class="hljs-meta">#</span><span class="language-bash">打开 opt目录</span><br>cd /opt<br><span class="hljs-meta">#</span><span class="language-bash">创建zooKeeper目录</span><br>mkdir  zooKeeper<br><span class="hljs-meta">#</span><span class="language-bash">将zookeeper安装包移动到 /opt/zooKeeper</span><br>mv apache-zookeeper-3.5.6-bin.tar.gz /opt/zookeeper/<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="language-bash">上传zookeeper alt+p</span><br>put f:/setup/apache-zookeeper-3.5.6-bin.tar.gz<br><span class="hljs-meta">#</span><span class="language-bash">打开 opt目录</span><br>cd /opt<br><span class="hljs-meta">#</span><span class="language-bash">创建zooKeeper目录</span><br>mkdir  zooKeeper<br><span class="hljs-meta">#</span><span class="language-bash">将zookeeper安装包移动到 /opt/zooKeeper</span><br>mv apache-zookeeper-3.5.6-bin.tar.gz /opt/zookeeper/<br></code></pre></td></tr></table></figure>
 
 <h4 id="2-1-3、解压"><a href="#2-1-3、解压" class="headerlink" title="2.1.3、解压"></a><strong>2.1.3、解压</strong></h4><p>将tar包解压到&#x2F;opt&#x2F;zookeeper目录下</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">tar -zxvf apache-ZooKeeper-3.5.6-bin.tar.gz <br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">tar -zxvf apache-ZooKeeper-3.5.6-bin.tar.gz <br></code></pre></td></tr></table></figure>
 
 <h3 id="2-2-配置启动"><a href="#2-2-配置启动" class="headerlink" title="2.2) 配置启动"></a>2.2) 配置启动</h3><h4 id="2-2-1、配置zoo-cfg"><a href="#2-2-1、配置zoo-cfg" class="headerlink" title="2.2.1、配置zoo.cfg"></a><strong>2.2.1、配置zoo.cfg</strong></h4><p>进入到conf目录拷贝一个zoo_sample.cfg并完成配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="language-bash">进入到conf目录</span><br>cd /opt/zooKeeper/apache-zooKeeper-3.5.6-bin/conf/<br><span class="hljs-meta">#</span><span class="language-bash">拷贝</span><br>cp  zoo_sample.cfg  zoo.cfg<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="language-bash">进入到conf目录</span><br>cd /opt/zooKeeper/apache-zooKeeper-3.5.6-bin/conf/<br><span class="hljs-meta">#</span><span class="language-bash">拷贝</span><br>cp  zoo_sample.cfg  zoo.cfg<br></code></pre></td></tr></table></figure>
 
 
 
 <p>修改zoo.cfg</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="language-bash">打开目录</span><br>cd /opt/zooKeeper/<br><span class="hljs-meta">#</span><span class="language-bash">创建zooKeeper存储目录</span><br>mkdir  zkdata<br><span class="hljs-meta">#</span><span class="language-bash">修改zoo.cfg</span><br>vim /opt/zooKeeper/apache-zooKeeper-3.5.6-bin/conf/zoo.cfg<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="language-bash">打开目录</span><br>cd /opt/zooKeeper/<br><span class="hljs-meta">#</span><span class="language-bash">创建zooKeeper存储目录</span><br>mkdir  zkdata<br><span class="hljs-meta">#</span><span class="language-bash">修改zoo.cfg</span><br>vim /opt/zooKeeper/apache-zooKeeper-3.5.6-bin/conf/zoo.cfg<br></code></pre></td></tr></table></figure>
 
 <p><img src="/Hexo/../img/202203121507501.png" srcset="/Hexo/img/loading.gif" lazyload alt="1577548250377"></p>
 <p>修改存储目录：dataDir&#x3D;&#x2F;opt&#x2F;zookeeper&#x2F;zkdata</p>
-<h4 id="2-2-2、启动ZooKeeper"><a href="#2-2-2、启动ZooKeeper" class="headerlink" title="2.2.2、启动ZooKeeper"></a><strong>2.2.2、启动ZooKeeper</strong></h4><figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">cd /opt/zooKeeper/apache-zooKeeper-3.5.6-bin/bin/<br><span class="hljs-meta">#</span><span class="language-bash">启动</span><br> ./zkServer.sh  start<br></code></pre></div></td></tr></table></figure>
+<h4 id="2-2-2、启动ZooKeeper"><a href="#2-2-2、启动ZooKeeper" class="headerlink" title="2.2.2、启动ZooKeeper"></a><strong>2.2.2、启动ZooKeeper</strong></h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd /opt/zooKeeper/apache-zooKeeper-3.5.6-bin/bin/<br><span class="hljs-meta">#</span><span class="language-bash">启动</span><br> ./zkServer.sh  start<br></code></pre></td></tr></table></figure>
 
 <p><img src="/Hexo/../img/202203121511797.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151138755"></p>
 <p>看到上图表示ZooKeeper成功启动</p>
 <p><strong>3、查看ZooKeeper状态</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">./zkServer.sh status<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">./zkServer.sh status<br></code></pre></td></tr></table></figure>
 
 <p>zookeeper启动成功。standalone代表zk没有搭建集群，现在是单节点</p>
 <p><img src="/Hexo/../img/202203121511659.png" srcset="/Hexo/img/loading.gif" lazyload alt="1577548175232"></p>
@@ -272,45 +283,45 @@
 <p><img src="/Hexo/../img/202203121512852.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592055088686"></p>
 <h3 id="3-3-Zookeeper客户端常用命令"><a href="#3-3-Zookeeper客户端常用命令" class="headerlink" title="3.3)Zookeeper客户端常用命令"></a><strong>3.3)Zookeeper客户端常用命令</strong></h3><p>•连接ZooKeeper服务端</p>
 <p><font color='red'>注意-不可复制</font></p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">./zkCli.sh –server ip:port<br> ./zkCli.sh -server localhost:2181<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">./zkCli.sh –server ip:port<br> ./zkCli.sh -server localhost:2181<br></code></pre></td></tr></table></figure>
 
 <p>•断开连接</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">quit<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">quit<br></code></pre></td></tr></table></figure>
 
 <p>•查看命令帮助</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">help<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">help<br></code></pre></td></tr></table></figure>
 
 <p>•显示指定目录下节点</p>
-<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">ls</span> 目录<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ls</span> 目录<br></code></pre></td></tr></table></figure>
 
 <p>•创建节点</p>
-<figure class="highlight lua"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs lua"><span class="hljs-built_in">create</span> /节点<span class="hljs-built_in">path</span> value<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-built_in">create</span> /节点<span class="hljs-built_in">path</span> value<br></code></pre></td></tr></table></figure>
 
 <p>•获取节点值</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-keyword">get</span> /节点<span class="hljs-type">path</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">get</span> /节点<span class="hljs-type">path</span><br></code></pre></td></tr></table></figure>
 
 <p>•设置节点值</p>
-<figure class="highlight dos"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs dos"><span class="hljs-built_in">set</span> /节点<span class="hljs-built_in">path</span> value<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dos"><span class="hljs-built_in">set</span> /节点<span class="hljs-built_in">path</span> value<br></code></pre></td></tr></table></figure>
 
 <p>•删除单个节点</p>
-<figure class="highlight n1ql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs n1ql"><span class="hljs-keyword">delete</span> /节点<span class="hljs-keyword">path</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">delete</span> /节点<span class="hljs-keyword">path</span><br></code></pre></td></tr></table></figure>
 
 <p>•删除带有子节点的节点</p>
-<figure class="highlight dos"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs dos">deleteall /节点<span class="hljs-built_in">path</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dos">deleteall /节点<span class="hljs-built_in">path</span><br></code></pre></td></tr></table></figure>
 
 <p><img src="/Hexo/../img/202203121512697.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592055332198"></p>
 <p><img src="/Hexo/../img/202203121512020.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592055345400"></p>
 <h3 id="3-4-客户端命令-创建临时有序节点"><a href="#3-4-客户端命令-创建临时有序节点" class="headerlink" title="3.4)客户端命令-创建临时有序节点"></a>3.4)客户端命令-创建临时有序节点</h3><p>•创建临时节点</p>
-<figure class="highlight n1ql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs n1ql"><span class="hljs-keyword">create</span> -<span class="hljs-built_in">e</span> /节点<span class="hljs-keyword">path</span> <span class="hljs-keyword">value</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">create</span> -<span class="hljs-built_in">e</span> /节点<span class="hljs-keyword">path</span> <span class="hljs-keyword">value</span><br></code></pre></td></tr></table></figure>
 
 <p>•创建顺序节点</p>
-<figure class="highlight lua"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs lua"><span class="hljs-built_in">create</span> -s /节点<span class="hljs-built_in">path</span> value<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-built_in">create</span> -s /节点<span class="hljs-built_in">path</span> value<br></code></pre></td></tr></table></figure>
 
 <p>创建顺序临时结点</p>
-<figure class="highlight lua"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs lua"><span class="hljs-built_in">create</span> -es /节点<span class="hljs-built_in">path</span> value<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-built_in">create</span> -es /节点<span class="hljs-built_in">path</span> value<br></code></pre></td></tr></table></figure>
 
 <p>•查询节点详细信息</p>
-<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">ls</span> –s /节点path <br></code></pre></div></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ls</span> –s /节点path <br></code></pre></td></tr></table></figure>
 
 <p>•czxid：节点被创建的事务ID </p>
 <p>•ctime: 创建时间 </p>
@@ -339,41 +350,41 @@
 <p>资料文件夹下pom.xml和log4j.properties</p>
 <p><img src="/Hexo/../img/202203121512563.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592055569716"></p>
 <p>2、创建测试类，使用curator连接zookeeper</p>
-<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Before</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testConnect</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-comment">//重试策略</span><br>    <span class="hljs-type">RetryPolicy</span> <span class="hljs-variable">retryPolicy</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ExponentialBackoffRetry</span>(<span class="hljs-number">3000</span>, <span class="hljs-number">10</span>);<br>    <span class="hljs-comment">//2.第二种方式</span><br>    <span class="hljs-comment">//CuratorFrameworkFactory.builder();</span><br>    client = CuratorFrameworkFactory.builder()<br>        .connectString(<span class="hljs-string">&quot;192.168.200.130:2181&quot;</span>)<br>        .sessionTimeoutMs(<span class="hljs-number">60</span> * <span class="hljs-number">1000</span>)<br>        .connectionTimeoutMs(<span class="hljs-number">15</span> * <span class="hljs-number">1000</span>)<br>        .retryPolicy(retryPolicy)<br>        .namespace(<span class="hljs-string">&quot;itheima&quot;</span>)<br>        .build();<br>    <span class="hljs-comment">//开启连接</span><br>    client.start();<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Before</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testConnect</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-comment">//重试策略</span><br>    <span class="hljs-type">RetryPolicy</span> <span class="hljs-variable">retryPolicy</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ExponentialBackoffRetry</span>(<span class="hljs-number">3000</span>, <span class="hljs-number">10</span>);<br>    <span class="hljs-comment">//2.第二种方式</span><br>    <span class="hljs-comment">//CuratorFrameworkFactory.builder();</span><br>    client = CuratorFrameworkFactory.builder()<br>        .connectString(<span class="hljs-string">&quot;192.168.200.130:2181&quot;</span>)<br>        .sessionTimeoutMs(<span class="hljs-number">60</span> * <span class="hljs-number">1000</span>)<br>        .connectionTimeoutMs(<span class="hljs-number">15</span> * <span class="hljs-number">1000</span>)<br>        .retryPolicy(retryPolicy)<br>        .namespace(<span class="hljs-string">&quot;itheima&quot;</span>)<br>        .build();<br>    <span class="hljs-comment">//开启连接</span><br>    client.start();<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h3 id="4-3-Zookeeper-JavaAPI操作-创建节点"><a href="#4-3-Zookeeper-JavaAPI操作-创建节点" class="headerlink" title="4.3)Zookeeper JavaAPI操作-创建节点"></a>4.3)Zookeeper JavaAPI操作-创建节点</h3><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 创建节点：create 持久 临时 顺序 数据</span><br><span class="hljs-comment">* 1. 基本创建 ：create().forPath(&quot;&quot;)</span><br><span class="hljs-comment">* 2. 创建节点 带有数据:create().forPath(&quot;&quot;,data)</span><br><span class="hljs-comment">* 3. 设置节点的类型：create().withMode().forPath(&quot;&quot;,data)</span><br><span class="hljs-comment">* 4. 创建多级节点  /app1/p1 ：create().creatingParentsIfNeeded().forPath(&quot;&quot;,data)</span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testCreate</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">//2. 创建节点 带有数据</span><br>    <span class="hljs-comment">//如果创建节点，没有指定数据，则默认将当前客户端的ip作为数据存储</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> client.create().forPath(<span class="hljs-string">&quot;/app2&quot;</span>, <span class="hljs-string">&quot;hehe&quot;</span>.getBytes());<br>    System.out.println(path);<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<h3 id="4-3-Zookeeper-JavaAPI操作-创建节点"><a href="#4-3-Zookeeper-JavaAPI操作-创建节点" class="headerlink" title="4.3)Zookeeper JavaAPI操作-创建节点"></a>4.3)Zookeeper JavaAPI操作-创建节点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 创建节点：create 持久 临时 顺序 数据</span><br><span class="hljs-comment">* 1. 基本创建 ：create().forPath(&quot;&quot;)</span><br><span class="hljs-comment">* 2. 创建节点 带有数据:create().forPath(&quot;&quot;,data)</span><br><span class="hljs-comment">* 3. 设置节点的类型：create().withMode().forPath(&quot;&quot;,data)</span><br><span class="hljs-comment">* 4. 创建多级节点  /app1/p1 ：create().creatingParentsIfNeeded().forPath(&quot;&quot;,data)</span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testCreate</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">//2. 创建节点 带有数据</span><br>    <span class="hljs-comment">//如果创建节点，没有指定数据，则默认将当前客户端的ip作为数据存储</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> client.create().forPath(<span class="hljs-string">&quot;/app2&quot;</span>, <span class="hljs-string">&quot;hehe&quot;</span>.getBytes());<br>    System.out.println(path);<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testCreate2</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">//1. 基本创建</span><br>    <span class="hljs-comment">//如果创建节点，没有指定数据，则默认将当前客户端的ip作为数据存储</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> client.create().forPath(<span class="hljs-string">&quot;/app1&quot;</span>);<br>    System.out.println(path);<br>&#125;<br><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testCreate3</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">//3. 设置节点的类型</span><br>    <span class="hljs-comment">//默认类型：持久化</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> client.create().withMode(CreateMode.EPHEMERAL).forPath(<span class="hljs-string">&quot;/app3&quot;</span>);<br>    System.out.println(path);<br>&#125;<br><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testCreate4</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">//4. 创建多级节点  /app1/p1</span><br>    <span class="hljs-comment">//creatingParentsIfNeeded():如果父节点不存在，则创建父节点</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> client.create().creatingParentsIfNeeded().forPath(<span class="hljs-string">&quot;/app4/p1&quot;</span>);<br>    System.out.println(path);<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testCreate2</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">//1. 基本创建</span><br>    <span class="hljs-comment">//如果创建节点，没有指定数据，则默认将当前客户端的ip作为数据存储</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> client.create().forPath(<span class="hljs-string">&quot;/app1&quot;</span>);<br>    System.out.println(path);<br>&#125;<br><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testCreate3</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">//3. 设置节点的类型</span><br>    <span class="hljs-comment">//默认类型：持久化</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> client.create().withMode(CreateMode.EPHEMERAL).forPath(<span class="hljs-string">&quot;/app3&quot;</span>);<br>    System.out.println(path);<br>&#125;<br><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testCreate4</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">//4. 创建多级节点  /app1/p1</span><br>    <span class="hljs-comment">//creatingParentsIfNeeded():如果父节点不存在，则创建父节点</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> client.create().creatingParentsIfNeeded().forPath(<span class="hljs-string">&quot;/app4/p1&quot;</span>);<br>    System.out.println(path);<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h3 id="4-4-ZookeeperJavaAPI操作-查询节点"><a href="#4-4-ZookeeperJavaAPI操作-查询节点" class="headerlink" title="4.4)ZookeeperJavaAPI操作-查询节点"></a>4.4)ZookeeperJavaAPI操作-查询节点</h3><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 查询节点：</span><br><span class="hljs-comment">* 1. 查询数据：get: getData().forPath()</span><br><span class="hljs-comment">* 2. 查询子节点： ls: getChildren().forPath()</span><br><span class="hljs-comment">* 3. 查询节点状态信息：ls -s:getData().storingStatIn(状态对象).forPath()</span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testGet1</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">//1. 查询数据：get</span><br>    <span class="hljs-type">byte</span>[] data = client.getData().forPath(<span class="hljs-string">&quot;/app1&quot;</span>);<br>    System.out.println(<span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(data));<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<h3 id="4-4-ZookeeperJavaAPI操作-查询节点"><a href="#4-4-ZookeeperJavaAPI操作-查询节点" class="headerlink" title="4.4)ZookeeperJavaAPI操作-查询节点"></a>4.4)ZookeeperJavaAPI操作-查询节点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 查询节点：</span><br><span class="hljs-comment">* 1. 查询数据：get: getData().forPath()</span><br><span class="hljs-comment">* 2. 查询子节点： ls: getChildren().forPath()</span><br><span class="hljs-comment">* 3. 查询节点状态信息：ls -s:getData().storingStatIn(状态对象).forPath()</span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testGet1</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">//1. 查询数据：get</span><br>    <span class="hljs-type">byte</span>[] data = client.getData().forPath(<span class="hljs-string">&quot;/app1&quot;</span>);<br>    System.out.println(<span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(data));<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs JAVA"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testGet2</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">// 2. 查询子节点： ls</span><br>    List&lt;String&gt; path = client.getChildren().forPath(<span class="hljs-string">&quot;/&quot;</span>);<br>    System.out.println(path);<br>&#125;<br><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testGet3</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-type">Stat</span> <span class="hljs-variable">status</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Stat</span>();<br>    System.out.println(status);<br>    <span class="hljs-comment">//3. 查询节点状态信息：ls -s</span><br>    client.getData().storingStatIn(status).forPath(<span class="hljs-string">&quot;/app1&quot;</span>);<br>    System.out.println(status);<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs JAVA"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testGet2</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">// 2. 查询子节点： ls</span><br>    List&lt;String&gt; path = client.getChildren().forPath(<span class="hljs-string">&quot;/&quot;</span>);<br>    System.out.println(path);<br>&#125;<br><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testGet3</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-type">Stat</span> <span class="hljs-variable">status</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Stat</span>();<br>    System.out.println(status);<br>    <span class="hljs-comment">//3. 查询节点状态信息：ls -s</span><br>    client.getData().storingStatIn(status).forPath(<span class="hljs-string">&quot;/app1&quot;</span>);<br>    System.out.println(status);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>Stat类</p>
-<h3 id="4-5-Zookeeper-JavaAPI操作-修改节点"><a href="#4-5-Zookeeper-JavaAPI操作-修改节点" class="headerlink" title="4.5)Zookeeper JavaAPI操作-修改节点"></a>4.5)Zookeeper JavaAPI操作-修改节点</h3><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs JAVA"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 修改数据</span><br><span class="hljs-comment">* 1. 基本修改数据：setData().forPath()</span><br><span class="hljs-comment">* 2. 根据版本修改: setData().withVersion().forPath()</span><br><span class="hljs-comment">* * version 是通过查询出来的。目的就是为了让其他客户端或者线程不干扰我。</span><br><span class="hljs-comment">*</span><br><span class="hljs-comment">* <span class="hljs-doctag">@throws</span> Exception</span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testSet</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>	client.setData().forPath(<span class="hljs-string">&quot;/app1&quot;</span>, <span class="hljs-string">&quot;itcast&quot;</span>.getBytes());<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<h3 id="4-5-Zookeeper-JavaAPI操作-修改节点"><a href="#4-5-Zookeeper-JavaAPI操作-修改节点" class="headerlink" title="4.5)Zookeeper JavaAPI操作-修改节点"></a>4.5)Zookeeper JavaAPI操作-修改节点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs JAVA"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 修改数据</span><br><span class="hljs-comment">* 1. 基本修改数据：setData().forPath()</span><br><span class="hljs-comment">* 2. 根据版本修改: setData().withVersion().forPath()</span><br><span class="hljs-comment">* * version 是通过查询出来的。目的就是为了让其他客户端或者线程不干扰我。</span><br><span class="hljs-comment">*</span><br><span class="hljs-comment">* <span class="hljs-doctag">@throws</span> Exception</span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testSet</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>	client.setData().forPath(<span class="hljs-string">&quot;/app1&quot;</span>, <span class="hljs-string">&quot;itcast&quot;</span>.getBytes());<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs JAVA"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testSetForVersion</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-type">Stat</span> <span class="hljs-variable">status</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Stat</span>();<br>    <span class="hljs-comment">//3. 查询节点状态信息：ls -s</span><br>    client.getData().storingStatIn(status).forPath(<span class="hljs-string">&quot;/app1&quot;</span>);<br>    <span class="hljs-type">int</span> <span class="hljs-variable">version</span> <span class="hljs-operator">=</span> status.getVersion();<span class="hljs-comment">//查询出来的 3</span><br>    System.out.println(version);<br>    client.setData().withVersion(version).forPath(<span class="hljs-string">&quot;/app1&quot;</span>, <span class="hljs-string">&quot;hehe&quot;</span>.getBytes());<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs JAVA"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testSetForVersion</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-type">Stat</span> <span class="hljs-variable">status</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Stat</span>();<br>    <span class="hljs-comment">//3. 查询节点状态信息：ls -s</span><br>    client.getData().storingStatIn(status).forPath(<span class="hljs-string">&quot;/app1&quot;</span>);<br>    <span class="hljs-type">int</span> <span class="hljs-variable">version</span> <span class="hljs-operator">=</span> status.getVersion();<span class="hljs-comment">//查询出来的 3</span><br>    System.out.println(version);<br>    client.setData().withVersion(version).forPath(<span class="hljs-string">&quot;/app1&quot;</span>, <span class="hljs-string">&quot;hehe&quot;</span>.getBytes());<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h3 id="4-6-Zookeeper-JavaAPI操作-删除节点"><a href="#4-6-Zookeeper-JavaAPI操作-删除节点" class="headerlink" title="4.6)Zookeeper JavaAPI操作-删除节点"></a>4.6)Zookeeper JavaAPI操作-删除节点</h3><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs JAVA"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 删除节点： delete deleteall</span><br><span class="hljs-comment">* 1. 删除单个节点:delete().forPath(&quot;/app1&quot;);</span><br><span class="hljs-comment">* 2. 删除带有子节点的节点:delete().deletingChildrenIfNeeded().forPath(&quot;/app1&quot;);</span><br><span class="hljs-comment">* 3. 必须成功的删除:为了防止网络抖动。本质就是重试。  client.delete().guaranteed().forPath(&quot;/app2&quot;);</span><br><span class="hljs-comment">* 4. 回调：inBackground</span><br><span class="hljs-comment">* <span class="hljs-doctag">@throws</span> Exception</span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testDelete</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">// 1. 删除单个节点</span><br>    client.delete().forPath(<span class="hljs-string">&quot;/app1&quot;</span>);<br>&#125;<br><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testDelete2</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">//2. 删除带有子节点的节点</span><br>    client.delete().deletingChildrenIfNeeded().forPath(<span class="hljs-string">&quot;/app4&quot;</span>);<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<h3 id="4-6-Zookeeper-JavaAPI操作-删除节点"><a href="#4-6-Zookeeper-JavaAPI操作-删除节点" class="headerlink" title="4.6)Zookeeper JavaAPI操作-删除节点"></a>4.6)Zookeeper JavaAPI操作-删除节点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs JAVA"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 删除节点： delete deleteall</span><br><span class="hljs-comment">* 1. 删除单个节点:delete().forPath(&quot;/app1&quot;);</span><br><span class="hljs-comment">* 2. 删除带有子节点的节点:delete().deletingChildrenIfNeeded().forPath(&quot;/app1&quot;);</span><br><span class="hljs-comment">* 3. 必须成功的删除:为了防止网络抖动。本质就是重试。  client.delete().guaranteed().forPath(&quot;/app2&quot;);</span><br><span class="hljs-comment">* 4. 回调：inBackground</span><br><span class="hljs-comment">* <span class="hljs-doctag">@throws</span> Exception</span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testDelete</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">// 1. 删除单个节点</span><br>    client.delete().forPath(<span class="hljs-string">&quot;/app1&quot;</span>);<br>&#125;<br><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testDelete2</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">//2. 删除带有子节点的节点</span><br>    client.delete().deletingChildrenIfNeeded().forPath(<span class="hljs-string">&quot;/app4&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs JAVA"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testDelete3</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">//3. 必须成功的删除</span><br>    client.delete().guaranteed().forPath(<span class="hljs-string">&quot;/app2&quot;</span>);<br>&#125;<br><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testDelete4</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">//4. 回调</span><br>    client.delete().guaranteed().inBackground(<span class="hljs-keyword">new</span> <span class="hljs-title class_">BackgroundCallback</span>()&#123;<br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">processResult</span><span class="hljs-params">(CuratorFramework client, CuratorEvent event)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>            System.out.println(<span class="hljs-string">&quot;我被删除了~&quot;</span>);<br>            System.out.println(event);<br>        &#125;<br>    &#125;).forPath(<span class="hljs-string">&quot;/app1&quot;</span>);<br>&#125;<br><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs JAVA"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testDelete3</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">//3. 必须成功的删除</span><br>    client.delete().guaranteed().forPath(<span class="hljs-string">&quot;/app2&quot;</span>);<br>&#125;<br><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testDelete4</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">//4. 回调</span><br>    client.delete().guaranteed().inBackground(<span class="hljs-keyword">new</span> <span class="hljs-title class_">BackgroundCallback</span>()&#123;<br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">processResult</span><span class="hljs-params">(CuratorFramework client, CuratorEvent event)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>            System.out.println(<span class="hljs-string">&quot;我被删除了~&quot;</span>);<br>            System.out.println(event);<br>        &#125;<br>    &#125;).forPath(<span class="hljs-string">&quot;/app1&quot;</span>);<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
 <h6 id="2022年3月13日21-15-26"><a href="#2022年3月13日21-15-26" class="headerlink" title="2022年3月13日21:15:26"></a>2022年3月13日21:15:26</h6><h3 id="4-7-Zookeeper-JavaAPI操作-Watch监听概述"><a href="#4-7-Zookeeper-JavaAPI操作-Watch监听概述" class="headerlink" title="4.7)Zookeeper JavaAPI操作-Watch监听概述"></a>4.7)Zookeeper JavaAPI操作-Watch监听概述</h3><p>•ZooKeeper 允许用户在指定节点上注册一些Watcher，并且在一些特定事件触发的时候，ZooKeeper 服务端会将事件通知到感兴趣的客户端上去，该机制是 ZooKeeper 实现分布式协调服务的重要特性。</p>
 <p>•ZooKeeper 中引入了Watcher机制来实现了发布&#x2F;订阅功能能，能够让多个订阅者同时监听某一个对象，当一个对象自身状态变化时，会通知所有订阅者。</p>
 <p>•ZooKeeper 原生支持通过注册Watcher来进行事件监听，但是其使用并不是特别方便</p>
-<div class="hljs code-wrapper"><pre><code class="hljs">需要开发人员自己反复注册Watcher，比较繁琐。
-</code></pre></div>
+<pre><code class="hljs">需要开发人员自己反复注册Watcher，比较繁琐。
+</code></pre>
 <p>•Curator引入了 Cache 来实现对 ZooKeeper 服务端事件的监听。</p>
 <p>•ZooKeeper提供了三种Watcher：</p>
 <p>•NodeCache : 只是监听某一个特定的节点</p>
 <p>•PathChildrenCache : 监控一个ZNode的子节点. </p>
 <p>•TreeCache : 可以监控整个树上的所有节点，类似于PathChildrenCache和NodeCache的组合</p>
 <p><img src="/Hexo/../img/202203121513884.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592057429708"></p>
-<h3 id="4-8Zookeeper-JavaAPI操作-Watch监听-NodeCache"><a href="#4-8Zookeeper-JavaAPI操作-Watch监听-NodeCache" class="headerlink" title="4.8Zookeeper JavaAPI操作-Watch监听-NodeCache"></a>4.8Zookeeper JavaAPI操作-Watch监听-NodeCache</h3><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 演示 NodeCache：给指定一个节点注册监听器</span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testNodeCache</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">//1. 创建NodeCache对象</span><br>    <span class="hljs-keyword">final</span> <span class="hljs-type">NodeCache</span> <span class="hljs-variable">nodeCache</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">NodeCache</span>(client,<span class="hljs-string">&quot;/app1&quot;</span>);<br>    <span class="hljs-comment">//2. 注册监听</span><br>   	nodeCache.getListenable().addListener(<span class="hljs-keyword">new</span> <span class="hljs-title class_">NodeCacheListener</span>() &#123;<br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">nodeChanged</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>            System.out.println(<span class="hljs-string">&quot;节点变化了~&quot;</span>);<br>            <span class="hljs-comment">//获取修改节点后的数据</span><br>            <span class="hljs-type">byte</span>[] data = nodeCache.getCurrentData().getData();<br>            System.out.println(<span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(data));<br>            &#125;<br>        &#125;);<br>    	<span class="hljs-comment">//3. 开启监听.如果设置为true，则开启监听是，加载缓冲数据</span><br>    	nodeCache.start(<span class="hljs-literal">true</span>);<br>    	<span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>)&#123;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<h3 id="4-8Zookeeper-JavaAPI操作-Watch监听-NodeCache"><a href="#4-8Zookeeper-JavaAPI操作-Watch监听-NodeCache" class="headerlink" title="4.8Zookeeper JavaAPI操作-Watch监听-NodeCache"></a>4.8Zookeeper JavaAPI操作-Watch监听-NodeCache</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 演示 NodeCache：给指定一个节点注册监听器</span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testNodeCache</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">//1. 创建NodeCache对象</span><br>    <span class="hljs-keyword">final</span> <span class="hljs-type">NodeCache</span> <span class="hljs-variable">nodeCache</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">NodeCache</span>(client,<span class="hljs-string">&quot;/app1&quot;</span>);<br>    <span class="hljs-comment">//2. 注册监听</span><br>   	nodeCache.getListenable().addListener(<span class="hljs-keyword">new</span> <span class="hljs-title class_">NodeCacheListener</span>() &#123;<br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">nodeChanged</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>            System.out.println(<span class="hljs-string">&quot;节点变化了~&quot;</span>);<br>            <span class="hljs-comment">//获取修改节点后的数据</span><br>            <span class="hljs-type">byte</span>[] data = nodeCache.getCurrentData().getData();<br>            System.out.println(<span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(data));<br>            &#125;<br>        &#125;);<br>    	<span class="hljs-comment">//3. 开启监听.如果设置为true，则开启监听是，加载缓冲数据</span><br>    	nodeCache.start(<span class="hljs-literal">true</span>);<br>    	<span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>)&#123;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h3 id="4-9-Zookeeper-JavaAPI操作-Watch监听-PathChildrenCache"><a href="#4-9-Zookeeper-JavaAPI操作-Watch监听-PathChildrenCache" class="headerlink" title="4.9)Zookeeper JavaAPI操作-Watch监听-PathChildrenCache"></a><strong>4.9)Zookeeper</strong> JavaAPI操作-Watch监听-PathChildrenCache</h3><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testPathChildrenCache</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">//1.创建监听对象</span><br>    <span class="hljs-type">PathChildrenCache</span> <span class="hljs-variable">pathChildrenCache</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PathChildrenCache</span>(client,<span class="hljs-string">&quot;/app2&quot;</span>,<span class="hljs-literal">true</span>);<br>    <span class="hljs-comment">//2. 绑定监听器</span><br>    pathChildrenCache.getListenable().addListener(<span class="hljs-keyword">new</span> <span class="hljs-title class_">PathChildrenCacheListener</span>() &#123;    			<span class="hljs-meta">@Override</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">childEvent</span><span class="hljs-params">(CuratorFramework client, PathChildrenCacheEvent event)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>            System.out.println(<span class="hljs-string">&quot;子节点变化了~&quot;</span>);<br>            System.out.println(event);<br>            <span class="hljs-comment">//监听子节点的数据变更，并且拿到变更后的数据</span><br>            <span class="hljs-comment">//1.获取类型</span><br>            PathChildrenCacheEvent.<span class="hljs-type">Type</span> <span class="hljs-variable">type</span> <span class="hljs-operator">=</span> event.getType();<br>            <span class="hljs-comment">//2.判断类型是否是update</span><br>            <span class="hljs-keyword">if</span>(type.equals(PathChildrenCacheEvent.Type.CHILD_UPDATED))&#123;<br>                System.out.println(<span class="hljs-string">&quot;数据变了！！！&quot;</span>);<br>                <span class="hljs-type">byte</span>[] data = event.getData().getData();<br>                System.out.println(<span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(data));<br>            &#125;<br>        &#125;<br>    &#125;);<br>    <span class="hljs-comment">//3. 开启</span><br>    pathChildrenCache.start();<br>    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>)&#123;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<h3 id="4-9-Zookeeper-JavaAPI操作-Watch监听-PathChildrenCache"><a href="#4-9-Zookeeper-JavaAPI操作-Watch监听-PathChildrenCache" class="headerlink" title="4.9)Zookeeper JavaAPI操作-Watch监听-PathChildrenCache"></a><strong>4.9)Zookeeper</strong> JavaAPI操作-Watch监听-PathChildrenCache</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testPathChildrenCache</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">//1.创建监听对象</span><br>    <span class="hljs-type">PathChildrenCache</span> <span class="hljs-variable">pathChildrenCache</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PathChildrenCache</span>(client,<span class="hljs-string">&quot;/app2&quot;</span>,<span class="hljs-literal">true</span>);<br>    <span class="hljs-comment">//2. 绑定监听器</span><br>    pathChildrenCache.getListenable().addListener(<span class="hljs-keyword">new</span> <span class="hljs-title class_">PathChildrenCacheListener</span>() &#123;    			<span class="hljs-meta">@Override</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">childEvent</span><span class="hljs-params">(CuratorFramework client, PathChildrenCacheEvent event)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>            System.out.println(<span class="hljs-string">&quot;子节点变化了~&quot;</span>);<br>            System.out.println(event);<br>            <span class="hljs-comment">//监听子节点的数据变更，并且拿到变更后的数据</span><br>            <span class="hljs-comment">//1.获取类型</span><br>            PathChildrenCacheEvent.<span class="hljs-type">Type</span> <span class="hljs-variable">type</span> <span class="hljs-operator">=</span> event.getType();<br>            <span class="hljs-comment">//2.判断类型是否是update</span><br>            <span class="hljs-keyword">if</span>(type.equals(PathChildrenCacheEvent.Type.CHILD_UPDATED))&#123;<br>                System.out.println(<span class="hljs-string">&quot;数据变了！！！&quot;</span>);<br>                <span class="hljs-type">byte</span>[] data = event.getData().getData();<br>                System.out.println(<span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(data));<br>            &#125;<br>        &#125;<br>    &#125;);<br>    <span class="hljs-comment">//3. 开启</span><br>    pathChildrenCache.start();<br>    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>)&#123;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h3 id="4-10-Zookeeper-JavaAPI操作-Watch监听-TreeCache"><a href="#4-10-Zookeeper-JavaAPI操作-Watch监听-TreeCache" class="headerlink" title="4.10)Zookeeper JavaAPI操作-Watch监听-TreeCache"></a><strong>4.10)Zookeeper</strong> JavaAPI操作-Watch监听-TreeCache</h3><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 演示 TreeCache：监听某个节点自己和所有子节点们</span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testTreeCache</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">//1. 创建监听器</span><br>    <span class="hljs-type">TreeCache</span> <span class="hljs-variable">treeCache</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeCache</span>(client,<span class="hljs-string">&quot;/app2&quot;</span>);<br>    <span class="hljs-comment">//2. 注册监听</span><br>    treeCache.getListenable().addListener(<span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeCacheListener</span>() &#123;<br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">childEvent</span><span class="hljs-params">(CuratorFramework client, TreeCacheEvent event)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>            System.out.println(<span class="hljs-string">&quot;节点变化了&quot;</span>);<br>            System.out.println(event);<br>        &#125;<br>    &#125;);<br>    <span class="hljs-comment">//3. 开启</span><br>    treeCache.start();<br>    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>)&#123;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<h3 id="4-10-Zookeeper-JavaAPI操作-Watch监听-TreeCache"><a href="#4-10-Zookeeper-JavaAPI操作-Watch监听-TreeCache" class="headerlink" title="4.10)Zookeeper JavaAPI操作-Watch监听-TreeCache"></a><strong>4.10)Zookeeper</strong> JavaAPI操作-Watch监听-TreeCache</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 演示 TreeCache：监听某个节点自己和所有子节点们</span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testTreeCache</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-comment">//1. 创建监听器</span><br>    <span class="hljs-type">TreeCache</span> <span class="hljs-variable">treeCache</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeCache</span>(client,<span class="hljs-string">&quot;/app2&quot;</span>);<br>    <span class="hljs-comment">//2. 注册监听</span><br>    treeCache.getListenable().addListener(<span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeCacheListener</span>() &#123;<br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">childEvent</span><span class="hljs-params">(CuratorFramework client, TreeCacheEvent event)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>            System.out.println(<span class="hljs-string">&quot;节点变化了&quot;</span>);<br>            System.out.println(event);<br>        &#125;<br>    &#125;);<br>    <span class="hljs-comment">//3. 开启</span><br>    treeCache.start();<br>    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>)&#123;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="4-11-Zookeeper分布式锁-概念"><a href="#4-11-Zookeeper分布式锁-概念" class="headerlink" title="4.11)Zookeeper分布式锁-概念"></a>4.11)Zookeeper分布式锁-概念</h3><p>•在我们进行单机应用开发，涉及并发同步的时候，我们往往采用synchronized或者Lock的方式来解决多线程间的代码同步问题，这时多线程的运行都是在同一个JVM之下，没有任何问题。</p>
 <p>•但当我们的应用是分布式集群工作的情况下，属于多JVM下的工作环境，跨JVM之间已经无法通过多线程的锁解决同步问题。</p>
@@ -384,14 +395,14 @@
 <p>2.然后获取lock下面的所有子节点，客户端获取到所有的子节点之后，如果发现自己创建的子节点序号最小，那么就认为该客户端获取到了锁。使用完锁后，将该节点删除。</p>
 <p>3.如果发现自己创建的节点并非lock所有子节点中最小的，说明自己还没有获取到锁，此时客户端需要找到比自己小的那个节点，同时对其注册事件监听器，监听删除事件。</p>
 <p>4.如果发现比自己小的那个节点被删除，则客户端的</p>
-<div class="hljs code-wrapper"><pre><code class="hljs">Watcher会收到相应通知，此时再次判断自己创建的节点
+<pre><code class="hljs">Watcher会收到相应通知，此时再次判断自己创建的节点
 
 是否是lock子节点中序号最小的，如果是则获取到了锁，
 
 如果不是则重复以上步骤继续获取到比自己小的一个节点
 
 并注册监听。
-</code></pre></div>
+</code></pre>
 <p><img src="/Hexo/../img/202203121513004.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592057925831"></p>
 <h3 id="4-13-Zookeeper-分布式锁-模拟12306售票案例"><a href="#4-13-Zookeeper-分布式锁-模拟12306售票案例" class="headerlink" title="4.13)Zookeeper 分布式锁-模拟12306售票案例"></a><strong>4.13)Zookeeper</strong> 分布式锁-模拟12306售票案例</h3><p><strong>Curator实现分布式锁API</strong></p>
 <ul>
@@ -412,13 +423,13 @@
 </ul>
 <p><img src="/Hexo/../img/202203121513467.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592058017457"></p>
 <p>1,创建线程进行加锁设置</p>
-<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Ticket12306</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Runnable</span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-variable">tickets</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<span class="hljs-comment">//数据库的票数</span><br>    <span class="hljs-keyword">private</span> InterProcessMutex lock ;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;<br>            <span class="hljs-comment">//获取锁</span><br>            <span class="hljs-keyword">try</span> &#123;<br>            lock.acquire(<span class="hljs-number">3</span>, TimeUnit.SECONDS);<br>                <span class="hljs-keyword">if</span>(tickets &gt; <span class="hljs-number">0</span>)&#123;<br>                    System.out.println(Thread.currentThread()+<span class="hljs-string">&quot;:&quot;</span>+tickets);<br>                    Thread.sleep(<span class="hljs-number">100</span>);<br>                    tickets--;<br>                &#125;<br>            &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>                e.printStackTrace();<br>            &#125;<span class="hljs-keyword">finally</span> &#123;<br>                <span class="hljs-comment">//释放锁</span><br>                <span class="hljs-keyword">try</span> &#123;<br>                    lock.release();<br>                &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>                    e.printStackTrace();<br>                &#125;<br><br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Ticket12306</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Runnable</span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-variable">tickets</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<span class="hljs-comment">//数据库的票数</span><br>    <span class="hljs-keyword">private</span> InterProcessMutex lock ;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;<br>            <span class="hljs-comment">//获取锁</span><br>            <span class="hljs-keyword">try</span> &#123;<br>            lock.acquire(<span class="hljs-number">3</span>, TimeUnit.SECONDS);<br>                <span class="hljs-keyword">if</span>(tickets &gt; <span class="hljs-number">0</span>)&#123;<br>                    System.out.println(Thread.currentThread()+<span class="hljs-string">&quot;:&quot;</span>+tickets);<br>                    Thread.sleep(<span class="hljs-number">100</span>);<br>                    tickets--;<br>                &#125;<br>            &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>                e.printStackTrace();<br>            &#125;<span class="hljs-keyword">finally</span> &#123;<br>                <span class="hljs-comment">//释放锁</span><br>                <span class="hljs-keyword">try</span> &#123;<br>                    lock.release();<br>                &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>                    e.printStackTrace();<br>                &#125;<br><br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>2,创建连接，并且初始化锁</p>
-<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-title function_">Ticket12306</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-comment">//重试策略</span><br>    <span class="hljs-type">RetryPolicy</span> <span class="hljs-variable">retryPolicy</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ExponentialBackoffRetry</span>(<span class="hljs-number">3000</span>, <span class="hljs-number">10</span>);<br>    <span class="hljs-comment">//2.第二种方式</span><br>    <span class="hljs-comment">//CuratorFrameworkFactory.builder();</span><br>    <span class="hljs-type">CuratorFramework</span> <span class="hljs-variable">client</span> <span class="hljs-operator">=</span> CuratorFrameworkFactory.builder()<br>        .connectString(<span class="hljs-string">&quot;192.168.149.135:2181&quot;</span>)<br>        .sessionTimeoutMs(<span class="hljs-number">60</span> * <span class="hljs-number">1000</span>)<br>        .connectionTimeoutMs(<span class="hljs-number">15</span> * <span class="hljs-number">1000</span>)<br>        .retryPolicy(retryPolicy)<br>        .build();<br>    <span class="hljs-comment">//开启连接</span><br>    client.start();<br>    lock = <span class="hljs-keyword">new</span> <span class="hljs-title class_">InterProcessMutex</span>(client,<span class="hljs-string">&quot;/lock&quot;</span>);<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-title function_">Ticket12306</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-comment">//重试策略</span><br>    <span class="hljs-type">RetryPolicy</span> <span class="hljs-variable">retryPolicy</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ExponentialBackoffRetry</span>(<span class="hljs-number">3000</span>, <span class="hljs-number">10</span>);<br>    <span class="hljs-comment">//2.第二种方式</span><br>    <span class="hljs-comment">//CuratorFrameworkFactory.builder();</span><br>    <span class="hljs-type">CuratorFramework</span> <span class="hljs-variable">client</span> <span class="hljs-operator">=</span> CuratorFrameworkFactory.builder()<br>        .connectString(<span class="hljs-string">&quot;192.168.149.135:2181&quot;</span>)<br>        .sessionTimeoutMs(<span class="hljs-number">60</span> * <span class="hljs-number">1000</span>)<br>        .connectionTimeoutMs(<span class="hljs-number">15</span> * <span class="hljs-number">1000</span>)<br>        .retryPolicy(retryPolicy)<br>        .build();<br>    <span class="hljs-comment">//开启连接</span><br>    client.start();<br>    lock = <span class="hljs-keyword">new</span> <span class="hljs-title class_">InterProcessMutex</span>(client,<span class="hljs-string">&quot;/lock&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>3,运行多个线程进行测试</p>
-<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LockTest</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">Ticket12306</span> <span class="hljs-variable">ticket12306</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Ticket12306</span>();<br>        <span class="hljs-comment">//创建客户端</span><br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">t1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(ticket12306,<span class="hljs-string">&quot;携程&quot;</span>);<br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">t2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(ticket12306,<span class="hljs-string">&quot;飞猪&quot;</span>);<br>        t1.start();<br>        t2.start();<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LockTest</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">Ticket12306</span> <span class="hljs-variable">ticket12306</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Ticket12306</span>();<br>        <span class="hljs-comment">//创建客户端</span><br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">t1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(ticket12306,<span class="hljs-string">&quot;携程&quot;</span>);<br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">t2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(ticket12306,<span class="hljs-string">&quot;飞猪&quot;</span>);<br>        t1.start();<br>        t2.start();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h2 id="5-ZooKeeper-集群搭建"><a href="#5-ZooKeeper-集群搭建" class="headerlink" title="5)ZooKeeper 集群搭建"></a>5)ZooKeeper 集群搭建</h2><h3 id="5-1-Zookeeper集群介绍"><a href="#5-1-Zookeeper集群介绍" class="headerlink" title="5.1)Zookeeper集群介绍"></a><strong>5.1)Zookeeper</strong>集群介绍</h3><p>Leader选举：</p>
 <p>•Serverid：服务器ID</p>
@@ -427,10 +438,10 @@
 <p>•Zxid：数据ID</p>
 <p>  服务器中存放的最大数据ID.值越大说明数据  越新，在选举算法中数据越新权重越大。</p>
 <p>•在Leader选举的过程中，如果某台ZooKeeper</p>
-<div class="hljs code-wrapper"><pre><code class="hljs">获得了超过半数的选票，
+<pre><code class="hljs">获得了超过半数的选票，
 
 则此ZooKeeper就可以成为Leader了。
-</code></pre></div>
+</code></pre>
 <h3 id="5-2-搭建要求"><a href="#5-2-搭建要求" class="headerlink" title="5.2)搭建要求"></a>5.2)搭建要求</h3><p>真实的集群是需要部署在不同的服务器上的，但是在我们测试时同时启动很多个虚拟机内存会吃不消，所以我们通常会搭建<strong>伪集群</strong>，也就是把所有的服务都搭建在一台虚拟机上，用端口进行区分。</p>
 <p>我们这里要求搭建一个三个节点的Zookeeper集群（伪集群）。</p>
 <h3 id="5-3-准备工作"><a href="#5-3-准备工作" class="headerlink" title="5.3)准备工作"></a><strong>5.3)准备工作</strong></h3><p>重新部署一台虚拟机作为我们搭建集群的测试服务器。</p>
@@ -439,10 +450,10 @@
 <p>&#x2F;usr&#x2F;local&#x2F;zookeeper-cluster&#x2F;zookeeper-1</p>
 <p>&#x2F;usr&#x2F;local&#x2F;zookeeper-cluster&#x2F;zookeeper-2</p>
 <p>&#x2F;usr&#x2F;local&#x2F;zookeeper-cluster&#x2F;zookeeper-3</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">[root@localhost ~]# mkdir /usr/local/zookeeper-cluster<br>[root@localhost ~]# cp -r  apache-zookeeper-3.5.6-bin /usr/local/zookeeper-cluster/zookeeper-1<br>[root@localhost ~]# cp -r  apache-zookeeper-3.5.6-bin /usr/local/zookeeper-cluster/zookeeper-2<br>[root@localhost ~]# cp -r  apache-zookeeper-3.5.6-bin /usr/local/zookeeper-cluster/zookeeper-3<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">[root@localhost ~]# mkdir /usr/local/zookeeper-cluster<br>[root@localhost ~]# cp -r  apache-zookeeper-3.5.6-bin /usr/local/zookeeper-cluster/zookeeper-1<br>[root@localhost ~]# cp -r  apache-zookeeper-3.5.6-bin /usr/local/zookeeper-cluster/zookeeper-2<br>[root@localhost ~]# cp -r  apache-zookeeper-3.5.6-bin /usr/local/zookeeper-cluster/zookeeper-3<br></code></pre></td></tr></table></figure>
 
 <p>（4）创建data目录 ，并且将 conf下zoo_sample.cfg 文件改名为 zoo.cfg</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">mkdir /usr/local/zookeeper-cluster/zookeeper-1/data<br>mkdir /usr/local/zookeeper-cluster/zookeeper-2/data<br>mkdir /usr/local/zookeeper-cluster/zookeeper-3/data<br><br>mv  /usr/local/zookeeper-cluster/zookeeper-1/conf/zoo_sample.cfg  /usr/local/zookeeper-cluster/zookeeper-1/conf/zoo.cfg<br>mv  /usr/local/zookeeper-cluster/zookeeper-2/conf/zoo_sample.cfg  /usr/local/zookeeper-cluster/zookeeper-2/conf/zoo.cfg<br>mv  /usr/local/zookeeper-cluster/zookeeper-3/conf/zoo_sample.cfg  /usr/local/zookeeper-cluster/zookeeper-3/conf/zoo.cfg<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell">mkdir /usr/local/zookeeper-cluster/zookeeper-1/data<br>mkdir /usr/local/zookeeper-cluster/zookeeper-2/data<br>mkdir /usr/local/zookeeper-cluster/zookeeper-3/data<br><br>mv  /usr/local/zookeeper-cluster/zookeeper-1/conf/zoo_sample.cfg  /usr/local/zookeeper-cluster/zookeeper-1/conf/zoo.cfg<br>mv  /usr/local/zookeeper-cluster/zookeeper-2/conf/zoo_sample.cfg  /usr/local/zookeeper-cluster/zookeeper-2/conf/zoo.cfg<br>mv  /usr/local/zookeeper-cluster/zookeeper-3/conf/zoo_sample.cfg  /usr/local/zookeeper-cluster/zookeeper-3/conf/zoo.cfg<br></code></pre></td></tr></table></figure>
 
 
 
@@ -450,18 +461,18 @@
 
 <p>（5） 配置每一个Zookeeper 的dataDir 和 clientPort 分别为2181  2182  2183</p>
 <p>修改&#x2F;usr&#x2F;local&#x2F;zookeeper-cluster&#x2F;zookeeper-1&#x2F;conf&#x2F;zoo.cfg</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">vim /usr/local/zookeeper-cluster/zookeeper-1/conf/zoo.cfg<br><br>clientPort=2181<br>dataDir=/usr/local/zookeeper-cluster/zookeeper-1/data<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">vim /usr/local/zookeeper-cluster/zookeeper-1/conf/zoo.cfg<br><br>clientPort=2181<br>dataDir=/usr/local/zookeeper-cluster/zookeeper-1/data<br></code></pre></td></tr></table></figure>
 
 <p>修改&#x2F;usr&#x2F;local&#x2F;zookeeper-cluster&#x2F;zookeeper-2&#x2F;conf&#x2F;zoo.cfg</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">vim /usr/local/zookeeper-cluster/zookeeper-2/conf/zoo.cfg<br><br>clientPort=2182<br>dataDir=/usr/local/zookeeper-cluster/zookeeper-2/data<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">vim /usr/local/zookeeper-cluster/zookeeper-2/conf/zoo.cfg<br><br>clientPort=2182<br>dataDir=/usr/local/zookeeper-cluster/zookeeper-2/data<br></code></pre></td></tr></table></figure>
 
 <p>修改&#x2F;usr&#x2F;local&#x2F;zookeeper-cluster&#x2F;zookeeper-3&#x2F;conf&#x2F;zoo.cfg</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">vim /usr/local/zookeeper-cluster/zookeeper-3/conf/zoo.cfg<br><br>clientPort=2183<br>dataDir=/usr/local/zookeeper-cluster/zookeeper-3/data<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">vim /usr/local/zookeeper-cluster/zookeeper-3/conf/zoo.cfg<br><br>clientPort=2183<br>dataDir=/usr/local/zookeeper-cluster/zookeeper-3/data<br></code></pre></td></tr></table></figure>
 
 
 
 <h3 id="5-4-配置集群"><a href="#5-4-配置集群" class="headerlink" title="5.4)配置集群"></a><strong>5.4)配置集群</strong></h3><p>（1）在每个zookeeper的 data 目录下创建一个 myid 文件，内容分别是1、2、3 。这个文件就是记录每个服务器的ID</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">echo 1 &gt;/usr/local/zookeeper-cluster/zookeeper-1/data/myid<br>echo 2 &gt;/usr/local/zookeeper-cluster/zookeeper-2/data/myid<br>echo 3 &gt;/usr/local/zookeeper-cluster/zookeeper-3/data/myid<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">echo 1 &gt;/usr/local/zookeeper-cluster/zookeeper-1/data/myid<br>echo 2 &gt;/usr/local/zookeeper-cluster/zookeeper-2/data/myid<br>echo 3 &gt;/usr/local/zookeeper-cluster/zookeeper-3/data/myid<br></code></pre></td></tr></table></figure>
 
 
 
@@ -469,17 +480,17 @@
 
 <p>（2）在每一个zookeeper 的 zoo.cfg配置客户端访问端口（clientPort）和集群服务器IP列表。</p>
 <p>集群服务器IP列表如下</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">vim /usr/local/zookeeper-cluster/zookeeper-1/conf/zoo.cfg<br>vim /usr/local/zookeeper-cluster/zookeeper-2/conf/zoo.cfg<br>vim /usr/local/zookeeper-cluster/zookeeper-3/conf/zoo.cfg<br><br>server.1=192.168.149.135:2881:3881<br>server.2=192.168.149.135:2882:3882<br>server.3=192.168.149.135:2883:3883<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell">vim /usr/local/zookeeper-cluster/zookeeper-1/conf/zoo.cfg<br>vim /usr/local/zookeeper-cluster/zookeeper-2/conf/zoo.cfg<br>vim /usr/local/zookeeper-cluster/zookeeper-3/conf/zoo.cfg<br><br>server.1=192.168.149.135:2881:3881<br>server.2=192.168.149.135:2882:3882<br>server.3=192.168.149.135:2883:3883<br></code></pre></td></tr></table></figure>
 
 <p>解释：server.服务器ID&#x3D;服务器IP地址：服务器之间通信端口：服务器之间投票选举端口</p>
 <h3 id="5-5-启动集群"><a href="#5-5-启动集群" class="headerlink" title="5.5)启动集群"></a><strong>5.5)启动集群</strong></h3><p>启动集群就是分别启动每个实例。</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">/usr/local/zookeeper-cluster/zookeeper-1/bin/zkServer.sh start<br>/usr/local/zookeeper-cluster/zookeeper-2/bin/zkServer.sh start<br>/usr/local/zookeeper-cluster/zookeeper-3/bin/zkServer.sh start<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">/usr/local/zookeeper-cluster/zookeeper-1/bin/zkServer.sh start<br>/usr/local/zookeeper-cluster/zookeeper-2/bin/zkServer.sh start<br>/usr/local/zookeeper-cluster/zookeeper-3/bin/zkServer.sh start<br></code></pre></td></tr></table></figure>
 
 
 
 <p><img src="/Hexo/../img/202203121513508.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151332448"> </p>
 <p>启动后我们查询一下每个实例的运行状态</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">/usr/local/zookeeper-cluster/zookeeper-1/bin/zkServer.sh status<br>/usr/local/zookeeper-cluster/zookeeper-2/bin/zkServer.sh status<br>/usr/local/zookeeper-cluster/zookeeper-3/bin/zkServer.sh status<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">/usr/local/zookeeper-cluster/zookeeper-1/bin/zkServer.sh status<br>/usr/local/zookeeper-cluster/zookeeper-2/bin/zkServer.sh status<br>/usr/local/zookeeper-cluster/zookeeper-3/bin/zkServer.sh status<br></code></pre></td></tr></table></figure>
 
 
 
@@ -492,23 +503,23 @@
 <p><img src="/Hexo/../img/202203121514253.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151401203"> </p>
 <h3 id="5-6-模拟集群异常"><a href="#5-6-模拟集群异常" class="headerlink" title="5.6)模拟集群异常"></a><strong>5.6)模拟集群异常</strong></h3><p>（1）首先我们先测试如果是从服务器挂掉，会怎么样</p>
 <p>把3号服务器停掉，观察1号和2号，发现状态并没有变化</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">/usr/local/zookeeper-cluster/zookeeper-3/bin/zkServer.sh stop<br><br>/usr/local/zookeeper-cluster/zookeeper-1/bin/zkServer.sh status<br>/usr/local/zookeeper-cluster/zookeeper-2/bin/zkServer.sh status<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">/usr/local/zookeeper-cluster/zookeeper-3/bin/zkServer.sh stop<br><br>/usr/local/zookeeper-cluster/zookeeper-1/bin/zkServer.sh status<br>/usr/local/zookeeper-cluster/zookeeper-2/bin/zkServer.sh status<br></code></pre></td></tr></table></figure>
 
 <p><img src="/Hexo/../img/202203121514251.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151408189"> </p>
 <p>由此得出结论，3个节点的集群，从服务器挂掉，集群正常</p>
 <p>（2）我们再把1号服务器（从服务器）也停掉，查看2号（主服务器）的状态，发现已经停止运行了。</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">/usr/local/zookeeper-cluster/zookeeper-1/bin/zkServer.sh stop<br><br>/usr/local/zookeeper-cluster/zookeeper-2/bin/zkServer.sh status<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">/usr/local/zookeeper-cluster/zookeeper-1/bin/zkServer.sh stop<br><br>/usr/local/zookeeper-cluster/zookeeper-2/bin/zkServer.sh status<br></code></pre></td></tr></table></figure>
 
 
 
 <p><img src="/Hexo/../img/202203121514305.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151421244"> </p>
 <p>由此得出结论，3个节点的集群，2个从服务器都挂掉，主服务器也无法运行。因为可运行的机器没有超过集群总数量的半数。</p>
 <p>（3）我们再次把1号服务器启动起来，发现2号服务器又开始正常工作了。而且依然是领导者。</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">/usr/local/zookeeper-cluster/zookeeper-1/bin/zkServer.sh start<br><br>/usr/local/zookeeper-cluster/zookeeper-2/bin/zkServer.sh status<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">/usr/local/zookeeper-cluster/zookeeper-1/bin/zkServer.sh start<br><br>/usr/local/zookeeper-cluster/zookeeper-2/bin/zkServer.sh status<br></code></pre></td></tr></table></figure>
 
 <p><img src="/Hexo/../img/202203121514501.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220312151438444"> </p>
 <p>（4）我们把3号服务器也启动起来，把2号服务器停掉,停掉后观察1号和3号的状态。</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">/usr/local/zookeeper-cluster/zookeeper-3/bin/zkServer.sh start<br>/usr/local/zookeeper-cluster/zookeeper-2/bin/zkServer.sh stop<br><br>/usr/local/zookeeper-cluster/zookeeper-1/bin/zkServer.sh status<br>/usr/local/zookeeper-cluster/zookeeper-3/bin/zkServer.sh status<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">/usr/local/zookeeper-cluster/zookeeper-3/bin/zkServer.sh start<br>/usr/local/zookeeper-cluster/zookeeper-2/bin/zkServer.sh stop<br><br>/usr/local/zookeeper-cluster/zookeeper-1/bin/zkServer.sh status<br>/usr/local/zookeeper-cluster/zookeeper-3/bin/zkServer.sh status<br></code></pre></td></tr></table></figure>
 
 
 
@@ -516,7 +527,7 @@
 <p>发现新的leader产生了~  </p>
 <p>由此我们得出结论，当集群中的主服务器挂了，集群中的其他服务器会自动进行选举状态，然后产生新得leader </p>
 <p>（5）我们再次测试，当我们把2号服务器重新启动起来启动后，会发生什么？2号服务器会再次成为新的领导吗？我们看结果</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">/usr/local/zookeeper-cluster/zookeeper-2/bin/zkServer.sh start<br><br>/usr/local/zookeeper-cluster/zookeeper-2/bin/zkServer.sh status<br>/usr/local/zookeeper-cluster/zookeeper-3/bin/zkServer.sh status<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">/usr/local/zookeeper-cluster/zookeeper-2/bin/zkServer.sh start<br><br>/usr/local/zookeeper-cluster/zookeeper-2/bin/zkServer.sh status<br>/usr/local/zookeeper-cluster/zookeeper-3/bin/zkServer.sh status<br></code></pre></td></tr></table></figure>
 
 
 
@@ -526,23 +537,26 @@
 <h2 id="6-Zookeeper-核心理论"><a href="#6-Zookeeper-核心理论" class="headerlink" title="6)Zookeeper 核心理论"></a>6)Zookeeper 核心理论</h2><p><strong>Zookeepe集群角色</strong></p>
 <p>在ZooKeeper集群服中务中有三个角色：</p>
 <p>•Leader 领导者 ：          </p>
-<div class="hljs code-wrapper"><pre><code class="hljs">1. 处理事务请求
+<pre><code class="hljs">1. 处理事务请求
 
 2. 集群内部各服务器的调度者
-</code></pre></div>
+</code></pre>
 <p>•Follower 跟随者 ：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs">1. 处理客户端非事务请求，转发事务请求给Leader服务器
+<pre><code class="hljs">1. 处理客户端非事务请求，转发事务请求给Leader服务器
 
 2. 参与Leader选举投票
-</code></pre></div>
+</code></pre>
 <p>•Observer 观察者：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs">1. 处理客户端非事务请求，转发事务请求给Leader服务器
-</code></pre></div>
+<pre><code class="hljs">1. 处理客户端非事务请求，转发事务请求给Leader服务器
+</code></pre>
 <p><img src="/Hexo/../img/202203121515396.png" srcset="/Hexo/img/loading.gif" lazyload alt="1592058451822"></p>
 
 
   
+
 </article>
+
+
 
               </div>
             </div>
@@ -571,59 +585,37 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
   
-
   
-</footer>
-
-
-  <!-- SCRIPTS -->
   
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
   <script>
     NProgress.configure({"showSpinner":false,"trickleSpeed":100})
@@ -634,15 +626,44 @@
   </script>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
 <script  src="/Hexo/js/events.js" ></script>
 <script  src="/Hexo/js/plugins.js" ></script>
 
-<!-- Plugins -->
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
 
-  <script  src="/Hexo/js/local-search.js" ></script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
 
 
 
@@ -652,71 +673,22 @@
 
 
 
-  
 
-
-
-  
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
-  
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-        typing(title);
-      
-    })(window, document);
-  </script>
+  <script  src="/Hexo/js/local-search.js" ></script>
 
 
 
 
 
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/Hexo/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 <script src="/Hexo/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
 </html>

@@ -11,9 +11,6 @@
   <link rel="icon" href="/Hexo/img/csdn.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="referrer" content="no-referrer" />
-  
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#DAA520">
   <meta name="author" content="星">
@@ -30,13 +27,16 @@
   
   <title>阿星的博客</title>
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
 
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -45,24 +45,43 @@
 
 <link  rel="stylesheet" href="/Hexo/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/Hexo/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/Hexo/js/utils.js" ></script>
   <script  src="/Hexo/js/color-schema.js" ></script>
+
+  
 <meta name="generator" content="Hexo 6.0.0"></head>
 
 
 <body>
-  <header style="height: 100vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/Hexo/">
-      <strong>啊星的博客</strong>
+      <strong>🐛 ZhaFi人</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -153,6 +172,7 @@
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
@@ -165,34 +185,40 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('https://s2.loli.net/2022/04/13/1DFeBOkrVxofgPM.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="When you work, work; when you laugh, laugh; when you eat, eat like it’s your last meal.">
-              
-            </span>
+  
 
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/Hexo/img/bgg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
           
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
+            <span id="subtitle" data-typed-text="今天不学习，明天变垃圾！加油"></span>
           
         </div>
+
+        
       </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
     
       <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          style=margin-top:0>
+        <div id="board"
+          style="margin-top: 0">
           
           <div class="container">
             <div class="row">
@@ -217,12 +243,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/Hexo/2021/03/26/%E9%9B%86%E5%90%8802/" target="_self">
+      <a class="index-excerpt" href="/Hexo/2021/03/26/%E9%9B%86%E5%90%8802/" target="_self">
+        <div>
           
           1.Set集合1.1Set集合概述和特点【应用】 不可以存储重复元素 没有索引,不能使用普通for循环遍历  1.2Set集合的使用【应用】存储字符串并遍历 1234567891011121314151617181920212223242526public class MySet1 &amp;#123;    public static void main(String[] args) &amp;#123;
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -234,18 +260,32 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/Hexo/categories/java%E5%9F%BA%E7%A1%80%F0%9F%90%B1%E2%80%8D%F0%9F%91%A4/">java基础🐱‍👤</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/Hexo/categories/java%E5%9F%BA%E7%A1%80%F0%9F%90%B1%E2%80%8D%F0%9F%91%A4/" class="category-chain-item">java基础🐱‍👤</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/Hexo/tags/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
+              <a href="/Hexo/tags/Java%E5%9F%BA%E7%A1%80/">#Java基础</a>
             
           </div>
         
@@ -270,12 +310,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/Hexo/2021/03/23/%E9%9B%86%E5%90%8801/" target="_self">
+      <a class="index-excerpt" href="/Hexo/2021/03/23/%E9%9B%86%E5%90%8801/" target="_self">
+        <div>
           
           1.Collection集合1.1数组和集合的区别【理解】 相同点 都是容器,可以存储多个数据  不同点  数组的长度是不可变的,集合的长度是可变的  数组可以存基本数据类型和引用数据类型 集合只能存引用数据类型,如果要存基本数据类型,需要存对应的包装类     1.2集合类体系结构【理解】 1.3Collection 集合概述和使用【应用】 Collection集合概述  是单例集合的顶层接口,
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -287,18 +327,32 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/Hexo/categories/java%E5%9F%BA%E7%A1%80%F0%9F%90%B1%E2%80%8D%F0%9F%91%A4/">java基础🐱‍👤</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/Hexo/categories/java%E5%9F%BA%E7%A1%80%F0%9F%90%B1%E2%80%8D%F0%9F%91%A4/" class="category-chain-item">java基础🐱‍👤</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/Hexo/tags/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
+              <a href="/Hexo/tags/Java%E5%9F%BA%E7%A1%80/">#Java基础</a>
             
           </div>
         
@@ -323,12 +377,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/Hexo/2021/03/21/%E3%80%8AJava%E5%9F%BA%E7%A1%80%E9%9D%A2%E8%AF%95%E9%A2%98%E3%80%8B/" target="_self">
+      <a class="index-excerpt" href="/Hexo/2021/03/21/%E3%80%8AJava%E5%9F%BA%E7%A1%80%E9%9D%A2%E8%AF%95%E9%A2%98%E3%80%8B/" target="_self">
+        <div>
           
           Java核心技术部分1、面向对象的特征有哪些？面向对象的三大特征： 继承：通过继承允许复用已有的类，继承关系是一种“一般到特殊”的关系，比如苹果类继承水果类，这个过程称为类继承。 派生出来的新类称为原有类的子类（派生类），而原有类称为新类的父类（基类）。 子类可以从父类那里继承得到方法和成员变量，而且子类类可以修改或增加新的方法使之适合子类的需要。 封装：封装是把对象的状态数据隐藏起来，再通过暴露
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -340,18 +394,32 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/Hexo/categories/java%E5%9F%BA%E7%A1%80%F0%9F%90%B1%E2%80%8D%F0%9F%91%A4/">java基础🐱‍👤</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/Hexo/categories/java%E5%9F%BA%E7%A1%80%F0%9F%90%B1%E2%80%8D%F0%9F%91%A4/" class="category-chain-item">java基础🐱‍👤</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/Hexo/tags/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
+              <a href="/Hexo/tags/Java%E5%9F%BA%E7%A1%80/">#Java基础</a>
             
           </div>
         
@@ -376,12 +444,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/Hexo/2021/03/21/switch&amp;%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5/" target="_self">
+      <a class="index-excerpt" href="/Hexo/2021/03/21/switch&amp;%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5/" target="_self">
+        <div>
           
           1. switch语句1.1 分支语句switch语句 格式 123456789101112switch (表达式) &amp;#123;	case 1:		语句体1;		break;	case 2:		语句体2;		break;	...	default:		语句体n+1;		break;&amp;#125;  1.2 switch案例-减肥计划 需求：键盘录入星期数，显示今天的减肥活动  1234567周一：跑
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -393,18 +461,32 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/Hexo/categories/java%E5%9F%BA%E7%A1%80%F0%9F%90%B1%E2%80%8D%F0%9F%91%A4/">java基础🐱‍👤</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/Hexo/categories/java%E5%9F%BA%E7%A1%80%F0%9F%90%B1%E2%80%8D%F0%9F%91%A4/" class="category-chain-item">java基础🐱‍👤</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/Hexo/tags/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
+              <a href="/Hexo/tags/Java%E5%9F%BA%E7%A1%80/">#Java基础</a>
             
           </div>
         
@@ -429,12 +511,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/Hexo/2021/03/21/%E6%96%B9%E6%B3%95/" target="_self">
+      <a class="index-excerpt" href="/Hexo/2021/03/21/%E6%96%B9%E6%B3%95/" target="_self">
+        <div>
           
           1. 方法概述1.1 方法的概念​    方法（method）是将具有独立功能的代码块组织成为一个整体，使其具有特殊功能的代码集  注意： 方法必须先创建才可以使用，该过程成为方法定义 方法创建后并不是直接可以运行的，需要手动使用后，才执行，该过程成为方法调用    2. 方法的定义和调用2.1 无参数方法定义和调用 定义格式： 123public static void 方法名 (   ) &amp;#
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -446,18 +528,32 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/Hexo/categories/java%E5%9F%BA%E7%A1%80%F0%9F%90%B1%E2%80%8D%F0%9F%91%A4/">java基础🐱‍👤</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/Hexo/categories/java%E5%9F%BA%E7%A1%80%F0%9F%90%B1%E2%80%8D%F0%9F%91%A4/" class="category-chain-item">java基础🐱‍👤</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/Hexo/tags/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
+              <a href="/Hexo/tags/Java%E5%9F%BA%E7%A1%80/">#Java基础</a>
             
           </div>
         
@@ -482,12 +578,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/Hexo/2021/02/14/%E6%B2%A1%E6%9C%89%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%83%85%E4%BA%BA%E8%8A%82%EF%BC%8C%E5%8F%AA%E8%83%BDnew%E4%B8%80%E4%B8%AA/" target="_self">
+      <a class="index-excerpt" href="/Hexo/2021/02/14/%E6%B2%A1%E6%9C%89%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%83%85%E4%BA%BA%E8%8A%82%EF%BC%8C%E5%8F%AA%E8%83%BDnew%E4%B8%80%E4%B8%AA/" target="_self">
+        <div>
           
           1. 类和对象**面向对象和面向过程的思想对比 : ** **面向过程 ：**是一种以过程为中心的编程思想，实现功能的每一步，都是自己实现的  **面向对象 ：**是一种以对象为中心的编程思想，通过指挥对象实现具体的功能  1.1 类和对象的关系客观存在的事物皆为对象 ，所以我们也常常说万物皆对象。  类 类的理解 类是对现实生活中一类具有共同属性和行为的事物的抽象 类是对象的数据类型，类是具有相
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -499,18 +595,32 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/Hexo/categories/java%E5%9F%BA%E7%A1%80%F0%9F%90%B1%E2%80%8D%F0%9F%91%A4/">java基础🐱‍👤</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/Hexo/categories/java%E5%9F%BA%E7%A1%80%F0%9F%90%B1%E2%80%8D%F0%9F%91%A4/" class="category-chain-item">java基础🐱‍👤</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/Hexo/tags/java%E5%9F%BA%E7%A1%80/">java基础</a>
+              <a href="/Hexo/tags/java%E5%9F%BA%E7%A1%80/">#java基础</a>
             
           </div>
         
@@ -529,12 +639,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/Hexo/2021/01/01/hello-world/" target="_self">
+      <a class="index-excerpt" href="/Hexo/2021/01/01/hello-world/" target="_self">
+        <div>
           
           Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -588,59 +698,37 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
   
-
   
-</footer>
-
-
-  <!-- SCRIPTS -->
   
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
   <script>
     NProgress.configure({"showSpinner":false,"trickleSpeed":100})
@@ -651,15 +739,44 @@
   </script>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
 <script  src="/Hexo/js/events.js" ></script>
 <script  src="/Hexo/js/plugins.js" ></script>
 
-<!-- Plugins -->
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
 
-  <script  src="/Hexo/js/local-search.js" ></script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
 
 
 
@@ -669,58 +786,22 @@
 
 
 
-  
+
+  <script  src="/Hexo/js/local-search.js" ></script>
 
 
 
 
 
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-        typing(title);
-      
-    })(window, document);
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/Hexo/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 <script src="/Hexo/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
 </html>

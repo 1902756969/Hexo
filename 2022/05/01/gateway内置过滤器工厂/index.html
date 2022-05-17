@@ -11,9 +11,6 @@
   <link rel="icon" href="/Hexo/img/csdn.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="referrer" content="no-referrer" />
-  
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#DAA520">
   <meta name="author" content="星">
@@ -37,28 +34,22 @@
   
   <title>Spring Cloud Gateway 内置的过滤器工厂 - 阿星的博客</title>
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
-    
-  
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
-  
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -67,24 +58,43 @@
 
 <link  rel="stylesheet" href="/Hexo/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/Hexo/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/Hexo/js/utils.js" ></script>
   <script  src="/Hexo/js/color-schema.js" ></script>
+
+  
 <meta name="generator" content="Hexo 6.0.0"></head>
 
 
 <body>
-  <header style="height: 70vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/Hexo/">
-      <strong>啊星的博客</strong>
+      <strong>🐛 ZhaFi人</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -175,6 +185,7 @@
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
@@ -187,57 +198,69 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/Hexo/img/bg5.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Spring Cloud Gateway 内置的过滤器工厂">
-              
-            </span>
-
-            
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-05-01 00:00" pubdate>
-        2022年5月1日 凌晨
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      11k 字
-    </span>
   
 
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      95 分钟
-    </span>
-  
-
-  
-  
-</div>
-
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/Hexo/img/bg5.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Spring Cloud Gateway 内置的过滤器工厂"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-05-01 00:00" pubdate>
+          2022年5月1日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          11k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          95 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
@@ -246,21 +269,20 @@
 
 <div class="container-fluid nopadding-x">
   <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
     <div class="col-lg-8 nopadding-x-md">
       <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
+        <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">Spring Cloud Gateway 内置的过滤器工厂</h1>
             
-              <p class="note note-info">
-                
-                  本文最后更新于：14 天前
-                
-              </p>
-            
             <div class="markdown-body">
+              
               <h1 id="Spring-Cloud-Gateway-内置的过滤器工厂"><a href="#Spring-Cloud-Gateway-内置的过滤器工厂" class="headerlink" title="Spring Cloud Gateway 内置的过滤器工厂"></a>Spring Cloud Gateway 内置的过滤器工厂</h1><h3 id="内置的过滤器工厂"><a href="#内置的过滤器工厂" class="headerlink" title="内置的过滤器工厂"></a>内置的过滤器工厂</h3><p>这里简单将Spring Cloud Gateway内置的所有过滤器工厂整理成了一张表格。如下：</p>
 <table>
 <thead>
@@ -404,23 +426,23 @@
 <p><strong>Tips：</strong>每个过滤器工厂都对应一个实现类，并且这些类的名称必须以<code>GatewayFilterFactory</code>结尾，这是Spring Cloud Gateway的一个约定，例如<code>AddRequestHeader</code>对应的实现类为<code>AddRequestHeaderGatewayFilterFactory</code>。</p>
 <hr>
 <h4 id="1、AddRequestHeader-GatewayFilter-Factory"><a href="#1、AddRequestHeader-GatewayFilter-Factory" class="headerlink" title="1、AddRequestHeader GatewayFilter Factory"></a>1、AddRequestHeader GatewayFilter Factory</h4><p>为原始请求添加Header，配置示例：</p>
-<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><br><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">add_request_header_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">AddRequestHeader=X-Request-Foo,</span> <span class="hljs-string">Bar</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs yml"><br><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">add_request_header_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">AddRequestHeader=X-Request-Foo,</span> <span class="hljs-string">Bar</span><br></code></pre></td></tr></table></figure>
 
 <p>为原始请求添加名为 <code>X-Request-Foo</code> ，值为 <code>Bar</code> 的请求头</p>
 <h4 id="2、AddRequestParameter-GatewayFilter-Factory"><a href="#2、AddRequestParameter-GatewayFilter-Factory" class="headerlink" title="2、AddRequestParameter GatewayFilter Factory"></a>2、AddRequestParameter GatewayFilter Factory</h4><p>为原始请求添加请求参数及值，配置示例：</p>
-<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><br><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">add_request_parameter_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">AddRequestParameter=foo,</span> <span class="hljs-string">bar</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs yml"><br><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">add_request_parameter_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">AddRequestParameter=foo,</span> <span class="hljs-string">bar</span><br></code></pre></td></tr></table></figure>
 
 <p>为原始请求添加名为foo，值为bar的参数，即：<code>foo=bar</code></p>
 <h4 id="3、AddResponseHeader-GatewayFilter-Factory"><a href="#3、AddResponseHeader-GatewayFilter-Factory" class="headerlink" title="3、AddResponseHeader GatewayFilter Factory"></a>3、AddResponseHeader GatewayFilter Factory</h4><p>为原始响应添加Header，配置示例：</p>
-<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><br><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">add_response_header_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">AddResponseHeader=X-Response-Foo,</span> <span class="hljs-string">Bar</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs yml"><br><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">add_response_header_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">AddResponseHeader=X-Response-Foo,</span> <span class="hljs-string">Bar</span><br></code></pre></td></tr></table></figure>
 
 <p>为原始响应添加名为 <code>X-Request-Foo</code> ，值为 <code>Bar</code> 的响应头</p>
 <h4 id="4、DedupeResponseHeader-GatewayFilter-Factory"><a href="#4、DedupeResponseHeader-GatewayFilter-Factory" class="headerlink" title="4、DedupeResponseHeader GatewayFilter Factory"></a>4、DedupeResponseHeader GatewayFilter Factory</h4><p>DedupeResponseHeader可以根据配置的Header名称及去重策略剔除响应头中重复的值，这是Spring Cloud Greenwich SR2提供的新特性，低于这个版本无法使用。</p>
 <p>我们在Gateway以及微服务上都设置了CORS（解决跨域）Header的话，如果不做任何配置，那么请求 -&gt; 网关 -&gt; 微服务，获得的CORS Header的值，就将会是这样的：</p>
-<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash"><br>Access-Control-Allow-Credentials: <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span><br>Access-Control-Allow-Origin: https://musk.mars, https://musk.mars<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><br>Access-Control-Allow-Credentials: <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span><br>Access-Control-Allow-Origin: https://musk.mars, https://musk.mars<br></code></pre></td></tr></table></figure>
 
 <p>可以看到这两个Header的值都重复了，若想把这两个Header的值去重的话，就需要使用到DedupeResponseHeader，配置示例：</p>
-<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><br><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">dedupe_response_header_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-comment"># 若需要去重的Header有多个，使用空格分隔</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">DedupeResponseHeader=Access-Control-Allow-Credentials</span> <span class="hljs-string">Access-Control-Allow-Origin</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs yml"><br><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">dedupe_response_header_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-comment"># 若需要去重的Header有多个，使用空格分隔</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">DedupeResponseHeader=Access-Control-Allow-Credentials</span> <span class="hljs-string">Access-Control-Allow-Origin</span><br></code></pre></td></tr></table></figure>
 
 <p>去重策略：</p>
 <ul>
@@ -430,29 +452,29 @@
 </ul>
 <p>若想对该过滤器工厂有个比较全面的了解的话，建议阅读该过滤器工厂的源码，因为源码里有详细的注释及示例，比官方文档写得还好：<code>org.springframework.cloud.gateway.filter.factory.DedupeResponseHeaderGatewayFilterFactory</code></p>
 <h4 id="5、Hystrix-GatewayFilter-Factory"><a href="#5、Hystrix-GatewayFilter-Factory" class="headerlink" title="5、Hystrix GatewayFilter Factory"></a>5、Hystrix GatewayFilter Factory</h4><p>为路由引入Hystrix的断路器保护，配置示例：</p>
-<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><br><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">hystrix_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">Hystrix=myCommandName</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs yml"><br><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">hystrix_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">Hystrix=myCommandName</span><br></code></pre></td></tr></table></figure>
 
 <p>Hystrix是Spring Cloud第一代容错组件，不过已经进入维护模式，未来Hystrix会被Spring Cloud移除掉，取而代之的是Alibaba Sentinel&#x2F;Resilience4J。所以本文不做详细介绍了，感兴趣的话可以参考官方文档：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://cloud.spring.io/spring-cloud-static/Greenwich.SR2/single/spring-cloud.html#hystrix">Hystrix GatewayFilter Factory</a></li>
 </ul>
 <h4 id="6、FallbackHeaders-GatewayFilter-Factory"><a href="#6、FallbackHeaders-GatewayFilter-Factory" class="headerlink" title="6、FallbackHeaders GatewayFilter Factory"></a>6、FallbackHeaders GatewayFilter Factory</h4><p>同样是对Hystrix的支持，上一小节所介绍的过滤器工厂支持一个配置参数：<code>fallbackUri</code>，该配置用于当发生异常时将请求转发到一个特定的uri上。而<code>FallbackHeaders</code>这个过滤工厂可以在转发请求到该uri时添加一个Header，这个Header的值为具体的异常信息。配置示例：</p>
-<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">ingredients</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">lb://ingredients</span><br>        <span class="hljs-attr">predicates:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">Path=//ingredients/**</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Hystrix</span><br>          <span class="hljs-attr">args:</span><br>            <span class="hljs-attr">name:</span> <span class="hljs-string">fetchIngredients</span><br>            <span class="hljs-attr">fallbackUri:</span> <span class="hljs-string">forward:/fallback</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">ingredients-fallback</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">http://localhost:9994</span><br>        <span class="hljs-attr">predicates:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">Path=/fallback</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">FallbackHeaders</span><br>          <span class="hljs-attr">args:</span><br>            <span class="hljs-attr">executionExceptionTypeHeaderName:</span> <span class="hljs-string">Test-Header</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">ingredients</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">lb://ingredients</span><br>        <span class="hljs-attr">predicates:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">Path=//ingredients/**</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Hystrix</span><br>          <span class="hljs-attr">args:</span><br>            <span class="hljs-attr">name:</span> <span class="hljs-string">fetchIngredients</span><br>            <span class="hljs-attr">fallbackUri:</span> <span class="hljs-string">forward:/fallback</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">ingredients-fallback</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">http://localhost:9994</span><br>        <span class="hljs-attr">predicates:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">Path=/fallback</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">FallbackHeaders</span><br>          <span class="hljs-attr">args:</span><br>            <span class="hljs-attr">executionExceptionTypeHeaderName:</span> <span class="hljs-string">Test-Header</span><br></code></pre></td></tr></table></figure>
 
 <p>这里也不做详细介绍了，感兴趣可以参考官方文档：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://cloud.spring.io/spring-cloud-static/Greenwich.SR2/single/spring-cloud.html#fallback-headers">FallbackHeaders GatewayFilter Factory</a></li>
 </ul>
 <h4 id="7、PrefixPath-GatewayFilter-Factory"><a href="#7、PrefixPath-GatewayFilter-Factory" class="headerlink" title="7、PrefixPath GatewayFilter Factory"></a>7、PrefixPath GatewayFilter Factory</h4><p>为原始的请求路径添加一个前缀路径，配置示例：</p>
-<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">prefixpath_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">PrefixPath=/mypath</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">prefixpath_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">PrefixPath=/mypath</span><br></code></pre></td></tr></table></figure>
 
 <p>该配置使访问<code>$&#123;GATEWAY_URL&#125;/hello</code> 会转发到<code>https://example.org/mypath/hello</code></p>
 <h4 id="8、PreserveHostHeader-GatewayFilter-Factory"><a href="#8、PreserveHostHeader-GatewayFilter-Factory" class="headerlink" title="8、PreserveHostHeader GatewayFilter Factory"></a>8、PreserveHostHeader GatewayFilter Factory</h4><p>为请求添加一个preserveHostHeader&#x3D;true的属性，路由过滤器会检查该属性以决定是否要发送原始的Host Header。配置示例：</p>
-<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">preserve_host_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">PreserveHostHeader</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">preserve_host_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">PreserveHostHeader</span><br></code></pre></td></tr></table></figure>
 
 <p>如果不设置，那么名为 <code>Host</code> 的Header将由Http Client控制</p>
 <h4 id="9、RequestRateLimiter-GatewayFilter-Factory"><a href="#9、RequestRateLimiter-GatewayFilter-Factory" class="headerlink" title="9、RequestRateLimiter GatewayFilter Factory"></a>9、RequestRateLimiter GatewayFilter Factory</h4><p>用于对请求进行限流，限流算法为令牌桶。配置示例：</p>
-<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><br><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">requestratelimiter_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">RequestRateLimiter</span><br>          <span class="hljs-attr">args:</span><br>            <span class="hljs-attr">redis-rate-limiter.replenishRate:</span> <span class="hljs-number">10</span><br>            <span class="hljs-attr">redis-rate-limiter.burstCapacity:</span> <span class="hljs-number">20</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs yml"><br><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">requestratelimiter_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">RequestRateLimiter</span><br>          <span class="hljs-attr">args:</span><br>            <span class="hljs-attr">redis-rate-limiter.replenishRate:</span> <span class="hljs-number">10</span><br>            <span class="hljs-attr">redis-rate-limiter.burstCapacity:</span> <span class="hljs-number">20</span><br></code></pre></td></tr></table></figure>
 
 <p>由于另一篇文章中已经介绍过如何使用该过滤器工厂实现网关限流，所以这里就不再赘述了：</p>
 <ul>
@@ -463,7 +485,7 @@
 <li><a target="_blank" rel="noopener" href="https://cloud.spring.io/spring-cloud-static/Greenwich.SR2/single/spring-cloud.html#_requestratelimiter_gatewayfilter_factory">RequestRateLimiter GatewayFilter Factory</a></li>
 </ul>
 <h4 id="10、RedirectTo-GatewayFilter-Factory"><a href="#10、RedirectTo-GatewayFilter-Factory" class="headerlink" title="10、RedirectTo GatewayFilter Factory"></a>10、RedirectTo GatewayFilter Factory</h4><p>将原始请求重定向到指定的Url，配置示例：</p>
-<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><br><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">redirect_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">RedirectTo=302,</span> <span class="hljs-string">https://acme.org</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs yml"><br><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">redirect_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">RedirectTo=302,</span> <span class="hljs-string">https://acme.org</span><br></code></pre></td></tr></table></figure>
 
 <p>该配置使访问 <code>$&#123;GATEWAY_URL&#125;/hello</code> 会被重定向到 <code>https://acme.org/hello</code> ，并且携带一个 <code>Location:http://acme.org</code> 的Header，而返回客户端的HTTP状态码为302</p>
 <p>注意事项：</p>
@@ -483,26 +505,26 @@
 <li>Upgrade</li>
 </ul>
 <p>可以通过配置去指定仅删除哪些Header，配置示例：</p>
-<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">filter:</span><br>        <span class="hljs-attr">remove-hop-by-hop:</span><br>          <span class="hljs-comment"># 多个Header使用逗号（,）分隔</span><br>          <span class="hljs-attr">headers:</span> <span class="hljs-string">Connection,Keep-Alive</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">filter:</span><br>        <span class="hljs-attr">remove-hop-by-hop:</span><br>          <span class="hljs-comment"># 多个Header使用逗号（,）分隔</span><br>          <span class="hljs-attr">headers:</span> <span class="hljs-string">Connection,Keep-Alive</span><br></code></pre></td></tr></table></figure>
 
 <h4 id="12、RemoveRequestHeader-GatewayFilter-Factory"><a href="#12、RemoveRequestHeader-GatewayFilter-Factory" class="headerlink" title="12、RemoveRequestHeader GatewayFilter Factory"></a>12、RemoveRequestHeader GatewayFilter Factory</h4><p>为原始请求删除某个Header，配置示例：</p>
-<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">removerequestheader_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">RemoveRequestHeader=X-Request-Foo</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">removerequestheader_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">RemoveRequestHeader=X-Request-Foo</span><br></code></pre></td></tr></table></figure>
 
 <p>删除原始请求中名为 <code>X-Request-Foo</code> 的请求头</p>
 <h4 id="13、RemoveResponseHeader-GatewayFilter-Factory"><a href="#13、RemoveResponseHeader-GatewayFilter-Factory" class="headerlink" title="13、RemoveResponseHeader GatewayFilter Factory"></a>13、RemoveResponseHeader GatewayFilter Factory</h4><p>为原始响应删除某个Header，配置示例：</p>
-<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">removeresponseheader_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">RemoveResponseHeader=X-Response-Foo</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">removeresponseheader_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">RemoveResponseHeader=X-Response-Foo</span><br></code></pre></td></tr></table></figure>
 
 <p>删除原始响应中名为 <code>X-Request-Foo</code> 的响应头</p>
 <h4 id="14、RewritePath-GatewayFilter-Factory"><a href="#14、RewritePath-GatewayFilter-Factory" class="headerlink" title="14、RewritePath GatewayFilter Factory"></a>14、RewritePath GatewayFilter Factory</h4><p>通过正则表达式重写原始的请求路径，配置示例：</p>
-<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">rewritepath_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">predicates:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">Path=/foo/**</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-comment"># 参数1为原始路径的正则表达式，参数2为重写后路径的正则表达式</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">RewritePath=/foo/(?&lt;segment&gt;.*),</span> <span class="hljs-string">/$\&#123;segment&#125;</span><br><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">rewritepath_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">predicates:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">Path=/foo/**</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-comment"># 参数1为原始路径的正则表达式，参数2为重写后路径的正则表达式</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">RewritePath=/foo/(?&lt;segment&gt;.*),</span> <span class="hljs-string">/$\&#123;segment&#125;</span><br><br></code></pre></td></tr></table></figure>
 
 <p>该配置使得访问 <code>/foo/bar</code> 时，会将路径重写为<code>/bar</code> 再进行转发，也就是会转发到 <code>https://example.org/bar</code>。需要注意的是：由于YAML语法，需用<code>$\</code> 替换 <code>$</code></p>
 <h4 id="15、RewriteResponseHeader-GatewayFilter-Factory"><a href="#15、RewriteResponseHeader-GatewayFilter-Factory" class="headerlink" title="15、RewriteResponseHeader GatewayFilter Factory"></a>15、RewriteResponseHeader GatewayFilter Factory</h4><p>重写原始响应中的某个Header，配置示例：</p>
-<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">rewriteresponseheader_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-comment"># 参数1为Header名称，参数2为值的正则表达式，参数3为重写后的值</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">RewriteResponseHeader=X-Response-Foo,</span> <span class="hljs-string">password=[^&amp;]+,</span> <span class="hljs-string">password=***</span><br><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">rewriteresponseheader_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-comment"># 参数1为Header名称，参数2为值的正则表达式，参数3为重写后的值</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">RewriteResponseHeader=X-Response-Foo,</span> <span class="hljs-string">password=[^&amp;]+,</span> <span class="hljs-string">password=***</span><br><br></code></pre></td></tr></table></figure>
 
 <p>该配置的意义在于：如果响应头中 <code>X-Response-Foo</code> 的值为<code>/42?user=ford&amp;password=omg!what&amp;flag=true</code>，那么就会被按照配置的值重写成<code>/42?user=ford&amp;password=***&amp;flag=true</code>，也就是把其中的<code>password=omg!what</code>重写成了<code>password=***</code></p>
 <h4 id="16、SaveSession-GatewayFilter-Factory"><a href="#16、SaveSession-GatewayFilter-Factory" class="headerlink" title="16、SaveSession GatewayFilter Factory"></a>16、SaveSession GatewayFilter Factory</h4><p>在转发请求之前，强制执行<code>WebSession::save</code>操作，配置示例：</p>
-<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">save_session</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">predicates:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">Path=/foo/**</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">SaveSession</span><br><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">save_session</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">predicates:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">Path=/foo/**</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">SaveSession</span><br><br></code></pre></td></tr></table></figure>
 
 <p>主要用在那种像 Spring Session 延迟数据存储（数据不是立刻持久化）的，并希望在请求转发前确保session状态保存情况。如果你将Spring Secutiry于Spring Session集成使用，并想确保安全信息都传到下游机器，你就需要配置这个filter。</p>
 <h4 id="17、secureHeaders-GatewayFilter-Factory"><a href="#17、secureHeaders-GatewayFilter-Factory" class="headerlink" title="17、secureHeaders GatewayFilter Factory"></a>17、secureHeaders GatewayFilter Factory</h4><p>secureHeaders过滤器工厂主要是参考了<a target="_blank" rel="noopener" href="https://blog.appcanary.com/2017/http-security-headers.html">这篇博客</a>中的建议，为原始响应添加了一系列起安全作用的响应头。默认会添加如下Headers（包括值）：</p>
@@ -528,29 +550,29 @@
 <li><code>permitted-cross-domain-policies</code></li>
 </ul>
 <p>配置示例：</p>
-<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">filter:</span><br>        <span class="hljs-attr">secure-headers:</span><br>          <span class="hljs-comment"># 修改 X-Xss-Protection 的值为 2; mode=unblock</span><br>          <span class="hljs-attr">xss-protection-header:</span> <span class="hljs-number">2</span><span class="hljs-string">;</span> <span class="hljs-string">mode=unblock</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">filter:</span><br>        <span class="hljs-attr">secure-headers:</span><br>          <span class="hljs-comment"># 修改 X-Xss-Protection 的值为 2; mode=unblock</span><br>          <span class="hljs-attr">xss-protection-header:</span> <span class="hljs-number">2</span><span class="hljs-string">;</span> <span class="hljs-string">mode=unblock</span><br></code></pre></td></tr></table></figure>
 
 <p>如果想禁用某些Header，可使用如下配置：</p>
-<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">filter:</span><br>        <span class="hljs-attr">secure-headers:</span><br>          <span class="hljs-comment"># 多个使用逗号（,）分隔</span><br>          <span class="hljs-attr">disable:</span> <span class="hljs-string">frame-options,download-options</span><br><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">filter:</span><br>        <span class="hljs-attr">secure-headers:</span><br>          <span class="hljs-comment"># 多个使用逗号（,）分隔</span><br>          <span class="hljs-attr">disable:</span> <span class="hljs-string">frame-options,download-options</span><br><br></code></pre></td></tr></table></figure>
 
 <h4 id="18、SetPath-GatewayFilter-Factory"><a href="#18、SetPath-GatewayFilter-Factory" class="headerlink" title="18、SetPath GatewayFilter Factory"></a>18、SetPath GatewayFilter Factory</h4><p>修改原始的请求路径，配置示例：</p>
-<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">setpath_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">predicates:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">Path=/foo/&#123;segment&#125;</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">SetPath=/&#123;segment&#125;</span><br><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">setpath_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">predicates:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">Path=/foo/&#123;segment&#125;</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">SetPath=/&#123;segment&#125;</span><br><br></code></pre></td></tr></table></figure>
 
 <p>该配置使访问 <code>$&#123;GATEWAY_URL&#125;/foo/bar</code> 时会转发到 <code>https://example.org/bar</code> ，也就是原本的<code>/foo/bar</code>被修改为了<code>/bar</code></p>
 <h4 id="19、SetResponseHeader-GatewayFilter-Factory"><a href="#19、SetResponseHeader-GatewayFilter-Factory" class="headerlink" title="19、SetResponseHeader GatewayFilter Factory"></a>19、SetResponseHeader GatewayFilter Factory</h4><p>修改原始响应中某个Header的值，配置示例：</p>
-<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">setresponseheader_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">SetResponseHeader=X-Response-Foo,</span> <span class="hljs-string">Bar</span><br><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">setresponseheader_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">SetResponseHeader=X-Response-Foo,</span> <span class="hljs-string">Bar</span><br><br></code></pre></td></tr></table></figure>
 
 <p>将原始响应中 <code>X-Response-Foo</code> 的值修改为 <code>Bar</code></p>
 <h4 id="20、SetStatus-GatewayFilter-Factory"><a href="#20、SetStatus-GatewayFilter-Factory" class="headerlink" title="20、SetStatus GatewayFilter Factory"></a>20、SetStatus GatewayFilter Factory</h4><p>修改原始响应的状态码，配置示例：</p>
-<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">setstatusstring_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-comment"># 字符串形式</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">SetStatus=BAD_REQUEST</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">setstatusint_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-comment"># 数字形式</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">SetStatus=401</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">setstatusstring_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-comment"># 字符串形式</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">SetStatus=BAD_REQUEST</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">setstatusint_route</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">https://example.org</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-comment"># 数字形式</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">SetStatus=401</span><br></code></pre></td></tr></table></figure>
 
 <p>SetStatusd的值可以是数字，也可以是字符串。但一定要是Spring <code>HttpStatus</code> 枚举类中的值。上面这两种配置都可以返回401这个HTTP状态码。</p>
 <h4 id="21、StripPrefix-GatewayFilter-Factory"><a href="#21、StripPrefix-GatewayFilter-Factory" class="headerlink" title="21、StripPrefix GatewayFilter Factory"></a>21、StripPrefix GatewayFilter Factory</h4><p>用于截断原始请求的路径，配置示例：</p>
-<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">nameRoot</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">http://nameservice</span><br>        <span class="hljs-attr">predicates:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">Path=/name/**</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-comment"># 数字表示要截断的路径的数量</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">StripPrefix=2</span><br><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">nameRoot</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">http://nameservice</span><br>        <span class="hljs-attr">predicates:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">Path=/name/**</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-comment"># 数字表示要截断的路径的数量</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">StripPrefix=2</span><br><br></code></pre></td></tr></table></figure>
 
 <p>如上配置，如果请求的路径为 <code>/name/bar/foo</code> ，那么则会截断成<code>/foo</code>后进行转发 ，也就是会截断2个路径。</p>
 <h4 id="22、Retry-GatewayFilter-Factory"><a href="#22、Retry-GatewayFilter-Factory" class="headerlink" title="22、Retry GatewayFilter Factory"></a>22、Retry GatewayFilter Factory</h4><p>针对不同的响应进行重试，例如可以针对HTTP状态码进行重试，配置示例：</p>
-<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">retry_test</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">http://localhost:8080/flakey</span><br>        <span class="hljs-attr">predicates:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">Host=*.retry.com</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Retry</span><br>          <span class="hljs-attr">args:</span><br>            <span class="hljs-attr">retries:</span> <span class="hljs-number">3</span><br>            <span class="hljs-attr">statuses:</span> <span class="hljs-string">BAD_GATEWAY</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">retry_test</span><br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">http://localhost:8080/flakey</span><br>        <span class="hljs-attr">predicates:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">Host=*.retry.com</span><br>        <span class="hljs-attr">filters:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Retry</span><br>          <span class="hljs-attr">args:</span><br>            <span class="hljs-attr">retries:</span> <span class="hljs-number">3</span><br>            <span class="hljs-attr">statuses:</span> <span class="hljs-string">BAD_GATEWAY</span><br></code></pre></td></tr></table></figure>
 
 <p>可配置如下参数：</p>
 <ul>
@@ -560,23 +582,23 @@
 <li><code>series</code>：HTTP状态码序列，取值在 <code>org.springframework.http.HttpStatus.Series</code> 中</li>
 </ul>
 <h4 id="23、RequestSize-GatewayFilter-Factory"><a href="#23、RequestSize-GatewayFilter-Factory" class="headerlink" title="23、RequestSize GatewayFilter Factory"></a>23、RequestSize GatewayFilter Factory</h4><p>设置允许接收最大请求包的大小，配置示例：</p>
-<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">request_size_route</span><br>      <span class="hljs-attr">uri:</span> <span class="hljs-string">http://localhost:8080/upload</span><br>      <span class="hljs-attr">predicates:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">Path=/upload</span><br>      <span class="hljs-attr">filters:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">RequestSize</span><br>        <span class="hljs-attr">args:</span><br>          <span class="hljs-comment"># 单位为字节</span><br>          <span class="hljs-attr">maxSize:</span> <span class="hljs-number">5000000</span><br><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">request_size_route</span><br>      <span class="hljs-attr">uri:</span> <span class="hljs-string">http://localhost:8080/upload</span><br>      <span class="hljs-attr">predicates:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">Path=/upload</span><br>      <span class="hljs-attr">filters:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">RequestSize</span><br>        <span class="hljs-attr">args:</span><br>          <span class="hljs-comment"># 单位为字节</span><br>          <span class="hljs-attr">maxSize:</span> <span class="hljs-number">5000000</span><br><br></code></pre></td></tr></table></figure>
 
 <p>如果请求包大小超过设置的值，则会返回 <code>413 Payload Too Large</code>以及一个<code>errorMessage</code></p>
 <h4 id="24、Modify-Request-Body-GatewayFilter-Factory"><a href="#24、Modify-Request-Body-GatewayFilter-Factory" class="headerlink" title="24、Modify Request Body GatewayFilter Factory"></a>24、Modify Request Body GatewayFilter Factory</h4><p>在转发请求之前修改原始请求体内容，该过滤器工厂只能通过代码配置，不支持在配置文件中配置。代码示例：</p>
-<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><br><span class="hljs-meta">@Bean</span><br><span class="hljs-keyword">public</span> RouteLocator <span class="hljs-title function_">routes</span><span class="hljs-params">(RouteLocatorBuilder builder)</span> &#123;<br>    <span class="hljs-keyword">return</span> builder.routes()<br>        .route(<span class="hljs-string">&quot;rewrite_request_obj&quot;</span>, r -&gt; r.host(<span class="hljs-string">&quot;*.rewriterequestobj.org&quot;</span>)<br>            .filters(f -&gt; f.prefixPath(<span class="hljs-string">&quot;/httpbin&quot;</span>)<br>                .modifyRequestBody(String.class, Hello.class, MediaType.APPLICATION_JSON_VALUE,<br>                    (exchange, s) -&gt; <span class="hljs-keyword">return</span> Mono.just(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Hello</span>(s.toUpperCase())))).uri(uri))<br>        .build();<br>&#125;<br> <br><span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Hello</span> &#123;<br>    String message;<br> <br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Hello</span><span class="hljs-params">()</span> &#123; &#125;<br> <br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Hello</span><span class="hljs-params">(String message)</span> &#123;<br>        <span class="hljs-built_in">this</span>.message = message;<br>    &#125;<br> <br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getMessage</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> message;<br>    &#125;<br> <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setMessage</span><span class="hljs-params">(String message)</span> &#123;<br>        <span class="hljs-built_in">this</span>.message = message;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-meta">@Bean</span><br><span class="hljs-keyword">public</span> RouteLocator <span class="hljs-title function_">routes</span><span class="hljs-params">(RouteLocatorBuilder builder)</span> &#123;<br>    <span class="hljs-keyword">return</span> builder.routes()<br>        .route(<span class="hljs-string">&quot;rewrite_request_obj&quot;</span>, r -&gt; r.host(<span class="hljs-string">&quot;*.rewriterequestobj.org&quot;</span>)<br>            .filters(f -&gt; f.prefixPath(<span class="hljs-string">&quot;/httpbin&quot;</span>)<br>                .modifyRequestBody(String.class, Hello.class, MediaType.APPLICATION_JSON_VALUE,<br>                    (exchange, s) -&gt; <span class="hljs-keyword">return</span> Mono.just(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Hello</span>(s.toUpperCase())))).uri(uri))<br>        .build();<br>&#125;<br> <br><span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Hello</span> &#123;<br>    String message;<br> <br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Hello</span><span class="hljs-params">()</span> &#123; &#125;<br> <br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Hello</span><span class="hljs-params">(String message)</span> &#123;<br>        <span class="hljs-built_in">this</span>.message = message;<br>    &#125;<br> <br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getMessage</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> message;<br>    &#125;<br> <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setMessage</span><span class="hljs-params">(String message)</span> &#123;<br>        <span class="hljs-built_in">this</span>.message = message;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>Tips：该过滤器工厂处于 <strong>BETA</strong> 状态，未来API可能会变化，生产环境请慎用</p>
 </blockquote>
 <h4 id="25、Modify-Response-Body-GatewayFilter-Factory"><a href="#25、Modify-Response-Body-GatewayFilter-Factory" class="headerlink" title="25、Modify Response Body GatewayFilter Factory"></a>25、Modify Response Body GatewayFilter Factory</h4><p>可用于修改原始响应体的内容，该过滤器工厂同样只能通过代码配置，不支持在配置文件中配置。代码示例：</p>
-<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Bean</span><br><span class="hljs-keyword">public</span> RouteLocator <span class="hljs-title function_">routes</span><span class="hljs-params">(RouteLocatorBuilder builder)</span> &#123;<br>    <span class="hljs-keyword">return</span> builder.routes()<br>        .route(<span class="hljs-string">&quot;rewrite_response_upper&quot;</span>, r -&gt; r.host(<span class="hljs-string">&quot;*.rewriteresponseupper.org&quot;</span>)<br>            .filters(f -&gt; f.prefixPath(<span class="hljs-string">&quot;/httpbin&quot;</span>)<br>                .modifyResponseBody(String.class, String.class,<br>                    (exchange, s) -&gt; Mono.just(s.toUpperCase()))).uri(uri)<br>        .build();<br>&#125;<br><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Bean</span><br><span class="hljs-keyword">public</span> RouteLocator <span class="hljs-title function_">routes</span><span class="hljs-params">(RouteLocatorBuilder builder)</span> &#123;<br>    <span class="hljs-keyword">return</span> builder.routes()<br>        .route(<span class="hljs-string">&quot;rewrite_response_upper&quot;</span>, r -&gt; r.host(<span class="hljs-string">&quot;*.rewriteresponseupper.org&quot;</span>)<br>            .filters(f -&gt; f.prefixPath(<span class="hljs-string">&quot;/httpbin&quot;</span>)<br>                .modifyResponseBody(String.class, String.class,<br>                    (exchange, s) -&gt; Mono.just(s.toUpperCase()))).uri(uri)<br>        .build();<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>Tips：该过滤器工厂处于 <strong>BETA</strong> 状态，未来API可能会变化，生产环境请慎用</p>
 </blockquote>
 <h4 id="26、Default-Filters"><a href="#26、Default-Filters" class="headerlink" title="26、Default Filters"></a>26、Default Filters</h4><p>Default Filters用于为所有路由添加过滤器工厂，也就是说通过Default Filter所配置的过滤器工厂会作用到所有的路由上。配置示例：</p>
-<figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">default-filters:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">AddResponseHeader=X-Response-Default-Foo,</span> <span class="hljs-string">Default-Bar</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">PrefixPath=/httpbin</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">default-filters:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">AddResponseHeader=X-Response-Default-Foo,</span> <span class="hljs-string">Default-Bar</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">PrefixPath=/httpbin</span><br></code></pre></td></tr></table></figure>
 
 <hr>
 <p>官方文档：</p>
@@ -584,40 +606,93 @@
 <li><a target="_blank" rel="noopener" href="https://cloud.spring.io/spring-cloud-static/spring-cloud-gateway/2.1.0.RELEASE/single/spring-cloud-gateway.html#_gatewayfilter_factories">GatewayFilter Factories</a></li>
 </ul>
 
+              
             </div>
-            <hr>
+            <hr/>
             <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/Hexo/categories/SpringCloud%F0%9F%8E%B6/">SpringCloud🎶</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/Hexo/tags/SpringCloud%F0%9F%8E%B6/">SpringCloud🎶</a>
-                    
-                  </div>
-                
-              </div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/Hexo/categories/SpringCloud%F0%9F%8E%B6/" class="category-chain-item">SpringCloud🎶</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/Hexo/tags/SpringCloud%F0%9F%8E%B6/">#SpringCloud🎶</a>
+      
+    </div>
+  
+</div>
+
+
               
-                <p class="note note-warning">
-                  
-                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-                  
-                </p>
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Spring Cloud Gateway 内置的过滤器工厂</div>
+      <div>https://1902756969.github.io/Hexo/2022/05/01/gateway内置过滤器工厂/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>星</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年5月1日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
               
-              
-                <div class="post-prevnext">
+                <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/Hexo/2022/05/02/Eureka%20%E5%85%A8%E9%83%A8%E9%85%8D%E7%BD%AE%20/">
+                      <a href="/Hexo/2022/05/02/Eureka%20%E5%85%A8%E9%83%A8%E9%85%8D%E7%BD%AE%20/" title="Euraka配置详解">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Euraka配置详解</span>
                         <span class="visible-mobile">上一篇</span>
@@ -627,7 +702,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/Hexo/2022/04/28/ElasticSearch%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/">
+                      <a href="/Hexo/2022/04/28/ElasticSearch%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" title="ElasticSearch 集群搭建配置">
                         <span class="hidden-mobile">ElasticSearch 集群搭建配置</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -643,19 +718,49 @@
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
-      </div>
-    
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
 
 
     
@@ -680,59 +785,37 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
   
-
   
-</footer>
-
-
-  <!-- SCRIPTS -->
   
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
   <script>
     NProgress.configure({"showSpinner":false,"trickleSpeed":100})
@@ -743,15 +826,44 @@
   </script>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
 <script  src="/Hexo/js/events.js" ></script>
 <script  src="/Hexo/js/plugins.js" ></script>
 
-<!-- Plugins -->
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
 
-  <script  src="/Hexo/js/local-search.js" ></script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
 
 
 
@@ -761,71 +873,153 @@
 
 
 
-  
-
-
 
   
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
-  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
 
 
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
   <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-        typing(title);
-      
-    })(window, document);
-  </script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
 
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
 
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
 
+      var lang = '';
 
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
 
-
-
-
-
-
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
 
 
   
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
 
   
-
-  
-
-  
-
-  
-
-  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
 
 
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/Hexo/js/local-search.js" ></script>
 
 
 
-<!-- 主题的启动项 保持在最底部 -->
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/Hexo/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 <script src="/Hexo/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
 </html>

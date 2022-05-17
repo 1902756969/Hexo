@@ -11,9 +11,6 @@
   <link rel="icon" href="/Hexo/img/csdn.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="referrer" content="no-referrer" />
-  
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#DAA520">
   <meta name="author" content="星">
@@ -37,28 +34,16 @@
   
   <title>Spring入门 - 阿星的博客</title>
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
-    
-  
-
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -67,24 +52,43 @@
 
 <link  rel="stylesheet" href="/Hexo/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/Hexo/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/Hexo/js/utils.js" ></script>
   <script  src="/Hexo/js/color-schema.js" ></script>
+
+  
 <meta name="generator" content="Hexo 6.0.0"></head>
 
 
 <body>
-  <header style="height: 60vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/Hexo/">
-      <strong>啊星的博客</strong>
+      <strong>🐛 ZhaFi人</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -175,6 +179,7 @@
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
@@ -187,29 +192,35 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('https://s2.loli.net/2022/04/13/fC3S2FTgBJLYjOq.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Spring入门">
-              
-            </span>
+  
 
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/Hexo/img/bg5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Spring入门"></span>
           
         </div>
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
     
       <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
+        <div id="board"
           >
           
           <div class="container">
@@ -283,26 +294,26 @@
 <p>创建一个Service接口</p>
 <p><img src="https://img-blog.csdnimg.cn/9667cfaa28c440fcae65155fc3f0892c.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAbWFuX29uZQ==,size_17,color_FFFFFF,t_70,g_se,x_16" srcset="/Hexo/img/loading.gif" lazyload alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>写入方法</p>
-<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">UserService</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">save</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;user service running...&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">UserService</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">save</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;user service running...&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>配置applicationContext.xml</p>
-<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs XML"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans</span></span><br><span class="hljs-string"><span class="hljs-tag">        https://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 1.创建spring控制的资源--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;userService&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;impl.service.impl.UserServiceImpl&quot;</span>/&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs XML"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans</span></span><br><span class="hljs-string"><span class="hljs-tag">        https://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 1.创建spring控制的资源--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;userService&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;impl.service.impl.UserServiceImpl&quot;</span>/&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>Test</p>
-<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">//2.加载配置文件</span><br>        <span class="hljs-type">ApplicationContext</span> <span class="hljs-variable">ctx</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ClassPathXmlApplicationContext</span>(<span class="hljs-string">&quot;applicationContext.xml&quot;</span>);<br>        <span class="hljs-comment">//3.获取资源</span><br>        <span class="hljs-type">UserService</span> <span class="hljs-variable">userService</span> <span class="hljs-operator">=</span> (UserService) ctx.getBean(<span class="hljs-string">&quot;userService&quot;</span>);<br>        userService.save();<br>    &#125;<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">//2.加载配置文件</span><br>        <span class="hljs-type">ApplicationContext</span> <span class="hljs-variable">ctx</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ClassPathXmlApplicationContext</span>(<span class="hljs-string">&quot;applicationContext.xml&quot;</span>);<br>        <span class="hljs-comment">//3.获取资源</span><br>        <span class="hljs-type">UserService</span> <span class="hljs-variable">userService</span> <span class="hljs-operator">=</span> (UserService) ctx.getBean(<span class="hljs-string">&quot;userService&quot;</span>);<br>        userService.save();<br>    &#125;<br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>ApplicationContext 常见实现类：</p>
 <p>1.<strong>ClassPathXmlApplicationContext：</strong><br> 读取classpath中的资源</p>
-<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-type">ApplicationContext</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ClassPathXmlApplicationContext</span>(<span class="hljs-string">&quot;applicationContext.xml&quot;</span>);<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">ApplicationContext</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ClassPathXmlApplicationContext</span>(<span class="hljs-string">&quot;applicationContext.xml&quot;</span>);<br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>2:<strong>FileSystemXmlApplicationContext:-</strong><br> 读取指定路径的资源</p>
 <p><strong>ApplicationContext a &#x3D; new FileSystemXmlApplicationContext(“c:&#x2F;applicationContext.xml”);</strong></p>
 <p>3.<strong>XmlWebApplicationContext:</strong><br> 需要在Web的环境才可运行</p>
-<figure class="highlight awk"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs awk">XmlWebApplicationContext ac = new XmlWebApplicationContext(); <span class="hljs-regexp">//</span> 这时并没有初始化容器 ac.setServletContext(servletContext); <span class="hljs-regexp">//</span> 需要指定ServletContext对象 ac.setConfigLocation(<span class="hljs-string">&quot;/WEB-INF/applicationContext.xml&quot;</span>); <span class="hljs-regexp">//</span> 指定配置文件路径，开头的斜线表示Web应用的根目录 ac.refresh(); <span class="hljs-regexp">//</span> 初始化容器<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">XmlWebApplicationContext ac = new XmlWebApplicationContext(); <span class="hljs-regexp">//</span> 这时并没有初始化容器 ac.setServletContext(servletContext); <span class="hljs-regexp">//</span> 需要指定ServletContext对象 ac.setConfigLocation(<span class="hljs-string">&quot;/WEB-INF/applicationContext.xml&quot;</span>); <span class="hljs-regexp">//</span> 指定配置文件路径，开头的斜线表示Web应用的根目录 ac.refresh(); <span class="hljs-regexp">//</span> 初始化容器<br></code></pre></td></tr></table></figure>
 
 <h3 id="3-1-5-BeanFactory-和-ApplicationContext-的区别："><a href="#3-1-5-BeanFactory-和-ApplicationContext-的区别：" class="headerlink" title="3.1.5 BeanFactory 和 ApplicationContext 的区别："></a>3.1.5 BeanFactory 和 ApplicationContext 的区别：</h3><ul>
 <li><strong>BeanFactory：</strong>是Spring中最底层的接口，只提供了最简单的IoC功能,负责配置，创建和管理bean。<br> 在应用中，一般不使用 BeanFactory，而推荐使用ApplicationContext（应用上下文），原因如下。</li>
@@ -320,11 +331,11 @@
 <p>- 归属：bean标签</p>
 <p>- 作用：使用set方法的形式为bean提供资源</p>
 <p>- 格式：</p>
-<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs XML">```java<br><span class="hljs-tag">&lt;<span class="hljs-name">bean</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br>```<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs XML">```java<br><span class="hljs-tag">&lt;<span class="hljs-name">bean</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br>```<br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>- 基本属性：</p>
-<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;propertyName&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;propertyValue&quot;</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;beanId&quot;</span>/&gt;</span><br>```<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;propertyName&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;propertyValue&quot;</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;beanId&quot;</span>/&gt;</span><br>```<br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>   name：对应bean中的属性名，要求该属性必须提供可访问的set方法（严格规范为此名称是set方法对应名称）</p>
@@ -336,17 +347,17 @@
 <p>- 归属：bean标签</p>
 <p>- 作用：使用构造方法的形式为bean提供资源，兼容早期遗留系统的升级工作</p>
 <p>- 格式：</p>
-<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">bean</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">constructor-arg</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br>```<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">bean</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">constructor-arg</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br>```<br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>- 基本属性：</p>
-<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">constructor-arg</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;argsName&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;argsValue /&gt;</span></span><br><span class="hljs-string"><span class="hljs-tag">```</span></span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">constructor-arg</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;argsName&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;argsValue /&gt;</span></span><br><span class="hljs-string"><span class="hljs-tag">```</span></span><br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>   name：对应bean中的构造方法所携带的参数名</p>
 <p>   value：设定非引用类型构造方法参数对应的值，不能与ref同时使用</p>
 <p>其他属性：</p>
-<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">constructor-arg</span> <span class="hljs-attr">index</span>=<span class="hljs-string">&quot;arg-index&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;arg-type&quot;</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;beanId&quot;</span>/&gt;</span><br>```<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">constructor-arg</span> <span class="hljs-attr">index</span>=<span class="hljs-string">&quot;arg-index&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;arg-type&quot;</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;beanId&quot;</span>/&gt;</span><br>```<br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>   ref：设定引用类型构造方法参数对应bean的id ，不能与value同时使用</p>
@@ -358,27 +369,27 @@
 <p>- 归属：property标签 或 constructor-arg标签</p>
 <p>- 作用：注入集合数据类型属性</p>
 <p>- 格式：</p>
-<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">list</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">list</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br>```<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">list</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">list</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br>```<br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>(1)集合类型数据注入——list</p>
-<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;al&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">list</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>itheima<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>66666<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">list</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br>```<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;al&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">list</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>itheima<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>66666<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">list</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br>```<br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>(2)集合类型数据注入——props</p>
-<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;properties&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">props</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">prop</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&quot;name&quot;</span>&gt;</span>zhangsan666<span class="hljs-tag">&lt;/<span class="hljs-name">prop</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">prop</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&quot;value&quot;</span>&gt;</span>666666<span class="hljs-tag">&lt;/<span class="hljs-name">prop</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">props</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br>```<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;properties&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">props</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">prop</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&quot;name&quot;</span>&gt;</span>zhangsan666<span class="hljs-tag">&lt;/<span class="hljs-name">prop</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">prop</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&quot;value&quot;</span>&gt;</span>666666<span class="hljs-tag">&lt;/<span class="hljs-name">prop</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">props</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br>```<br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>(3)集合类型数据注入——array （了解）</p>
-<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;arr&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">array</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>123456<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>66666<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">array</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br>```<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;arr&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">array</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>123456<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>66666<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">array</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br>```<br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>(4)集合类型数据注入——set（了解）</p>
-<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs XML">```xml<br> <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;hs&quot;</span>&gt;</span><br>     <span class="hljs-tag">&lt;<span class="hljs-name">set</span>&gt;</span><br>         <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>Test<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br>         <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>66666<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br>     <span class="hljs-tag">&lt;/<span class="hljs-name">set</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br>```<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs XML">```xml<br> <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;hs&quot;</span>&gt;</span><br>     <span class="hljs-tag">&lt;<span class="hljs-name">set</span>&gt;</span><br>         <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>Test<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br>         <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>66666<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br>     <span class="hljs-tag">&lt;/<span class="hljs-name">set</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br>```<br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>(5)集合类型数据注入——map（了解）</p>
-<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;hm&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">map</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">entry</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&quot;name&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Test66666&quot;</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">entry</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&quot;value&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;6666666666&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">map</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;hm&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">map</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">entry</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&quot;name&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Test66666&quot;</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">entry</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&quot;value&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;6666666666&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">map</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <h3 id="3-3-4-使用p命名空间简化配置（了解）"><a href="#3-3-4-使用p命名空间简化配置（了解）" class="headerlink" title="3.3.4  使用p命名空间简化配置（了解）"></a>3.3.4  使用p命名空间简化配置（了解）</h3><p>- 名称：p:propertyName，p:propertyName-ref</p>
@@ -399,7 +410,7 @@
 <p>- 归属：value属性值</p>
 <p>- 作用：为bean注入属性值</p>
 <p>- 格式：</p>
-<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;EL&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br>```<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;EL&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br>```<br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>- 注意：所有属性值不区分是否引用类型，统一使用value赋值</p>
@@ -416,15 +427,15 @@
 <p>- 操作步骤</p>
 <p> 1.准备外部properties文件</p>
 <p> 2.开启context命名空间支持</p>
-<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs XML">```xml<br>xmlns:context=&quot;http://www.springframework.org/schema/context&quot;<br>```<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs XML">```xml<br>xmlns:context=&quot;http://www.springframework.org/schema/context&quot;<br>```<br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>​     3.加载指定的properties文件</p>
-<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">context:property-placeholder</span> <span class="hljs-attr">location</span>=<span class="hljs-string">&quot;classpath:filename.properties&quot;</span>&gt;</span><br>```<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">context:property-placeholder</span> <span class="hljs-attr">location</span>=<span class="hljs-string">&quot;classpath:filename.properties&quot;</span>&gt;</span><br>```<br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>​     4.使用加载的数据</p>
-<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;propertyName&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;$&#123;propertiesName&#125;&quot;</span>/&gt;</span><br>```<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;propertyName&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;$&#123;propertiesName&#125;&quot;</span>/&gt;</span><br>```<br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>- 注意：如果需要加载所有的properties文件，可以使用<code>*.properties</code>表示加载所有的properties文件</p>
@@ -434,11 +445,11 @@
 <p>- 归属：beans标签</p>
 <p>- 作用：在当前配置文件中导入其他配置文件中的项</p>
 <p>- 格式：</p>
-<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">beans</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">import</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br>```<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">beans</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">import</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br>```<br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>- 基本属性：</p>
-<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">import</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">“config.xml</span>&quot;/&gt;</span><br>```<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">import</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">“config.xml</span>&quot;/&gt;</span><br>```<br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>   resource：加载的配置文件名</p>
@@ -511,11 +522,11 @@
 <p>- 归属：beans标签</p>
 <p>- 作用：定义spring中的资源，受此标签定义的资源将受到spring控制</p>
 <p>- 格式：</p>
-<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">beans</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br>```<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">beans</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br>```<br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>- 基本属性：</p>
-<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;beanId&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;beanName1,beanName2&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;ClassName&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br>```<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs XML">```xml<br><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;beanId&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;beanName1,beanName2&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;ClassName&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br>```<br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>​    id：bean的名称，通过id值获取bean</p>
@@ -523,19 +534,19 @@
 <p>​    name：bean的名称，可以通过name值获取bean，用于多人配合时给bean起别名</p>
 <p>​            测试一下</p>
 <p>创建一个接口以及实现类：</p>
-<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">UserService</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">save</span><span class="hljs-params">()</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">UserService</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">save</span><span class="hljs-params">()</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
-<h3 id="-3"><a href="#-3" class="headerlink" title=""></a></h3><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">UserService</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">save</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;Hello world&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<h3 id="-3"><a href="#-3" class="headerlink" title=""></a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">UserService</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">save</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;Hello world&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>applicationContext.xml</p>
-<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs XML"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans</span></span><br><span class="hljs-string"><span class="hljs-tag">        https://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 1.创建spring控制的资源--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;userService&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;com.service.impl.UserServiceImpl&quot;</span>/&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs XML"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans</span></span><br><span class="hljs-string"><span class="hljs-tag">        https://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 1.创建spring控制的资源--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;userService&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;com.service.impl.UserServiceImpl&quot;</span>/&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>注意：在Bean中为指定id和name，spring会将class当id值</p>
 <p>创建测试类：</p>
-<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">//2.加载配置文件</span><br>        <span class="hljs-type">ApplicationContext</span> <span class="hljs-variable">ctx</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ClassPathXmlApplicationContext</span>(<span class="hljs-string">&quot;applicationContext.xml&quot;</span>);<br>        <span class="hljs-comment">//3.获取资源</span><br>        <span class="hljs-type">UserService</span> <span class="hljs-variable">userService</span> <span class="hljs-operator">=</span> (UserService) ctx.getBean(<span class="hljs-string">&quot;userService&quot;</span>);<br>        userService.save();<br>    &#125;<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">//2.加载配置文件</span><br>        <span class="hljs-type">ApplicationContext</span> <span class="hljs-variable">ctx</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ClassPathXmlApplicationContext</span>(<span class="hljs-string">&quot;applicationContext.xml&quot;</span>);<br>        <span class="hljs-comment">//3.获取资源</span><br>        <span class="hljs-type">UserService</span> <span class="hljs-variable">userService</span> <span class="hljs-operator">=</span> (UserService) ctx.getBean(<span class="hljs-string">&quot;userService&quot;</span>);<br>        userService.save();<br>    &#125;<br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>输出了Hello world</p>
@@ -551,20 +562,20 @@
 <p><strong>②静态工厂实例化</strong></p>
 <p>创建静态工厂的方法来创建Bean实例，其中Bean的class属性所指定的不是Bean实现类而是静态工厂类，需要使用factory-merhod属性来指定创建的静态工厂。</p>
 <p>​              文件 MyBean2Facory</p>
-<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyBean2Facory</span> &#123;<br>    <span class="hljs-comment">//使用自己创建的Bean2工厂</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Bean2 <span class="hljs-title function_">createBean</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Bean2</span>();<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyBean2Facory</span> &#123;<br>    <span class="hljs-comment">//使用自己创建的Bean2工厂</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Bean2 <span class="hljs-title function_">createBean</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Bean2</span>();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>​            <strong>applicationContest.xml</strong></p>
-<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs XML"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/context&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:aop</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/aop&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans</span></span><br><span class="hljs-string"><span class="hljs-tag">        https://www.springframework.org/schema/beans/spring-beans.xsd</span></span><br><span class="hljs-string"><span class="hljs-tag">        http://www.springframework.org/schema/context</span></span><br><span class="hljs-string"><span class="hljs-tag">        https://www.springframework.org/schema/context/spring-context.xsd</span></span><br><span class="hljs-string"><span class="hljs-tag">        http://www.springframework.org/schema/aop</span></span><br><span class="hljs-string"><span class="hljs-tag">        https://www.springframework.org/schema/aop/spring-aop.xsd&quot;</span>&gt;</span><br><br>     <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;Bean2&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;instance.MyBean2Facory&quot;</span></span><br><span class="hljs-tag">            <span class="hljs-attr">factory-method</span>=<span class="hljs-string">&quot;createBean&quot;</span>/&gt;</span><br> <span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs XML"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/context&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:aop</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/aop&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans</span></span><br><span class="hljs-string"><span class="hljs-tag">        https://www.springframework.org/schema/beans/spring-beans.xsd</span></span><br><span class="hljs-string"><span class="hljs-tag">        http://www.springframework.org/schema/context</span></span><br><span class="hljs-string"><span class="hljs-tag">        https://www.springframework.org/schema/context/spring-context.xsd</span></span><br><span class="hljs-string"><span class="hljs-tag">        http://www.springframework.org/schema/aop</span></span><br><span class="hljs-string"><span class="hljs-tag">        https://www.springframework.org/schema/aop/spring-aop.xsd&quot;</span>&gt;</span><br><br>     <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;Bean2&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;instance.MyBean2Facory&quot;</span></span><br><span class="hljs-tag">            <span class="hljs-attr">factory-method</span>=<span class="hljs-string">&quot;createBean&quot;</span>/&gt;</span><br> <span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>③实例工厂实例化</p>
 <p>​                    创建实例工厂MyBean3Factory</p>
-<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyBean3Facory</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">MyBean3Facory</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;bean3工厂实例化中....&quot;</span>);<br>    &#125;<br>    <span class="hljs-comment">//使用自己创建的Bean2工厂</span><br>    <span class="hljs-keyword">public</span> Bean3 <span class="hljs-title function_">createBean</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Bean3</span>();<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyBean3Facory</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">MyBean3Facory</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;bean3工厂实例化中....&quot;</span>);<br>    &#125;<br>    <span class="hljs-comment">//使用自己创建的Bean2工厂</span><br>    <span class="hljs-keyword">public</span> Bean3 <span class="hljs-title function_">createBean</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Bean3</span>();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>​       创建beans3.xml</p>
-<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs XML"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/context&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:aop</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/aop&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans</span></span><br><span class="hljs-string"><span class="hljs-tag">        https://www.springframework.org/schema/beans/spring-beans.xsd</span></span><br><span class="hljs-string"><span class="hljs-tag">        http://www.springframework.org/schema/context</span></span><br><span class="hljs-string"><span class="hljs-tag">        https://www.springframework.org/schema/context/spring-context.xsd</span></span><br><span class="hljs-string"><span class="hljs-tag">        http://www.springframework.org/schema/aop</span></span><br><span class="hljs-string"><span class="hljs-tag">        https://www.springframework.org/schema/aop/spring-aop.xsd&quot;</span>&gt;</span><br><br>     <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;MyBean3Facory&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;instance.MyBean3Facory&quot;</span>/&gt;</span><br>        <span class="hljs-comment">&lt;!--使用factory-bean属性执行实例工厂--&gt;</span><br>    <span class="hljs-comment">&lt;!--使用factory-method属性确定使用的方法--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;bean3&quot;</span>  <span class="hljs-attr">factory-bean</span>=<span class="hljs-string">&quot;MyBean3Facory&quot;</span> <span class="hljs-attr">factory-method</span>=<span class="hljs-string">&quot;createBean&quot;</span>/&gt;</span><br> <span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs XML"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/context&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:aop</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/aop&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans</span></span><br><span class="hljs-string"><span class="hljs-tag">        https://www.springframework.org/schema/beans/spring-beans.xsd</span></span><br><span class="hljs-string"><span class="hljs-tag">        http://www.springframework.org/schema/context</span></span><br><span class="hljs-string"><span class="hljs-tag">        https://www.springframework.org/schema/context/spring-context.xsd</span></span><br><span class="hljs-string"><span class="hljs-tag">        http://www.springframework.org/schema/aop</span></span><br><span class="hljs-string"><span class="hljs-tag">        https://www.springframework.org/schema/aop/spring-aop.xsd&quot;</span>&gt;</span><br><br>     <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;MyBean3Facory&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;instance.MyBean3Facory&quot;</span>/&gt;</span><br>        <span class="hljs-comment">&lt;!--使用factory-bean属性执行实例工厂--&gt;</span><br>    <span class="hljs-comment">&lt;!--使用factory-method属性确定使用的方法--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;bean3&quot;</span>  <span class="hljs-attr">factory-bean</span>=<span class="hljs-string">&quot;MyBean3Facory&quot;</span> <span class="hljs-attr">factory-method</span>=<span class="hljs-string">&quot;createBean&quot;</span>/&gt;</span><br> <span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
   <!--使用factory-bean属性执行实例工厂-->
@@ -614,15 +625,15 @@
 <li><bean id="..." class="..." scope="singleton"/></li>
 </ul>
 <p>HelloWorld 类代码如下。</p>
-<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HelloWorld</span> &#123;<br><span class="hljs-keyword">private</span> String message;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setMessage</span><span class="hljs-params">(String message)</span> &#123;<br><span class="hljs-built_in">this</span>.message = message;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">getMessage</span><span class="hljs-params">()</span> &#123;<br>System.out.println(<span class="hljs-string">&quot;message : &quot;</span> + message);<br>&#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HelloWorld</span> &#123;<br><span class="hljs-keyword">private</span> String message;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setMessage</span><span class="hljs-params">(String message)</span> &#123;<br><span class="hljs-built_in">this</span>.message = message;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">getMessage</span><span class="hljs-params">()</span> &#123;<br>System.out.println(<span class="hljs-string">&quot;message : &quot;</span> + message);<br>&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>MainApp 类如下。</p>
-<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">import</span> org.springframework.context.ApplicationContext;<br><span class="hljs-keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MainApp</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">ApplicationContext</span> <span class="hljs-variable">context</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ClassPathXmlApplicationContext</span>(<span class="hljs-string">&quot;Beans.xml&quot;</span>);<br>        <span class="hljs-type">HelloWorld</span> <span class="hljs-variable">objA</span> <span class="hljs-operator">=</span> (HelloWorld) context.getBean(<span class="hljs-string">&quot;helloWorld&quot;</span>);<br>        objA.setMessage(<span class="hljs-string">&quot;对象A&quot;</span>);<br>        objA.getMessage();<br>        <span class="hljs-type">HelloWorld</span> <span class="hljs-variable">objB</span> <span class="hljs-operator">=</span> (HelloWorld) context.getBean(<span class="hljs-string">&quot;helloWorld&quot;</span>);<br>        objB.getMessage();<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> org.springframework.context.ApplicationContext;<br><span class="hljs-keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MainApp</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">ApplicationContext</span> <span class="hljs-variable">context</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ClassPathXmlApplicationContext</span>(<span class="hljs-string">&quot;Beans.xml&quot;</span>);<br>        <span class="hljs-type">HelloWorld</span> <span class="hljs-variable">objA</span> <span class="hljs-operator">=</span> (HelloWorld) context.getBean(<span class="hljs-string">&quot;helloWorld&quot;</span>);<br>        objA.setMessage(<span class="hljs-string">&quot;对象A&quot;</span>);<br>        objA.getMessage();<br>        <span class="hljs-type">HelloWorld</span> <span class="hljs-variable">objB</span> <span class="hljs-operator">=</span> (HelloWorld) context.getBean(<span class="hljs-string">&quot;helloWorld&quot;</span>);<br>        objB.getMessage();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>Beans.xml 文件内容如下。</p>
-<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs XML"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans</span></span><br><span class="hljs-string"><span class="hljs-tag">   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;helloWorld&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;HelloWorld&quot;</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">&quot;singleton&quot;</span>/&gt;</span><br>      <br><span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs XML"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans</span></span><br><span class="hljs-string"><span class="hljs-tag">   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;helloWorld&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;HelloWorld&quot;</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">&quot;singleton&quot;</span>/&gt;</span><br>      <br><span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>运行结果如下。</p>
@@ -637,7 +648,7 @@
 <li><bean id="..." class="..." scope="prototype"/></li>
 </ul>
 <p>在上面例子 的基础上，修改配置文件 Beans.xml，内容如下</p>
-<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs XML"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans</span></span><br><span class="hljs-string"><span class="hljs-tag">   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;helloWorld&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;HelloWorld&quot;</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">&quot;prototype&quot;</span>/&gt;</span><br>      <br><span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs XML"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans</span></span><br><span class="hljs-string"><span class="hljs-tag">   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;helloWorld&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;HelloWorld&quot;</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">&quot;prototype&quot;</span>/&gt;</span><br>      <br><span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
 <p>运行结果如下。</p>
@@ -658,7 +669,10 @@
 
 
   
+
 </article>
+
+
 
               </div>
             </div>
@@ -687,59 +701,37 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
   
-
   
-</footer>
-
-
-  <!-- SCRIPTS -->
   
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
   <script>
     NProgress.configure({"showSpinner":false,"trickleSpeed":100})
@@ -750,15 +742,44 @@
   </script>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
 <script  src="/Hexo/js/events.js" ></script>
 <script  src="/Hexo/js/plugins.js" ></script>
 
-<!-- Plugins -->
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
 
-  <script  src="/Hexo/js/local-search.js" ></script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
 
 
 
@@ -768,71 +789,22 @@
 
 
 
-  
 
-
-
-  
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
-  
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-        typing(title);
-      
-    })(window, document);
-  </script>
+  <script  src="/Hexo/js/local-search.js" ></script>
 
 
 
 
 
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/Hexo/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 <script src="/Hexo/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
 </html>
