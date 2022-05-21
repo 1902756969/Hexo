@@ -19,13 +19,13 @@
     <meta name="description" content="看看官方说明：   这里还有人提问了的      原来是要在zookeeper里面增加这个节点: &#x2F;dubbo&#x2F;config&#x2F;dubbo&#x2F;dubbo.properties ，并且设置值。 在网上找到个方法 123456789101112131415161718192021222324252627import org.apache.curator.frame">
 <meta property="og:type" content="article">
 <meta property="og:title" content="double-admin元数据显示修复">
-<meta property="og:url" content="https://1902756969.github.io/Hexo/2022/01/23/double-admin%E5%85%83%E6%95%B0%E6%8D%AE%E6%98%BE%E7%A4%BA%E4%BF%AE%E5%A4%8D/index.html">
+<meta property="og:url" content="https://1902756969.github.io/Hexo/2022/01/23/Dubbo-admin%E5%85%83%E6%95%B0%E6%8D%AE%E6%98%BE%E7%A4%BA%E4%BF%AE%E5%A4%8D/index.html">
 <meta property="og:site_name" content="阿星的博客">
 <meta property="og:description" content="看看官方说明：   这里还有人提问了的      原来是要在zookeeper里面增加这个节点: &#x2F;dubbo&#x2F;config&#x2F;dubbo&#x2F;dubbo.properties ，并且设置值。 在网上找到个方法 123456789101112131415161718192021222324252627import org.apache.curator.frame">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic.imgdb.cn/item/623e9bfa27f86abb2aee7d5e.png">
 <meta property="article:published_time" content="2022-01-23T14:30:03.000Z">
-<meta property="article:modified_time" content="2022-03-26T05:47:00.236Z">
+<meta property="article:modified_time" content="2022-05-17T11:05:38.893Z">
 <meta property="article:author" content="星">
 <meta property="article:tag" content="dubbo">
 <meta name="twitter:card" content="summary_large_image">
@@ -215,6 +215,11 @@
           
   <div class="mt-3">
     
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        星
+      </span>
+    
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
@@ -247,6 +252,14 @@
     
 
     
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
     
   </div>
 
@@ -288,18 +301,18 @@
 <img src="https://pic.imgdb.cn/item/623e9c0327f86abb2aeed2e1.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220310223751131" style="zoom:50%;" />
 
 <p>这里还有人提问了的</p>
-<img src="../img/202203102238121.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220310223830058" style="zoom:50%;" />
+<img src="https://s2.loli.net/2022/05/17/fph3qUBaWSA42yV.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220310223830058" style="zoom:50%;" />
 
 
 
-<p><img src="/Hexo/../img/202203102302855.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220310230223819"></p>
+<p><img src="https://s2.loli.net/2022/05/17/7PiM1Zq6W5VNznR.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220310230223819"></p>
 <p>原来是要在<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=zookeeper&spm=1001.2101.3001.7020">zookeeper</a>里面增加这个节点: &#x2F;dubbo&#x2F;config&#x2F;dubbo&#x2F;dubbo.properties ，并且设置值。</p>
 <p>在网上找到个方法</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> org.apache.curator.framework.CuratorFramework;<br><span class="hljs-keyword">import</span> org.apache.curator.framework.CuratorFrameworkFactory;<br><span class="hljs-keyword">import</span> org.apache.curator.retry.ExponentialBackoffRetry;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span> &#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>		<span class="hljs-keyword">try</span> &#123;<br>			<span class="hljs-type">CuratorFramework</span> <span class="hljs-variable">zkClient</span> <span class="hljs-operator">=</span> CuratorFrameworkFactory.builder().<br>	                connectString(<span class="hljs-string">&quot;192.168.232.130:2181&quot;</span>).<br>	                retryPolicy(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ExponentialBackoffRetry</span>(<span class="hljs-number">1000</span>, <span class="hljs-number">3</span>)).build();<br>	        zkClient.start();<br>	 <br><br>```java<br>        <span class="hljs-title function_">if</span> <span class="hljs-params">(zkClient.checkExists()</span>.forPath(<span class="hljs-string">&quot;/dubbo/config/dubbo/dubbo.properties&quot;</span>) == <span class="hljs-literal">null</span>) &#123;<br>            zkClient.create().creatingParentsIfNeeded().forPath(<span class="hljs-string">&quot;/dubbo/config/dubbo/dubbo.properties&quot;</span>);<br>        &#125;<br>        zkClient.setData().forPath(<span class="hljs-string">&quot;/dubbo/config/dubbo/dubbo.properties&quot;</span>, (<span class="hljs-string">&quot;dubbo.registry.address=zookeeper://192.168.232.130:2181\n&quot;</span> +<br>                <span class="hljs-string">&quot;dubbo.metadata-report.address=zookeeper://192.168.232.130:2181&quot;</span>).getBytes());<br><br>	&#125;<span class="hljs-keyword">catch</span> (Exception e) &#123;<br>		e.printStackTrace();<br>	&#125;<br>&#125;<br>&#125;<br><br><br></code></pre></td></tr></table></figure>
 
 <p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/wangxq0224/article/details/99304253">https://blog.csdn.net/wangxq0224/article/details/99304253</a></p>
 <p>重启了所有东西</p>
-<p><img src="/Hexo/../img/202203102304774.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://s2.loli.net/2022/05/17/HVjB6Mrn4hATCvq.png" srcset="/Hexo/img/loading.gif" lazyload></p>
 <p>成功了！窝草</p>
 
               
@@ -346,7 +359,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>double-admin元数据显示修复</div>
-      <div>https://1902756969.github.io/Hexo/2022/01/23/double-admin元数据显示修复/</div>
+      <div>https://1902756969.github.io/Hexo/2022/01/23/Dubbo-admin元数据显示修复/</div>
     </div>
     <div class="license-meta">
       
@@ -388,9 +401,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/Hexo/2022/01/23/Zookeeper%E5%AE%89%E8%A3%85/" title="zookeeper安装">
+                      <a href="/Hexo/2022/01/25/Dubbo/" title="double快速入门-高级特性">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">zookeeper安装</span>
+                        <span class="hidden-mobile">double快速入门-高级特性</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -398,8 +411,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/Hexo/2022/01/23/Maven%E9%AB%98%E7%BA%A7/" title="Maven高级">
-                        <span class="hidden-mobile">Maven高级</span>
+                      <a href="/Hexo/2022/01/23/Zookeeper%E5%AE%89%E8%A3%85/" title="zookeeper安装">
+                        <span class="hidden-mobile">zookeeper安装</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -501,6 +514,30 @@
        <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
   
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
   
   
   
@@ -702,6 +739,8 @@
   <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/Hexo/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
