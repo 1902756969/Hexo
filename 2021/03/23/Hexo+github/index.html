@@ -1,0 +1,842 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo/img/csdn.png">
+  <link rel="icon" href="/Hexo/img/csdn.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#DAA520">
+  <meta name="author" content="星">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="今天教大家搭建免费的个人博客，注意是免费！免费！免费！ 一、博客展示博客地址：https:&#x2F;&#x2F;1902756969.github.io&#x2F;Hexo&#x2F;  二、注册、下载与安装【1】github注册 github地址：https:&#x2F;&#x2F;github.com&#x2F; 注册，注意是英文，因为是外链所以给大家推荐一款代理加速(不是翻墙)软件 FastGithub.UI：https:&#x2F;&#x2F;cloud.tsinghua.e">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo+Github搭建博客">
+<meta property="og:url" content="https://1902756969.github.io/Hexo/2021/03/23/Hexo+github/index.html">
+<meta property="og:site_name" content="阿星的博客">
+<meta property="og:description" content="今天教大家搭建免费的个人博客，注意是免费！免费！免费！ 一、博客展示博客地址：https:&#x2F;&#x2F;1902756969.github.io&#x2F;Hexo&#x2F;  二、注册、下载与安装【1】github注册 github地址：https:&#x2F;&#x2F;github.com&#x2F; 注册，注意是英文，因为是外链所以给大家推荐一款代理加速(不是翻墙)软件 FastGithub.UI：https:&#x2F;&#x2F;cloud.tsinghua.e">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/05/17/EQJ8bunavfMDKZ4.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/17/u5jFCO3he1lPSGA.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/17/YVQ4FahHtqJs2fE.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/17/IC6nPfMVSwGhOKN.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/17/GzIdBVYilhy5O1H.png">
+<meta property="og:image" content="https://1902756969.github.io/AppData/Roaming/Typora/typora-user-images/image-20220517195902871.png">
+<meta property="og:image" content="https://1902756969.github.io/AppData/Roaming/Typora/typora-user-images/image-20220517195953685.png">
+<meta property="og:image" content="https://1902756969.github.io/AppData/Roaming/Typora/typora-user-images/image-20220517200051582.png">
+<meta property="article:published_time" content="2021-03-23T06:29:54.000Z">
+<meta property="article:modified_time" content="2022-05-17T12:12:22.942Z">
+<meta property="article:author" content="星">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/05/17/EQJ8bunavfMDKZ4.png">
+  
+  
+  <title>Hexo+Github搭建博客 - 阿星的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/Hexo/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/Hexo/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/Hexo/js/utils.js" ></script>
+  <script  src="/Hexo/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/Hexo/">
+      <strong>🐛 ZhaFi人</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/Hexo/img/bg5.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Hexo+Github搭建博客"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        星
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-03-23 14:29" pubdate>
+          2021年3月23日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          23 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Hexo+Github搭建博客</h1>
+            
+            <div class="markdown-body">
+              
+              <p>今天教大家搭建免费的个人博客，注意是<font color='red'>免费！免费！免费！</font></p>
+<h1 id="一、博客展示"><a href="#一、博客展示" class="headerlink" title="一、博客展示"></a>一、博客展示</h1><p>博客地址：<a href="https://1902756969.github.io/Hexo/">https://1902756969.github.io/Hexo/</a></p>
+<p><img src="https://s2.loli.net/2022/05/17/EQJ8bunavfMDKZ4.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220517192724417"></p>
+<h1 id="二、注册、下载与安装"><a href="#二、注册、下载与安装" class="headerlink" title="二、注册、下载与安装"></a>二、注册、下载与安装</h1><h2 id="【1】github注册"><a href="#【1】github注册" class="headerlink" title="【1】github注册"></a>【1】github注册</h2><blockquote>
+<p>github地址：<a target="_blank" rel="noopener" href="https://github.com/">https://github.com/</a></p>
+<p>注册，注意是英文，因为是外链所以给大家推荐一款代理加速(不是翻墙)软件</p>
+<p>FastGithub.UI：<a target="_blank" rel="noopener" href="https://cloud.tsinghua.edu.cn/d/df482a15afb64dfeaff8/files/?p=/fastgithub_win-x64.zip">https://cloud.tsinghua.edu.cn/d/df482a15afb64dfeaff8/files/?p=%2Ffastgithub_win-x64.zip</a></p>
+</blockquote>
+<p><img src="https://s2.loli.net/2022/05/17/u5jFCO3he1lPSGA.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220517193124149"></p>
+<h2 id="【2】Typora下载"><a href="#【2】Typora下载" class="headerlink" title="【2】Typora下载"></a>【2】Typora下载</h2><blockquote>
+<p>【下载地址】：<a target="_blank" rel="noopener" href="https://www.typora.io/">https://www.typora.io/</a></p>
+<p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1qNAbiNLgavwvvc08MCLJNA?pwd=0lvz">https://pan.baidu.com/s/1qNAbiNLgavwvvc08MCLJNA?pwd=0lvz</a><br>提取码：0lvz</p>
+</blockquote>
+<h2 id="【3】node安装"><a href="#【3】node安装" class="headerlink" title="【3】node安装"></a>【3】node安装</h2><blockquote>
+<p>【下载地址】：<a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn/">https://nodejs.org/zh-cn/</a></p>
+<p>【安装过程】：选择磁盘可以切换到其他盘，然后一直下一步就好了。</p>
+</blockquote>
+<h2 id="【4】git安装"><a href="#【4】git安装" class="headerlink" title="【4】git安装"></a>【4】git安装</h2><blockquote>
+<p>【下载地址】：<a target="_blank" rel="noopener" href="https://git-scm.com/download/win">https://git-scm.com/download/win</a></p>
+</blockquote>
+<p>上面三款软件安装建议不要默认路径</p>
+<h1 id="三、创建本地博客文件夹"><a href="#三、创建本地博客文件夹" class="headerlink" title="三、创建本地博客文件夹"></a>三、创建本地博客文件夹</h1><h2 id="hexo-cli安装"><a href="#hexo-cli安装" class="headerlink" title="hexo-cli安装"></a>hexo-cli安装</h2><p>选择安装位置，打开cmd窗口</p>
+<blockquote>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs avrasm">npm install hexo-<span class="hljs-keyword">cli</span> -g<br><br>或<br><br>先安装cnpm，然后利用cnpm安装hexo-<span class="hljs-keyword">cli</span><br><br>npm install cnpm<br><br>cnpm install hexo-<span class="hljs-keyword">cli</span> -g<br></code></pre></td></tr></table></figure>
+
+
+</blockquote>
+<h2 id="初始化hexo项目"><a href="#初始化hexo项目" class="headerlink" title="初始化hexo项目"></a>初始化hexo项目</h2><blockquote>
+<p>hexo init blog</p>
+</blockquote>
+<h2 id="项目启动"><a href="#项目启动" class="headerlink" title="项目启动"></a>项目启动</h2><blockquote>
+<p>hexo三件套：</p>
+<p>-清除静态资源</p>
+<p>hexo clean</p>
+<p>-构建生成的页面相关内容</p>
+<p>hexo g</p>
+<p>-项目启动</p>
+<p>hexo s</p>
+</blockquote>
+<h1 id="四、添加主题以hexo-theme-fluid主题为例"><a href="#四、添加主题以hexo-theme-fluid主题为例" class="headerlink" title="四、添加主题以hexo-theme-fluid主题为例"></a>四、添加主题以hexo-theme-fluid主题为例</h1><h2 id="在blog-themes目录下"><a href="#在blog-themes目录下" class="headerlink" title="在blog\themes目录下"></a>在blog\themes目录下</h2><blockquote>
+<p>有了FastGithub可以从github下载最新最好的资源</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">npm install <span class="hljs-comment">--save hexo-theme-fluid</span><br></code></pre></td></tr></table></figure>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/fluid-dev/hexo-theme-fluid/releases">https://github.com/fluid-dev/hexo-theme-fluid/releases</a> </p>
+<p>也可以进去下载资源包放进blog\themes</p>
+<h2 id="修改blog-x2F-conf-yml"><a href="#修改blog-x2F-conf-yml" class="headerlink" title="修改blog&#x2F;_conf.yml"></a>修改blog&#x2F;_conf.yml</h2><blockquote>
+<p>找到theme，替换为对应下载主题名字（在themes下载下来的文件夹名）</p>
+<p>theme: hexo-theme-fluid</p>
+</blockquote>
+<h2 id="修改为主题语言为中文"><a href="#修改为主题语言为中文" class="headerlink" title="修改为主题语言为中文"></a>修改为主题语言为中文</h2><blockquote>
+<p>在blog目录下的_conf.yml，找到文件内容里的language替换为以下</p>
+<p>language: zh-CN #指定语言，会影响主题显示的语言，按需修改</p>
+</blockquote>
+<h2 id="生成about页面"><a href="#生成about页面" class="headerlink" title="生成about页面"></a>生成about页面</h2><p>在blog路径下，执行指令（管理员cmd操作）</p>
+<p>hexo new page about</p>
+<p>创建成功后，去到blog\source\about\index.md，添加layout属性，以为为index.md里所有内容</p>
+<p>title: about<br>date: 2021-10-01 14:53:12<br>layout: about</p>
+<h2 id="添加友链导航"><a href="#添加友链导航" class="headerlink" title="添加友链导航"></a>添加友链导航</h2><p>在D:\hexo\blog\themes\hexo-theme-fluid \ __config.yml下找到这里</p>
+<p><img src="https://s2.loli.net/2022/05/17/YVQ4FahHtqJs2fE.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220517194807113"></p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">links:</span><br><span class="hljs-symbol">  enable:</span> true<br><span class="hljs-symbol">  banner_img:</span> <span class="hljs-keyword">/img/</span>bgaa.jpg<br><span class="hljs-symbol">  banner_img_height:</span> <span class="hljs-number">60</span><br><span class="hljs-symbol">  banner_mask_alpha:</span> <span class="hljs-number">0.3</span><br><br>  <span class="hljs-meta"># 友链的成员项</span><br><br>  <span class="hljs-meta"># Member item of page</span><br><span class="hljs-symbol">    items:</span><br>    - <span class="hljs-punctuation">&#123;</span><br><span class="hljs-symbol">      title:</span> <span class="hljs-string">&quot;啊星的CSDN&quot;</span>,<br><span class="hljs-symbol">      intro:</span> <span class="hljs-string">&quot;CSDN&quot;</span>,<br><span class="hljs-symbol">      link:</span> <span class="hljs-string">&quot;链接地址&quot;</span>,<br><span class="hljs-symbol">      avatar:</span> <span class="hljs-string">&quot;/img/csdn.png&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><br>    - <span class="hljs-punctuation">&#123;</span><br><span class="hljs-symbol">      title:</span> <span class="hljs-string">&quot;啊星的码云&quot;</span>,<br><span class="hljs-symbol">      intro:</span> <span class="hljs-string">&quot; Git 仓库&quot;</span>,<br><span class="hljs-symbol">      link:</span> <span class="hljs-string">&quot;链接地址&quot;</span>,<br><span class="hljs-symbol">      avatar:</span> <span class="hljs-string">&quot;/img/mayun.png&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p>其他的背景图头像什么的都在这个文件里面。可以自己修改</p>
+<h1 id="md文件博客上传"><a href="#md文件博客上传" class="headerlink" title=".md文件博客上传"></a>.md文件博客上传</h1><p>可以直接在blog目录下，执行以下指令生成.md，再进行对该.md进行完善内容。</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haxe">hexo <span class="hljs-keyword">new</span> <span class="hljs-type"></span>“我的博客”<br></code></pre></td></tr></table></figure>
+
+<p>这时候就生成在blog\source \ _posts</p>
+<p><font color='red'>注意:所有的文章都在blog\source \ _posts</font></p>
+<p>在.md文件里面加入</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs subunit">title: Hello World <br>date: 2021<span class="hljs-string">-01</span><span class="hljs-string">-01</span> 15:30:03<br><span class="hljs-keyword">tags:</span> Hello World <br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="宠物插件"><a href="#宠物插件" class="headerlink" title="宠物插件"></a>宠物插件</h1><blockquote>
+<p>npm install –save hexo-helper-live2d<br>或<br>cnpm install –save hexo-helper-live2d</p>
+<p>1、cnpm install –save hexo-helper-live2d<br>2、<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/hexo-helper-live2d">live2d插件</a><br>3、安装合适的宠物cnpm install live2d-widget-model-chitose<br>4、在博客_config.yml配置文件中（不是themes里的）添加即可</p>
+</blockquote>
+<p>本地博客创建完成了！</p>
+<p>我们要上传到github</p>
+<h1 id="五、创建github仓库"><a href="#五、创建github仓库" class="headerlink" title="五、创建github仓库"></a>五、创建github仓库</h1><p>看图操作</p>
+<p><img src="https://s2.loli.net/2022/05/17/IC6nPfMVSwGhOKN.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220517195637868"></p>
+<p><img src="https://s2.loli.net/2022/05/17/GzIdBVYilhy5O1H.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220517195744205"></p>
+<p>创建ok后进入账号设置</p>
+<p><img src="/Hexo/../AppData/Roaming/Typora/typora-user-images/image-20220517195902871.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220517195902871"></p>
+<p>设置密钥</p>
+<p><img src="/Hexo/../AppData/Roaming/Typora/typora-user-images/image-20220517195953685.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220517195953685"></p>
+<p>创建新的密钥</p>
+<p><img src="/Hexo/../AppData/Roaming/Typora/typora-user-images/image-20220517200051582.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220517200051582"></p>
+<p>找到本地C:\Users\admin \ .ssh\id_rsa.pub上的密钥复制过去</p>
+<h1 id="提交搭建的博客到Github上，正式完成！"><a href="#提交搭建的博客到Github上，正式完成！" class="headerlink" title="提交搭建的博客到Github上，正式完成！"></a>提交搭建的博客到Github上，正式完成！</h1><p>在blog \ _ config.yml</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">deploy:</span><br><span class="hljs-symbol">type:</span> github<br><span class="hljs-symbol">repo:</span><br><span class="hljs-symbol">branch:</span> master<br><span class="hljs-symbol">live2d:</span> https:<span class="hljs-comment">//1902756969.github.io/Hexo/</span><br><span class="hljs-symbol">enable:</span> true<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>安装git上传助手（如果有git设置过有帐号密码，就去先对git进行操作）</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">npm <span class="hljs-keyword">install</span> hexo-deployer-git –save<br></code></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">cnpm <span class="hljs-keyword">install</span> hexo-deployer-git –save<br></code></pre></td></tr></table></figure>
+
+<p>完成后，输入</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">hexo d</span><br></code></pre></td></tr></table></figure>
+
+
+</blockquote>
+<blockquote>
+<p>git的操作<br>查看配置信息：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">$ git config –list<br></code></pre></td></tr></table></figure>
+
+<p>修改用户名</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">git config –<span class="hljs-keyword">global</span> <span class="hljs-keyword">user</span>.name “xxxx(新的用户名)”<br></code></pre></td></tr></table></figure>
+
+<p>修改密码</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">git config –<span class="hljs-keyword">global</span> <span class="hljs-keyword">user</span>.<span class="hljs-keyword">password</span> “xxxx(新的密码)”<br></code></pre></td></tr></table></figure>
+
+<p>修改邮箱</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-selector-tag">git</span> <span class="hljs-selector-tag">config</span> –<span class="hljs-selector-tag">global</span> <span class="hljs-selector-tag">user</span><span class="hljs-selector-class">.email</span> “<span class="hljs-selector-attr">[xxxx@xxx.com]</span>(<span class="hljs-attribute">mailto</span>:xxxx<span class="hljs-variable">@xxx</span>.com)(新的邮箱)”<br></code></pre></td></tr></table></figure>
+
+<p>清除掉缓存在git中的用户名和密码</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">git credential-manager uninstall</span><br></code></pre></td></tr></table></figure>
+
+</blockquote>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Hexo+Github搭建博客</div>
+      <div>https://1902756969.github.io/Hexo/2021/03/23/Hexo+github/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>星</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年3月23日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Hexo/2021/03/26/%E9%9B%86%E5%90%8802/" title="Set集合">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Set集合</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Hexo/2021/03/23/%E9%9B%86%E5%90%8801/" title="Collection集合">
+                        <span class="hidden-mobile">Collection集合</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/Hexo/js/events.js" ></script>
+<script  src="/Hexo/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  
+    <script  src="/Hexo/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/Hexo/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/Hexo/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/Hexo/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
