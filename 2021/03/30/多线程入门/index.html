@@ -16,22 +16,23 @@
   <meta name="author" content="星">
   <meta name="keywords" content="">
   
-    <meta name="description" content="java基础: 并发编程的10个坑  没有对象的情人节  咩系方法?  咩系方法?  Collection集合  Set集合  Map集合  String常用方法  网络编程_2  网络编程01  字符流  File类  异常处理  ArrayList理解  多线程: 多线程01 多线程02  多线程思“锁” 深入浅出java多线程  java进阶 图文并茂：HashMap经典详解 javaweb">
+    <meta name="description" content="一、What’s 多线程？🐱‍💻 程序执行过程中能执行程序代码的一个执行单元。 1.进程与线程的不同：  进程是正在执行的程序。线程是程序执行的最小单元。进程可以包含多个线程，各线程间共享内存空间(代码段、数据段、堆空间),但是各个线程有自己的堆空间.  ​    他们两个本质的区别是**是否单独占有内存地址空间及其它系统资源（比如I&#x2F;O） ​    进程是操作系统进行资源分配的基本">
 <meta property="og:type" content="article">
-<meta property="og:title" content="目录">
-<meta property="og:url" content="https://1902756969.github.io/Hexo/2028/12/12/%E7%9B%AE%E5%BD%95/index.html">
+<meta property="og:title" content="多线程入门">
+<meta property="og:url" content="https://1902756969.github.io/Hexo/2021/03/30/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%85%A5%E9%97%A8/index.html">
 <meta property="og:site_name" content="阿星的博客">
-<meta property="og:description" content="java基础: 并发编程的10个坑  没有对象的情人节  咩系方法?  咩系方法?  Collection集合  Set集合  Map集合  String常用方法  网络编程_2  网络编程01  字符流  File类  异常处理  ArrayList理解  多线程: 多线程01 多线程02  多线程思“锁” 深入浅出java多线程  java进阶 图文并茂：HashMap经典详解 javaweb">
+<meta property="og:description" content="一、What’s 多线程？🐱‍💻 程序执行过程中能执行程序代码的一个执行单元。 1.进程与线程的不同：  进程是正在执行的程序。线程是程序执行的最小单元。进程可以包含多个线程，各线程间共享内存空间(代码段、数据段、堆空间),但是各个线程有自己的堆空间.  ​    他们两个本质的区别是**是否单独占有内存地址空间及其它系统资源（比如I&#x2F;O） ​    进程是操作系统进行资源分配的基本">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.loli.net/2022/04/21/XUHxOvRc1kdZ46N.png">
-<meta property="article:published_time" content="2028-12-12T11:36:05.000Z">
-<meta property="article:modified_time" content="2022-10-25T14:13:46.186Z">
+<meta property="article:published_time" content="2021-03-30T10:29:54.000Z">
+<meta property="article:modified_time" content="2022-10-31T04:27:50.307Z">
 <meta property="article:author" content="星">
+<meta property="article:tag" content="多线程">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://s2.loli.net/2022/04/21/XUHxOvRc1kdZ46N.png">
   
   
-  <title>目录 - 阿星的博客</title>
+  <title>多线程入门 - 阿星的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -206,7 +207,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="目录"></span>
+            <span id="subtitle" data-typed-text="多线程入门"></span>
           
         </div>
 
@@ -222,8 +223,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2028-12-12 19:36" pubdate>
-          2028年12月12日 晚上
+        <time datetime="2021-03-30 18:29" pubdate>
+          2021年3月30日 晚上
         </time>
       </span>
     
@@ -234,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          666 字
+          3.3k 字
         
       </span>
     
@@ -245,7 +246,7 @@
         
         
         
-          6 分钟
+          28 分钟
         
       </span>
     
@@ -291,77 +292,294 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">目录</h1>
+            <h1 style="display: none">多线程入门</h1>
             
             <div class="markdown-body">
               
-              <p>java基础:</p>
-<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/2A4TCCes7HjMtJ2NB-QGSA">并发编程的10个坑 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2021/02/14/%E6%B2%A1%E6%9C%89%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%83%85%E4%BA%BA%E8%8A%82%EF%BC%8C%E5%8F%AA%E8%83%BDnew%E4%B8%80%E4%B8%AA/">没有对象的情人节 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2021/03/21/%E6%96%B9%E6%B3%95/">咩系方法? </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2021/03/21/%E6%96%B9%E6%B3%95/">咩系方法? </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2021/03/23/%E9%9B%86%E5%90%8801/">Collection集合 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2021/03/26/%E9%9B%86%E5%90%8802/">Set集合 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2021/03/28/%E9%9B%86%E5%90%8803/">Map集合 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2022/09/01/String%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/">String常用方法 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2021/04/08/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B02/">网络编程_2 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2021/04/06/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B01/">网络编程01 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2021/03/29/IO%E6%B5%8102/">字符流 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2021/03/29/IO%E6%B5%8101/">File类 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2022/09/01/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%8601/">异常处理 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2022/09/12/ArrayList%E7%9A%84%E7%90%86%E8%A7%A3/">ArrayList理解 </a></p>
-<p>多线程:</p>
-<p><a href="https://1902756969.github.io/Hexo/2021/03/30/%E5%A4%9A%E7%BA%BF%E7%A8%8B01/">多线程01</a></p>
-<p><a href="https://1902756969.github.io/Hexo/2021/03/30/%E5%A4%9A%E7%BA%BF%E7%A8%8B02/">多线程02 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2021/03/30/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%AA%E4%BA%BA%E7%90%86%E8%A7%A3/">多线程思“锁”</a></p>
-<p><a href="https://1902756969.github.io/Hexo/2021/05/15/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAjava%E5%A4%9A%E7%BA%BF%E7%A8%8B/">深入浅出java多线程 </a></p>
-<p>java进阶</p>
-<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/W3kazFpsdmdT5v_SqX8UKg">图文并茂：HashMap经典详解</a></p>
-<p>javaweb:</p>
-<p><a href="https://1902756969.github.io/Hexo/2021/05/15/Tomcat%E5%90%AF%E5%8A%A8%E4%B8%8E%E9%9B%86%E6%88%90/">Tomcat启动与idea工具集成 </a></p>
-<p>git</p>
-<p><a href="https://1902756969.github.io/Hexo/2021/11/21/Git(%E5%88%86%E5%B8%83%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E5%B7%A5%E5%85%B7">Git(分布式版本控制工具) -gitee上传代码 </a> -idea上传代码&#x2F;)</p>
-<p><a href="https://1902756969.github.io/Hexo/2021/11/21/Git%E5%9F%BA%E6%9C%AC%E8%AE%B2%E4%B9%89/">Git基本讲义 </a></p>
-<p>maven</p>
-<p><a href="https://1902756969.github.io/Hexo/2022/01/23/Maven%E9%AB%98%E7%BA%A7/">Maven高级 </a></p>
-<p>mybatis</p>
-<p><a href="https://1902756969.github.io/Hexo/2021/12/23/Mybatis%E5%85%A5%E9%97%A8/">Mybatis入门 </a></p>
-<p>spring</p>
-<p><a href="https://1902756969.github.io/Hexo/2021/12/01/Spring%E5%85%A5%E9%97%A8/">Spring入门 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2021/12/18/Spring%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/">Spring的自动装配 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2021/12/12/Spring%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/">Spring使用注解开发 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2022/04/11/SpringBoot%E9%AB%98%E7%BA%A7/">SpringBoot高级 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2022/05/12/Tomcat%E9%9D%A2%E8%AF%95%E9%A2%98/">Tomcat面试题 专题部分 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2022/05/12/spring%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B8%93%E9%A2%98/">Spring面试题 专题部分 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2022/02/10/Springboot%E5%9F%BA%E7%A1%80%E8%AE%B2%E4%B9%89/">Springboot基础讲义 </a></p>
-<p>zookeeper</p>
-<p><a href="https://1902756969.github.io/Hexo/2022/01/23/Zookeeper%E5%AE%89%E8%A3%85/">zookeeper安装 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2022/01/28/zookeeper%E8%AE%B2%E4%B9%89md/">zookeeper讲义 </a></p>
-<p>dobbo</p>
-<p><a href="https://1902756969.github.io/Hexo/2022/01/25/Dubbo/">double快速入门-高级特性 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2022/01/23/Dubbo-admin%E5%85%83%E6%95%B0%E6%8D%AE%E6%98%BE%E7%A4%BA%E4%BF%AE%E5%A4%8D/">double-admin元数据显示修复 </a></p>
-<p>linux</p>
-<p><a href="https://1902756969.github.io/Hexo/2022/02/14/SSH%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0linux%E7%B3%BB%E7%BB%9F/">SSH连接本地linux系统 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2022/02/20/linux%E8%99%9A%E6%8B%9F%E6%9C%BAredis%E8%BF%9E%E6%8E%A5%E6%8A%A5%E9%94%99/">linux虚拟机redis连接报错 </a></p>
-<p>redis</p>
-<p><a href="https://1902756969.github.io/Hexo/2022/02/20/Redis%E5%9F%BA%E7%A1%80/">Redis基础 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2022/04/09/Redis%E9%AB%98%E7%BA%A7/">Redis高级 </a></p>
-<p>docker</p>
-<p><a href="https://1902756969.github.io/Hexo/2022/04/19/%E5%AE%89%E8%A3%85docker/">Docker安装 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2022/04/20/docker/">Docker架构 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2022/04/21/docker-compose/">Docker Compose </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2022/04/20/docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2/">Docker应用部署 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2022/04/20/dockerfile/">Dockerfile关键字 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2022/04/21/docker%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93/">Docker 私有仓库搭建 </a></p>
-<p>springcloud</p>
-<p><a href="https://1902756969.github.io/Hexo/2022/03/01/SpringCloud01/">SpringCloud入门 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2022/03/02/Nacos%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97/">Nacos安装使用指南 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2022/03/03/nacos%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/">Nacos集群搭建教程 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2022/05/03/springcloud%E7%BB%84%E4%BB%B6/">SpringCloud—组件① </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2022/05/02/Eureka%E5%85%A8%E9%83%A8%E9%85%8D%E7%BD%AE/">Euraka配置详解</a></p>
-<p><a href="https://1902756969.github.io/Hexo/2022/05/02/Turbine%E6%90%AD%E5%BB%BA%E6%AD%A5%E9%AA%A4/">Turbine聚合监控 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2022/05/01/gateway%E5%86%85%E7%BD%AE%E8%BF%87%E6%BB%A4%E5%99%A8%E5%B7%A5%E5%8E%82/">Spring Cloud Gateway 内置的过滤器工厂 </a></p>
-<p><a href="https://1902756969.github.io/Hexo/2022/03/03/SpringCloud%E5%AE%9E%E7%94%A8%E7%AF%8702/">SpringCloud——高级① </a></p>
+              <h1 id="一、What’s-多线程？"><a href="#一、What’s-多线程？" class="headerlink" title="一、What’s 多线程？"></a>一、What’s 多线程？</h1><p>🐱‍💻 程序执行过程中能执行程序代码的一个<font color='red'>执行单元</font>。</p>
+<h2 id="1-进程与线程的不同："><a href="#1-进程与线程的不同：" class="headerlink" title="1.进程与线程的不同："></a>1.进程与线程的不同：</h2><pre><code class="hljs">  进程是正在执行的程序。线程是程序执行的最小单元。进程可以包含多个线程，各线程间共享内存空间(代码段、数据段、堆空间),但是各个线程有自己的堆空间.
+</code></pre>
+<p>​    <font color='red'>他们两个本质的区别是**是否单独占有内存地址空间及其它系统资源（比如I&#x2F;O）</font></p>
+<p>​    <font color='red'><strong>进程是操作系统进行资源分配的基本单位，而线程是操作系统进行调度的基本单位</strong>，即CPU分配时间的单位 。</font></p>
+<img src="https://pic1.imgdb.cn/item/623e9bf927f86abb2aee74ea.jpg" srcset="/Hexo/img/loading.gif" lazyload style="zoom: 33%;" />
+
+<h3 id="1-1-多进程的方式也可以实现并发，为什么我们要使用多线程？"><a href="#1-1-多进程的方式也可以实现并发，为什么我们要使用多线程？" class="headerlink" title="1.1 多进程的方式也可以实现并发，为什么我们要使用多线程？"></a>1.1 多进程的方式也可以实现并发，为什么我们要使用多线程？</h3><p>多进程方式确实可以实现并发，但使用多线程，有以下几个好处：</p>
+<p>- </p>
+<p>  进程间的通信比较复杂，而线程间的通信比较简单，通常情况下，我们需要使用共享资源，这些资源在线程间的通信比较容易。</p>
+<p>- </p>
+<p>  进程是<font color='red'>重量级</font>的，而线程是<font color='red'>轻量级</font>的，故多线程方式的系统开销更小。</p>
+<h3 id="1-2-上下文切换"><a href="#1-2-上下文切换" class="headerlink" title="1.2 上下文切换"></a>1.2 上下文切换</h3><p>  上下文切换（有时也称做进程切换或任务切换）是指 CPU 从一个进程（或线程）切换到另一个进程（或线程）。上下文是指<strong>某一时间点 CPU 寄存器和程序计数器的内容。</strong></p>
+<blockquote>
+<p>寄存器是cpu内部的少量的速度很快的闪存，通常存储和访问计算过程的中间值提高计算机程序的运行速度。</p>
+<p>程序计数器是一个专用的寄存器，用于表明指令序列中 CPU 正在执行的位置，存的值为正在执行的指令的位置或者下一个将要被执行的指令的位置，具体实现依赖于特定的系统。</p>
+<p>举例说明 线程A - B</p>
+<p>1.先挂起线程A，将其在cpu中的状态保存在内存中。</p>
+<p>2.在内存中检索下一个线程B的上下文并将其在 CPU 的寄存器中恢复,执行B线程。</p>
+<p>3.当B执行完，根据程序计数器中指向的位置恢复线程A。</p>
+</blockquote>
+<p>  CPU通过为每个线程分配CPU时间片来实现多线程机制。CPU通过时间片分配算法来循环执行任务，当前任务执行一个时间片后会切换到下一个任务。</p>
+<p>  但是，在切换前会保存上一个任务的状态，以便下次切换回这个任务时，可以再加载这个任务的状态。所以任务从保存到再加载的过程就是一次上下文切换。</p>
+<p>  上下文切换通常是计算密集型的，意味着此操作会<strong>消耗大量的 CPU 时间，故线程也不是越多越好</strong>。<font color='cornflowerblue'>如何减少系统中上下文切换次数，是提升多线程性能的一个重点课题。</font></p>
+<h1 id="2-我们是如何使用多线程的呢？"><a href="#2-我们是如何使用多线程的呢？" class="headerlink" title="2.我们是如何使用多线程的呢？"></a>2.我们是如何使用多线程的呢？</h1><p>(1)继承<code>Thread</code>类，并重写<code>run</code>方法；</p>
+<ul>
+<li><p>方法介绍</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void run()</td>
+<td>在线程开启后，此方法将被调用执行</td>
+</tr>
+<tr>
+<td>void start()</td>
+<td>使此线程开始执行，Java虚拟机会调用run方法()</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>实现步骤</p>
+<ul>
+<li>定义一个类MyThread继承Thread类</li>
+<li>在MyThread类中重写run()方法</li>
+<li>创建MyThread类的对象</li>
+<li>启动线程</li>
+<li></li>
+</ul>
+<h5 id="疑问"><a href="#疑问" class="headerlink" title="疑问??"></a>疑问??</h5><h5 id="为什么要重写run-方法？"><a href="#为什么要重写run-方法？" class="headerlink" title="为什么要重写run()方法？"></a><font color='red'>为什么要重写run()方法？</font></h5><p>因为run()是用来封装被线程执行的代码</p>
+<h5 id="run-方法和start-方法的区别？"><a href="#run-方法和start-方法的区别？" class="headerlink" title="run()方法和start()方法的区别？"></a><font color='red'>run()方法和start()方法的区别？</font></h5><p>run()：封装线程的执行体，直接调用，方法体是线层需要完成的任务</p>
+<p>start()：启动线程；然后由JVM调用此线程的run()方法。</p>
+</li>
+</ul>
+<p>(2)实现<code>Runnable</code>接口的<code>run</code>方法；</p>
+<ul>
+<li><p>Thread构造方法</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Thread(Runnable target)</td>
+<td>分配一个新的Thread对象</td>
+</tr>
+<tr>
+<td>Thread(Runnable target, String name)</td>
+<td>分配一个新的Thread对象</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>实现步骤</p>
+<ul>
+<li>定义一个类MyRunnable实现Runnable接口</li>
+<li>在MyRunnable类中<font color='red'>重写run()方法</font></li>
+<li>创建MyRunnable类的对象</li>
+<li>创建Thread类的对象，把MyRunnable对象作为构造方法的参数</li>
+<li>启动线程</li>
+</ul>
+<p>(3)实现<font color='red'>Callable接口</font></p>
+<ul>
+<li><p>方法介绍</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>V call()</td>
+<td>计算结果，如果无法计算结果，则抛出一个异常</td>
+</tr>
+<tr>
+<td>FutureTask(Callable<V> callable)</td>
+<td>创建一个 FutureTask，一旦运行就执行给定的 Callable</td>
+</tr>
+<tr>
+<td>V get()</td>
+<td>如有必要，等待计算完成，然后获取其结果</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>实现步骤</p>
+<ul>
+<li>定义一个类MyCallable实现Callable接口</li>
+<li>在MyCallable类中<font color='red'>重写call()方法</font></li>
+<li>创建MyCallable类的对象</li>
+<li>创建Future的实现类FutureTask对象，把MyCallable对象作为构造方法的参数</li>
+<li>创建Thread类的对象，把FutureTask对象作为构造方法的参数</li>
+<li>启动线程</li>
+<li>再调用get方法，就可以获取线程结束之后的结果。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>三种实现方式的对比</p>
+<ul>
+<li><p>实现Runnable、Callable接口</p>
+<ul>
+<li><p>好处: <font color='orange'>扩展性强</font>，实现该接口的同时还可以继承其他的类</p>
+</li>
+<li><p>缺点: 编程相对复杂，<font color='green'>不能直接使用Thread类中的方法</font></p>
+</li>
+</ul>
+</li>
+<li><p>继承Thread类</p>
+<ul>
+<li><p>好处: <font color='orange'>编程比较简单</font>，<font color='green'>可以直接使用Thread类中的方法</font></p>
+</li>
+<li><p>缺点: 可以扩展性较差，不能再继承其他的类</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>实现接口会更好一些，因为:</p>
+<ul>
+<li>Java 不支持多重继承，因此继承了 Thread 类就无法继承其它类，但是可以实现多个接口；</li>
+<li>类可能只要求可执行就行，继承整个 Thread 类<font color='cornflowerblue'>开销过大</font>。</li>
+</ul>
+<h1 id="3、set和get线程名称"><a href="#3、set和get线程名称" class="headerlink" title="3、set和get线程名称"></a>3、set和get线程名称</h1><table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void  setName(String name)</td>
+<td>将此线程的名称更改为等于参数name</td>
+</tr>
+<tr>
+<td>String  getName()</td>
+<td>返回此线程的名称</td>
+</tr>
+<tr>
+<td>Thread  currentThread()</td>
+<td>返回对当前正在执行的线程对象的引用</td>
+</tr>
+</tbody></table>
+<h1 id="4、休眠"><a href="#4、休眠" class="headerlink" title="4、休眠"></a>4、休眠</h1><h2 id="sleep"><a href="#sleep" class="headerlink" title="sleep()"></a>sleep()</h2><table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>static void sleep(long millis)</td>
+<td>使当前正在执行的线程停留（暂停执行）指定的毫秒数</td>
+</tr>
+</tbody></table>
+<h3 id="yield"><a href="#yield" class="headerlink" title="yield()"></a>yield()</h3><p>对静态方法 Thread.yield() 的调用声明了当前线程已经完成了生命周期中最重要的部分，可以切换给其它线程来执行。该方法只是对线程调度器的一个建议，而且也只是建议具有相同优先级的其它线程可以运行。</p>
+<h1 id="5、优先级"><a href="#5、优先级" class="headerlink" title="5、优先级"></a>5、优先级</h1><p>Java使用<font color='red'>抢占式</font>调度模型：优先让优先级高的线程使用 CPU，如果线程的优先级相同，那么会随机选择一个，优先级高的线程获取的 CPU 时间片相对多一些</p>
+<p>随机性</p>
+<p>假如计算机只有一个 CPU，那么 CPU 在某一个时刻只能执行一条指令，线程只有得到CPU时间片，也就是使用权，才可以执行指令。所以说多线程程序的执行是有随机性，因为谁抢到CPU的使用权是不一定的</p>
+<p>优先级相关方法</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>final int getPriority()</td>
+<td>返回此线程的优先级</td>
+</tr>
+<tr>
+<td>final void setPriority(int newPriority)</td>
+<td>更改此线程的优先级线程默认优先级是5；线程优先级的范围是：1-10</td>
+</tr>
+</tbody></table>
+<h1 id="6、setDaemon"><a href="#6、setDaemon" class="headerlink" title="6、setDaemon()"></a>6、setDaemon()</h1><p>相关方法</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void setDaemon(boolean on)</td>
+<td>将此线程标记为守护线程，当运行的线程都是守护线程时，Java虚拟机将退出</td>
+</tr>
+</tbody></table>
+<h1 id="7、同步代码块"><a href="#7、同步代码块" class="headerlink" title="7、同步代码块"></a>7、同步代码块</h1><p>同步代码块格式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">synchronized</span>(任意对象) &#123; <br>	多条语句操作共享数据的代码 <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>synchronized(任意对象)：就相当于给代码加锁了，任意对象就可以看成是一把锁</p>
+<p>同步的好处和弊端  </p>
+<ul>
+<li><p>好处：解决了多线程的<font color='orange'>数据安全问题</font></p>
+</li>
+<li><p>弊端：当线程很多时，因为每个线程都会去判断同步上的锁，这是很耗费资源的，无形中会降低程序的运行效率，使用不当甚至导致<font color='red'>死锁</font></p>
+</li>
+</ul>
+<h1 id="8、同步方法"><a href="#8、同步方法" class="headerlink" title="8、同步方法"></a>8、同步方法</h1><ul>
+<li><p>同步方法：就是把synchronized关键字加到方法上</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">修饰符 <span class="hljs-keyword">synchronized</span> 返回值类型 方法名(方法参数) &#123; <br>	方法体；<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>同步方法的锁对象是什么呢?</p>
+<pre><code class="hljs">this
+</code></pre>
+</li>
+<li><p>静态同步方法</p>
+<p>同步静态方法：就是把synchronized关键字加到静态方法上</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">修饰符 <span class="hljs-keyword">static</span> <span class="hljs-keyword">synchronized</span> 返回值类型 方法名(方法参数) &#123; <br>	方法体；<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>同步静态方法的锁对象是什么呢?</p>
+<pre><code class="hljs">类名.class
+</code></pre>
+<p>​    </p>
+<h1 id="9、Lock锁"><a href="#9、Lock锁" class="headerlink" title="9、Lock锁"></a>9、Lock锁</h1></li>
+</ul>
+<p>JDK5以后提供了一个新的锁对象Lock</p>
+<p>Lock是接口不能直接实例化，需要用它的实现类ReentrantLock来实例化</p>
+<p>ReentrantLock构造方法</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ReentrantLock()</td>
+<td align="center">创建一个ReentrantLock的实例</td>
+</tr>
+</tbody></table>
+<p> 加锁解锁方法</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">void lock()</td>
+<td align="center">获得锁</td>
+</tr>
+<tr>
+<td align="center">void unlock()</td>
+<td align="center">释放锁</td>
+</tr>
+</tbody></table>
+<h1 id="10、死锁"><a href="#10、死锁" class="headerlink" title="10、死锁"></a>10、死锁</h1><ul>
+<li><p>线程死锁是指由于两个或者多个线程互相持有对方所需要的资源，导致这些线程处于<font color='orange'>等待状态</font>，无法前往执行</p>
+</li>
+<li><p>什么情况下会产生死锁</p>
+<ol>
+<li>资源有限</li>
+<li>同步嵌套</li>
+</ol>
+</li>
+</ul>
 
               
             </div>
@@ -369,6 +587,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/Hexo/categories/%E5%A4%9A%E7%BA%BF%E7%A8%8B%F0%9F%A4%B7%E2%80%8D%E2%99%82%EF%B8%8F/" class="category-chain-item">多线程🤷‍♂️</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/Hexo/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">#多线程</a>
+      
+    </div>
   
 </div>
 
@@ -378,8 +624,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>目录</div>
-      <div>https://1902756969.github.io/Hexo/2028/12/12/目录/</div>
+      <div>多线程入门</div>
+      <div>https://1902756969.github.io/Hexo/2021/03/30/多线程入门/</div>
     </div>
     <div class="license-meta">
       
@@ -391,7 +637,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2028年12月12日</div>
+          <div>2021年3月30日</div>
         </div>
       
       
@@ -421,12 +667,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/Hexo/2021/03/30/%E5%A4%9A%E7%BA%BF%E7%A8%8B01/" title="多线程01">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">多线程01</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/Hexo/2022/11/02/Aria(%E7%99%BE%E5%BA%A6%E4%BA%91)%E4%B8%8D%E9%99%90%E9%80%9F/" title="百度云不限速">
-                        <span class="hidden-mobile">百度云不限速</span>
+                      <a href="/Hexo/2021/03/30/%E5%A4%9A%E7%BA%BF%E7%A8%8B02/" title="多线程02">
+                        <span class="hidden-mobile">多线程02</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
