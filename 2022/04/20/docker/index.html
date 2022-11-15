@@ -430,7 +430,7 @@
 </ol>
 <p><strong>案例：实现步骤</strong></p>
 <p>①定义父镜像：FROM centos:7</p>
-<p>②定义作者信息：MAINTAINER  itheima <a href="mailto:&#105;&#116;&#104;&#101;&#x69;&#109;&#97;&#x40;&#105;&#116;&#x63;&#97;&#115;&#x74;&#x2e;&#x63;&#x6e;">&#105;&#116;&#104;&#101;&#x69;&#109;&#97;&#x40;&#105;&#116;&#x63;&#97;&#115;&#x74;&#x2e;&#x63;&#x6e;</a></p>
+<p>②定义作者信息：MAINTAINER  itheima <a href="mailto:&#x69;&#x74;&#104;&#101;&#105;&#109;&#97;&#64;&#105;&#116;&#99;&#97;&#115;&#116;&#46;&#x63;&#110;">&#x69;&#x74;&#104;&#101;&#105;&#109;&#97;&#64;&#105;&#116;&#99;&#97;&#115;&#116;&#46;&#x63;&#110;</a></p>
 <p>③执行安装vim命令： RUN yum install -y vim</p>
 <p>④定义默认的工作目录：WORKDIR &#x2F;usr</p>
 <p>⑤定义容器启动执行的命令：CMD &#x2F;bin&#x2F;bash</p>
@@ -440,7 +440,7 @@
 <p>定义dockerfile，发布springboot项目</p>
 <p><strong>案例：实现步骤</strong></p>
 <p>①定义父镜像：FROM java:8</p>
-<p>②定义作者信息：MAINTAINER  itheima <a href="mailto:&#x69;&#x74;&#x68;&#101;&#105;&#x6d;&#97;&#64;&#105;&#x74;&#x63;&#97;&#x73;&#x74;&#x2e;&#x63;&#x6e;">&#x69;&#x74;&#x68;&#101;&#105;&#x6d;&#97;&#64;&#105;&#x74;&#x63;&#97;&#x73;&#x74;&#x2e;&#x63;&#x6e;</a></p>
+<p>②定义作者信息：MAINTAINER  itheima <a href="mailto:&#105;&#x74;&#x68;&#101;&#x69;&#x6d;&#x61;&#64;&#105;&#x74;&#x63;&#x61;&#115;&#x74;&#x2e;&#x63;&#110;">&#105;&#x74;&#x68;&#101;&#x69;&#x6d;&#x61;&#64;&#105;&#x74;&#x63;&#x61;&#115;&#x74;&#x2e;&#x63;&#110;</a></p>
 <p>③将jar包添加到容器： ADD springboot.jar<font color='red'> app.jar</font></p>
 <p>④定义容器启动执行的命令：CMD java–jar <font color='red'>app.jar</font></p>
 <p>⑤通过dockerfile构建镜像：docker build –f dockerfile文件路径 –t 镜像名称:版本</p>
@@ -542,9 +542,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/Hexo/2022/04/21/docker%20%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93/" title="Docker 私有仓库搭建">
+                      <a href="/Hexo/2022/04/20/docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2/" title="Docker应用部署">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Docker 私有仓库搭建</span>
+                        <span class="hidden-mobile">Docker应用部署</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -552,8 +552,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/Hexo/2022/04/20/docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2/" title="Docker应用部署">
-                        <span class="hidden-mobile">Docker应用部署</span>
+                      <a href="/Hexo/2022/04/19/%E5%AE%89%E8%A3%85docker/" title="Docker安装">
+                        <span class="hidden-mobile">Docker安装</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

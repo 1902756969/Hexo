@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic.imgdb.cn/item/623e9bfa27f86abb2aee7d5e.png">
 <meta property="article:published_time" content="2022-11-30T10:29:54.000Z">
-<meta property="article:modified_time" content="2022-11-15T15:08:00.556Z">
+<meta property="article:modified_time" content="2022-11-15T15:24:19.300Z">
 <meta property="article:author" content="星">
 <meta property="article:tag" content="多线程">
 <meta name="twitter:card" content="summary_large_image">
@@ -387,7 +387,7 @@
 <p><font color='orange'>1)取得原有i值  </font><br><font color='orange'>2)计算 i-1。 </font></p>
 <p><font color='orange'>3)对进行赋值</font></p>
 <p>在这3个步骤中，如果有多个线程同时访问，那么一定会出现非线程安全问题</p>
-<h3 id="1-3-currentThread-方法"><a href="#1-3-currentThread-方法" class="headerlink" title="1.3  currentThread()方法"></a>1.3  currentThread()方法</h3><ul>
+<h2 id="1-3-currentThread-方法"><a href="#1-3-currentThread-方法" class="headerlink" title="1.3  currentThread()方法"></a>1.3  currentThread()方法</h2><ul>
 <li><p>方法介绍</p>
 <table>
 <thead>
@@ -417,12 +417,12 @@
 <li><p>代码演示</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyThread</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Thread</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">MyThread</span><span class="hljs-params">()</span> &#123;&#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">MyThread</span><span class="hljs-params">(String name)</span> &#123;<br>        <span class="hljs-built_in">super</span>(name);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100</span>; i++) &#123;<br>            System.out.println(getName()+<span class="hljs-string">&quot;:&quot;</span>+i);<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyThreadDemo</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">MyThread</span> <span class="hljs-variable">my1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyThread</span>();<br>        <span class="hljs-type">MyThread</span> <span class="hljs-variable">my2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyThread</span>();<br><br>        <span class="hljs-comment">//void setName(String name)：将此线程的名称更改为等于参数 name</span><br>        my1.setName(<span class="hljs-string">&quot;高铁&quot;</span>);<br>        my2.setName(<span class="hljs-string">&quot;飞机&quot;</span>);<br><br>        <span class="hljs-comment">//Thread(String name)</span><br>        <span class="hljs-type">MyThread</span> <span class="hljs-variable">my1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyThread</span>(<span class="hljs-string">&quot;高铁&quot;</span>);<br>        <span class="hljs-type">MyThread</span> <span class="hljs-variable">my2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyThread</span>(<span class="hljs-string">&quot;飞机&quot;</span>);<br><br>        my1.start();<br>        my2.start();<br><br>        <span class="hljs-comment">//static Thread currentThread() 返回对当前正在执行的线程对象的引用</span><br>        System.out.println(Thread.currentThread().getName());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ul>
-<h3 id="1-4-isAlive-方法"><a href="#1-4-isAlive-方法" class="headerlink" title="1.4 isAlive()方法"></a>1.4 isAlive()方法</h3><p>方法isAlive0)的功能是判断当前的线程是否处于活动状态新建项目t7，类文件代码如下</p>
+<h2 id="1-4-isAlive-方法"><a href="#1-4-isAlive-方法" class="headerlink" title="1.4 isAlive()方法"></a>1.4 isAlive()方法</h2><p>方法isAlive0)的功能是判断当前的线程是否处于活动状态新建项目t7，类文件代码如下</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">t7</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">MyThread</span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;run&quot;</span>+<span class="hljs-built_in">this</span>.isAlive());<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">t7</span> <span class="hljs-variable">myThread</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">t7</span>();<br>        System.out.println(<span class="hljs-string">&quot;begin==&quot;</span>+myThread.isAlive());<br>        myThread.start();<br>        System.out.println(<span class="hljs-string">&quot;end==&quot;</span>+ myThread.isAlive());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <img src="https://pic1.imgdb.cn/item/6370ff3c16f2c2beb15200a3.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20221113222628698" style="zoom: 67%;" />
 
-<h3 id="1-5-线程休眠"><a href="#1-5-线程休眠" class="headerlink" title="1.5 线程休眠"></a>1.5 线程休眠</h3><ul>
+<h2 id="1-5-线程休眠"><a href="#1-5-线程休眠" class="headerlink" title="1.5 线程休眠"></a>1.5 线程休眠</h2><ul>
 <li><table>
 <thead>
 <tr>
@@ -437,11 +437,11 @@
 </ul>
 </li>
 </ul>
-<h3 id="1-6-getId-方法"><a href="#1-6-getId-方法" class="headerlink" title="1.6 getId()方法"></a>1.6 getId()方法</h3><p>getId0方法的作用是取得线程的唯一标识。创建测试用的项目runThread，创建Test,java类，代码</p>
+<h2 id="1-6-getId-方法"><a href="#1-6-getId-方法" class="headerlink" title="1.6 getId()方法"></a>1.6 getId()方法</h2><p>getId0方法的作用是取得线程的唯一标识。创建测试用的项目runThread，创建Test,java类，代码</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>       Thread run=Thread.currentThread();<br>       <span class="hljs-type">Thread</span> <span class="hljs-variable">runThread</span> <span class="hljs-operator">=</span> Thread.currentThread();System.out.println(runThread.getName() +<span class="hljs-string">&quot;     &quot;</span>+runThread.getId());<br>   &#125;<br></code></pre></td></tr></table></figure>
 
 <p><img src="https://pic1.imgdb.cn/item/6371033916f2c2beb158c18d.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20221113224329016"></p>
-<h3 id="1-7-线程停止"><a href="#1-7-线程停止" class="headerlink" title="1.7  线程停止"></a>1.7  线程停止</h3><p>大多数停止个线程的操作使用Thread.interrupt0方法，尽管方法的名称是“停止，中止”的意思，但这个方法不会终止一个正在运行的线程，还需要加人一个判断才可以完成线程的停止。关于此知识点在后面有专门的章节进行介绍。<br>在Java中有以下3种方法可以终止正在运行的线:<br>1)使用退出标志，使线程正常退出，也就是当<font color='red'>run 方法</font>完成后线程终止。</p>
+<h2 id="1-7-线程停止"><a href="#1-7-线程停止" class="headerlink" title="1.7  线程停止"></a>1.7  线程停止</h2><p>大多数停止个线程的操作使用Thread.interrupt0方法，尽管方法的名称是“停止，中止”的意思，但这个方法不会终止一个正在运行的线程，还需要加人一个判断才可以完成线程的停止。关于此知识点在后面有专门的章节进行介绍。<br>在Java中有以下3种方法可以终止正在运行的线:<br>1)使用退出标志，使线程正常退出，也就是当<font color='red'>run 方法</font>完成后线程终止。</p>
 <p>2)使用<font color='red'>stop</font> 方法强行终止线程，但是不推荐使用这个方法，因为stop 和suspend 及resume一样，都是作废过期的方法，使用它们可能产生不可预料的结果。</p>
 <p>3)使用<font color='red'>interrupt </font>方法中断线程。</p>
 <p>本示例将调用interrupt0方法来停止线程，但interrupt0)方法的使用效果并不像for+break 语句那样，马上就停止循环。调用interrupt0方法仅仅是在当前线程中打了一个停止的标记，并不是真的停止线程。</p>
@@ -488,7 +488,7 @@
 <img src="https://pic.imgdb.cn/item/6373a78616f2c2beb1d37c85.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20221115224859010" style="zoom:50%;" />
 
 <p>线程被暴力停止(stop)运行后图标呈灰色</p>
-<h3 id="1-7-5线程优先级【应用】"><a href="#1-7-5线程优先级【应用】" class="headerlink" title="1.7.5线程优先级【应用】"></a>1.7.5线程优先级【应用】</h3><ul>
+<h2 id="1-8线程优先级【应用】"><a href="#1-8线程优先级【应用】" class="headerlink" title="1.8线程优先级【应用】"></a>1.8线程优先级【应用】</h2><ul>
 <li><p>线程调度</p>
 <ul>
 <li><p>两种调度方式</p>
