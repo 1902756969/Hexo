@@ -18,21 +18,27 @@
   
     <meta name="description" content="Nacos集群搭建1.集群结构图官方给出的Nacos集群图：  其中包含3个nacos节点，然后一个负载均衡器代理3个Nacos。这里负载均衡器可以使用nginx。 我们计划的集群结构：  三个nacos节点的地址：    节点 ip port    nacos1 192.168.150.1 8845   nacos2 192.168.150.1 8846   nacos3 192.168.150">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Nacos集群搭建教程">
+<meta property="og:title" content="page.title">
 <meta property="og:url" content="https://1902756969.github.io/Hexo/pages/nacos%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA.html">
 <meta property="og:site_name" content="阿星的博客">
 <meta property="og:description" content="Nacos集群搭建1.集群结构图官方给出的Nacos集群图：  其中包含3个nacos节点，然后一个负载均衡器代理3个Nacos。这里负载均衡器可以使用nginx。 我们计划的集群结构：  三个nacos节点的地址：    节点 ip port    nacos1 192.168.150.1 8845   nacos2 192.168.150.1 8846   nacos3 192.168.150">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://1902756969.github.io/img/202202221216777.png">
-<meta property="article:published_time" content="2022-03-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-03-26T05:19:37.490Z">
+<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210409210621117.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210409211355037.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210409212119411.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210402161843337.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210409212459292.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210409213335538.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210410103253355.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210410103322874.png">
+<meta property="article:published_time" content="2022-11-15T10:20:35.899Z">
+<meta property="article:modified_time" content="2022-11-15T10:20:26.983Z">
 <meta property="article:author" content="星">
-<meta property="article:tag" content="SpringCloud🎶">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://1902756969.github.io/img/202202221216777.png">
+<meta name="twitter:image" content="https://1902756969.github.io/Hexo/assets/image-20210409210621117.png">
   
   
-  <title>Nacos集群搭建教程 - 阿星的博客</title>
+  <title>page.title - 阿星的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +207,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Nacos集群搭建教程"></span>
+            <span id="subtitle" data-typed-text="page.title"></span>
           
         </div>
 
@@ -230,10 +236,10 @@
 
 <article class="page-content">
   <h1 id="Nacos集群搭建"><a href="#Nacos集群搭建" class="headerlink" title="Nacos集群搭建"></a>Nacos集群搭建</h1><h1 id="1-集群结构图"><a href="#1-集群结构图" class="headerlink" title="1.集群结构图"></a>1.集群结构图</h1><p>官方给出的Nacos集群图：</p>
-<p><img src="/Hexo/../img/202203022156034.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210409210621117"></p>
+<p><img src="/Hexo/assets/image-20210409210621117.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210409210621117"></p>
 <p>其中包含3个nacos节点，然后一个负载均衡器代理3个Nacos。这里负载均衡器可以使用nginx。</p>
 <p>我们计划的集群结构：</p>
-<p><img src="/Hexo/../img/202203022156391.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210409211355037"></p>
+<p><img src="/Hexo/assets/image-20210409211355037.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210409211355037"></p>
 <p>三个nacos节点的地址：</p>
 <table>
 <thead>
@@ -277,16 +283,16 @@
 
 <h2 id="2-2-下载nacos"><a href="#2-2-下载nacos" class="headerlink" title="2.2.下载nacos"></a>2.2.下载nacos</h2><p>nacos在GitHub上有下载地址：<a target="_blank" rel="noopener" href="https://github.com/alibaba/nacos/tags%EF%BC%8C%E5%8F%AF%E4%BB%A5%E9%80%89%E6%8B%A9%E4%BB%BB%E6%84%8F%E7%89%88%E6%9C%AC%E4%B8%8B%E8%BD%BD%E3%80%82">https://github.com/alibaba/nacos/tags，可以选择任意版本下载。</a></p>
 <p>本例中才用1.4.1版本：</p>
-<p><img src="/Hexo/../img/202203022156015.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210409212119411"></p>
+<p><img src="/Hexo/assets/image-20210409212119411.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210409212119411"></p>
 <h2 id="2-3-配置Nacos"><a href="#2-3-配置Nacos" class="headerlink" title="2.3.配置Nacos"></a>2.3.配置Nacos</h2><p>将这个包解压到任意非中文目录下，如图：</p>
-<p><img src="/Hexo/../img/202203022156311.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210402161843337"></p>
+<p><img src="/Hexo/assets/image-20210402161843337.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210402161843337"></p>
 <p>目录说明：</p>
 <ul>
 <li>bin：启动脚本</li>
 <li>conf：配置文件</li>
 </ul>
 <p>进入nacos的conf目录，修改配置文件cluster.conf.example，重命名为cluster.conf：</p>
-<p><img src="/Hexo/../img/202203022156055.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210409212459292"></p>
+<p><img src="/Hexo/assets/image-20210409212459292.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210409212459292"></p>
 <p>然后添加内容：</p>
 <figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs accesslog"><span class="hljs-number">127.0.0.1:8845</span><br><span class="hljs-number">127.0.0.1</span>.<span class="hljs-number">8846</span><br><span class="hljs-number">127.0.0.1</span>.<span class="hljs-number">8847</span><br></code></pre></td></tr></table></figure>
 
@@ -298,7 +304,7 @@
 
 
 <h2 id="2-4-启动"><a href="#2-4-启动" class="headerlink" title="2.4.启动"></a>2.4.启动</h2><p>将nacos文件夹复制三份，分别命名为：nacos1、nacos2、nacos3</p>
-<p><img src="/Hexo/../img/202203022157888.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210409213335538"> </p>
+<p><img src="/Hexo/assets/image-20210409213335538.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210409213335538"> </p>
 <p>然后分别修改三个文件夹中的application.properties，</p>
 <p>nacos1:</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">server.port</span>=<span class="hljs-string">8845</span><br></code></pre></td></tr></table></figure>
@@ -317,9 +323,9 @@
 
 
 <h2 id="2-5-nginx反向代理"><a href="#2-5-nginx反向代理" class="headerlink" title="2.5.nginx反向代理"></a>2.5.nginx反向代理</h2><p>找到课前资料提供的nginx安装包： </p>
-<p><img src="/Hexo/../img/202203022157927.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210410103253355"> </p>
+<p><img src="/Hexo/assets/image-20210410103253355.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210410103253355"> </p>
 <p>解压到任意非中文目录下：</p>
-<p><img src="/Hexo/../img/202203022157448.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210410103322874"> </p>
+<p><img src="/Hexo/assets/image-20210410103322874.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210410103322874"> </p>
 <p>修改conf&#x2F;nginx.conf文件，配置如下：</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-section">upstream</span> nacos-cluster &#123;<br>    <span class="hljs-attribute">server</span> <span class="hljs-number">127.0.0.1:8845</span>;<br>	<span class="hljs-attribute">server</span> <span class="hljs-number">127.0.0.1:8846</span>;<br>	<span class="hljs-attribute">server</span> <span class="hljs-number">127.0.0.1:8847</span>;<br>&#125;<br><br><span class="hljs-section">server</span> &#123;<br>    <span class="hljs-attribute">listen</span>       <span class="hljs-number">80</span>;<br>    <span class="hljs-attribute">server_name</span>  localhost;<br><br>    <span class="hljs-section">location</span> /nacos &#123;<br>        <span class="hljs-attribute">proxy_pass</span> http://nacos-cluster;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 

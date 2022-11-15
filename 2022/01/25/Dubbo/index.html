@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic.imgdb.cn/item/623e9bfa27f86abb2aee7d5e.png">
 <meta property="article:published_time" content="2022-01-25T02:30:03.000Z">
-<meta property="article:modified_time" content="2022-03-26T05:47:07.231Z">
+<meta property="article:modified_time" content="2022-11-15T12:11:35.249Z">
 <meta property="article:author" content="星">
 <meta property="article:tag" content="分布式dubbo">
 <meta name="twitter:card" content="summary_large_image">
@@ -316,7 +316,7 @@
 </li>
 </ol>
 <p><strong>传统项目和互联网项目的不同</strong></p>
-<p><img src="/Hexo/../img/202203121453819.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581310475046"></p>
+<p><img src="https://pic.imgdb.cn/item/623e9c0127f86abb2aeec132.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581310475046"></p>
 <p><strong>用户体验</strong>：<br>    美观、功能、速度、稳定性</p>
 <p><strong>衡量一个网站速度是否快:</strong><br>    打开一个新页面一瞬间完成;页面内跳转，-刹那间完成。<br>    根据佛经《僧衹律》记载:一 刹那者为-念,二十念为-瞬,二十瞬为-弹<br>    指，二十弹指为-罗预， 二十罗预为-须臾，一日一夜有三十须臾。</p>
 <h3 id="2-2-互联网项目架构-目标"><a href="#2-2-互联网项目架构-目标" class="headerlink" title="2.2-互联网项目架构-目标"></a>2.2-互联网项目架构-目标</h3><p><strong>衡量网站的性能指标:</strong><br>    **响应时间:**指执行一个请求从开始到最后收到响应数据所花费的总体时间。<br>    **并发数:**指系统同时能处理的请求数量。<br>    <strong>并发连接数:</strong> 指的是客户端向服务器发起请求，并建立了TCP连接。每秒钟服务器连接的总TCP数量<br>    **请求数:**也称为QPS(Query Per Second)指每秒多少请求.<br>    **并发用户数:**单位时间内有多少用户<br>    **吞吐量:**指单位时间内系统能处理的请求数量。</p>
@@ -332,10 +332,10 @@
 ●**高可用:**网站服务- 可以正常访问
 </code></pre>
 <h3 id="2-3-集群和分布式"><a href="#2-3-集群和分布式" class="headerlink" title="2.3-集群和分布式"></a>2.3-集群和分布式</h3><p>集群和分布式，<br>●集群:很多“人”一起，干一样的事。<br>●一个业务模块，部署在多台服务器上。<br>●分布式:很多”人”一起，干不样的事。这些不一样的事， 合起来是一件大事。</p>
-<p><img src="/Hexo/../img/202203121454557.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://pic.imgdb.cn/item/623e9c0127f86abb2aeec459.png" srcset="/Hexo/img/loading.gif" lazyload></p>
 <h3 id="2-4-架构演进"><a href="#2-4-架构演进" class="headerlink" title="2.4-架构演进"></a>2.4-架构演进</h3><p><strong>单体架构：</strong></p>
 <p><strong>优点:</strong><br>    简单:开发部署都很方便，小型项目首选<br><strong>缺点:</strong><br>●项目启动慢<br>●可靠性差</p>
-<p><img src="/Hexo/../img/202203121454708.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581313584459"></p>
+<p><img src="https://pic.imgdb.cn/item/623e9c0127f86abb2aeec142.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581313584459"></p>
 <p><strong>垂直架构：</strong>垂直架构是指将单体架构中的多个模块拆分为多个独立的项目。形成多个独立的单体架构。</p>
 <p><strong>单体架构存在的问题:</strong></p>
 <ul>
@@ -351,21 +351,21 @@
 </li>
 </ul>
 <p><strong>垂直架构存在的问题:</strong> 重复功能太多</p>
-<p><img src="/Hexo/../img/202203121454460.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581313910427"></p>
+<p><img src="https://pic.imgdb.cn/item/623e9c0127f86abb2aeec0fa.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581313910427"></p>
 <p><strong>分布式架构：</strong>是指在垂直架构的基础上,将公共业务模块抽取出来,作为独立的服务供其他调用者消费，以实现服务的共享和重用。底层通过RPC（远程过程调用实现）<br>    <strong>RPC:</strong> Remote Procedure Call远程过程调用。有非常多的协议和技术来都实现了RPC的过程。比如: HTTP REST风格，Java RMI规范、WebService SOAP协议Hession等等。<br><strong>垂直架构存在的问题:</strong><br>    ●重复功能太多</p>
 <p><strong>分布式架构存在的问题:</strong><br>    ●服务提供方- -旦产生变更,所有消费方都需要变更。</p>
-<p><img src="/Hexo/../img/202203121454268.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://pic.imgdb.cn/item/623e9c0127f86abb2aeec119.png" srcset="/Hexo/img/loading.gif" lazyload></p>
 <p>**SOA: (Service- Oriented Architecture,面向服务的架构)**：是一个组件模型,它将应用程序的不同功能单元(称为服务)进行拆分，并通过这些服务之间定义良好的接口和契约联系起来。</p>
 <p>**ESB: (Enterparise Servce Bus)**：企业服务总线,服务中介。主要是提供了一一个服<br>务于服务之间的交互。ESB包含的功能如:负载均衡，流量控制，加密处理，服务<br>的监控，异常处理，监控告急等等。</p>
-<p><img src="/Hexo/../img/202203121454550.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581314362523"></p>
+<p><img src="https://pic.imgdb.cn/item/623e9c0127f86abb2aeec18a.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581314362523"></p>
 <p><strong>微服务架构：</strong></p>
 <p>●微服务架构是在SOA上做的升华,微服务架构强调的一个重点是“业务需要彻底的组件化和服务化”，原有的单个<br>业务系统会拆分为多个可以独立开发、设计、运行的小应用。这些小应用之间通过服务完成交互和集成。</p>
 <p>●微服务架构&#x3D; 80%的SOA服务架构思想+ 100%的组件化架构思想+ 80%的领域建模思想</p>
 <p><strong>特点:</strong><br>●服务实现组件化:开发者可以自由选择开发技术。也不需要协调其他团队<br>●服务之间交互一 般使用REST API<br>●去中心化:每个微服务有自己私有的数据库持久化业务数据<br>●自动化部署:把应用拆分成为一 个-个独立的单个服务,方便自动化部署、测试、运维</p>
-<p><img src="/Hexo/../img/202203121454467.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://pic.imgdb.cn/item/623e9c0127f86abb2aeec154.png" srcset="/Hexo/img/loading.gif" lazyload></p>
 <h2 id="3-dubbo-概述"><a href="#3-dubbo-概述" class="headerlink" title="3-dubbo 概述"></a>3-dubbo 概述</h2><p><strong>Dubbo概念</strong></p>
 <p>●Dubbo是阿里巴巴公司开源的一个高性能、轻量级的Java RPC框架。<br>●致力于提供高性能和透明化的RPC远程服务调用方案,以及SOA服务治理方案。<br>●官网: htp:&#x2F;&#x2F;ubbo.apache.orgo</p>
-<p><img src="/Hexo/../img/202203121454793.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://pic.imgdb.cn/item/623e9c0127f86abb2aeec17b.png" srcset="/Hexo/img/loading.gif" lazyload></p>
 <p>节点角色说明: .<br>●Provider: 暴露服务的服务提供方<br>●Contahier: 服务运行容器<br>●Consumer: 调用远程服务的服务消费方<br>●Registry: 服务注册与发现的注册中心<br>●Monitor:统计服务的调用次数和调用时间的监控中心</p>
 <h2 id="4-dubbo快速入门"><a href="#4-dubbo快速入门" class="headerlink" title="4-dubbo快速入门"></a>4-dubbo快速入门</h2><h3 id="4-1zookeeper安装"><a href="#4-1zookeeper安装" class="headerlink" title="4.1zookeeper安装"></a>4.1zookeeper安装</h3><p>安装步骤：</p>
 <p>第一步：安装 jdk（略）<br>第二步：把 zookeeper 的压缩包（zookeeper-3.4.6.tar.gz）上传到 linux 系统<br>第三步：解压缩压缩包</p>
@@ -385,7 +385,7 @@
 <p>进入Zookeeper的bin目录，启动服务命令</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">./zkServer.sh start<br></code></pre></td></tr></table></figure>
 
-<p><img src="/Hexo/../img/202203121454613.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581315609244"></p>
+<p><img src="https://pic.imgdb.cn/item/623e9c0127f86abb2aeec168.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581315609244"></p>
 <p>停止服务命令</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">./zkServer.sh stop<br></code></pre></td></tr></table></figure>
 
@@ -394,7 +394,7 @@
 <p>查看服务状态：standalone 单节点</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">./zkServer.sh status<br></code></pre></td></tr></table></figure>
 
-<p><img src="/Hexo/../img/202203121454683.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581315645227"></p>
+<p><img src="https://pic.imgdb.cn/item/623e9c0227f86abb2aeec8f5.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581315645227"></p>
 <h3 id="4-2spring和springmvc整合"><a href="#4-2spring和springmvc整合" class="headerlink" title="4.2spring和springmvc整合"></a>4.2spring和springmvc整合</h3><p>实施步骤：</p>
 <p>1.创建服务提供者Provider模块<br>2.创建服务消费者Consumer模块<br>3.在服务提供者模块编写UserServicelmpl提供服务<br>4.在服务消费者中的UserC ontroller远程调用<br>5.UserServicelmpl提供的服务<br>6.分别启动两个服务，测试</p>
 <p>Dubbo作为一个RPC框架，其最核心的功能就是要实现跨网络的远程调用。本小节就是要创建两个应用，一个作为服务的提供方，一个作为服务的消费方。通过Dubbo来实现服务消费方远程调用服务提供方的方法。</p>
@@ -432,7 +432,7 @@
 <p><font color='red'><strong>远程注入</strong></font></p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">1.</span> 从zookeeper注册中心获取userService的访问url<br><span class="hljs-bullet">2.</span> 进行远程调用RPC<br><span class="hljs-bullet">3.</span> 将结果封装为一个代理对象。给变量赋值<br></code></pre></td></tr></table></figure>
 
-<p><img src="/Hexo/../img/202203121454264.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://pic.imgdb.cn/item/623e9c0127f86abb2aeec1e2.png" srcset="/Hexo/img/loading.gif" lazyload></p>
 <h3 id="4-3服务提供者"><a href="#4-3服务提供者" class="headerlink" title="4.3服务提供者"></a>4.3服务提供者</h3><p>在dubbodemo_provider工程中src&#x2F;main&#x2F;resources下创建applicationContext-service.xml </p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans&quot;</span></span><br><span class="hljs-tag">		<span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">	    <span class="hljs-attr">xmlns:p</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/p&quot;</span></span><br><span class="hljs-tag">		<span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/context&quot;</span></span><br><span class="hljs-tag">		<span class="hljs-attr">xmlns:dubbo</span>=<span class="hljs-string">&quot;http://code.alibabatech.com/schema/dubbo&quot;</span></span><br><span class="hljs-tag">	    <span class="hljs-attr">xmlns:mvc</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/mvc&quot;</span></span><br><span class="hljs-tag">		<span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans</span></span><br><span class="hljs-string"><span class="hljs-tag">		http://www.springframework.org/schema/beans/spring-beans.xsd</span></span><br><span class="hljs-string"><span class="hljs-tag">         http://www.springframework.org/schema/mvc</span></span><br><span class="hljs-string"><span class="hljs-tag">         http://www.springframework.org/schema/mvc/spring-mvc.xsd</span></span><br><span class="hljs-string"><span class="hljs-tag">         http://code.alibabatech.com/schema/dubbo</span></span><br><span class="hljs-string"><span class="hljs-tag">         http://code.alibabatech.com/schema/dubbo/dubbo.xsd</span></span><br><span class="hljs-string"><span class="hljs-tag">         http://www.springframework.org/schema/context</span></span><br><span class="hljs-string"><span class="hljs-tag">         http://www.springframework.org/schema/context/spring-context.xsd&quot;</span>&gt;</span><br>	<span class="hljs-comment">&lt;!-- 当前应用名称，用于注册中心计算应用间依赖关系，注意：消费者和提供者应用名不要一样 --&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">dubbo:application</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;dubbodemo_provider&quot;</span> /&gt;</span><br>	<span class="hljs-comment">&lt;!-- 连接服务注册中心zookeeper ip为zookeeper所在服务器的ip地址--&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">dubbo:registry</span> <span class="hljs-attr">address</span>=<span class="hljs-string">&quot;zookeeper://192.168.134.129:2181&quot;</span>/&gt;</span><br>	<span class="hljs-comment">&lt;!-- 注册  协议和port   端口默认是20880 --&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">dubbo:protocol</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;dubbo&quot;</span> <span class="hljs-attr">port</span>=<span class="hljs-string">&quot;20881&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">dubbo:protocol</span>&gt;</span><br>    <br>	<span class="hljs-comment">&lt;!-- 扫描指定包，加上@Service注解的类会被发布为服务  --&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">dubbo:annotation</span> <span class="hljs-attr">package</span>=<span class="hljs-string">&quot;com.itheima.service.impl&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
@@ -454,10 +454,10 @@
 <li>我们只需要在定义pojo类时<strong>实现seriali zable接口</strong>即可</li>
 <li>一般会定义一 个公共的pojo模块,让生产者和消费者都依赖该模块。</li>
 </ol>
-<p><img src="/Hexo/../img/202203121454676.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581317650919"></p>
+<p><img src="https://pic.imgdb.cn/item/623e9c0227f86abb2aeec926.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581317650919"></p>
 <p>User对象未实现seriali zable接口</p>
 <p>错误信息：</p>
-<p><img src="/Hexo/../img/202203121454462.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581317583708"></p>
+<p><img src="https://pic.imgdb.cn/item/623e9c0227f86abb2aeeca51.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581317583708"></p>
 <p>解决办法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">User <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span><br></code></pre></td></tr></table></figure>
 
@@ -468,8 +468,8 @@
 <li>可以，因为dubbo服务消费者在第一-次调用时，会将服务提供方地址缓存到本地，以后在调用则不会访问注册中心。</li>
 <li>当服务提供者地址发生变化时，注册中心会通知服务消费者。</li>
 </ol>
-<p><img src="/Hexo/../img/202203121454069.png" srcset="/Hexo/img/loading.gif" lazyload></p>
-<h3 id="5-5-超时"><a href="#5-5-超时" class="headerlink" title="5.5 超时"></a>5.5 超时</h3><p><img src="/Hexo/../img/202203121454067.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://pic.imgdb.cn/item/623e9c0127f86abb2aeec17b.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<h3 id="5-5-超时"><a href="#5-5-超时" class="headerlink" title="5.5 超时"></a>5.5 超时</h3><p><img src="https://pic.imgdb.cn/item/623e9c0327f86abb2aeed523.png" srcset="/Hexo/img/loading.gif" lazyload></p>
 <ul>
 <li>服务消费者在调用服务提供者的时候发生了阻塞、等待的情形,这个时候,服务消费者会直等待下去。</li>
 <li>在某个峰值时刻，大量的请求都在同时请求服务消费者,会造成线程的大量堆积，势必会造成雪崩。</li>
@@ -480,7 +480,7 @@
 
 
 
-<h3 id="5-6重试"><a href="#5-6重试" class="headerlink" title="5.6重试"></a>5.6重试</h3><p><img src="/Hexo/../img/202203121454861.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581322543136"></p>
+<h3 id="5-6重试"><a href="#5-6重试" class="headerlink" title="5.6重试"></a>5.6重试</h3><p><img src="https://pic.imgdb.cn/item/623e9c0327f86abb2aeed543.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581322543136"></p>
 <ol>
 <li>设置了超时时间，在这个时间段内，无法完成服务访问,则自动断开连接。</li>
 <li>如果出现网络抖动,则这一-次请求就会失败。</li>
@@ -489,7 +489,7 @@
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//timeout 超时时间 单位毫秒  retries 重试次数</span><br><span class="hljs-meta">@Service(timeout = 3000,retries=0)</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="5-7多版本"><a href="#5-7多版本" class="headerlink" title="5.7多版本"></a>5.7多版本</h3><p><img src="/Hexo/../img/202203121454544.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<h3 id="5-7多版本"><a href="#5-7多版本" class="headerlink" title="5.7多版本"></a>5.7多版本</h3><p><img src="https://pic.imgdb.cn/item/623e9c0327f86abb2aeed55e.png" srcset="/Hexo/img/loading.gif" lazyload></p>
 <p>**灰度发布:**当出现新功能时,会让一部分用户先使用新功能，用户反馈没问题时，再将所有用户迁移到新功能。</p>
 <p>dubbo中使用version属性来设置和调用同一个接口的不同版本</p>
 <p>生产者配置</p>
@@ -504,18 +504,17 @@
 <p><strong>RoundRobin:</strong> 按权重轮询。</p>
 <p><strong>LeastActive:</strong> 最少活跃调用数,相同活跃数的随机。</p>
 <p>**ConsistentHash:**一 致性Hash,相同参数的请求总是发到同一提供者。</p>
-<p><img src="/Hexo/../img/202203121454803.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://pic.imgdb.cn/item/623e9c0427f86abb2aeedbb5.png" srcset="/Hexo/img/loading.gif" lazyload></p>
 <p>服务提供者配置</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service(weight = 100)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserServiceImp12</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">UserService</span> &#123;...&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <p>application.xml 配置parameter key</p>
-<p><img src="/Hexo/img/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png" srcset="/Hexo/img/loading.gif" lazyload></p>
 <p>消费者配置</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-comment">//@Reference(loadbalance = &quot;roundrobin&quot;)</span><br><span class="hljs-comment">//@Reference(loadbalance = &quot;leastactive&quot;)</span><br><span class="hljs-comment">//@Reference(loadbalance = &quot;consistenthash&quot;)</span><br><span class="hljs-meta">@Reference(loadbalance = &quot;random&quot;)</span><span class="hljs-comment">//默认 按权重随机</span><br><span class="hljs-keyword">private</span> UserService userService;<br></code></pre></td></tr></table></figure>
 
-<h3 id="5-9集群容错"><a href="#5-9集群容错" class="headerlink" title="5.9集群容错"></a>5.9集群容错</h3><p><img src="/Hexo/../img/202203121454691.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581324308044"></p>
+<h3 id="5-9集群容错"><a href="#5-9集群容错" class="headerlink" title="5.9集群容错"></a>5.9集群容错</h3><p><img src="https://pic.imgdb.cn/item/623e9c0427f86abb2aeedb28.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581324308044"></p>
 <p><strong>集群容错模式:</strong><br>    **Failover Cluster:**失败重试。默认值。当出现失败，重试其它服务器，默认重试2次，使用retries配置。一般用于读操作<br>    **Failfast Cluster :**快速失败,发起-次调用，失败立即报错。通常用于写操作。<br>    **Failsafe Cluster:**失败安全，出现异常时，直接忽略。返回一个空结果。<br>    **Failback Cluster:**失败自动恢复,后台记录失败请求,定时重发。<br>    **Forking Cluster :**并行调用多个服务器，只要一个成功即返回。<br>    <strong>Broadcast Cluster:</strong> 广播调用所有提供者,逐个调用，任意一台报错则报错。</p>
 <p>消费者配置</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Reference(cluster = &quot;failover&quot;)</span><span class="hljs-comment">//远程注入</span><br><span class="hljs-keyword">private</span> UserService userService;<br></code></pre></td></tr></table></figure>
@@ -523,7 +522,7 @@
 <h3 id="5-10服务降级"><a href="#5-10服务降级" class="headerlink" title="5.10服务降级"></a>5.10服务降级</h3><p><strong>服务降级</strong>：当服务器压力剧增的情况下，根据实际业务情况及流量，对一些服务和页面有策略的不处理或换种简单的方式处理，从而释放服务器资源以保证<strong>核心交易</strong>正常运作或高效运作</p>
 <p><strong>服务降级方式:</strong><br><strong>mock&#x3D; force:return null</strong>：表示消费方对该服务的方法调用都直接返回null值,不发起远程调用。用来屏蔽不重要服务不可用时对调用方的影响。</p>
 <p><strong>mock&#x3D;fail:return null</strong>：表示消费方对该服务的方法调用在失败后，再返回null值,不抛异常。用来容忍不重要服务不稳定时对调用方的影响</p>
-<p><img src="/Hexo/../img/202203121455003.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://pic.imgdb.cn/item/623e9c0427f86abb2aeedc3c.png" srcset="/Hexo/img/loading.gif" lazyload></p>
 <p>消费方配置</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//远程注入</span><br><span class="hljs-meta">@Reference(mock =“ force :return null&quot;)</span><span class="hljs-comment">//不再调用userService的服务</span><br><span class="hljs-keyword">private</span> UserService userService;<br></code></pre></td></tr></table></figure>
               

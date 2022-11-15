@@ -24,8 +24,8 @@
 <meta property="og:description" content="注意: 请使用资料里提供的CentOS-7-x86_64-DVD-1810.iso 安装虚拟机.1. 安装依赖环境在线安装依赖环境： 12yum install build-essential openssl openssl-devel unixODBC unixODBC-devel make gcc gcc-c++ kernel-devel m4 ncurses-devel tk tc xz">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.loli.net/2022/04/12/y8QADPrfG4oIlxZ.png">
-<meta property="article:published_time" content="2022-04-12T08:29:54.000Z">
-<meta property="article:modified_time" content="2022-04-17T09:42:25.176Z">
+<meta property="article:published_time" content="2022-04-12T12:29:54.000Z">
+<meta property="article:modified_time" content="2022-11-15T10:41:16.905Z">
 <meta property="article:author" content="星">
 <meta property="article:tag" content="RabbitMQ">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,8 +223,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-04-12 16:29" pubdate>
-          2022年4月12日 下午
+        <time datetime="2022-04-12 20:29" pubdate>
+          2022年4月12日 晚上
         </time>
       </span>
     
@@ -246,7 +246,7 @@
         
         
         
-          25 分钟
+          24 分钟
         
       </span>
     
@@ -299,17 +299,18 @@
               <h3 id="注意-请使用资料里提供的CentOS-7-x86-64-DVD-1810-iso-安装虚拟机"><a href="#注意-请使用资料里提供的CentOS-7-x86-64-DVD-1810-iso-安装虚拟机" class="headerlink" title="注意: 请使用资料里提供的CentOS-7-x86_64-DVD-1810.iso 安装虚拟机."></a>注意: 请使用资料里提供的CentOS-7-x86_64-DVD-1810.iso 安装虚拟机.</h3><h2 id="1-安装依赖环境"><a href="#1-安装依赖环境" class="headerlink" title="1. 安装依赖环境"></a>1. 安装依赖环境</h2><p>在线安装依赖环境：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">yum install build-essential openssl openssl-devel unixODBC unixODBC-devel make gcc gcc-c++ kernel-devel m4 ncurses-devel tk tc xz<br><br></code></pre></td></tr></table></figure>
 
-<p><img src="https://s2.loli.net/2022/04/12/y8QADPrfG4oIlxZ.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220412201216274"></p>
+
+
 <h2 id="2-安装Erlang"><a href="#2-安装Erlang" class="headerlink" title="2. 安装Erlang"></a>2. 安装Erlang</h2><p>上传</p>
 <p>erlang-18.3-1.el7.centos.x86_64.rpm<br>socat-1.7.3.2-5.el7.lux.x86_64.rpm<br>rabbitmq-server-3.6.5-1.noarch.rpm</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh"><br><span class="hljs-comment"># 安装</span><br>rpm -ivh erlang-18.3-1.el7.centos.x86_64.rpm<br><br></code></pre></td></tr></table></figure>
 
 <p>如果出现如下错误</p>
-<p><img src="https://s2.loli.net/2022/04/12/lCIEujXUxzWbmM3.png" srcset="/Hexo/img/loading.gif" lazyload alt="1565526174751"></p>
+<p><img src="https://pic.imgdb.cn/item/63736d2e16f2c2beb17201bb.png" srcset="/Hexo/img/loading.gif" lazyload alt="1565526174751"></p>
 <p>说明gblic 版本太低。我们可以查看当前机器的gblic 版本</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">strings /lib64/libc.so.6 | grep GLIBC<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://s2.loli.net/2022/04/12/DvZNfX8759VOBGT.png" srcset="/Hexo/img/loading.gif" lazyload alt="1565526264426"></p>
+<p><img src="https://pic.imgdb.cn/item/63736d3016f2c2beb1720505.png" srcset="/Hexo/img/loading.gif" lazyload alt="1565526264426"></p>
 <p>当前最高版本2.12，需要2.15.所以需要升级glibc</p>
 <ul>
 <li><p>使用yum更新安装依赖</p>
@@ -324,7 +325,7 @@
 <li><p>安装完毕后再查看glibc版本,发现glibc版本已经到2.17了</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">strings /lib64/libc.so.6 | grep GLIBC<br></code></pre></td></tr></table></figure></li>
 </ul>
-<p><img src="https://s2.loli.net/2022/04/12/QcNZTHRKE6tS2Xz.png" srcset="/Hexo/img/loading.gif" lazyload alt="1565528746057"></p>
+<p><img src="https://pic.imgdb.cn/item/63736d3316f2c2beb1720832.png" srcset="/Hexo/img/loading.gif" lazyload alt="1565528746057"></p>
 <h2 id="3-安装RabbitMQ"><a href="#3-安装RabbitMQ" class="headerlink" title="3. 安装RabbitMQ"></a>3. 安装RabbitMQ</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 安装</span><br>rpm -ivh socat-1.7.3.2-5.el7.lux.x86_64.rpm<br><br><span class="hljs-comment"># 安装</span><br>rpm -ivh rabbitmq-server-3.6.5-1.noarch.rpm<br><br></code></pre></td></tr></table></figure>
 
 
@@ -335,22 +336,22 @@
 
 
 
-<h2 id="5-启动"><a href="#5-启动" class="headerlink" title="5. 启动"></a>5. 启动</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sh"><br>service rabbitmq-server start <span class="hljs-comment"># 启动服务</span><br>service rabbitmq-server stop <span class="hljs-comment"># 停止服务</span><br>service rabbitmq-server restart <span class="hljs-comment"># 重启服务</span><br><br>        4. 关闭防火墙：service iptables stop<br>systemctl stop firewalld.service<br></code></pre></td></tr></table></figure>
+<h2 id="5-启动"><a href="#5-启动" class="headerlink" title="5. 启动"></a>5. 启动</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh"><br>service rabbitmq-server start <span class="hljs-comment"># 启动服务</span><br>service rabbitmq-server stop <span class="hljs-comment"># 停止服务</span><br>service rabbitmq-server restart <span class="hljs-comment"># 重启服务</span><br></code></pre></td></tr></table></figure>
 
 
 
 <ul>
 <li>设置配置文件</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd /usr/share/doc/rabbitmq-server-3.6.5/<br><br>cp ./rabbitmq.config.example /etc/rabbitmq/rabbitmq.config<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd /usr/share/doc/rabbitmq-server-3.6.5/<br><br>cp rabbitmq.config.example /etc/rabbitmq/rabbitmq.config<br><br></code></pre></td></tr></table></figure>
 
 
 
 
 
 <h2 id="6-配置虚拟主机及用户"><a href="#6-配置虚拟主机及用户" class="headerlink" title="6. 配置虚拟主机及用户"></a>6. 配置虚拟主机及用户</h2><h3 id="6-1-用户角色"><a href="#6-1-用户角色" class="headerlink" title="6.1. 用户角色"></a>6.1. 用户角色</h3><p>RabbitMQ在安装好后，可以访问<code>http://ip地址:15672</code> ；其自带了guest&#x2F;guest的用户名和密码；如果需要创建自定义用户；那么也可以登录管理界面后，如下操作：</p>
-<p><img src="https://s2.loli.net/2022/04/12/dRwmYLVoN1ZBaze.png" srcset="/Hexo/img/loading.gif" lazyload alt="1565098043833"> </p>
-<p><img src="https://s2.loli.net/2022/04/12/PX5pA9KdnNQjVo6.png" srcset="/Hexo/img/loading.gif" lazyload alt="1565098315375"></p>
+<p><img src="https://pic.imgdb.cn/item/63736d3516f2c2beb1720b2e.png" srcset="/Hexo/img/loading.gif" lazyload alt="1565098043833"> </p>
+<p><img src="https://pic.imgdb.cn/item/63736d3716f2c2beb1720d03.png" srcset="/Hexo/img/loading.gif" lazyload alt="1565098315375"></p>
 <p><strong>角色说明</strong>：</p>
 <p>1、 超级管理员(administrator)</p>
 <p>可登陆管理控制台，可查看所有的信息，并且可以对用户，策略(policy)进行操作。</p>
@@ -363,9 +364,9 @@
 <p>5、 其他</p>
 <p>无法登陆管理控制台，通常就是普通的生产者和消费者。</p>
 <h3 id="6-2-Virtual-Hosts配置"><a href="#6-2-Virtual-Hosts配置" class="headerlink" title="6.2. Virtual Hosts配置"></a>6.2. Virtual Hosts配置</h3><p>像mysql拥有数据库的概念并且可以指定用户对库和表等操作的权限。RabbitMQ也有类似的权限管理；在RabbitMQ中可以虚拟消息服务器Virtual Host，每个Virtual Hosts相当于一个相对独立的RabbitMQ服务器，每个VirtualHost之间是相互隔离的。exchange、queue、message不能互通。 相当于mysql的db。Virtual Name一般以&#x2F;开头。</p>
-<h4 id="6-2-1-创建Virtual-Hosts"><a href="#6-2-1-创建Virtual-Hosts" class="headerlink" title="6.2.1. 创建Virtual Hosts"></a>6.2.1. 创建Virtual Hosts</h4><p><img src="https://s2.loli.net/2022/04/12/N3T9v8BRMKCUEiY.png" srcset="/Hexo/img/loading.gif" lazyload alt="1565098496482"></p>
-<h4 id="6-2-2-设置Virtual-Hosts权限"><a href="#6-2-2-设置Virtual-Hosts权限" class="headerlink" title="6.2.2. 设置Virtual Hosts权限"></a>6.2.2. 设置Virtual Hosts权限</h4><p><img src="https://s2.loli.net/2022/04/12/vrbNhWSaHVYyKPe.png" srcset="/Hexo/img/loading.gif" lazyload alt="1565098585317"></p>
-<p><img src="https://s2.loli.net/2022/04/12/rkuGULyKednj1OR.png" srcset="/Hexo/img/loading.gif" lazyload alt="1565098719054"></p>
+<h4 id="6-2-1-创建Virtual-Hosts"><a href="#6-2-1-创建Virtual-Hosts" class="headerlink" title="6.2.1. 创建Virtual Hosts"></a>6.2.1. 创建Virtual Hosts</h4><p><img src="https://pic.imgdb.cn/item/63736d3916f2c2beb1720f71.png" srcset="/Hexo/img/loading.gif" lazyload alt="1565098496482"></p>
+<h4 id="6-2-2-设置Virtual-Hosts权限"><a href="#6-2-2-设置Virtual-Hosts权限" class="headerlink" title="6.2.2. 设置Virtual Hosts权限"></a>6.2.2. 设置Virtual Hosts权限</h4><p><img src="https://pic.imgdb.cn/item/63736d3a16f2c2beb1721146.png" srcset="/Hexo/img/loading.gif" lazyload alt="1565098585317"></p>
+<p><img src="/Hexo/assets/1565098719054.png" srcset="/Hexo/img/loading.gif" lazyload alt="1565098719054"></p>
 
               
             </div>

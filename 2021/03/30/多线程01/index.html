@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.loli.net/2022/04/21/XUHxOvRc1kdZ46N.png">
 <meta property="article:published_time" content="2021-03-30T10:29:54.000Z">
-<meta property="article:modified_time" content="2022-10-25T15:04:28.988Z">
+<meta property="article:modified_time" content="2022-11-15T12:41:43.798Z">
 <meta property="article:author" content="星">
 <meta property="article:tag" content="多线程">
 <meta name="twitter:card" content="summary_large_image">
@@ -391,6 +391,11 @@
 <li><p>代码演示</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyRunnable</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Runnable</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">100</span>; i++) &#123;<br>            System.out.println(Thread.currentThread().getName()+<span class="hljs-string">&quot;:&quot;</span>+i);<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyRunnableDemo</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">//创建MyRunnable类的对象</span><br>        <span class="hljs-type">MyRunnable</span> <span class="hljs-variable">my</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyRunnable</span>();<br><br>        <span class="hljs-comment">//创建Thread类的对象，把MyRunnable对象作为构造方法的参数</span><br>        <span class="hljs-comment">//Thread(Runnable target)</span><br><span class="hljs-comment">//        Thread t1 = new Thread(my);</span><br><span class="hljs-comment">//        Thread t2 = new Thread(my);</span><br>        <span class="hljs-comment">//Thread(Runnable target, String name)</span><br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">t1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(my,<span class="hljs-string">&quot;坦克&quot;</span>);<br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">t2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(my,<span class="hljs-string">&quot;飞机&quot;</span>);<br><br>        <span class="hljs-comment">//启动线程</span><br>        t1.start();<br>        t2.start();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ul>
+<h3 id="实现接口-VS-继承-Thread"><a href="#实现接口-VS-继承-Thread" class="headerlink" title="实现接口 VS 继承 Thread"></a>实现接口 VS 继承 Thread</h3><p>实现接口会更好一些，因为:</p>
+<ul>
+<li>Java 不支持多重继承，因此继承了 Thread 类就无法继承其它类，但是可以实现多个接口；</li>
+<li>类可能只要求可执行就行，继承整个 Thread 类开销过大。</li>
+</ul>
 <h3 id="1-6实现多线程方式三-实现Callable接口【应用】"><a href="#1-6实现多线程方式三-实现Callable接口【应用】" class="headerlink" title="1.6实现多线程方式三: 实现Callable接口【应用】"></a>1.6实现多线程方式三: 实现<font color='red'>Callable接口</font>【应用】</h3><ul>
 <li><p>方法介绍</p>
 <table>
@@ -446,11 +451,7 @@
 </li>
 <li><p>缺点: 可以扩展性较差，不能再继承其他的类</p>
 </li>
-<li><h3 id="实现接口-VS-继承-Thread"><a href="#实现接口-VS-继承-Thread" class="headerlink" title="实现接口 VS 继承 Thread"></a>实现接口 VS 继承 Thread</h3><p>实现接口会更好一些，因为:</p>
-<ul>
-<li>Java 不支持多重继承，因此继承了 Thread 类就无法继承其它类，但是可以实现多个接口；</li>
-<li>类可能只要求可执行就行，继承整个 Thread 类开销过大。</li>
-</ul>
+<li><p>- </p>
 <p><img src="https://pic1.imgdb.cn/item/6357f46016f2c2beb102946a.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20221025223357308"></p>
 </li>
 </ul>
@@ -559,7 +560,7 @@
 </tr>
 </tbody></table>
 </li>
-<li><p>代码演示</p>
+<li><p>代码演示!</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyThread1</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Thread</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;<br>            System.out.println(getName() + <span class="hljs-string">&quot;---&quot;</span> + i);<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyThread2</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Thread</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100</span>; i++) &#123;<br>            System.out.println(getName() + <span class="hljs-string">&quot;---&quot;</span> + i);<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">MyThread1</span> <span class="hljs-variable">t1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyThread1</span>();<br>        <span class="hljs-type">MyThread2</span> <span class="hljs-variable">t2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyThread2</span>();<br><br>        t1.setName(<span class="hljs-string">&quot;女神&quot;</span>);<br>        t2.setName(<span class="hljs-string">&quot;备胎&quot;</span>);<br><br>        <span class="hljs-comment">//把第二个线程设置为守护线程</span><br>        <span class="hljs-comment">//当普通线程执行完之后,那么守护线程也没有继续运行下去的必要了.</span><br>        t2.setDaemon(<span class="hljs-literal">true</span>);<br><br>        t1.start();<br>        t2.start();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ul>
 <h2 id="2-线程同步"><a href="#2-线程同步" class="headerlink" title="2.线程同步"></a>2.线程同步</h2><h3 id="2-1卖票【应用】"><a href="#2-1卖票【应用】" class="headerlink" title="2.1卖票【应用】"></a>2.1卖票【应用】</h3><ul>
@@ -911,9 +912,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/Hexo/2021/04/01/MySql%E9%9D%A2%E8%AF%95%E9%A2%98/" title="Mysql面试题">
+                      <a href="/Hexo/2021/03/30/%E5%A4%9A%E7%BA%BF%E7%A8%8B02/" title="多线程02">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Mysql面试题</span>
+                        <span class="hidden-mobile">多线程02</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -921,8 +922,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/Hexo/2021/03/30/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%85%A5%E9%97%A8/" title="多线程入门">
-                        <span class="hidden-mobile">多线程入门</span>
+                      <a href="/Hexo/2021/03/29/IO%E6%B5%8102/" title="字符流">
+                        <span class="hidden-mobile">字符流</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

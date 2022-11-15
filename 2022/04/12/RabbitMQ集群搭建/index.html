@@ -18,21 +18,21 @@
   
     <meta name="description" content="3.RabbitMQ集群搭建摘要：实际生产应用中都会采用消息队列的集群方案，如果选择RabbitMQ那么有必要了解下它的集群方案原理 一般来说，如果只是为了学习RabbitMQ或者验证业务工程的正确性那么在本地环境或者测试环境上使用其单实例部署就可以了，但是出于MQ中间件本身的可靠性、并发性、吞吐量和消息堆积能力等问题的考虑，在生产环境上一般都会考虑使用RabbitMQ的集群方案。 3.1 集群方">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RabbitMQ集群搭建">
-<meta property="og:url" content="https://1902756969.github.io/Hexo/2022/04/17/RabbitMQ%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/index.html">
+<meta property="og:title" content="RabbitMQ基础Skill">
+<meta property="og:url" content="https://1902756969.github.io/Hexo/2022/04/12/RabbitMQ%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/index.html">
 <meta property="og:site_name" content="阿星的博客">
 <meta property="og:description" content="3.RabbitMQ集群搭建摘要：实际生产应用中都会采用消息队列的集群方案，如果选择RabbitMQ那么有必要了解下它的集群方案原理 一般来说，如果只是为了学习RabbitMQ或者验证业务工程的正确性那么在本地环境或者测试环境上使用其单实例部署就可以了，但是出于MQ中间件本身的可靠性、并发性、吞吐量和消息堆积能力等问题的考虑，在生产环境上一般都会考虑使用RabbitMQ的集群方案。 3.1 集群方">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.loli.net/2022/04/12/y8QADPrfG4oIlxZ.png">
-<meta property="article:published_time" content="2022-04-17T12:29:54.000Z">
-<meta property="article:modified_time" content="2022-04-17T12:07:55.027Z">
+<meta property="article:published_time" content="2022-04-12T12:29:54.000Z">
+<meta property="article:modified_time" content="2022-11-15T10:44:23.134Z">
 <meta property="article:author" content="星">
 <meta property="article:tag" content="RabbitMQ">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://s2.loli.net/2022/04/12/y8QADPrfG4oIlxZ.png">
   
   
-  <title>RabbitMQ集群搭建 - 阿星的博客</title>
+  <title>RabbitMQ基础Skill - 阿星的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -207,7 +207,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="RabbitMQ集群搭建"></span>
+            <span id="subtitle" data-typed-text="RabbitMQ基础Skill"></span>
           
         </div>
 
@@ -223,8 +223,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-04-17 20:29" pubdate>
-          2022年4月17日 晚上
+        <time datetime="2022-04-12 20:29" pubdate>
+          2022年4月12日 晚上
         </time>
       </span>
     
@@ -235,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.1k 字
+          8.3k 字
         
       </span>
     
@@ -246,7 +246,7 @@
         
         
         
-          76 分钟
+          70 分钟
         
       </span>
     
@@ -292,14 +292,14 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">RabbitMQ集群搭建</h1>
+            <h1 style="display: none">RabbitMQ基础Skill</h1>
             
             <div class="markdown-body">
               
               <h1 id="3-RabbitMQ集群搭建"><a href="#3-RabbitMQ集群搭建" class="headerlink" title="3.RabbitMQ集群搭建"></a>3.RabbitMQ集群搭建</h1><p>摘要：实际生产应用中都会采用消息队列的集群方案，如果选择RabbitMQ那么有必要了解下它的集群方案原理</p>
 <p>一般来说，如果只是为了学习RabbitMQ或者验证业务工程的正确性那么在本地环境或者测试环境上使用其单实例部署就可以了，但是出于MQ中间件本身的可靠性、并发性、吞吐量和消息堆积能力等问题的考虑，在生产环境上一般都会考虑使用RabbitMQ的集群方案。</p>
 <h3 id="3-1-集群方案的原理"><a href="#3-1-集群方案的原理" class="headerlink" title="3.1 集群方案的原理"></a>3.1 集群方案的原理</h3><p>RabbitMQ这款消息队列中间件产品本身是基于Erlang编写，Erlang语言天生具备分布式特性（通过同步Erlang集群各节点的magic cookie来实现）。因此，RabbitMQ天然支持Clustering。这使得RabbitMQ本身不需要像ActiveMQ、Kafka那样通过ZooKeeper分别来实现HA方案和保存集群的元数据。集群是保证可靠性的一种方式，同时可以通过水平扩展以达到增加消息吞吐量能力的目的。</p>
-<p><img src="https://s2.loli.net/2022/04/17/iDaXOC38q7Mckxw.png" srcset="/Hexo/img/loading.gif" lazyload alt="1565245219265"></p>
+<p><img src="https://pic.imgdb.cn/item/63736e2716f2c2beb173271c.png" srcset="/Hexo/img/loading.gif" lazyload alt="1565245219265"></p>
 <h3 id="3-2-单机多实例部署"><a href="#3-2-单机多实例部署" class="headerlink" title="3.2 单机多实例部署"></a>3.2 单机多实例部署</h3><p>由于某些因素的限制，有时候你不得不在一台机器上去搭建一个rabbitmq集群，这个有点类似zookeeper的单机版。真实生成环境还是要配成多机集群的。有关怎么配置多机集群的可以参考其他的资料，这里主要论述如何在单机中配置多个rabbitmq实例。</p>
 <p>主要参考官方文档：<a target="_blank" rel="noopener" href="https://www.rabbitmq.com/clustering.html">https://www.rabbitmq.com/clustering.html</a></p>
 <p>首先确保RabbitMQ运行没有问题</p>
@@ -334,7 +334,7 @@
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs kotlin">[<span class="hljs-symbol">root@</span><span class="hljs-keyword">super</span> ~]# rabbitmqctl cluster_status -n rabbit1<br>Cluster status of node <span class="hljs-symbol">rabbit1@</span><span class="hljs-keyword">super</span> ...<br>[&#123;nodes,[&#123;disc,[<span class="hljs-symbol">rabbit1@</span><span class="hljs-keyword">super</span>,<span class="hljs-symbol">rabbit2@</span><span class="hljs-keyword">super</span>]&#125;]&#125;,<br> &#123;running_nodes,[<span class="hljs-symbol">rabbit2@</span><span class="hljs-keyword">super</span>,<span class="hljs-symbol">rabbit1@</span><span class="hljs-keyword">super</span>]&#125;,<br> &#123;cluster_name,&lt;&lt;<span class="hljs-string">&quot;rabbit1@super&quot;</span>&gt;&gt;&#125;,<br> &#123;partitions,[]&#125;,<br> &#123;alarms,[&#123;<span class="hljs-symbol">rabbit2@</span><span class="hljs-keyword">super</span>,[]&#125;,&#123;<span class="hljs-symbol">rabbit1@</span><span class="hljs-keyword">super</span>,[]&#125;]&#125;]<br></code></pre></td></tr></table></figure>
 
 <p>web监控：</p>
-<p><img src="https://s2.loli.net/2022/04/17/BN4J6l9KWibMuxV.png" srcset="/Hexo/img/loading.gif" lazyload alt="1566065096459"></p>
+<p><img src="https://pic.imgdb.cn/item/63736e2b16f2c2beb1732e55.png" srcset="/Hexo/img/loading.gif" lazyload alt="1566065096459"></p>
 <h3 id="3-3-集群管理"><a href="#3-3-集群管理" class="headerlink" title="3.3 集群管理"></a>3.3 集群管理</h3><p><strong>rabbitmqctl join_cluster {cluster_node} [–ram]</strong><br>将节点加入指定集群中。在这个命令执行前需要停止RabbitMQ应用并重置节点。</p>
 <p><strong>rabbitmqctl cluster_status</strong><br>显示集群的状态。</p>
 <p><strong>rabbitmqctl change_cluster_node_type {disc|ram}</strong><br>修改集群节点的类型。在这个命令执行前需要停止RabbitMQ应用。</p>
@@ -351,7 +351,7 @@
 <blockquote>
 <p>rabbitmqctl set_policy my_ha “^” ‘{“ha-mode”:”all”}’</p>
 </blockquote>
-<p><img src="https://s2.loli.net/2022/04/17/kb8nPdQ2hLwRWXT.png" srcset="/Hexo/img/loading.gif" lazyload alt="1566072300852"></p>
+<p><img src="https://pic.imgdb.cn/item/63736e2e16f2c2beb173312d.png" srcset="/Hexo/img/loading.gif" lazyload alt="1566072300852"></p>
 <blockquote>
 <ul>
 <li>Name:策略名称</li>
@@ -369,11 +369,10 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="language-bash">logging options</span><br>global<br>	log 127.0.0.1 local0 info<br>	maxconn 5120<br>	chroot /usr/local/haproxy<br>	uid 99<br>	gid 99<br>	daemon<br>	quiet<br>	nbproc 20<br>	pidfile /var/run/haproxy.pid<br><br>defaults<br>	log global<br>	<br>	mode tcp<br><br>	option tcplog<br>	option dontlognull<br>	retries 3<br>	option redispatch<br>	maxconn 2000<br>	contimeout 5s<br>   <br>     clitimeout 60s<br><br>     srvtimeout 15s	<br><span class="hljs-meta">#</span><span class="language-bash">front-end IP <span class="hljs-keyword">for</span> consumers and producters</span><br><br>listen rabbitmq_cluster<br>	bind 0.0.0.0:5672<br>	<br>	mode tcp<br><span class="hljs-meta">	#</span><span class="language-bash">balance url_param userid</span><br><span class="hljs-meta">	#</span><span class="language-bash">balance url_param session_id check_post 64</span><br><span class="hljs-meta">	#</span><span class="language-bash">balance hdr(User-Agent)</span><br><span class="hljs-meta">	#</span><span class="language-bash">balance hdr(host)</span><br><span class="hljs-meta">	#</span><span class="language-bash">balance hdr(Host) use_domain_only</span><br><span class="hljs-meta">	#</span><span class="language-bash">balance rdp-cookie</span><br><span class="hljs-meta">	#</span><span class="language-bash">balance leastconn</span><br><span class="hljs-meta">	#</span><span class="language-bash">balance <span class="hljs-built_in">source</span> //ip</span><br>	<br>	balance roundrobin<br>	<br>        server node1 127.0.0.1:5673 check inter 5000 rise 2 fall 2<br>        server node2 127.0.0.1:5674 check inter 5000 rise 2 fall 2<br><br>listen stats<br>	bind 172.16.98.133:8100<br>	mode http<br>	option httplog<br>	stats enable<br>	stats uri /rabbitmq-stats<br>	stats refresh 5s<br></code></pre></td></tr></table></figure>
 
 <p>启动HAproxy负载</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">/usr/local/haproxy/sbin/haproxy -f /etc/haproxy/haproxy.cfg<br>//查看haproxy进程状态<br>ps -ef | grep haproxy<br><br>访问如下地址对mq节点进行监控<br>http://192.168.239.128:8100/rabbitmq-stats<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">/usr/local/haproxy/sbin/haproxy -f /etc/haproxy/haproxy.cfg<br>//查看haproxy进程状态<br>ps -ef | grep haproxy<br><br>访问如下地址对mq节点进行监控<br>http://172.16.98.133:8100/rabbitmq-stats<br></code></pre></td></tr></table></figure>
 
 <p>代码中访问mq集群地址，则变为访问haproxy地址:5672</p>
-<p>测试发送消息</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HelloWorld</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException, TimeoutException &#123;<br><br>        <span class="hljs-comment">//1.创建连接工厂</span><br>        <span class="hljs-type">ConnectionFactory</span> <span class="hljs-variable">factory</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConnectionFactory</span>();<br>        <span class="hljs-comment">//2. 设置参数</span><br>        factory.setHost(<span class="hljs-string">&quot;192.168.239.128&quot;</span>);<span class="hljs-comment">//ip  HaProxy的ip</span><br>        factory.setPort(<span class="hljs-number">5672</span>); <span class="hljs-comment">//端口 HaProxy的监听的端口</span><br>        <span class="hljs-comment">//3. 创建连接 Connection</span><br>        <span class="hljs-type">Connection</span> <span class="hljs-variable">connection</span> <span class="hljs-operator">=</span> factory.newConnection();<br>        <span class="hljs-comment">//4. 创建Channel</span><br>        <span class="hljs-type">Channel</span> <span class="hljs-variable">channel</span> <span class="hljs-operator">=</span> connection.createChannel();<br>        <span class="hljs-comment">//5. 创建队列Queue</span><br>        channel.queueDeclare(<span class="hljs-string">&quot;hello_world&quot;</span>,<span class="hljs-literal">true</span>,<span class="hljs-literal">false</span>,<span class="hljs-literal">false</span>,<span class="hljs-literal">null</span>);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">body</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;hello rabbitmq~~~&quot;</span>;<br>        <span class="hljs-comment">//6. 发送消息</span><br>        channel.basicPublish(<span class="hljs-string">&quot;&quot;</span>,<span class="hljs-string">&quot;hello_world&quot;</span>,<span class="hljs-literal">null</span>,body.getBytes());<br>        <span class="hljs-comment">//7.释放资源</span><br>        channel.close();<br>        connection.close();<br><br>        System.out.println(<span class="hljs-string">&quot;send success....&quot;</span>);<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
               
             </div>
             <hr/>
@@ -417,8 +416,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>RabbitMQ集群搭建</div>
-      <div>https://1902756969.github.io/Hexo/2022/04/17/RabbitMQ集群搭建/</div>
+      <div>RabbitMQ基础Skill</div>
+      <div>https://1902756969.github.io/Hexo/2022/04/12/RabbitMQ集群搭建/</div>
     </div>
     <div class="license-meta">
       
@@ -430,7 +429,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年4月17日</div>
+          <div>2022年4月12日</div>
         </div>
       
       
@@ -460,9 +459,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/Hexo/2022/04/19/%E5%AE%89%E8%A3%85docker/" title="Docker安装">
+                      <a href="/Hexo/2022/04/16/rabbitMQ%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" title="RabbitMQ高级特性">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Docker安装</span>
+                        <span class="hidden-mobile">RabbitMQ高级特性</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -470,8 +469,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/Hexo/2022/04/16/rabbitMQ%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" title="RabbitMQ高级特性">
-                        <span class="hidden-mobile">RabbitMQ高级特性</span>
+                      <a href="/Hexo/2022/04/12/RabbitMQ%20%E8%AE%B2%E4%B9%89/" title="RabbitMQ基础Skill">
+                        <span class="hidden-mobile">RabbitMQ基础Skill</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

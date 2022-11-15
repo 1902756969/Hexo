@@ -23,13 +23,13 @@
 <meta property="og:site_name" content="阿星的博客">
 <meta property="og:description" content="01-今日内容 Spring概述、快速入门 SpringBoot配置 SpringBoot整合  02-SpringBoot概述 SpringBoot提供了一种快速使用Spring的方式，基于约定优于配置的思想，可以让开发人员不必在配置与逻辑业务之间进行思维的切换，全身心的投入到逻辑业务的代码编写中，从而大大提高了开发的效率 SpringBoot功能  1） 自动配置 Spring Boot的自动">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://1902756969.github.io/img/QQ%E6%B5%8F%E8%A7%88%E5%99%A8%E6%88%AA%E5%9B%BE20220214124307.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/11/nLvbFrjK8o1fXka.png">
 <meta property="article:published_time" content="2022-02-09T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-03-26T05:20:21.797Z">
+<meta property="article:modified_time" content="2022-11-15T12:34:06.169Z">
 <meta property="article:author" content="星">
 <meta property="article:tag" content="SpringBoot">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://1902756969.github.io/img/QQ%E6%B5%8F%E8%A7%88%E5%99%A8%E6%88%AA%E5%9B%BE20220214124307.png">
+<meta name="twitter:image" content="https://s2.loli.net/2022/04/11/nLvbFrjK8o1fXka.png">
   
   
   <title>Springboot基础讲义 - 阿星的博客</title>
@@ -324,9 +324,9 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 引导类。 SpringBoot项目的入口</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@SpringBootApplication</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HelloApplication</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        SpringApplication.run(HelloApplication.class,args);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
 <p>⑤启动测试</p>
-<h2 id="04-快速构建SpringBoot工程"><a href="#04-快速构建SpringBoot工程" class="headerlink" title="04-快速构建SpringBoot工程"></a><strong>04-快速构建SpringBoot工程</strong></h2><p><img src="/Hexo/../img/1571298554472.png" srcset="/Hexo/img/loading.gif" lazyload alt="1571298554472"></p>
-<p><img src="/Hexo/../img/1571298596604.png" srcset="/Hexo/img/loading.gif" lazyload alt="1571298596604"></p>
-<p><img src="/Hexo/../img/1571298632944.png" srcset="/Hexo/img/loading.gif" lazyload alt="1571298632944"></p>
+<h2 id="04-快速构建SpringBoot工程"><a href="#04-快速构建SpringBoot工程" class="headerlink" title="04-快速构建SpringBoot工程"></a><strong>04-快速构建SpringBoot工程</strong></h2><p><img src="https://pic.imgdb.cn/item/623e9bf627f86abb2aee617a.png" srcset="/Hexo/img/loading.gif" lazyload alt="1571298554472"></p>
+<p><img src="https://pic.imgdb.cn/item/623e9bf627f86abb2aee618a.png" srcset="/Hexo/img/loading.gif" lazyload alt="1571298596604"></p>
+<p><img src="https://pic.imgdb.cn/item/623e9bf627f86abb2aee619b.png" srcset="/Hexo/img/loading.gif" lazyload alt="1571298632944"></p>
 <h2 id="05-SpringBoot起步依赖原理分析"><a href="#05-SpringBoot起步依赖原理分析" class="headerlink" title="05-SpringBoot起步依赖原理分析"></a>05-SpringBoot起步依赖原理分析</h2><ul>
 <li><p>在spring-boot-starter-parent中定义了各种技术的版本信息，组合了一套最优搭配的技术版本。</p>
 </li>
@@ -386,11 +386,11 @@
 </li>
 <li><p><strong>profile配置方式</strong></p>
 <pre><code class="hljs">  多profile文件方式：提供多个配置文件，每个代表一种环境。
-
+  
       application-dev.properties/yml 开发环境
-
+  
       application-test.properties/yml 测试环境
-
+  
       application-pro.properties/yml 生产环境
 </code></pre>
 <p>   yml多文档方式：</p>
@@ -424,7 +424,7 @@
 
 
 <p> <a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-external-config">https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-external-config</a></p>
-<p><img src="/Hexo/img/1571299932949.png" srcset="/Hexo/img/loading.gif" lazyload alt="1571299932949"></p>
+<p><img src="https://pic.imgdb.cn/item/6373870116f2c2beb19b2154.png" srcset="/Hexo/img/loading.gif" lazyload alt="1571299932949"></p>
 <h2 id="14-SpringBoot整合Junit"><a href="#14-SpringBoot整合Junit" class="headerlink" title="14-SpringBoot整合Junit"></a><strong>14-SpringBoot整合Junit</strong></h2><ol>
 <li><p>搭建SpringBoot工程</p>
 </li>
