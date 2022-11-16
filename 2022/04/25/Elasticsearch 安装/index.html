@@ -1,0 +1,900 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo/img/csdn.png">
+  <link rel="icon" href="/Hexo/img/csdn.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#DAA520">
+  <meta name="author" content="星">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1 ElasticSearch 安装1.1 ElasticSearch安装1、上传ElasticSearch安装包 123alt+p # 打开sftp窗口# 上传es安装包put e:&#x2F;software&#x2F;elasticsearch-7.4.0-linux-x86_64.tar.gz   2、执行解压操作 ，如下图 12# 将elasticsearch-7.4.0-linux-x86_64.tar.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Elasticsearch安装">
+<meta property="og:url" content="https://1902756969.github.io/Hexo/2022/04/25/Elasticsearch%20%E5%AE%89%E8%A3%85/index.html">
+<meta property="og:site_name" content="阿星的博客">
+<meta property="og:description" content="1 ElasticSearch 安装1.1 ElasticSearch安装1、上传ElasticSearch安装包 123alt+p # 打开sftp窗口# 上传es安装包put e:&#x2F;software&#x2F;elasticsearch-7.4.0-linux-x86_64.tar.gz   2、执行解压操作 ，如下图 12# 将elasticsearch-7.4.0-linux-x86_64.tar.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/04/24/ub3EGZ17NiL9Jzt.png">
+<meta property="article:published_time" content="2022-04-25T02:29:54.000Z">
+<meta property="article:modified_time" content="2022-04-26T13:32:41.983Z">
+<meta property="article:author" content="星">
+<meta property="article:tag" content="Elasticsearch">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/04/24/ub3EGZ17NiL9Jzt.png">
+  
+  
+  <title>Elasticsearch安装 - 阿星的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/Hexo/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/Hexo/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/Hexo/js/utils.js" ></script>
+  <script  src="/Hexo/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/Hexo/">
+      <strong>🐛 ZhaFi人</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/Hexo/img/bg5.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Elasticsearch安装"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        星
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-04-25 10:29" pubdate>
+          2022年4月25日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          44 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Elasticsearch安装</h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="1-ElasticSearch-安装"><a href="#1-ElasticSearch-安装" class="headerlink" title="1 ElasticSearch 安装"></a>1 ElasticSearch 安装</h1><h2 id="1-1-ElasticSearch安装"><a href="#1-1-ElasticSearch安装" class="headerlink" title="1.1 ElasticSearch安装"></a>1.1 ElasticSearch安装</h2><p><strong>1、上传ElasticSearch安装包</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">alt+p # 打开sftp窗口<br><span class="hljs-meta"># </span><span class="language-bash">上传es安装包</span><br>put e:/software/elasticsearch-7.4.0-linux-x86_64.tar.gz<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/04/26/Dxh4Eczritb7uwR.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574607430115"></p>
+<p><strong>2、执行解压操作 ，如下图</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta"># </span><span class="language-bash">将elasticsearch-7.4.0-linux-x86_64.tar.gz解压到opt文件夹下. -C 大写</span><br>tar -zxvf elasticsearch-7.4.0-linux-x86_64.tar.gz  -C /opt<br></code></pre></td></tr></table></figure>
+
+<p><strong>3、创建普通用户</strong></p>
+<p>因为安全问题，Elasticsearch 不允许root用户直接运行，所以要创建新用户，在root用户中创建新用户,执行如下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">useradd itheima  # 新增itheima用户<br>passwd  itheima  # 为itheima用户设置密码<br></code></pre></td></tr></table></figure>
+
+<p><strong>5、为新用户授权，如下图</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">chown -R itheima:itheima /opt/elasticsearch-7.4.0 #文件夹所有者<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/04/26/VJt1UwLMCfqrh8R.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574607864042"></p>
+<p>将 &#x2F;opt&#x2F;elasticsearch-7.4.0文件夹授权给itheima用户，由上图可见，我们的文件夹权限赋给了itheima</p>
+<p><strong>6、修改elasticsearch.yml文件</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">vim /opt/elasticsearch-7.4.0/config/elasticsearch.yml <br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta"># </span><span class="language-bash">======================== Elasticsearch Configuration =========================</span><br>cluster.name: my-application<br>node.name: node-1<br>network.host: 0.0.0.0<br>http.port: 9200<br>cluster.initial_master_nodes: [&quot;node-1&quot;]<br></code></pre></td></tr></table></figure>
+
+<p>cluster.name：配置elasticsearch的集群名称，默认是elasticsearch。建议修改成一个有意义的名称</p>
+<p>node.name：节点名，elasticsearch会默认随机指定一个名字，建议指定一个有意义的名称，方便管理</p>
+<p>network.host：设置为0.0.0.0允许外网访问</p>
+<p>http.port：Elasticsearch的http访问端口</p>
+<p>cluster.initial_master_nodes：初始化新的集群时需要此配置来选举master</p>
+<p><strong>7、修改配置文件</strong></p>
+<p>新创建的itheima用户最大可创建文件数太小，最大虚拟内存太小，切换到root用户，编辑下列配置文件， 添加类似如下内容</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta"># </span><span class="language-bash">切换到root用户</span><br>su root <br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="language-bash">1. ===最大可创建文件数太小=======</span><br>vim /etc/security/limits.conf <br><span class="hljs-meta"># </span><span class="language-bash">在文件末尾中增加下面内容</span><br>itheima soft nofile 65536<br>itheima hard nofile 65536<br><span class="hljs-meta"># </span><span class="language-bash">=====</span><br>vim /etc/security/limits.d/20-nproc.conf<br><span class="hljs-meta"># </span><span class="language-bash">在文件末尾中增加下面内容</span><br>itheima soft nofile 65536<br>itheima hard nofile 65536<br>*  hard    nproc     4096<br><span class="hljs-meta"># </span><span class="language-bash">注：* 代表Linux所有用户名称</span>	<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="language-bash">2. ===最大虚拟内存太小=======</span><br>vim /etc/sysctl.conf<br><span class="hljs-meta"># </span><span class="language-bash">在文件中增加下面内容</span><br>vm.max_map_count=655360<br><span class="hljs-meta"># </span><span class="language-bash">重新加载，输入下面命令：</span><br>sysctl -p<br><br><br><br><br></code></pre></td></tr></table></figure>
+
+<p><strong>8、启动elasticsearch</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">su itheima  # 切换到itheima用户启动<br>cd /opt/elasticsearch-7.4.0/bin<br>./elasticsearch #启动<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/04/26/qxgUBYaL5vozTMC.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574609255103"></p>
+<p>通过上图我们可以看到elasticsearch已经成功启动</p>
+<h2 id="1-2-访问elasticsearch"><a href="#1-2-访问elasticsearch" class="headerlink" title="1.2 访问elasticsearch"></a><strong>1.2 访问elasticsearch</strong></h2><p><strong>1、在访问elasticsearch前，请确保防火墙是关闭的，执行命令：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="language-bash">暂时关闭防火墙</span><br>systemctl  stop  firewalld<br><span class="hljs-meta"></span><br><span class="hljs-meta"># </span><span class="language-bash">或者</span><br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="language-bash">永久设置防火墙状态</span><br>systemctl enable firewalld.service  #打开防火墙永久性生效，重启后不会复原 <br>systemctl disable firewalld.service #关闭防火墙，永久性生效，重启后不会复原 <br></code></pre></td></tr></table></figure>
+
+<p>浏览器输入<a target="_blank" rel="noopener" href="http://192.168.149.135:9200/%EF%BC%8C%E5%A6%82%E4%B8%8B%E5%9B%BE">http://192.168.149.135:9200/，如下图</a></p>
+<p><img src="https://s2.loli.net/2022/04/26/URmesTalzC2gHI5.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574609539550"></p>
+<p>此时elasticsearch已成功启动：</p>
+<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs d">重点几个关注下即可:<br>numbe<span class="hljs-string">r&quot; : &quot;</span><span class="hljs-number">7.4</span><span class="hljs-number">.0</span><span class="hljs-string">&quot;   表示elasticsearch版本</span><br><span class="hljs-string">lucene_version&quot;</span> : <span class="hljs-string">&quot;8.2.0&quot;</span>  表示lucene版本<br>name ： 默认启动的时候指定了 ES 实例名称<br>cluster_name ： 默认名为 elasticsearch<br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="2-Elasticsearch辅助插件安装"><a href="#2-Elasticsearch辅助插件安装" class="headerlink" title="2 Elasticsearch辅助插件安装"></a>2 Elasticsearch辅助插件安装</h1><h2 id="2-1-Postman安装"><a href="#2-1-Postman安装" class="headerlink" title="2.1 Postman安装"></a>2.1 Postman安装</h2><p><strong>1、什么是Postman</strong></p>
+<p>Postman是一个http模拟请求的工具。</p>
+<p>官网介绍：“Modern software is built on APIs，Postman helps you develop APIs faster”</p>
+<p>看得出来，它是一个专门测试 API 的工具，Postman 提供功能强大的 Web API 和 HTTP 请求的调试，它能够发送任何类型的HTTP 请求 (GET, POST, PUT, DELETE…)，并且能附带任何数量的参数和 Headers。不仅如此，它还提供测试数据和环境配置数据的导入导出。</p>
+<p>进入官网<a target="_blank" rel="noopener" href="http://www.getpostman.com,下载/">www.getpostman.com，下载</a></p>
+<h2 id="2-2-Kibana安装"><a href="#2-2-Kibana安装" class="headerlink" title="2.2 Kibana安装"></a>2.2 Kibana安装</h2><p><strong>1、什么是Kibana</strong></p>
+<p>Kibana是一个针对Elasticsearch的开源分析及可视化平台，用来搜索、查看交互存储在Elasticsearch索引中的数据。使用Kibana，可以通过各种图表进行高级数据分析及展示。</p>
+<p>Kibana让海量数据更容易理解。它操作简单，基于浏览器的用户界面可以快速创建仪表板（dashboard）实时显示Elasticsearch查询动态。</p>
+<p><strong>2、上传kibana</strong></p>
+<p>CRT中克隆一个窗口，上传Kibana</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">put ‪E:\software\kibana-7.4.0-linux-x86_64.tar.gz<br></code></pre></td></tr></table></figure>
+
+<p><strong>2、解压kibana</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">tar -xzf kibana-7.4.0-linux-x86_64.tar.gz -C /opt<br></code></pre></td></tr></table></figure>
+
+<p>解压到当前目录（&#x2F;opt）下</p>
+<p><strong>3、修改kibana配置</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">vim /opt/kibana-7.4.0-linux-x86_64/config/kibana.yml<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">server.port: 5601<br>server.host: &quot;0.0.0.0&quot;<br>server.name: &quot;kibana-itcast&quot;<br>elasticsearch.hosts: [&quot;http://127.0.0.1:9200&quot;]<br>elasticsearch.requestTimeout: 99999<br></code></pre></td></tr></table></figure>
+
+<p>server.port：http访问端口</p>
+<p>server.host：ip地址，0.0.0.0表示可远程访问</p>
+<p>server.name：kibana服务名</p>
+<p>elasticsearch.hosts：elasticsearch地址</p>
+<p>elasticsearch.requestTimeout：请求elasticsearch超时时间，默认为30000，此处可根据情况设置</p>
+<p><strong>4、启动kibana</strong></p>
+<p>由于kibana不建议使用root用户启动，如果用root启动，需要加–allow-root参数</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta"># </span><span class="language-bash">切换到kibana的bin目录</span><br>cd /opt/kibana-7.4.0-linux-x86_64/bin<br><span class="hljs-meta"># </span><span class="language-bash">启动</span><br>./kibana --allow-root<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/04/26/3Z2GzvwP9rWQFt5.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574610511959"></p>
+<p>启动成功。</p>
+<p><strong>5、访问kibana</strong></p>
+<p>1.浏览器输入<a target="_blank" rel="noopener" href="http://192.168.149.135:5601/%EF%BC%8C%E5%A6%82%E4%B8%8B%E5%9B%BE%EF%BC%9A">http://192.168.149.135:5601/，如下图：</a></p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">http:<span class="hljs-regexp">//</span><span class="hljs-number">192.168</span>.<span class="hljs-number">149.135</span>:<span class="hljs-number">5601</span>/<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/04/26/IriLb7ZSYTFqcuR.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574610669598"></p>
+<p>看到这个界面，说明Kibanan已成功安装。</p>
+<p><code>Discover</code>：可视化查询分析器<br> <code>Visualize</code>：统计分析图表<br> <code>Dashboard</code>：自定义主面板（添加图表）<br> <code>Timelion</code>：Timelion是一个kibana时间序列展示组件（暂时不用）<br> <code>Dev Tools</code>：Console控制台（同CURL&#x2F;POSTER，操作ES代码工具，代码提示，很方便）<br> <code>Management</code>：管理索引库(index)、已保存的搜索和可视化结果(save objects)、设置 kibana 服务器属性。</p>
+<h2 id="2-3-head安装"><a href="#2-3-head安装" class="headerlink" title="2.3 head安装"></a>2.3 head安装</h2><blockquote>
+<p>Tips:<br>课后扩展内容</p>
+</blockquote>
+<p><strong>head简介</strong></p>
+<p>ead插件是ES的一个可视化管理插件，用来监视ES的状态，并通过head客户端和ES服务进行交互，比如创建映射、创建索引等。</p>
+<p>在登陆和访问head插件地址和ElasticSearch前需要事先在服务器上安装和配置好ElasticSearch以及head插件。安装完后，默认head插件的web端口为9100，ElasticSearch服务的端口为9200，使用浏览器访问head地址，如<a target="_blank" rel="noopener" href="http://10.82.25.183:9100/">http://IP地址:9100/</a>，推荐使用Chrome浏览器，head插件对Chrome浏览器兼容更佳。进入head页面后将ElasticSearch连接输入框中填写正确的ElasticSearch服务地址，就可以监控ElasticSearch运行信息</p>
+<h3 id="2-3-1-Node安装"><a href="#2-3-1-Node安装" class="headerlink" title="2.3.1 Node安装"></a>2.3.1 Node安装</h3><ol>
+<li>什么是Node</li>
+</ol>
+<p>简单的说 Node.js 就是运行在服务端的 JavaScript。Node.js 是一个基于 <a target="_blank" rel="noopener" href="https://developers.google.com/v8/">Chrome V8</a> 引擎的 JavaScript 运行环境。Node.js 使用了一个事件驱动、非阻塞式 I&#x2F;O 的模型，使其轻量又高效。Node.js 的包管理器 <a target="_blank" rel="noopener" href="https://www.npmjs.com/">npm</a>，是全球最大的开源库生态系统。</p>
+<ol start="2">
+<li>下载Node</li>
+</ol>
+<p>上一节我们已经安装好了Elasticsearch，接下来我们来安装head插件，由于elasticsearch-head插件是由nodejs语言编写，所以安装elasticsearch-head前需要先安装nodejs。<br>首先，执行以下命令安装nodejs和grunt</p>
+<p>打开虚拟机，执行wget命令下载Node，如下图：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">wget https://nodejs.org/dist/v10.15.2/node-v10.15.2-linux-x64.tar.xz<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/04/26/cwNXMIVEjaYmWoz.png" srcset="/Hexo/img/loading.gif" lazyload alt="1571160484991"></p>
+<p>3）解压Node包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">tar xvf node-v10.15.2-linux-x64.tar.xz<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/04/26/U5ZFAYOnL2Bhz8H.png" srcset="/Hexo/img/loading.gif" lazyload alt="1571160606899"></p>
+<p>4）设置软连接</p>
+<p>解压文件的 bin 目录底下包含了 node、npm 等命令，我们可以使用 ln 命令来设置软连接：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">ln -s bin/npm /usr/local/bin/<br><br>ln -s bin/node /usr/local/bin/<br></code></pre></td></tr></table></figure>
+
+<p>在&#x2F;etc&#x2F;profile中配置好path环境变量</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">vi ~/.bash_profile<br><br>export NODE_HOME=/opt/nodejs/node-v10.15.2-linux-x64<br><br>export PATH=$PATH:$NODE_HOME/bin<br></code></pre></td></tr></table></figure>
+
+<p>保存退出，使文件生效</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">source ~/.bash_profile<br></code></pre></td></tr></table></figure>
+
+<p> 查看node安装版本，执行  node -v  验证安装如下图：</p>
+<p><img src="https://s2.loli.net/2022/04/26/bSaoMATLglKh7Zm.png" srcset="/Hexo/img/loading.gif" lazyload alt="1571160954958"></p>
+<h3 id="2-3-2-grunt安装"><a href="#2-3-2-grunt安装" class="headerlink" title="2.3.2 grunt安装"></a><strong>2.3.2 grunt安装</strong></h3><p>安装grunt（运行在Node.js上面的任务管理器（task runner）），为了获得Grunt的更多产品特性，需要全局安装Grunt’s 命令行接口（CLI），使用npm进行安装，如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm install -g grunt-cli<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/04/26/6wf4lpDvuZK3IXR.png" srcset="/Hexo/img/loading.gif" lazyload alt="1571161497433"></p>
+<p>查看grunt版本</p>
+<p><img src="https://s2.loli.net/2022/04/26/9b3dDxRA6cmtvgF.png" srcset="/Hexo/img/loading.gif" lazyload alt="1571161600969"></p>
+<p>输出grunt版本信息，表示安装成功。</p>
+<h3 id="2-3-3-head安装"><a href="#2-3-3-head安装" class="headerlink" title="2.3.3 head安装"></a><strong>2.3.3 head安装</strong></h3><ol>
+<li>执行命令安装git</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git yum install git -y<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/04/26/nKu3bdtwkTFcpRq.png" srcset="/Hexo/img/loading.gif" lazyload alt="1571161083235"></p>
+<ol start="2">
+<li>切换到&#x2F;opt目录下,执行下面的克隆命令</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git clone git://github.com/mobz/elasticsearch-head.git<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/04/26/RuAbWLplzkFyiv2.png" srcset="/Hexo/img/loading.gif" lazyload alt="1571193736229"></p>
+<ol start="3">
+<li>进入到elasticsearch-head目录</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd elasticsearch-head<br></code></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>运行</li>
+</ol>
+<p>在运行之前我们需要修改下elasticsearch.yml，因为ES默认不开启跨域访问，需要添加以下配置：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="language-bash">开启cors跨域访问支持，默认为<span class="hljs-literal">false</span></span> <br>http.cors.enabled: true<br><span class="hljs-meta">#</span><span class="language-bash">跨域访问允许的域名地址，(允许所有域名)以上使用正则</span><br>http.cors.allow-origin: &quot;*&quot;<br></code></pre></td></tr></table></figure>
+
+<p>然后开始执行运行命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm run start<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/04/26/gD649tRfclAOzkr.png" srcset="/Hexo/img/loading.gif" lazyload alt="1571163304853"></p>
+<ol start="5">
+<li>访问head</li>
+</ol>
+<p>浏览器输入ip:port:9100，如下图</p>
+<p><img src="https://s2.loli.net/2022/04/26/Cv6kGOWcrNnz2Sb.png" srcset="/Hexo/img/loading.gif" lazyload alt="1571163462191"></p>
+<p>看到这个界面说明我们的head插件成功安装并且成功连接Elasticsearch。</p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/Hexo/categories/Elasticsearch/" class="category-chain-item">Elasticsearch</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/Hexo/tags/Elasticsearch/">#Elasticsearch</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Elasticsearch安装</div>
+      <div>https://1902756969.github.io/Hexo/2022/04/25/Elasticsearch 安装/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>星</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年4月25日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Hexo/2022/04/25/ik%E5%88%86%E8%AF%8D%E5%99%A8%E5%AE%89%E8%A3%85/" title="ik分词器安装">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ik分词器安装</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Hexo/2022/04/24/Elasticsearch_1/" title="搜索引擎Elasticsearch_1">
+                        <span class="hidden-mobile">搜索引擎Elasticsearch_1</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/Hexo/js/events.js" ></script>
+<script  src="/Hexo/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  
+    <script  src="/Hexo/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/Hexo/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/Hexo/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/Hexo/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>

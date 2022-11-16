@@ -1,0 +1,831 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo/img/csdn.png">
+  <link rel="icon" href="/Hexo/img/csdn.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#DAA520">
+  <meta name="author" content="星">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、String常用方法1.Sting对象的初始化123String S&#x3D;&quot;1&quot;；S&#x3D;&quot;2&quot;;  面向对象的初始化格式: 123String S &#x3D;new String(&quot;1&quot;);S&#x3D;new String(&quot;字符串&quot;);  2.字符串的常用操作1)chatAt 方法charAt 方法的作用是按照意引值(规定字符申中第一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="String常用方法">
+<meta property="og:url" content="https://1902756969.github.io/Hexo/2022/09/01/String%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="阿星的博客">
+<meta property="og:description" content="一、String常用方法1.Sting对象的初始化123String S&#x3D;&quot;1&quot;；S&#x3D;&quot;2&quot;;  面向对象的初始化格式: 123String S &#x3D;new String(&quot;1&quot;);S&#x3D;new String(&quot;字符串&quot;);  2.字符串的常用操作1)chatAt 方法charAt 方法的作用是按照意引值(规定字符申中第一">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.imgdb.cn/item/623e9bfa27f86abb2aee7d5e.png">
+<meta property="article:published_time" content="2022-09-01T12:29:54.000Z">
+<meta property="article:modified_time" content="2022-11-15T12:51:05.935Z">
+<meta property="article:author" content="星">
+<meta property="article:tag" content="java基础">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/623e9bfa27f86abb2aee7d5e.png">
+  
+  
+  <title>String常用方法 - 阿星的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/Hexo/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/Hexo/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/Hexo/js/utils.js" ></script>
+  <script  src="/Hexo/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/Hexo/">
+      <strong>🐛 ZhaFi人</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/Hexo/img/bg5.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="String常用方法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        星
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-01 20:29" pubdate>
+          2022年9月1日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          38 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">String常用方法</h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="一、String常用方法"><a href="#一、String常用方法" class="headerlink" title="一、String常用方法"></a>一、String常用方法</h1><h2 id="1-Sting对象的初始化"><a href="#1-Sting对象的初始化" class="headerlink" title="1.Sting对象的初始化"></a>1.Sting对象的初始化</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">String S=<span class="hljs-string">&quot;1&quot;</span>；<br><br>S=<span class="hljs-string">&quot;2&quot;</span>;<br></code></pre></td></tr></table></figure>
+
+<p>面向对象的初始化格式:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">S</span> <span class="hljs-operator">=</span><span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-string">&quot;1&quot;</span>);<br><br>S=<span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-string">&quot;字符串&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-字符串的常用操作"><a href="#2-字符串的常用操作" class="headerlink" title="2.字符串的常用操作"></a>2.字符串的常用操作</h2><h3 id="1-chatAt-方法"><a href="#1-chatAt-方法" class="headerlink" title="1)chatAt 方法"></a>1)chatAt 方法</h3><p>charAt 方法的作用是按照意引值(规定字符申中第一个字得的索引值是0.第二个字的索引值是1、依次类推)获得字符事中的指定字间。例如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">String S=<span class="hljs-string">&quot;abc&quot;</span>；<br><br><span class="hljs-type">char</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> S.<span class="hljs-type">char</span>(<span class="hljs-number">1</span>);<br></code></pre></td></tr></table></figure>
+
+<p>则变量c的值是b</p>
+<h3 id="2-cotmpareTo-方法"><a href="#2-cotmpareTo-方法" class="headerlink" title="2)cotmpareTo 方法"></a>2)cotmpareTo 方法</h3><p>compareTo方法的作用是比较两个字符申的大小，原理是依次比较每个字符的字行。码第一果一字符的符编码大于第二个字符电的字符编码、则返回大于0的值;如果小于,则返回小于0的值;如果相等。则比较后续的字符。如果两字符编码完全相同，返回0。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">String s=<span class="hljs-string">&quot;abc&quot;</span>;<br><br>String s1=<span class="hljs-string">&quot;abd&quot;</span>;<br><br><span class="hljs-type">int</span> value=s.compareTo(s1);<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-coneat-方法"><a href="#3-coneat-方法" class="headerlink" title="3)coneat 方法"></a>3)coneat 方法</h3><p>concat方法的作用是连接字符申,得到一个新的字符串。例如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">String s=<span class="hljs-string">&quot;abe&quot;</span> ;<br><br>String s1=<span class="hljs-string">&quot;def&quot;</span>;<br><br>String s2=s.concat(s1):<br></code></pre></td></tr></table></figure>
+
+<p>则连接以后生成的新字符串s2的值是”abcdef”，而字符串s和sl的值不变。在实际使用时，有一种简单的语法形式，即使用“+”连接字符串。例如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs JAVA">String s-<span class="hljs-string">&quot;abc&quot;</span>+<span class="hljs-string">&quot;1234&quot;</span>;<br></code></pre></td></tr></table></figure>
+
+<p>则字符串s的值是”abc1234”。这样书写，更加简单、直观。<br>运算符“+”，不仅可以连接字符串，还可以连接其他数据类型。“+”匹配的顺序是从左向右，如果两边连接的内容都是基本数字类型，则按照加法运算;如果参与连接的内容有一个是字符串，才按照字符事进行连接。</p>
+<p>例如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs JAVA"><span class="hljs-type">int</span> a=<span class="hljs-number">10</span>;<br>String s=<span class="hljs-string">&quot;123*+a+5;</span><br></code></pre></td></tr></table></figure>
+
+<p>则连接以后，字符串s的值是“123105”，计算的过程为:首先连接字符串”123和变量:的值，生成字符串”12310”;然后，将该字符串和数字5连接，得到最终的结果。</p>
+<h3 id="4-ends-With-方法"><a href="#4-ends-With-方法" class="headerlink" title="4)ends With 方法"></a>4)ends With 方法</h3><p>endsWith 方法的作用是判断字符串是否以某个字符串结尾，如果以对应的字符串结尾，返回true。例如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs JAVA">String s=<span class="hljs-string">&quot;student.doc&quot;</span>;<br><span class="hljs-type">boolean</span> b=s.endswith(<span class="hljs-string">&quot;doc&quot;</span>):<br></code></pre></td></tr></table></figure>
+
+<p>则变量 b的值是 true</p>
+<h3 id="5-equnls-方法"><a href="#5-equnls-方法" class="headerlink" title="5)equnls 方法"></a>5)equnls 方法</h3><p>equals方法的作用是判断两个字符串对象的内容是否相同。如果相同，返回true，否则返回false。例如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs JAVA"><span class="hljs-type">string</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span><span class="hljs-string">&quot;abc&quot;</span>;<br>string s1=<span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-string">&quot;abc&quot;</span>);<br><br> <span class="hljs-type">boolean</span> b=s.equals(s1);<br></code></pre></td></tr></table></figure>
+
+<p>使用“&#x3D;&#x3D;”比较的是两个对象在内存中存储的地址是否相同。例如，上述代码中，如果判断:<br>boolean b&#x3D;(s&#x3D;&#x3D;1);<br>则变量b的值是false。因为s对象对应的是”abc”的地址，而sl使用new关键字申请新的内存,所以内存地址和s的”abc”的地址不同,所以得到的值是false。<br>在String类中有一个类似的方法equalslgnoreCase,其作用是忽略大小写比较两个字符串的内容是否相同。</p>
+<h3 id="6-indexOf-方法"><a href="#6-indexOf-方法" class="headerlink" title="6)indexOf 方法"></a>6)indexOf 方法</h3><p>indexOf方法的作用是查找特定字符或字符串在当前字符串中的起始位置。 如果不存<br>在，返回一1。例如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs JAVA">String s=<span class="hljs-string">&quot;abcded&quot;</span>;<br><span class="hljs-type">int</span> index0=s.indexof(<span class="hljs-string">&#x27;d&#x27;</span>); <br><br><span class="hljs-type">int</span> indexl=s.indexOf(<span class="hljs-string">&#x27;h&#x27;</span>);<br><br> <span class="hljs-type">int</span> index2=s.indexOf(<span class="hljs-string">&#x27;d&#x27;</span>,<span class="hljs-number">4</span>);<br></code></pre></td></tr></table></figure>
+
+<p>index0返回字符d在字符串s中第一次出现的位置,数值为3。由于字符h在字符串s中不存在，则indexl的值是一1。index2返回从索引值4(包括4)以后的字符中第一个出现的字符d，其值为5。</p>
+<h3 id="7-length-方法"><a href="#7-length-方法" class="headerlink" title="7)length 方法"></a>7)length 方法</h3><p>length方法的作用是返回字符串的长度，也就是返回字符串中字符的个数。中文字符也是一个字符。例如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">String s=<span class="hljs-string">&quot;abc&quot;</span>;<br>String s1=<span class="hljs-string">&quot;Java 语言&quot;</span>;<br><br> <span class="hljs-type">int</span> len=s.length();<br><br> <span class="hljs-type">int</span> len1=s1.length();<br></code></pre></td></tr></table></figure>
+
+<p>则变量 len 的值是3,变量 len1 的值是6。</p>
+<h3 id="8-replace-方法"><a href="#8-replace-方法" class="headerlink" title="8)replace 方法"></a>8)replace 方法</h3><p>replace方法的作用是替换字符串中所有指定的字符，然后生成一个新的字符串。调该方法以后，原来的字符串不发生改变。例如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">String s=<span class="hljs-string">&quot;abcat&quot;</span>;<br>String s1=s.replace(<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;1&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>其作用是将字符串s中所有的字符a替换成字符1.生成的新字符串 s1的值是”1bclt”符串s的内容不变。<br>如果需要将字符串中某个指定的字符串替换为其他字符串，使用replaceAll 方例如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">String s=<span class="hljs-string">&quot;abatbac&quot;</span>;<br>String s1=s.replaceAll(<span class="hljs-string">&quot;ba&quot;</span>,<span class="hljs-string">&quot;12&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>其作用是将字符串s中所有的字符串”ab”替换为”12”,生成新的字符串”a12t12c”,字符串!的内容不变。</p>
+<h3 id="9-split方法"><a href="#9-split方法" class="headerlink" title="9)split方法"></a>9)split方法</h3><p>split方法的作用是以特定的字符串作为间隔，拆分当前字符串的内容。一般情况下拆分以后得到一个字符串数组。例如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">String s=<span class="hljs-string">&quot;ab,12,df&quot;</span>;<br>String s1[]=s.split(<span class="hljs-string">&quot;,&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>其作用是以字符串”，”作为间隔，拆分字符串s，得到拆分以后的字符串数组s1，其内容为{“ab”,”12”,”df”}。<br>它是解析字符串的基础方法。<br>如果在字符串内部存在和间隔字符串相同的内容，将拆除空字符串，尾部的空字符串被忽略。例如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">String se<span class="hljs-string">&quot;abbcbtbb&quot;</span>;<br>String s1[l-s.split(<span class="hljs-string">&quot;b&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>则拆分出的结果字符串数组s1的内容为(“a”，” “，”c”，”t”。拆分出的中间的空字符串的数量等于中间间隔字符串的数量减1个。例如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">String s-<span class="hljs-string">&quot;abbbcbtbbb&quot;</span>;<br><br> String s1[]=s.split(<span class="hljs-string">&quot;b&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>则拆分出的结果是{“a”,” “,” “,”e”,”t”}。</p>
+<h3 id="10-startsWith-方法"><a href="#10-startsWith-方法" class="headerlink" title="10)startsWith 方法"></a>10)startsWith 方法</h3><p>startsWith方法的作用和endsWith方法类似,只是该方法判断字符串是否以某个字符串作为开始。例如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">String s=<span class="hljs-string">&quot;TestGame&quot;</span>;<br><span class="hljs-type">boolean</span> b=g.startsWith (<span class="hljs-string">&quot;Test&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>则变量b的值是true。</p>
+<h3 id="11-substring-方法"><a href="#11-substring-方法" class="headerlink" title="11)substring 方法"></a>11)substring 方法</h3><p>substring 方法的作用是取字符串中的子电。例如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">String s <span class="hljs-string">&quot;Teststring&quot;</span>; <br><br>String s1=s.substring(<span class="hljs-number">2</span>);<br><br> String sl=s.substring(<span class="hljs-number">2</span>,<span class="hljs-number">5</span>);<br></code></pre></td></tr></table></figure>
+
+<p>sl是取字符串s中索引值为2(包括2)以后的所有字符作为子串,其值为”ststring”。s2是取字符串s中从索引值2(包括2)开始，到索引值5(不包括5)的部分作为子串,其值为”stS”。下面是一段简单的应用代码,作用是输出任意一个字符串的所有子串。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">string s=<span class="hljs-string">&quot;子串示例&quot;</span>;<br><span class="hljs-type">int</span> len=s.length(); <span class="hljs-comment">//获得字符串长度 </span><br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> begin=<span class="hljs-number">0</span>; begin&lt;len-<span class="hljs-number">1</span>; begin++)&#123; <span class="hljs-comment">//起始索引值 </span><br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> end=begin+l; end &lt;=len; end++)( <span class="hljs-comment">//结束索引值 </span><br>system.out.println(s.substring(begin, end));<br></code></pre></td></tr></table></figure>
+
+<p>在该代码中,循环变量begin代表需要获得的子串的起始索引值，其变化区间从第一个字符的索引值0到倒数第二个字符串的索引值len-2;end代表需要获得的子串的结束索<br>引值,其变化的区间从起始索引值的后续一个到字符串长度。通过循环嵌套，可以谝历字符<br>串中的所有子串。</p>
+<h3 id="12-toCharArray方法"><a href="#12-toCharArray方法" class="headerlink" title="12)toCharArray方法"></a>12)toCharArray方法</h3><p>toCharArray方法的作用和getBytes方法类似，即将字符串转换为对应的char数组例如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">String s=<span class="hljs-string">&quot;abc&quot;</span>;<br><span class="hljs-type">char</span>[] c=s.toCharArray();<br></code></pre></td></tr></table></figure>
+
+<p>则字符数组c的值为{‘a’,’b’，’c’}。</p>
+<h3 id="13-toLowerCase方法"><a href="#13-toLowerCase方法" class="headerlink" title="13)toLowerCase方法"></a>13)toLowerCase方法</h3><p>toLowerCase方法的作用是将字符串中所有的大写字符转换为小写。例如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">String s-<span class="hljs-string">&quot;AbC123&quot;</span>;<br>String sl=s.toLowerCase();<br></code></pre></td></tr></table></figure>
+
+<p>则字符串sl的值是”abc123”,而字符串s的值不变。<br>类似的方法是toUpperCase，其作用是将字符串中的小写字符转换为对应的大写字符。例如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">String s=<span class="hljs-string">&quot;AbC123&quot;</span>;<br>String s1=s.toUpperCase0);<br></code></pre></td></tr></table></figure>
+
+<p>则字符串 sl的值是”ABC123”,而字符串s的值不变。</p>
+<h3 id="14-trim-方法"><a href="#14-trim-方法" class="headerlink" title="14)trim 方法"></a>14)trim 方法</h3><p>trim方法的作用是去掉字符串开始和结尾的所有空格，形成一个新的字符串。该方不去掉字符串中间的空格。例如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">String s-<span class="hljs-string">&quot; abc abc 123 &quot;</span>; <br>String sl=s.trim();<br></code></pre></td></tr></table></figure>
+
+<p>则字符串 sl的值为”abc abc 123”,字符串s的值不变。</p>
+<h3 id="15-valueOf-方法"><a href="#15-valueOf-方法" class="headerlink" title="15)valueOf 方法"></a>15)valueOf 方法</h3><p>valueOf方法的作用是将其他类型的数据转换为字符串类型。需要注意的是，基本数据和字符串对象之间不能使用强制类型转换的语法进行转换。另外，由于该方法是static方法，所以不用创建String类型的对象。例如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> n=<span class="hljs-number">10</span>;<br>String s=String.valueOf(n);<br></code></pre></td></tr></table></figure>
+
+<p>则字符串s的值是”10”。虽然对于程序员来说,没有发生什么变化,但是对于程序来说，数据的类型发生了变化。<br>介绍一个简单的应用,判断一个自然数是几位数字的代码如下。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs JAVA"><span class="hljs-type">int</span> n=<span class="hljs-number">12345</span>;<br>string s=String.valueOf(n);<br><br> <span class="hljs-type">int</span> len=s.length();<br></code></pre></td></tr></table></figure>
+
+<p>字符串的长度 len代表该自然数的位数。这种判断比数学判断方法在逻辑上要简单一些<br>关于 String 类的使用就介绍这些,其他方法以及这里介绍的方法的详细声明可以参习对应的API文档。</p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/Hexo/categories/java%E5%9F%BA%E7%A1%80/" class="category-chain-item">java基础</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/Hexo/tags/java%E5%9F%BA%E7%A1%80/">#java基础</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>String常用方法</div>
+      <div>https://1902756969.github.io/Hexo/2022/09/01/String常用方法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>星</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年9月1日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Hexo/2022/09/12/ArrayList%E7%9A%84%E7%90%86%E8%A7%A3/" title="ArrayList理解">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ArrayList理解</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Hexo/2022/09/01/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%8601/" title="异常处理①">
+                        <span class="hidden-mobile">异常处理①</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/Hexo/js/events.js" ></script>
+<script  src="/Hexo/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  
+    <script  src="/Hexo/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/Hexo/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/Hexo/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/Hexo/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>

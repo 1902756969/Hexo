@@ -1,0 +1,847 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo/img/csdn.png">
+  <link rel="icon" href="/Hexo/img/csdn.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#DAA520">
+  <meta name="author" content="星">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1、一张表，里面有 ID 自增主键，当 insert 了 17 条记录之后，删除了第 15,16,17 条记录， 再把 Mysql 重启，再 insert 一条记录，这条记录的 ID 是 18 还是 15 ？  (1)如果表的类型是 MyISAM，那么是 18 因为 MyISAM 表会把自增主键的最大 ID 记录到数据文件里，重启 MySQL 自增主键的最大 ID 也不会丢失  （2）如果表的类型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql面试题">
+<meta property="og:url" content="https://1902756969.github.io/Hexo/2021/04/01/MySql%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
+<meta property="og:site_name" content="阿星的博客">
+<meta property="og:description" content="1、一张表，里面有 ID 自增主键，当 insert 了 17 条记录之后，删除了第 15,16,17 条记录， 再把 Mysql 重启，再 insert 一条记录，这条记录的 ID 是 18 还是 15 ？  (1)如果表的类型是 MyISAM，那么是 18 因为 MyISAM 表会把自增主键的最大 ID 记录到数据文件里，重启 MySQL 自增主键的最大 ID 也不会丢失  （2）如果表的类型">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.imgdb.cn/item/623e9bfa27f86abb2aee7d5e.png">
+<meta property="article:published_time" content="2021-04-01T07:36:05.000Z">
+<meta property="article:modified_time" content="2022-11-16T11:54:33.449Z">
+<meta property="article:author" content="星">
+<meta property="article:tag" content="Mysql">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/623e9bfa27f86abb2aee7d5e.png">
+  
+  
+  <title>Mysql面试题 - 阿星的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/Hexo/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/Hexo/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/Hexo/js/utils.js" ></script>
+  <script  src="/Hexo/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/Hexo/">
+      <strong>🐛 ZhaFi人</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/Hexo/img/bg5.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Mysql面试题"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        星
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-04-01 15:36" pubdate>
+          2021年4月1日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          56 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Mysql面试题</h1>
+            
+            <div class="markdown-body">
+              
+              <p>1、一张表，里面有 ID 自增主键，当 insert 了 17 条记录之后，删除了第 15,16,17 条记录， 再把 Mysql 重启，再 insert 一条记录，这条记录的 ID 是 18 还是 15 ？ </p>
+<p>(1)如果表的类型是 MyISAM，那么是 18 因为 MyISAM 表会把自增主键的最大 ID 记录到数据文件里，重启 MySQL 自增主键的最大 ID 也不会丢失 </p>
+<p>（2）如果表的类型是 InnoDB，那么是 15 InnoDB 表只是把自增主键的最大 ID 记录到内存中，所以重启数据库或者是对表进行 OPTIMIZE 操作，都会导致最大 ID 丢失</p>
+<p> 2、Mysql 的技术特点是什么？</p>
+<p> Mysql 数据库软件是一个客户端或服务器系统，其中包括：支持各种客户端程序和库的多 线程 SQL 服务器、不同的后端、广泛的应用程序编程接口和管理工具。</p>
+<p> 3、Heap 表是什么？</p>
+<p> HEAP 表存在于内存中，用于临时高速存储。 BLOB 或 TEXT 字段是不允许的 只能使用比较运算符&#x3D;，&lt;，&gt;，&#x3D;&gt;，&#x3D; &lt; HEAP 表不支持 AUTO_INCREMENT 索引不可为 NULL</p>
+<p> 4、Mysql 服务器默认端口是什么？</p>
+<p> Mysql 服务器的默认端口是 3306。</p>
+<p> 5、与 Oracle 相比，Mysql 有什么优势？ Mysql 是开源软件，随时可用，无需付费。 Mysql 是便携式的 带有命令提示符的 GUI。 使用 Mysql 查询浏览器支持管理</p>
+<p> 6、如何区分 FLOAT 和 DOUBLE？</p>
+<p> 以下是 FLOAT 和 DOUBLE 的区别： 浮点数以 8 位精度存储在 FLOAT 中，并且有四个字节。 浮点数存储在 DOUBLE 中，精度为 18 位，有八个字节。</p>
+<p> 7、区分 CHAR_LENGTH 和 LENGTH？</p>
+<p> CHAR_LENGTH 是字符数，而 LENGTH 是字节数。Latin 字符的这两个数据是相同的，但是对 于 Unicode 和其他编码，它们是不同的。 </p>
+<p>8、请简洁描述 Mysql 中 InnoDB 支持的四种事务隔离级别名称，以及逐级之间的区别？ </p>
+<p>SQL 标准定义的四个隔离级别为： read uncommited ：读到未提交数据 read committed：脏读，不可重复读 repeatable read：可重读 serializable ：串行事物 </p>
+<p>9、在 Mysql 中 ENUM 的用法是什么？</p>
+<p> ENUM 是一个字符串对象，用于指定一组预定义的值，并可在创建表时使用。 Create table size(name ENUM(‘Smail,’Medium’,’Large’); </p>
+<p>10、如何定义 REGEXP？</p>
+<p> REGEXP 是模式匹配，其中匹配模式在搜索值的任何位置。</p>
+<p>11、CHAR 和 VARCHAR 的区别？</p>
+<p> 以下是 CHAR 和 VARCHAR 的区别： CHAR 和 VARCHAR 类型在存储和检索方面有所不同 CHAR 列长度固定为创建表时声明的长度，长度值范围是 1 到 255 当 CHAR 值被存储时，它们被用空格填充到特定长度，检索 CHAR 值时需删除尾随空格。</p>
+<p> 12、列的字符串类型可以是什么？ </p>
+<p>字符串类型是： SET BLOB ENUM CHAR TEXT VARCHAR</p>
+<p> 13、如何获取当前的 Mysql 版本？ </p>
+<p>SELECT VERSION();用于获取当前 Mysql 的版本。 </p>
+<p>14、Mysql 中使用什么存储引擎？ </p>
+<p>存储引擎称为表类型，数据使用各种技术存储在文件中。 技术涉及： Storage mechanism Locking levels Indexing Capabilities and functions.</p>
+<p>15、Mysql 驱动程序是什么？</p>
+<p> 以下是 Mysql 中可用的驱动程序： PHP 驱动程序 JDBC 驱动程序 ODBC 驱动程序 CWRAPPER PYTHON 驱动程序 PERL 驱动程序 RUBY 驱动程序 CAP11PHP 驱动程序 Ado.net5.mxj </p>
+<p>16、TIMESTAMP 在 UPDATE CURRENT_TIMESTAMP 数据类型上做什么？</p>
+<p> 创建表时 TIMESTAMP 列用 Zero 更新。只要表中的其他字段发生更改，UPDATE CURRENT_TIMESTAMP 修饰符就将时间戳字段更新为当前时间。 </p>
+<p>17、主键和候选键有什么区别？</p>
+<p> 表格的每一行都由主键唯一标识,一个表只有一个主键。 主键也是候选键。按照惯例，候选键可以被指定为主键，并且可以用于任何外键引用。</p>
+<p> 18、如何使用 Unix shell 登录 Mysql？ 我们可以通过以下命令登录： [mysql dir]&#x2F;bin&#x2F;mysql -h hostname -u </p>
+<p>19、 myisamchk 是用来做什么的？ </p>
+<p>它用来压缩 MyISAM 表，这减少了磁盘或内存使用。</p>
+<p> 20、MYSQL 数据库服务器性能分析的方法命令有哪些? </p>
+<p><a target="_blank" rel="noopener" href="https://img-blog.csdnimg.cn/89b489c71d96487da9bb94bbde94c1d6.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAbWFuX29uZQ==,size_20,color_FFFFFF,t_70,g_se,x_16">https://img-blog.csdnimg.cn/89b489c71d96487da9bb94bbde94c1d6.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAbWFuX29uZQ==,size_20,color_FFFFFF,t_70,g_se,x_16</a></p>
+<p>21、如何控制 HEAP 表的最大尺寸？</p>
+<p> Heal 表的大小可通过称为 max_heap_table_size 的 Mysql 配置变量来控制。 </p>
+<p>22、MyISAM Static 和 MyISAM Dynamic 有什么区别？</p>
+<p> 在 MyISAM Static 上的所有字段有固定宽度。动态 MyISAM 表将具有像 TEXT，BLOB 等字 段，以适应不同长度的数据类型。点击这里有一套最全阿里面试题总结。 MyISAM Static 在受损情况下更容易恢复。 </p>
+<p>23、federated 表是什么？ </p>
+<p>federated 表，允许访问位于其他服务器数据库上的表。 </p>
+<p>24、如果一个表有一列定义为 TIMESTAMP，将发生什么？</p>
+<p> 每当行被更改时，时间戳字段将获取当前时间戳。 </p>
+<p>25、列设置为 AUTO INCREMENT 时，如果在表中达到最大值，会发生什么情况？</p>
+<p> 它会停止递增，任何进一步的插入都将产生错误，因为密钥已被使用。 </p>
+<p>26、怎样才能找出最后一次插入时分配了哪个自动增量？ LAST_INSERT_ID 将返回由 Auto_increment 分配的最后一个值，并且不需要指定表名称。</p>
+<p> 27、你怎么看到为表格定义的所有索引？</p>
+<p> 索引是通过以下方式为表格定义的： SHOW INDEX FROM </p>
+<p>28.、LIKE 声明中的％和_是什么意思？ ％对应于 0 个或更多字符，_只是 LIKE 语句中的一个字符。 </p>
+<p>29、如何在 Unix 和 Mysql 时间戳之间进行转换？ UNIX_TIMESTAMP 是从 Mysql 时间戳转换为 Unix 时间戳的命令 FROM_UNIXTIME 是从 Unix 时间戳转换为 Mysql 时间戳的命令 </p>
+<p>30、列对比运算符是什么？</p>
+<p> 在 SELECT 语句的列比较中使用&#x3D;，&lt;&gt;，&lt;&#x3D;，&lt;，&gt; &#x3D;，&gt;，&lt;&lt;，&gt;&gt;，&lt;&#x3D;&gt;，AND，OR 或 LIKE 运 算符。</p>
+<p> 31、我们如何得到受查询影响的行数？</p>
+<p> 行数可以通过以下代码获得： SELECT COUNT(user_id)FROM users; </p>
+<p>32、Mysql 查询是否区分大小写？</p>
+<p> 不区分 SELECT VERSION(), CURRENT_DATE; SeLect version(), current_date; seleCt vErSiOn(), current_DATE; 所有这些例子都是一样的，Mysql 不区分大小写。</p>
+<p> 33.、LIKE 和 REGEXP 操作有什么区别？ </p>
+<p>LIKE 和 REGEXP 运算符用于表示^和％。 SELECT * FROM employee WHERE emp_name REGEXP “^b”; SELECT * FROM employee WHERE emp_name LIKE “%b”; </p>
+<p>34.、BLOB 和 TEXT 有什么区别？ </p>
+<p>BLOB 是一个二进制对象，可以容纳可变数量的数据。有四种类型的 BLOB - TINYBLOB BLOB MEDIUMBLOB 和 LONGBLOB 它们只能在所能容纳价值的最大长度上有所不同。 TEXT 是一个不区分大小写的 BLOB。四种 TEXT 类型 TINYTEXT TEXT MEDIUMTEXT 和 LONGTEXT 它们对应于四种 BLOB 类型，并具有相同的最大长度和存储要求。 BLOB 和 TEXT 类型之间的唯一区别在于对 BLOB 值进行排序和比较时区分大小写，对 TEXT 值不区分大小写。 </p>
+<p>35、mysql_fetch_array 和 mysql_fetch_object 的区别是什么？ 以下是 mysql_fetch_array 和 mysql_fetch_object 的区别： mysql_fetch_array（） - 将结果行作为关联数组或来自数据库的常规数组返回。 mysql_fetch_object - 从数据库返回结果行作为对象。</p>
+<p> 36、我们如何在 mysql 中运行批处理模式？ 以下命令用于在批处理模式下运行： mysql; mysql mysql.out </p>
+<p>37、MyISAM 表格将在哪里存储，并且还提供其存储格式？</p>
+<p> 每个 MyISAM 表格以三种格式存储在磁盘上： ·“.frm”文件存储表定义 ·数据文件具有“.MYD”（MYData）扩展名 索引文件具有“.MYI”（MYIndex）扩展名 </p>
+<p>38.、Mysql 中有哪些不同的表格？</p>
+<p> 共有 5 种类型的表格： MyISAM Heap Merge INNODB ISAM MyISAM 是 Mysql 的默认存储引擎。</p>
+<p>39、ISAM 是什么？</p>
+<p> ISAM 简称为索引顺序访问方法。它是由 IBM 开发的，用于在磁带等辅助存储系统上存储和 检索数据。</p>
+<p> 40、InnoDB 是什么？</p>
+<p> lnnoDB 是一个由 Oracle 公司开发的 Innobase Oy 事务安全存储引擎。 </p>
+<p>41、Mysql 如何优化 DISTINCT？</p>
+<p> DISTINCT 在所有列上转换为 GROUP BY，并与 ORDER BY 子句结合使用。 1 SELECT DISTINCT t1.a FROM t1,t2 where t1.a&#x3D;t2.a;</p>
+<p> 42、如何输入字符为十六进制数字？</p>
+<p> 如果想输入字符为十六进制数字，可以输入带有单引号的十六进制数字和前缀（X），或者 只用（Ox）前缀输入十六进制数字。 如果表达式上下文是字符串，则十六进制数字串将自动转换为字符串。 </p>
+<p>43、如何显示前 50 行？ </p>
+<p>在 Mysql 中，使用以下代码查询显示前 50 行： SELECT*FROM LIMIT 0,50; 44、可以使用多少列创建索引？ 任何标准表最多可以创建 16 个索引列。</p>
+<p> 45、NOW（）和 CURRENT_DATE（）有什么区别？</p>
+<p> NOW（）命令用于显示当前年份，月份，日期，小时，分钟和秒。 CURRENT_DATE（）仅显示当前年份，月份和日期。 46、什么样的对象可以使用 CREATE 语句创建？</p>
+<p> 以下对象是使用 CREATE 语句创建的： DATABASE EVENT FUNCTION INDEX PROCEDURE TABLE TRIGGER USER VIEW </p>
+<p>47、Mysql 表中允许有多少个 TRIGGERS？</p>
+<p> 在 Mysql 表中允许有六个触发器，如下： BEFORE INSERT AFTER INSERT BEFORE UPDATE AFTER UPDATE BEFORE DELETE AFTER DELETE </p>
+<p>48、什么是非标准字符串类型？</p>
+<p> 以下是非标准字符串类型： TINYTEXT TEXT MEDIUMTEXT LONGTEXT </p>
+<p>49、什么是通用 SQL 函数？</p>
+<p> CONCAT(A, B) - 连接两个字符串值以创建单个字符串输出。通常用于将两个或多个字段合 并为一个字段。 FORMAT(X, D)- 格式化数字 X 到 D 有效数字。 CURRDATE(), CURRTIME()- 返回当前日期或时间。 NOW（） - 将当前日期和时间作为一个值返回。 MONTH（），DAY（），YEAR（），WEEK（），WEEKDAY（） - 从日期值中提取给定数据。 HOUR（），MINUTE（），SECOND（） - 从时间值中提取给定数据。 DATEDIFF（A，B） - 确定两个日期之间的差异，通常用于计算年龄 SUBTIMES（A，B） - 确定两次之间的差异。 FROMDAYS（INT） - 将整数天数转换为日期值。 </p>
+<p>50、解释访问控制列表？</p>
+<p> ACL（访问控制列表）是与对象关联的权限列表。这个列表是 Mysql 服务器安全模型的基 础，它有助于排除用户无法连接的问题。 Mysql 将 ACL（也称为授权表）缓存在内存中。当用户尝试认证或运行命令时，Mysql 会按 照预定的顺序检查 ACL 的认证信息和权限。 </p>
+<p>51、MYSQL 支持事务吗？ </p>
+<p>在缺省模式下，MYSQL 是 autocommit 模式的，所有的数据库更新操作都会即时提交，所 以在缺省情况下，mysql 是不支持事务的。 但是如果你的 MYSQL 表类型是使用 InnoDB Tables 或 BDB tables 的话，你的 MYSQL 就可以 使用事务处理,使用 SET AUTOCOMMIT&#x3D;0 就可以使 MYSQL 允许在非 autocommit 模式，在非 autocommit 模式下，你必须使用 COMMIT 来提交你的更改，或者用 ROLLBACK 来回滚你的 更改。 示例如下： 一 START TRANSACTION;</p>
+<p> SELECT @A:&#x3D;SUM(salary) FROM table1 WHERE type&#x3D;1; UPDATE table2 SET summmary&#x3D;@A WHERE type&#x3D;1;</p>
+<p> COMMIT;</p>
+<p> 52、mysql 里记录货币用什么字段类型好？</p>
+<p> NUMERIC 和 DECIMAL 类型被 Mysql 实现为同样的类型，这在 SQL92 标准允许。</p>
+<p>他们被用于 保存值，该值的准确精度是极其重要的值，例如与金钱有关的数据。当声明一个类是这些 类型之一时，精度和规模的能被(并且通常是)指定；点击这里有一套最全阿里面试题总 结。</p>
+<p> 例如： salary DECIMAL(9,2) 在这个例子中，9(precision)代表将被用于存储值的总的小数位数，而 2(scale)代表将被用于 存储小数点后的位数。 因此，在这种情况下，能被存储在 salary 列中的值的范围是从-9999999.99 到 9999999.99。 在 ANSI&#x2F;ISO SQL92 中，句法 DECIMAL(p)等价于 DECIMAL(p,0)。 同样，句法 DECIMAL 等价于 DECIMAL(p,0)，这里实现被允许决定值 p。Mysql 当前不支持 DECIMAL&#x2F;NUMERIC 数据类型的这些变种形式的任一种。 这一般说来不是一个严重的问题，因为这些类型的主要益处得自于明显地控制精度和规模 的能力。 DECIMAL 和 NUMERIC 值作为字符串存储，而不是作为二进制浮点数，以便保存那些值的小 数精度。 一个字符用于值的每一位、小数点(如果 scale&gt;0)和“-”符号(对于负值)。如果 scale 是 0， DECIMAL 和 NUMERIC 值不包含小数点或小数部分。 DECIMAL 和 NUMERIC 值得最大的范围与 DOUBLE 一样，但是对于一个给定的 DECIMAL 或 NUMERIC 列，实际的范围可由制由给定列的 precision 或 scale 限制。 当这样的列赋给了小数点后面的位超过指定 scale 所允许的位的值，该值根据 scale 四舍五 入。 当一个 DECIMAL 或 NUMERIC 列被赋给了其大小超过指定(或缺省的）precision 和 scale 隐含 的范围的值，Mysql 存储表示那个范围的相应的端点值。 我希望本文可以帮助你提升技术水平。那些，感觉学的好难，甚至会令你沮丧的人，别担 心，我认为，如果你愿意试一试本文介绍的几点，会向前迈进，克服这种感觉。这些要点 也许对你不适用，但你会明确一个重要的道理：接受自己觉得受困这个事实是摆脱这个困 境的第一步。</p>
+<p> 53、MYSQL 数据表在什么情况下容易损坏？</p>
+<p> 服务器突然断电导致数据文件损坏。 强制关机，没有先关闭 mysql 服务等。 </p>
+<p>54、mysql 有关权限的表都有哪几个？</p>
+<p> Mysql 服务器通过权限表来控制用户对数据库的访问，权限表存放在 mysql 数据库里，由 mysql_install_db 脚本初始化。这些权限表分别 user，db，table_priv，columns_priv 和 host。</p>
+<p> 55、Mysql 中有哪几种锁？ </p>
+<p>MyISAM 支持表锁，InnoDB 支持表锁和行锁，默认为行锁 表级锁：开销小，加锁快，不会出现死锁。锁定粒度大，发生锁冲突的概率最高，并发量 最低 行级锁：开销大，加锁慢，会出现死锁。锁力度小，发生锁冲突的概率小，并发度最高</p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/Hexo/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="category-chain-item">面试题</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/Hexo/tags/Mysql/">#Mysql</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Mysql面试题</div>
+      <div>https://1902756969.github.io/Hexo/2021/04/01/MySql面试题/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>星</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年4月1日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Hexo/2021/04/06/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B01/" title="网络编程01">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">网络编程01</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Hexo/2021/03/30/%E5%A4%9A%E7%BA%BF%E7%A8%8B01/" title="多线程01">
+                        <span class="hidden-mobile">多线程01</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/Hexo/js/events.js" ></script>
+<script  src="/Hexo/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  
+    <script  src="/Hexo/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/Hexo/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/Hexo/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/Hexo/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
