@@ -16,20 +16,20 @@
   <meta name="author" content="星">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1 进程与线程基本概念1.1 进程产生的背景最初的计算机只能接受一些特定的指令，用户每输入一个指令，计算机就做出一个操作。当用户在思考或者输入时，计算机就在等待。这样效率非常低下，在很多时候，计算机都处在等待状态。 批处理操作系统 后来有了批处理操作体统,把一系列需要操作的指令写下来，形成一个清单，一次性交给计算机。用户将多个需要执行的程序写在磁带上，然后交由计算机去读取并逐个执行这些程序，并将输">
+    <meta name="description" content="1 进程与线程基本概念1.1 进程产生的背景最初的计算机只能接受一些特定的指令，用户每输入一个指令，计算机就做出一个操作。当用户在思考或者输入时，计算机就在等待。这样效率非常低下，在很多时候，计算机都处在等待状态。 批处理操作系统 后来有了批处理操作体统,把一系列需要操作的指令写下来，形成一个清单，一次性交给计算机。用户将多个需要执行的程序写在磁带上，然后交由计算机去读取并逐个执行这些程序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入浅出java多线程">
 <meta property="og:url" content="https://1902756969.github.io/Hexo/2021/05/15/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAjava%E5%A4%9A%E7%BA%BF%E7%A8%8B/index.html">
 <meta property="og:site_name" content="阿星的博客">
-<meta property="og:description" content="1 进程与线程基本概念1.1 进程产生的背景最初的计算机只能接受一些特定的指令，用户每输入一个指令，计算机就做出一个操作。当用户在思考或者输入时，计算机就在等待。这样效率非常低下，在很多时候，计算机都处在等待状态。 批处理操作系统 后来有了批处理操作体统,把一系列需要操作的指令写下来，形成一个清单，一次性交给计算机。用户将多个需要执行的程序写在磁带上，然后交由计算机去读取并逐个执行这些程序，并将输">
+<meta property="og:description" content="1 进程与线程基本概念1.1 进程产生的背景最初的计算机只能接受一些特定的指令，用户每输入一个指令，计算机就做出一个操作。当用户在思考或者输入时，计算机就在等待。这样效率非常低下，在很多时候，计算机都处在等待状态。 批处理操作系统 后来有了批处理操作体统,把一系列需要操作的指令写下来，形成一个清单，一次性交给计算机。用户将多个需要执行的程序写在磁带上，然后交由计算机去读取并逐个执行这些程序">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://1902756969.github.io/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220214190156.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/0fdd3009a7d4abff16d557c1220fc647a64818c3.png">
 <meta property="article:published_time" content="2021-05-15T10:29:54.000Z">
-<meta property="article:modified_time" content="2022-03-26T05:28:22.309Z">
+<meta property="article:modified_time" content="2022-11-17T11:29:06.334Z">
 <meta property="article:author" content="星">
 <meta property="article:tag" content="多线程">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://1902756969.github.io/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220214190156.png">
+<meta name="twitter:image" content="https://i0.hdslb.com/bfs/album/0fdd3009a7d4abff16d557c1220fc647a64818c3.png">
   
   
   <title>深入浅出java多线程 - 阿星的博客</title>
@@ -296,7 +296,11 @@
             
             <div class="markdown-body">
               
-              <h1 id="1-进程与线程基本概念"><a href="#1-进程与线程基本概念" class="headerlink" title="1 进程与线程基本概念"></a>1 进程与线程基本概念</h1><h2 id="1-1-进程产生的背景"><a href="#1-1-进程产生的背景" class="headerlink" title="1.1 进程产生的背景"></a>1.1 进程产生的背景</h2><p>最初的计算机只能接受一些特定的指令，用户每输入一个指令，计算机就做出一个操作。当用户在思考或者输入时，计算机就在等待。这样效率非常低下，在很多时候，计算机都处在等待状态。</p>
+              <meta name="referrer" content="no-referrer">
+
+
+
+<h1 id="1-进程与线程基本概念"><a href="#1-进程与线程基本概念" class="headerlink" title="1 进程与线程基本概念"></a>1 进程与线程基本概念</h1><h2 id="1-1-进程产生的背景"><a href="#1-1-进程产生的背景" class="headerlink" title="1.1 进程产生的背景"></a>1.1 进程产生的背景</h2><p>最初的计算机只能接受一些特定的指令，用户每输入一个指令，计算机就做出一个操作。当用户在思考或者输入时，计算机就在等待。这样效率非常低下，在很多时候，计算机都处在等待状态。</p>
 <p><strong>批处理操作系统</strong></p>
 <p>后来有了<strong>批处理操作体统</strong>,把一系列需要操作的指令写下来，形成一个清单，一次性交给计算机。用户将多个需要执行的程序写在磁带上，然后交由计算机去读取并逐个执行这些程序，并将输出结果写在另一个磁带上。</p>
 <p>批处理操作系统在一定程度上提高了计算机的效率，但是由于<strong>批处理操作系统的指令运行方式仍然是串行的，内存中始终只有一个程序在运行</strong>，后面的程序需要等待前面的程序执行完成后才能开始执行，而前面的程序有时会由于I&#x2F;O操作、网络等原因阻塞，所以<strong>批处理操作效率也不高</strong>。</p>
@@ -401,14 +405,10 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// Thread类源码 </span><br><br><span class="hljs-comment">// 片段1 - init方法</span><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">init</span><span class="hljs-params">(ThreadGroup g, Runnable target, String name,</span><br><span class="hljs-params">                      <span class="hljs-type">long</span> stackSize, AccessControlContext acc,</span><br><span class="hljs-params">                      <span class="hljs-type">boolean</span> inheritThreadLocals)</span><br><br><span class="hljs-comment">// 片段2 - 构造函数调用init方法</span><br><span class="hljs-keyword">public</span> <span class="hljs-title function_">Thread</span><span class="hljs-params">(Runnable target)</span> &#123;<br>    init(<span class="hljs-literal">null</span>, target, <span class="hljs-string">&quot;Thread-&quot;</span> + nextThreadNum(), <span class="hljs-number">0</span>);<br>&#125;<br><br><span class="hljs-comment">// 片段3 - 使用在init方法里初始化AccessControlContext类型的私有属性</span><br><span class="hljs-built_in">this</span>.inheritedAccessControlContext = <br>    acc != <span class="hljs-literal">null</span> ? acc : AccessController.getContext();<br><br><span class="hljs-comment">// 片段4 - 两个对用于支持ThreadLocal的私有属性</span><br>ThreadLocal.<span class="hljs-type">ThreadLocalMap</span> <span class="hljs-variable">threadLocals</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>ThreadLocal.<span class="hljs-type">ThreadLocalMap</span> <span class="hljs-variable">inheritableThreadLocals</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br></code></pre></td></tr></table></figure>
 
 <p>我们挨个来解释一下<code>init</code>方法的这些参数：</p>
-<p>- </p>
-<p>  g：线程组，指定这个线程是在哪个线程组下；</p>
-<p>- </p>
-<p>  target：指定要执行的任务；</p>
-<p>- </p>
-<p>  name：线程的名字，多个线程的名字是可以重复的。如果不指定名字，见片段2；</p>
-<p>- </p>
-<p>  acc：见片段3，用于初始化私有变量<code>inheritedAccessControlContext</code>。</p>
+<p>g：线程组，指定这个线程是在哪个线程组下；</p>
+<p>target：指定要执行的任务；</p>
+<p>name：线程的名字，多个线程的名字是可以重复的。如果不指定名字，见片段2；</p>
+<p>acc：见片段3，用于初始化私有变量<code>inheritedAccessControlContext</code>。</p>
 <blockquote>
 <p>这个变量有点神奇。它是一个私有变量，但是在<code>Thread</code>类里只有<code>init</code>方法对它进行初始化，在<code>exit</code>方法把它设为<code>null</code>。其它没有任何地方使用它。一般我们是不会使用它的，那什么时候会使用到这个变量呢？可以参考这个stackoverflow的问题：<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/13516766/restrict-permissions-to-threads-which-execute-third-party-software">Restrict permissions to threads which execute third party software</a>；</p>
 </blockquote>
@@ -839,7 +839,7 @@
 <p><img src="/Hexo/../img/202202202056330.png" srcset="/Hexo/img/loading.gif" lazyload></p>
 <p><strong>在Java中，使用的是共享内存并发模型</strong>。</p>
 <h2 id="6-2-Java内存模型的抽象结构"><a href="#6-2-Java内存模型的抽象结构" class="headerlink" title="6.2 Java内存模型的抽象结构"></a>6.2 Java内存模型的抽象结构</h2><h3 id="6-2-1-运行时内存的划分"><a href="#6-2-1-运行时内存的划分" class="headerlink" title="6.2.1  运行时内存的划分"></a>6.2.1  运行时内存的划分</h3><p>先谈一下运行时数据区，下面这张图相信大家一点都不陌生： </p>
-<p><img src="/Hexo/../img/202202202056859.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/bff966ed2502c1e7a2d24991261581760b10e581.png" srcset="/Hexo/img/loading.gif" lazyload></p>
 <p>对于每一个线程来说，栈都是私有的，而堆是共有的。</p>
 <p>也就是说在栈中的变量（局部变量、方法定义参数、异常处理器参数）不会在线程之间共享，也就不会有<font color='red'>内存可见性</font>（下文会说到）的问题，也不受内存模型的影响。而在堆中的变量是共享的，本文称为共享变量。</p>
 <p>所以，内存可见性是针对的<strong>共享变量</strong>。</p>
@@ -848,7 +848,7 @@
 <p>线程之间的共享变量存在主内存中，每个线程都有一个私有的本地内存，存储了该线程以读、写共享变量的副本。本地内存是Java内存模型的一个抽象概念，并不真实存在。它涵盖了缓存、写缓冲区、寄存器等。</p>
 </blockquote>
 <p>Java线程之间的通信由Java内存模型（简称JMM）控制，从抽象的角度来说，JMM定义了线程和主内存之间的抽象关系。JMM的抽象示意图如图所示：</p>
-<p><img src="/Hexo/../img/202202202056265.jpeg" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/160efb4d935c825f7f891f230b31e20ea35aee57.jpg" srcset="/Hexo/img/loading.gif" lazyload></p>
 <p>image</p>
 <p>从图中可以看出： 1. 所有的共享变量都存在主内存中。 2. 每个线程都保存了一份该线程使用到的共享变量的副本。 3. 如果线程A与线程B之间要通信的话，必须经历下面2个步骤： 1. 线程A将本地内存A中更新过的共享变量刷新到主内存中去。 2. 线程B到主内存中去读取线程A之前已经更新过的共享变量。</p>
 <p><strong>所以，线程A无法直接访问线程B的工作内存，线程间通信必须经过主内存。</strong></p>
@@ -915,11 +915,11 @@
 </ul>
 <p>为了理解这两个特性，我们举个例子，假设有两个线程A和B并发执行，线程A有3个操作，他们在程序中的顺序是A1-&gt;A2-&gt;A3，线程B也有3个操作，B1-&gt;B2-&gt;B3。</p>
 <p>假设<strong>正确使用了同步</strong>，A线程的3个操作执行后释放锁，B线程获取同一个锁。那么在<strong>顺序一致性模型</strong>中的执行效果如下所示：</p>
-<p><img src="/Hexo/../img/202202202201120.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/a0341b2bab2075883462ea41eccef0d116ab4735.png" srcset="/Hexo/img/loading.gif" lazyload></p>
 <p>正确同步图</p>
 <p>操作的执行整体上有序，并且两个线程都只能看到这个执行顺序。</p>
 <p>假设<strong>没有使用同步</strong>，那么在<strong>顺序一致性模型</strong>中的执行效果如下所示：</p>
-<p><img src="/Hexo/../img/202202202202532.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/df5b8c32ffdfc8d55554f9958bcee19ddc8f61b7.png" srcset="/Hexo/img/loading.gif" lazyload></p>
 <p>没有正确同步图</p>
 <p>操作的执行整体上无序，但是两个线程都只能看到这个执行顺序。之所以可以得到这个保证，是因为顺序一致性模型中的<strong>每个操作必须立即对任意线程可见</strong>。</p>
 <p><strong>但是JMM没有这样的保证。</strong></p>
@@ -1098,9 +1098,9 @@
 <p>下面分别介绍这几种锁以及它们之间的升级。</p>
 <h3 id="9-2-1-Java对象头"><a href="#9-2-1-Java对象头" class="headerlink" title="9.2.1 Java对象头"></a>9.2.1 Java对象头</h3><p>前面我们提到，Java的锁都是基于对象的。首先我们来看看一个对象的“锁”的信息是存放在什么地方的。</p>
 <p>每个Java对象都有对象头。如果是非数组类型，则用2个字宽来存储对象头，如果是数组，则会用3个字宽来存储对象头。在32位处理器中，一个字宽是32位；在64位虚拟机中，一个字宽是64位。对象头的内容如下表：</p>
-<p><img src="/Hexo/../img/202202202215649.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220220221534591"></p>
+<p><img src="https://i0.hdslb.com/bfs/album/8e35357ba0b509d9d88cf613bebafd871b1714cb.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220220221534591"></p>
 <p>我们主要来看看Mark Word的格式：</p>
-<p><img src="/Hexo/../img/202202202216854.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220220221616792"></p>
+<p><img src="https://i0.hdslb.com/bfs/album/2d8b4d0fa796ce572f3478dbbb772e13254eec17.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220220221616792"></p>
 <p>可以看到，当对象状态为偏向锁时，<code>Mark Word</code>存储的是偏向的线程ID；当状态为轻量级锁时，<code>Mark Word</code>存储的是指向线程栈中<code>Lock Record</code>的指针；当状态为重量级锁时，<code>Mark Word</code>为指向堆中的monitor对象的指针。</p>
 <h3 id="9-2-2-偏向锁"><a href="#9-2-2-偏向锁" class="headerlink" title="9.2.2 偏向锁"></a>9.2.2 偏向锁</h3><p>Hotspot的作者经过以往的研究发现大多数情况下<strong>锁不仅不存在多线程竞争，而且总是由同一线程多次获得</strong>，于是引入了偏向锁。</p>
 <p>偏向锁会偏向于第一个访问锁的线程，如果在接下来的运行过程中，该锁没有被其他的线程访问，则持有偏向锁的线程将永远不需要触发同步。也就是说，<strong>偏向锁在资源无竞争情况下消除了同步语句，连CAS操作都不做了，提高了程序的运行性能。</strong></p>
@@ -1118,7 +1118,7 @@
 <p>比较并设置。用于在硬件层面上提供原子性操作。在 Intel 处理器中，比较并交换通过指令cmpxchg实现。 比较是否和给定的数值一致，如果一致则修改，不一致则不修改。</p>
 </blockquote>
 <p>线程竞争偏向锁的过程如下：</p>
-<p><img src="/Hexo/../img/202202202217189.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220220221700114"></p>
+<p><img src="https://i0.hdslb.com/bfs/album/d4d70e9c5863c8bf65e3d790584754f4f1b4b133.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220220221700114"></p>
 <p>图中涉及到了lock record指针指向当前堆栈中的最近一个lock record，是轻量级锁按照先来先服务的模式进行了轻量级锁的加锁。</p>
 <h3 id="撤销偏向锁"><a href="#撤销偏向锁" class="headerlink" title="撤销偏向锁"></a>撤销偏向锁</h3><p>偏向锁使用了一种<strong>等到竞争出现才释放锁的机制</strong>，所以当其他线程尝试竞争偏向锁时， 持有偏向锁的线程才会释放锁。</p>
 <p>偏向锁升级成轻量级锁时，会暂停拥有偏向锁的线程，重置偏向锁标识，这个过程看起来容易，实则开销还是很大的，大概的过程如下：</p>
@@ -1132,7 +1132,7 @@
 
 <p>Copied!</p>
 <p>下面这个经典的图总结了偏向锁的获得和撤销：</p>
-<p><img src="/Hexo/../img/202202202218316.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/65fba29c6c40013d4f6e549af766afdaf27f6a72.png" srcset="/Hexo/img/loading.gif" lazyload></p>
 <h3 id="9-2-3-轻量级锁"><a href="#9-2-3-轻量级锁" class="headerlink" title="9.2.3 轻量级锁"></a>9.2.3 轻量级锁</h3><p>多个线程在不同时段获取同一把锁，即不存在锁竞争的情况，也就没有线程阻塞。针对这种情况，JVM采用轻量级锁来避免线程的阻塞与唤醒。</p>
 <h3 id="轻量级锁的加锁"><a href="#轻量级锁的加锁" class="headerlink" title="轻量级锁的加锁"></a>轻量级锁的加锁</h3><p>JVM会为每个线程在当前线程的栈帧中创建用于存储锁记录的空间，我们称为Displaced Mark Word。如果一个线程获得锁的时候发现是轻量级锁，会把锁的Mark Word复制到自己的Displaced Mark Word里面。</p>
 <p>然后线程尝试用CAS将锁的Mark Word替换为指向锁记录的指针。如果成功，当前线程获得锁，如果失败，表示Mark Word已经被替换成了其他线程的锁记录，说明在与其它线程竞争锁，当前线程就尝试使用自旋来获取锁。</p>
@@ -1145,7 +1145,7 @@
 <p><strong>轻量级锁的释放：</strong></p>
 <p>在释放锁时，当前线程会使用CAS操作将Displaced Mark Word的内容复制回锁的Mark Word里面。如果没有发生竞争，那么这个复制的操作会成功。如果有其他线程因为自旋多次导致轻量级锁升级成了重量级锁，那么CAS操作会失败，此时会释放锁并唤醒被阻塞的线程。</p>
 <p>一张图说明加锁和释放锁的过程：</p>
-<p><img src="/Hexo/../img/202202202219697.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/febc15a4e52409aaa0f476ebf32ca6825a7e9626.png" srcset="/Hexo/img/loading.gif" lazyload></p>
 <h3 id="9-2-4-重量级锁"><a href="#9-2-4-重量级锁" class="headerlink" title="9.2.4 重量级锁"></a>9.2.4 重量级锁</h3><p>重量级锁依赖于操作系统的互斥量（mutex） 实现的，而操作系统中线程间状态的转换需要相对比较长的时间，所以重量级锁效率很低，但被阻塞的线程不会消耗CPU。</p>
 <p>前面说到，每一个对象都可以当做一个锁，当多个线程同时请求某个对象锁时，对象锁会设置几种状态用来区分请求的线程：</p>
 <figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">Contention</span> <span class="hljs-built_in">List</span>：所有请求锁的线程将被首先放置到该竞争队列<br><span class="hljs-variable">Entry</span> <span class="hljs-built_in">List</span>：<span class="hljs-variable">Contention</span> <span class="hljs-built_in">List</span>中那些有资格成为候选人的线程被移到<span class="hljs-variable">Entry</span> <span class="hljs-built_in">List</span><br><span class="hljs-variable">Wait</span> <span class="hljs-built_in">Set</span>：那些调用<span class="hljs-variable">wait</span>方法被阻塞的线程被放置到<span class="hljs-variable">Wait</span> <span class="hljs-built_in">Set</span><br><span class="hljs-variable">OnDeck</span>：任何时刻最多只能有一个线程正在竞争锁，该线程称为<span class="hljs-variable">OnDeck</span><br><span class="hljs-variable">Owner</span>：获得锁的线程称为<span class="hljs-variable">Owner</span><br><span class="hljs-operator">!</span><span class="hljs-variable">Owner</span>：释放锁的线程<br></code></pre></td></tr></table></figure>
@@ -1160,7 +1160,7 @@
 <p>第五步，自旋的线程在自旋过程中，成功获得资源(即之前获的资源的线程执行完成并释放了共享资源)，则整个状态依然处于 轻量级锁的状态，如果自旋失败 。</p>
 <p>第六步，进入重量级锁的状态，这个时候，自旋的线程进行阻塞，等待之前线程执行完成并唤醒自己。</p>
 <h3 id="9-2-6-各种锁的优缺点对比"><a href="#9-2-6-各种锁的优缺点对比" class="headerlink" title="9.2.6 各种锁的优缺点对比"></a>9.2.6 各种锁的优缺点对比</h3><p>下表来自《Java并发编程的艺术》：</p>
-<p><img src="/Hexo/../img/202202202220172.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220220222012089"></p>
+<p><img src="https://i0.hdslb.com/bfs/album/98ddcb566a00f8b5054b51cb99a5ce4aaf3f36f6.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220220222012089"></p>
 <p><strong>参考文章</strong></p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9932047a89be">Java锁优化–JVM锁降级</a></li>
@@ -1206,7 +1206,7 @@
 <p>当然，Unsafe类里面还有其它方法用于不同的用途。比如支持线程挂起和恢复的<code>park</code>和<code>unpark</code>， LockSupport类底层就是调用了这两个方法。还有支持反射操作的<code>allocateInstance()</code>方法。</p>
 <h2 id="10-4-原子操作-AtomicInteger类源码简析"><a href="#10-4-原子操作-AtomicInteger类源码简析" class="headerlink" title="10.4 原子操作-AtomicInteger类源码简析"></a>10.4 原子操作-AtomicInteger类源码简析</h2><p>上面介绍了Unsafe类的几个支持CAS的方法。那Java具体是如何使用这几个方法来实现原子操作的呢？</p>
 <p>JDK提供了一些用于原子操作的类，在<code>java.util.concurrent.atomic</code>包下面。在JDK 11中，有如下17个类：</p>
-<p><img src="/Hexo/../img/202202202225701.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220220222547625"></p>
+<p><img src="https://i0.hdslb.com/bfs/album/a96143f9145d4876cecd1a036bc6e2d447fac334.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220220222547625"></p>
 <p>原子类</p>
 <p>从名字就可以看得出来这些类大概的用途：</p>
 <ul>
