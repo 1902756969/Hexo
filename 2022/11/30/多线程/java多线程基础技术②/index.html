@@ -1,0 +1,861 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo.github.io/img/csdn.png">
+  <link rel="icon" href="/Hexo.github.io/img/csdn.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#DAA520">
+  <meta name="author" content="星">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1.线程同步1.1 synchronized 同步方法使用程技术时一定会遇到的经典问题。“非线程安全”其实会在多个线程对同一个对象中的实例变量进行并发访问时发生，产生的后果就是“脏读”，也就是取到的数据其实是被更改过的。而“线程安全”就是以获得的实例变量的值是经过同步处理的，不会出现脏读的现象。 1.1.1方法内的变量为线程安全“非线程安全”问题存在于“实例变量”中，如果是方法内部的私有变量">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多线程基础技术②">
+<meta property="og:url" content="https://1902756969.github.io/Hexo.github.io/2022/11/30/%E5%A4%9A%E7%BA%BF%E7%A8%8B/java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80%E6%8A%80%E6%9C%AF%E2%91%A1/index.html">
+<meta property="og:site_name" content="阿星的博客">
+<meta property="og:description" content="1.线程同步1.1 synchronized 同步方法使用程技术时一定会遇到的经典问题。“非线程安全”其实会在多个线程对同一个对象中的实例变量进行并发访问时发生，产生的后果就是“脏读”，也就是取到的数据其实是被更改过的。而“线程安全”就是以获得的实例变量的值是经过同步处理的，不会出现脏读的现象。 1.1.1方法内的变量为线程安全“非线程安全”问题存在于“实例变量”中，如果是方法内部的私有变量">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.imgdb.cn/item/623e9bfa27f86abb2aee7d5e.png">
+<meta property="article:published_time" content="2022-11-30T10:29:54.000Z">
+<meta property="article:modified_time" content="2022-11-22T15:24:08.546Z">
+<meta property="article:author" content="星">
+<meta property="article:tag" content="多线程">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/623e9bfa27f86abb2aee7d5e.png">
+  
+  
+  <title>多线程基础技术② - 阿星的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/Hexo.github.io/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/Hexo.github.io/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo.github.io/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo.github.io/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo.github.io/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/Hexo.github.io/js/utils.js" ></script>
+  <script  src="/Hexo.github.io/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/Hexo.github.io/">
+      <strong>🐛 ZhaFi人</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo.github.io/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo.github.io/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo.github.io/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo.github.io/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo.github.io/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo.github.io/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/Hexo.github.io/img/bg5.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="多线程基础技术②"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        星
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-30 18:29" pubdate>
+          2022年11月30日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          49 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">多线程基础技术②</h1>
+            
+            <div class="markdown-body">
+              
+              <meta name="referrer" content="no-referrer">
+
+
+<h1 id="1-线程同步"><a href="#1-线程同步" class="headerlink" title="1.线程同步"></a>1.线程同步</h1><h2 id="1-1-synchronized-同步方法"><a href="#1-1-synchronized-同步方法" class="headerlink" title="1.1 synchronized 同步方法"></a>1.1 synchronized 同步方法</h2><p>使用程技术时一定会遇到的经典问题。“非线程安全”其实会在多个线程对同一个对象中的实例变量进行并发访问时发生，产生的后果就是“脏读”，也就是取到的数据其实是被更改过的。而“线程安全”就是以获得的实例变量的值是经过同步处理的，不会出现脏读的现象。</p>
+<h3 id="1-1-1方法内的变量为线程安全"><a href="#1-1-1方法内的变量为线程安全" class="headerlink" title="1.1.1方法内的变量为线程安全"></a>1.1.1方法内的变量为线程安全</h3><p>“非线程安全”问题存在于“实例变量”中，如果是方法内部的私有变量，则不存在“非线程安全”问题，所得结果也就是“线程安全”的了。</p>
+<p>- </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addI</span><span class="hljs-params">(String username)</span>&#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">num</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">if</span> (username.equals(<span class="hljs-string">&quot;a&quot;</span>))&#123;<br>                num=<span class="hljs-number">100</span>;<br>                System.out.println(<span class="hljs-string">&quot;a 赋值成功!&quot;</span>);<br>                Thread.sleep(<span class="hljs-number">2000</span>);<br>            &#125;<span class="hljs-keyword">else</span> &#123;<br>                num = <span class="hljs-number">200</span>;<br>                System.out.println(<span class="hljs-string">&quot;b 赋值成功!&quot;</span>);<br>            &#125;<br>            System.out.println(username + <span class="hljs-string">&quot; num=&quot;</span>+num);<br>        &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>           e.printStackTrace();<br>        &#125;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ThreadA</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Thread</span>&#123;<br>    <span class="hljs-keyword">private</span> Test test;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">ThreadA</span><span class="hljs-params">(Test test)</span> &#123;<br>        <span class="hljs-built_in">super</span>();<br>        <span class="hljs-built_in">this</span>.test = test;<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-built_in">super</span>.run();<br>        test.addI(<span class="hljs-string">&quot;a&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ThreadB</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Thread</span>&#123;<br>    <span class="hljs-keyword">private</span> Test test;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">ThreadB</span><span class="hljs-params">(Test test)</span> &#123;<br>        <span class="hljs-built_in">super</span>();<br>        <span class="hljs-built_in">this</span>.test = test;<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-built_in">super</span>.run();<br>        test.addI(<span class="hljs-string">&quot;b&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Run2</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        Test test= <span class="hljs-keyword">new</span> <span class="hljs-title class_">Test</span>();<br>        <span class="hljs-type">ThreadA</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ThreadA</span>(test);<br>        a.start();<br>        <span class="hljs-type">ThreadB</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ThreadB</span>(test);<br>        b.start();<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://www.jianguoyun.com/c/tblv2/ZtPafm9Ay9bokyjFN1UInnDc-6sosjt0CZp55xK_eemvo022c6GeltZ1RYvdngfKBgbwnx2y/bAy976J-anACbqRSXWXJMQ/l" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20221121110928851"></p>
+<p>方法中的变量不存在非线程安全问题，永远都是线程安全的。这是方法内部的变量是私有的特性造成的。</p>
+<h3 id="1-1-2方法外的实例变量非线程安全"><a href="#1-1-2方法外的实例变量非线程安全" class="headerlink" title="1.1.2方法外的实例变量非线程安全"></a>1.1.2方法外的实例变量非线程安全</h3><p>如果<font color='red'>多个线程</font>共同访问1个对象中的实例变量，则有可能出现“非线程安全”问题</p>
+<p>我们把上面的 num变量放到方外</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span> &#123;<br>    <span class="hljs-keyword">private</span>  <span class="hljs-type">int</span> <span class="hljs-variable">num</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addI</span><span class="hljs-params">(String username)</span>&#123;<br>   ..... <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://www.jianguoyun.com/c/tblv2/yhwNnyShqJQiI3mYuqelXAhr-xLd5D8eZLPPZuxmmJfRljGBvgvHbeYyw-6AmTsI2OzDmg8F/vkhPGYdjeJTDQIh2TYQ1Bg/l" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20221121111716996"></p>
+<p>结果大相径庭，就会出现非线程安全的问题，数据随机读取</p>
+<h3 id="1-1-3-synchronized-同步方法解决线程安全"><a href="#1-1-3-synchronized-同步方法解决线程安全" class="headerlink" title="1.1.3 synchronized 同步方法解决线程安全"></a>1.1.3 synchronized 同步方法解决线程安全</h3><ul>
+<li><p>同步方法的格式</p>
+<p>同步方法：就是把synchronized关键字加到方法上</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">修饰符 <span class="hljs-keyword">synchronized</span> 返回值类型 方法名(方法参数) &#123; <br>	方法体；<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>同步方法的锁对象是什么呢?</p>
+<pre><code class="hljs">this
+</code></pre>
+</li>
+<li><p>静态同步方法</p>
+<p>同步静态方法：就是把synchronized关键字加到静态方法上</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">修饰符 <span class="hljs-keyword">static</span> <span class="hljs-keyword">synchronized</span> 返回值类型 方法名(方法参数) &#123; <br>	方法体；<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>同步静态方法的锁对象是什么呢?</p>
+<pre><code class="hljs">类名.class
+</code></pre>
+<p>代码修改</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span> &#123;<br>    <span class="hljs-keyword">private</span>  <span class="hljs-type">int</span> <span class="hljs-variable">num</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addI</span><span class="hljs-params">(String username)</span>&#123;<br>   ..... <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>测试:</p>
+<img src="https://www.jianguoyun.com/c/tblv2/4UYkDFAzpW2p2JMxNG90AY89L7dL8ejfNv6LcwhBWzUOhlGDeMIKk9bqtun3yOgmdSGc22kI/la8blWhkaKAgJtyVMGSPfQ/l" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20221121112107235" style="zoom:50%;" />
+
+<p>实验结论:在两个线程访问同一个对象中的同步方法时一定是线程安全的。本实验由于是<font color='red'>同步访问</font>，所以先打印出 a，然后打印出 b。</p>
+</li>
+</ul>
+<h3 id="1-1-4-多个对象和多个锁"><a href="#1-1-4-多个对象和多个锁" class="headerlink" title="1.1.4 多个对象和多个锁"></a>1.1.4 多个对象和多个锁</h3><p>你是否想过为什么1.1.2的打印会把a打印完再打印b，创建不同业务对象会不会有不同变化？</p>
+<p>改写代码：</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>    <span class="hljs-comment">//创建两个对象</span><br>      Test test1= <span class="hljs-keyword">new</span> <span class="hljs-title class_">Test</span>();<br>      Test test2= <span class="hljs-keyword">new</span> <span class="hljs-title class_">Test</span>();<br>      <span class="hljs-type">ThreadA</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ThreadA</span>(test1);<br>      a.start();<br>      <span class="hljs-type">ThreadB</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ThreadB</span>(test2);<br>      b.start();<br>  &#125;<br></code></pre></td></tr></table></figure>
+
+  <img src="https://www.jianguoyun.com/c/tblv2/q44KJQVUWEKfiFKRXCggOQfVt75be72vxEOqHGC_1XwDzY-ovtTmvysrB5AVksg-AagXbrHV/JLXxePGxKvVWGeJ4hqje5A/l" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20221121113129001" style="zoom:67%;" />
+
+<p>结果是异步打印的，为什么？</p>
+<p>​        关键字 synchronized 取得的锁都是<font color='red'>对象锁</font>，而不是把一段代码或方法(函数)当作锁所以在上面的示例中，哪个线程先执行带synchronized 关键字的方法，哪个线程就持有该方法所属对象的锁Lock，那么其他线程只能呈等待状态，前提是多个线程访问的是同一个对象。<br>​        但如果多个线程访问多个对象，则JVM会创建多个锁。上面的示例就是创建了2个Test.java类的对象，所以就会产生出2个锁</p>
+<p>同步的单词为synchronized.异步的单词为asynchronized</p>
+<h3 id="1-1-5-脏读"><a href="#1-1-5-脏读" class="headerlink" title="1.1.5 脏读"></a>1.1.5 脏读</h3><p>避免数据出现交叉的情况使用synchronized关键字来进行同步。<br>虽然在赋值时进行了同步，但在取值时有可能出现一些意想不到的意外，这种情况就是<font color='red'>脏读(dirtyRead)。</font>发生脏读的情况是在读取实例变量时，此值已经被其他线程更改过了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">PublicVar</span> &#123;<br>    <span class="hljs-keyword">public</span> String username=<span class="hljs-string">&quot;A&quot;</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">String</span> <span class="hljs-variable">password</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;AA&quot;</span>;<br>    <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">public</span>  <span class="hljs-keyword">void</span> <span class="hljs-title function_">setValue</span><span class="hljs-params">(String username,String password)</span>&#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-built_in">this</span>.username=username;<br>            Thread.sleep(<span class="hljs-number">5000</span>);<br>            <span class="hljs-built_in">this</span>.password = password;<br>            System.out.println(<span class="hljs-string">&quot;setValue method thread name=&quot;</span><br>            +Thread.currentThread().getName() + <span class="hljs-string">&quot;username=&quot;</span> + username + <span class="hljs-string">&quot;password=&quot;</span>+password);   &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>           e.printStackTrace();<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">public</span>  <span class="hljs-keyword">void</span> <span class="hljs-title function_">getValue</span><span class="hljs-params">()</span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;getValue method thread name=&quot;</span><br>                +Thread.currentThread().getName() +<br>                <span class="hljs-string">&quot;username=&quot;</span> + username + <span class="hljs-string">&quot;password=&quot;</span>+password);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ThreadA</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Thread</span>&#123;<br>    <span class="hljs-keyword">private</span> PublicVar publicVar;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">ThreadA</span><span class="hljs-params">(PublicVar publicVar)</span> &#123;<br>        <span class="hljs-built_in">super</span>();<br>        <span class="hljs-built_in">this</span>.publicVar= publicVar;<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-built_in">super</span>.run();<br>        publicVar.setValue(<span class="hljs-string">&quot;B&quot;</span>,<span class="hljs-string">&quot;BB&quot;</span>);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            PublicVar publicVarRef=<span class="hljs-keyword">new</span> <span class="hljs-title class_">PublicVar</span>();<br>            ThreadA threadA=<span class="hljs-keyword">new</span> <span class="hljs-title class_">ThreadA</span>(publicVarRef);<br>            threadA.start();<br>            ThreadA.sleep(<span class="hljs-number">200</span>);<br>            publicVarRef.getValue();<br>        &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://www.jianguoyun.com/c/tblv2/7EorYez1TT4Oz22bjuoJDPh3Nqy5zyl44BfciYoQbwnLDTH8vekFYHaOWYkcYjYwJaneG4i0/LT1nA99CO57eoznD-wBgKw/l" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20221121212850461"></p>
+<p>出现脏读是因为 public void getValue0 方法并不是同步的，所以可以在任意时候进行调用。解决办法当然就是加上同步synchronized 关键字，代码如下:</p>
+<p>我们给getValue方法添加synchronized关键字</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">synchronized</span>  <span class="hljs-keyword">public</span>  <span class="hljs-keyword">void</span> <span class="hljs-title function_">getValue</span><span class="hljs-params">()</span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;getValue method thread name=&quot;</span><br>                +Thread.currentThread().getName() +<br>                <span class="hljs-string">&quot;  username=&quot;</span> + username + <span class="hljs-string">&quot;   password=&quot;</span>+password);<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://www.jianguoyun.com/c/tblv2/CR_Kfb6PyvbgOK4g3Umd2Ab8DVY6L_3DCgv6W7l5kcH5yxFjyEE-zb_LtbAcQ2FxskMr-3jl/RNxmiyhFMzBPccsIrOA1dw/l" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20221121214552871"></p>
+<p>可见，方法 setValue0和getValue0 被依次执行。通过这个案例不仅要知道脏读是通过synchronized关键字解决的。</p>
+<p>脏读一定会出现操作实例变量的情况下，这就是不同线程“争抢”实例变量的结果。</p>
+<h3 id="1-1-6-synchronized-锁重入"><a href="#1-1-6-synchronized-锁重入" class="headerlink" title="1.1.6  synchronized 锁重入"></a>1.1.6  synchronized 锁重入</h3><p><strong>锁重进入是指任意线程在获取到锁之后，再次获取该锁而不会被该锁所阻塞</strong>。</p>
+<p>synchronized 拥有锁重入的功能，使用synchronized 时，当一个线程得到一个对象锁后，再次请求此对象锁时是可以再次得到该对象的锁的。这也证明在一个synchronized 方法&#x2F;块的内部调用本类的其他synchronized 方法&#x2F;块时，是永远可以得到锁的。</p>
+<h2 id="1-2-同步代码块【应用】"><a href="#1-2-同步代码块【应用】" class="headerlink" title="1.2 同步代码块【应用】"></a>1.2 同步代码块【应用】</h2><ul>
+<li><p>安全问题出现的条件</p>
+<ul>
+<li><p>是多线程环境</p>
+</li>
+<li><p>有共享数据</p>
+</li>
+<li><p>有多条语句操作共享数据</p>
+</li>
+</ul>
+</li>
+<li><p>如何解决多线程安全问题呢?</p>
+<ul>
+<li>基本思想：让程序没有安全问题的环境</li>
+</ul>
+</li>
+<li><p>怎么实现呢?</p>
+<ul>
+<li><p>把多条语句操作共享数据的代码给锁起来，让任意时刻只能有一个线程执行即可</p>
+</li>
+<li><p>Java提供了同步代码块的方式来解决</p>
+</li>
+</ul>
+</li>
+<li><p>同步代码块格式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">synchronized</span>(任意对象) &#123; <br>	多条语句操作共享数据的代码 <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>synchronized(任意对象)：就相当于给代码加锁了，任意对象就可以看成是一把锁</p>
+</li>
+<li><p>同步的好处和弊端  </p>
+<ul>
+<li><p>好处：解决了多线程的数据安全问题</p>
+</li>
+<li><p>弊端：当线程很多时，因为每个线程都会去判断同步上的锁，这是很耗费资源的，无形中会降低程序的运行效率</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ObjectService</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">method1</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-keyword">synchronized</span> (<span class="hljs-built_in">this</span>)&#123;<br>                System.out.println(<span class="hljs-string">&quot;begin time=&quot;</span> + System.currentTimeMillis());<br>                Thread.sleep(<span class="hljs-number">2000</span>);<br>                System.out.println(<span class="hljs-string">&quot;end time=&quot;</span>+System.currentTimeMillis());<br>            &#125;<br>        &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ThreadA</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Thread</span>&#123;<br>    <span class="hljs-keyword">private</span> ObjectService service;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">ThreadA</span><span class="hljs-params">(ObjectService service)</span> &#123;<br>        <span class="hljs-built_in">super</span>();<br>        <span class="hljs-built_in">this</span>.service = service;<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-built_in">super</span>.run();<br>        service.method1();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ThreadB</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Thread</span>&#123;<br>    <span class="hljs-keyword">private</span> ObjectService service;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">ThreadB</span><span class="hljs-params">(ObjectService service)</span> &#123;<br>        <span class="hljs-built_in">super</span>();<br>        <span class="hljs-built_in">this</span>.service = service;<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-built_in">super</span>.run();<br>        service.method1();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Run</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">ObjectService</span> <span class="hljs-variable">service</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectService</span>();<br>        ThreadA a=<span class="hljs-keyword">new</span> <span class="hljs-title class_">ThreadA</span>(service);<br>        a.setName(<span class="hljs-string">&quot;a&quot;</span>);<br>        a.start();<br>        <span class="hljs-type">ThreadB</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ThreadB</span>(service);<br>        b.setName(<span class="hljs-string">&quot;b&quot;</span>);<br>        b.start();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p><img src="https://www.jianguoyun.com/c/tblv2/rOlCTuSnTujU-DcBvgbCp6oJ0LK04ZkkW6ycit6ebHKJLvkX1xbnK6Ux1K7-QE3-zVzWV2Px/SqnjhHgP-JwX8CQc_NUX4g/l" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20221122213502739"></p>
+<p>上面的实验中虽然使用了synchronized 同步代码块，但执行的效率还是没有提高，执行的效果还是同步运行的。如何用synchronized同步代码块解决程序执行效率低的问题呢?</p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/Hexo.github.io/categories/%E5%A4%9A%E7%BA%BF%E7%A8%8B%F0%9F%A4%B7%E2%80%8D%E2%99%82%EF%B8%8F/" class="category-chain-item">多线程🤷‍♂️</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/Hexo.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">#多线程</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>多线程基础技术②</div>
+      <div>https://1902756969.github.io/Hexo.github.io/2022/11/30/多线程/java多线程基础技术②/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>星</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年11月30日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Hexo.github.io/2022/11/30/%E5%A4%9A%E7%BA%BF%E7%A8%8B/java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80%E6%8A%80%E6%9C%AF/" title="多线程基础技术">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">多线程基础技术</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Hexo.github.io/2022/11/16/java%E5%9F%BA%E7%A1%80/Aria(%E7%99%BE%E5%BA%A6%E4%BA%91)%E4%B8%8D%E9%99%90%E9%80%9F/" title="百度云不限速">
+                        <span class="hidden-mobile">百度云不限速</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/Hexo.github.io/js/events.js" ></script>
+<script  src="/Hexo.github.io/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  
+    <script  src="/Hexo.github.io/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/Hexo.github.io/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/Hexo.github.io/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/Hexo.github.io/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo.github.io/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>

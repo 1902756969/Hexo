@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo/img/csdn.png">
-  <link rel="icon" href="/Hexo/img/csdn.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo.github.io/img/csdn.png">
+  <link rel="icon" href="/Hexo.github.io/img/csdn.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,7 +19,7 @@
     <meta name="description" content="一、What’s 多线程？🐱‍💻 程序执行过程中能执行程序代码的一个执行单元。 1.进程与线程的不同：  进程是正在执行的程序。线程是程序执行的最小单元。进程可以包含多个线程，各线程间共享内存空间(代码段、数据段、堆空间),但是各个线程有自己的堆空间.  ​    他们两个本质的区别是**是否单独占有内存地址空间及其它系统资源（比如I&#x2F;O） ​    进程是操作系统进行资源分配的基本">
 <meta property="og:type" content="website">
 <meta property="og:title" content="多线程思“锁”">
-<meta property="og:url" content="https://1902756969.github.io/Hexo/pages/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%AA%E4%BA%BA%E7%90%86%E8%A7%A3.html">
+<meta property="og:url" content="https://1902756969.github.io/Hexo.github.io/pages/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%AA%E4%BA%BA%E7%90%86%E8%A7%A3.html">
 <meta property="og:site_name" content="阿星的博客">
 <meta property="og:description" content="一、What’s 多线程？🐱‍💻 程序执行过程中能执行程序代码的一个执行单元。 1.进程与线程的不同：  进程是正在执行的程序。线程是程序执行的最小单元。进程可以包含多个线程，各线程间共享内存空间(代码段、数据段、堆空间),但是各个线程有自己的堆空间.  ​    他们两个本质的区别是**是否单独占有内存地址空间及其它系统资源（比如I&#x2F;O） ​    进程是操作系统进行资源分配的基本">
 <meta property="og:locale" content="zh_CN">
@@ -50,12 +50,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/Hexo/css/main.css" />
+<link  rel="stylesheet" href="/Hexo.github.io/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/Hexo/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/Hexo.github.io/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo.github.io/css/highlight-dark.css" />
   
 
 
@@ -64,15 +64,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo.github.io/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo.github.io/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/Hexo/js/utils.js" ></script>
-  <script  src="/Hexo/js/color-schema.js" ></script>
+  <script  src="/Hexo.github.io/js/utils.js" ></script>
+  <script  src="/Hexo.github.io/js/color-schema.js" ></script>
 
   
 <meta name="generator" content="Hexo 6.0.0"></head>
@@ -87,7 +87,7 @@
 <div class="header-inner" style="height: 60vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/Hexo/">
+    <a class="navbar-brand" href="/Hexo.github.io/">
       <strong>🐛 ZhaFi人</strong>
     </a>
 
@@ -106,7 +106,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/">
+              <a class="nav-link" href="/Hexo.github.io/">
                 <i class="iconfont icon-home-fill"></i>
                 首页
               </a>
@@ -118,7 +118,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/archives/">
+              <a class="nav-link" href="/Hexo.github.io/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 归档
               </a>
@@ -130,7 +130,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/categories/">
+              <a class="nav-link" href="/Hexo.github.io/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 分类
               </a>
@@ -142,7 +142,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/tags/">
+              <a class="nav-link" href="/Hexo.github.io/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 标签
               </a>
@@ -154,7 +154,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/about/">
+              <a class="nav-link" href="/Hexo.github.io/about/">
                 <i class="iconfont icon-user-fill"></i>
                 关于
               </a>
@@ -166,7 +166,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/links/">
+              <a class="nav-link" href="/Hexo.github.io/links/">
                 <i class="iconfont icon-link-fill"></i>
                 友链
               </a>
@@ -195,7 +195,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/Hexo/img/bg5.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/Hexo.github.io/img/bg5.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -234,7 +234,7 @@
 </code></pre>
 <p>​    <font color='red'>他们两个本质的区别是**是否单独占有内存地址空间及其它系统资源（比如I&#x2F;O）</font></p>
 <p>​    <font color='red'><strong>进程是操作系统进行资源分配的基本单位，而线程是操作系统进行调度的基本单位</strong>，即CPU分配时间的单位 。</font></p>
-<img src="../img/202202202127947.jpeg" srcset="/Hexo/img/loading.gif" lazyload style="zoom: 33%;" />
+<img src="../img/202202202127947.jpeg" srcset="/Hexo.github.io/img/loading.gif" lazyload style="zoom: 33%;" />
 
 <h3 id="1-1-多进程的方式也可以实现并发，为什么我们要使用多线程？"><a href="#1-1-多进程的方式也可以实现并发，为什么我们要使用多线程？" class="headerlink" title="1.1 多进程的方式也可以实现并发，为什么我们要使用多线程？"></a>1.1 多进程的方式也可以实现并发，为什么我们要使用多线程？</h3><p>多进程方式确实可以实现并发，但使用多线程，有以下几个好处：</p>
 <p>- </p>
@@ -386,8 +386,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/Hexo/js/events.js" ></script>
-<script  src="/Hexo/js/plugins.js" ></script>
+<script  src="/Hexo.github.io/js/events.js" ></script>
+<script  src="/Hexo.github.io/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -426,13 +426,13 @@
 
 
   
-    <script  src="/Hexo/js/img-lazyload.js" ></script>
+    <script  src="/Hexo.github.io/js/img-lazyload.js" ></script>
   
 
 
 
 
-  <script  src="/Hexo/js/local-search.js" ></script>
+  <script  src="/Hexo.github.io/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -442,7 +442,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/Hexo/js/boot.js" ></script>
+<script  src="/Hexo.github.io/js/boot.js" ></script>
 
 
   
@@ -450,5 +450,5 @@
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<script src="/Hexo/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+<script src="/Hexo.github.io/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo.github.io/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
 </html>

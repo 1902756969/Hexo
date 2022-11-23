@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo/img/csdn.png">
-  <link rel="icon" href="/Hexo/img/csdn.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo.github.io/img/csdn.png">
+  <link rel="icon" href="/Hexo.github.io/img/csdn.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,7 +19,7 @@
     <meta name="description" content="常见面试题1.微服务篇1.1.SpringCloud常见组件有哪些？问题说明：这个题目主要考察对SpringCloud的组件基本了解 难易程度：简单 参考话术： SpringCloud包含的组件很多，有很多功能是重复的。其中最常用组件包括： •注册中心组件：Eureka、Nacos等 •负载均衡组件：Ribbon •远程调用组件：OpenFeign •网关组件：Zuul、Gateway •服务保护">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微服务常见面试题">
-<meta property="og:url" content="https://1902756969.github.io/Hexo/2022/03/04/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
+<meta property="og:url" content="https://1902756969.github.io/Hexo.github.io/2022/03/04/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
 <meta property="og:site_name" content="阿星的博客">
 <meta property="og:description" content="常见面试题1.微服务篇1.1.SpringCloud常见组件有哪些？问题说明：这个题目主要考察对SpringCloud的组件基本了解 难易程度：简单 参考话术： SpringCloud包含的组件很多，有很多功能是重复的。其中最常用组件包括： •注册中心组件：Eureka、Nacos等 •负载均衡组件：Ribbon •远程调用组件：OpenFeign •网关组件：Zuul、Gateway •服务保护">
 <meta property="og:locale" content="zh_CN">
@@ -56,12 +56,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/Hexo/css/main.css" />
+<link  rel="stylesheet" href="/Hexo.github.io/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/Hexo/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/Hexo.github.io/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo.github.io/css/highlight-dark.css" />
   
 
 
@@ -70,15 +70,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo.github.io/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo.github.io/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/Hexo/js/utils.js" ></script>
-  <script  src="/Hexo/js/color-schema.js" ></script>
+  <script  src="/Hexo.github.io/js/utils.js" ></script>
+  <script  src="/Hexo.github.io/js/color-schema.js" ></script>
 
   
 <meta name="generator" content="Hexo 6.0.0"></head>
@@ -93,7 +93,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/Hexo/">
+    <a class="navbar-brand" href="/Hexo.github.io/">
       <strong>🐛 ZhaFi人</strong>
     </a>
 
@@ -112,7 +112,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/">
+              <a class="nav-link" href="/Hexo.github.io/">
                 <i class="iconfont icon-home-fill"></i>
                 首页
               </a>
@@ -124,7 +124,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/archives/">
+              <a class="nav-link" href="/Hexo.github.io/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 归档
               </a>
@@ -136,7 +136,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/categories/">
+              <a class="nav-link" href="/Hexo.github.io/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 分类
               </a>
@@ -148,7 +148,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/tags/">
+              <a class="nav-link" href="/Hexo.github.io/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 标签
               </a>
@@ -160,7 +160,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/about/">
+              <a class="nav-link" href="/Hexo.github.io/about/">
                 <i class="iconfont icon-user-fill"></i>
                 关于
               </a>
@@ -172,7 +172,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/links/">
+              <a class="nav-link" href="/Hexo.github.io/links/">
                 <i class="iconfont icon-link-fill"></i>
                 友链
               </a>
@@ -201,7 +201,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/Hexo/img/bg5.png') no-repeat center center; background-size: cover;">
+     style="background: url('/Hexo.github.io/img/bg5.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -312,7 +312,7 @@
 <p>Nacos采用了数据的分级存储模型，最外层是Namespace，用来隔离环境。然后是Group，用来对服务分组。接下来就是服务（Service）了，一个服务包含多个实例，但是可能处于不同机房，因此Service下有多个集群（Cluster），Cluster下是不同的实例（Instance）。</p>
 <p>对应到Java代码中，Nacos采用了一个多层的Map来表示。结构为Map&lt;String, Map&lt;String, Service&gt;&gt;，其中最外层Map的key就是namespaceId，值是一个Map。内层Map的key是group拼接serviceName，值是Service对象。Service对象内部又是一个Map，key是集群名称，值是Cluster对象。而Cluster对象内部维护了Instance的集合。</p>
 <p>如图：</p>
-<p><img src="https://s2.loli.net/2022/04/11/q5fdnkyabj9Rl1c.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210925215305446"></p>
+<p><img src="https://s2.loli.net/2022/04/11/q5fdnkyabj9Rl1c.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20210925215305446"></p>
 <h2 id="1-3-Nacos如何支撑阿里内部数十万服务注册压力？"><a href="#1-3-Nacos如何支撑阿里内部数十万服务注册压力？" class="headerlink" title="1.3.Nacos如何支撑阿里内部数十万服务注册压力？"></a>1.3.Nacos如何支撑阿里内部数十万服务注册压力？</h2><p><strong>问题说明</strong>：考察对Nacos源码的掌握情况</p>
 <p><strong>难易程度</strong>：难</p>
 <p><strong>参考话术</strong>：</p>
@@ -348,7 +348,7 @@
 <p>Hystix默认是基于线程池实现的线程隔离，每一个被隔离的业务都要创建一个独立的线程池，线程过多会带来额外的CPU开销，性能一般，但是隔离性更强。</p>
 <p>Sentinel是基于信号量（计数器）实现的线程隔离，不用创建线程池，性能较好，但是隔离性一般。</p>
 <h1 id="2-MQ篇"><a href="#2-MQ篇" class="headerlink" title="2.MQ篇"></a>2.MQ篇</h1><h2 id="2-1-你们为什么选择了RabbitMQ而不是其它的MQ？"><a href="#2-1-你们为什么选择了RabbitMQ而不是其它的MQ？" class="headerlink" title="2.1.你们为什么选择了RabbitMQ而不是其它的MQ？"></a>2.1.你们为什么选择了RabbitMQ而不是其它的MQ？</h2><p>如图：</p>
-<p><img src="https://s2.loli.net/2022/04/11/SPpDg2iYIVC5kOc.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210925220034702"></p>
+<p><img src="https://s2.loli.net/2022/04/11/SPpDg2iYIVC5kOc.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20210925220034702"></p>
 <p><strong>话术：</strong></p>
 <p>kafka是以吞吐量高而闻名，不过其数据稳定性一般，而且无法保证消息有序性。我们公司的日志收集也有使用，业务模块中则使用的RabbitMQ。</p>
 <p>阿里巴巴的RocketMQ基于Kafka的原理，弥补了Kafka的缺点，继承了其高吞吐的优势，其客户端目前以Java为主。但是我们担心阿里巴巴开源产品的稳定性，所以就没有使用。</p>
@@ -463,7 +463,7 @@
 <li><code>集群模式</code>：memcached没有原生的集群模式，需要依靠客户端来实现往集群中分片写入数据；但是 redis 目前是原生支持 cluster 模式的.</li>
 <li><code>Redis使用单线程</code>：Memcached是多线程，非阻塞IO复用的网络模型；Redis使用单线程的多路 IO 复用模型。</li>
 </ul>
-<p><img src="https://s2.loli.net/2022/04/11/aQX9ARNyIY8E3L4.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574821356723"></p>
+<p><img src="https://s2.loli.net/2022/04/11/aQX9ARNyIY8E3L4.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1574821356723"></p>
 <h2 id="3-2-Redis的单线程问题"><a href="#3-2-Redis的单线程问题" class="headerlink" title="3.2.Redis的单线程问题"></a>3.2.Redis的单线程问题</h2><p><strong>面试官</strong>：Redis采用单线程，如何保证高并发？</p>
 <p><strong>面试话术</strong>：</p>
 <p>Redis快的主要原因是：</p>
@@ -551,12 +551,12 @@
 <li>如果配置了<code>哨兵节点</code>，当master宕机时，哨兵会从salve节点选出一个新的主。</li>
 </ul>
 <p>主从集群分两种：</p>
-<p><img src="https://s2.loli.net/2022/04/11/g7HREAK8cUeCl6B.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574821993599"> <img src="https://s2.loli.net/2022/04/11/6yMLOjaXdzx7823.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574822026037"> </p>
+<p><img src="https://s2.loli.net/2022/04/11/g7HREAK8cUeCl6B.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1574821993599"> <img src="https://s2.loli.net/2022/04/11/6yMLOjaXdzx7823.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1574822026037"> </p>
 <p>带有哨兵的集群：</p>
-<p><img src="https://s2.loli.net/2022/04/11/ZNlXTBpod8Mr4wS.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574822077190"></p>
+<p><img src="https://s2.loli.net/2022/04/11/ZNlXTBpod8Mr4wS.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1574822077190"></p>
 <p>2）分片集群</p>
 <p>主从集群中，每个节点都要保存所有信息，容易形成木桶效应。并且当数据量较大时，单个机器无法满足需求。此时我们就要使用分片集群了。</p>
-<p><img src="https://s2.loli.net/2022/04/11/wPjEZHoKdItXJNb.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574822184467"> </p>
+<p><img src="https://s2.loli.net/2022/04/11/wPjEZHoKdItXJNb.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1574822184467"> </p>
 <p>集群特征：</p>
 <ul>
 <li><p>每个节点都保存不同数据</p>
@@ -571,9 +571,9 @@
 </li>
 </ul>
 <p>为了保证Redis中每个节点的高可用，我们还可以给每个节点创建replication（slave节点），如图：</p>
-<p><img src="https://s2.loli.net/2022/04/11/TGw7xjXMAgUvmyW.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574822584357"></p>
+<p><img src="https://s2.loli.net/2022/04/11/TGw7xjXMAgUvmyW.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1574822584357"></p>
 <p>出现故障时，主从可以及时切换：</p>
-<p><img src="https://s2.loli.net/2022/04/11/CUe2yxbwdlf9pno.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574822602109"></p>
+<p><img src="https://s2.loli.net/2022/04/11/CUe2yxbwdlf9pno.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1574822602109"></p>
 <h2 id="3-4-Redis的常用数据类型有哪些？"><a href="#3-4-Redis的常用数据类型有哪些？" class="headerlink" title="3.4.Redis的常用数据类型有哪些？"></a>3.4.Redis的常用数据类型有哪些？</h2><p>支持多种类型的数据结构，主要区别是value存储的数据格式不同：</p>
 <ul>
 <li><p>string：最基本的数据类型，二进制安全的字符串，最大512M。</p>
@@ -732,7 +732,7 @@
 <li>RocksDB：<a target="_blank" rel="noopener" href="https://rocksdb.org.cn/">https://rocksdb.org.cn/</a></li>
 </ul>
 <p>因此，我们就需要在应用程序与缓存服务之间引入代理，实现Redis和SSD之间的切换，如图：</p>
-<p><img src="https://s2.loli.net/2022/04/11/vGtaXc54SelkC7E.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20200521115702956"></p>
+<p><img src="https://s2.loli.net/2022/04/11/vGtaXc54SelkC7E.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20200521115702956"></p>
 <p>这样的代理方案阿里云提供的就有。当然也有一些开源方案，例如：<a target="_blank" rel="noopener" href="https://github.com/JingchengLi/swapdb">https://github.com/JingchengLi/swapdb</a></p>
 <h2 id="3-10-Redis实现分布式锁"><a href="#3-10-Redis实现分布式锁" class="headerlink" title="3.10.Redis实现分布式锁"></a>3.10.Redis实现分布式锁</h2><p>分布式锁要满足的条件：</p>
 <ul>
@@ -761,7 +761,7 @@
 
 
 <h3 id="2）可重入分布式锁"><a href="#2）可重入分布式锁" class="headerlink" title="2）可重入分布式锁"></a>2）可重入分布式锁</h3><p>如果有重入的需求，则除了在锁中记录进程标识，还要记录重试次数，流程如下：</p>
-<p><img src="https://s2.loli.net/2022/04/11/XyDS2k7uK4FiJap.png" srcset="/Hexo/img/loading.gif" lazyload alt="1574824172228"> </p>
+<p><img src="https://s2.loli.net/2022/04/11/XyDS2k7uK4FiJap.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1574824172228"> </p>
 <p>下面我们假设锁的key为“<code>lock</code>”，hashKey是当前线程的id：“<code>threadId</code>”，锁自动释放时间假设为20</p>
 <p>获取锁的步骤：</p>
 <ul>
@@ -841,7 +841,7 @@
     
       <span class="category-chain">
         
-  <a href="/Hexo/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1%F0%9F%91%8D/" class="category-chain-item">微服务👍</a>
+  <a href="/Hexo.github.io/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1%F0%9F%91%8D/" class="category-chain-item">微服务👍</a>
   
   
 
@@ -856,7 +856,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/Hexo/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1%F0%9F%99%8C/">#微服务🙌</a>
+        <a href="/Hexo.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1%F0%9F%99%8C/">#微服务🙌</a>
       
     </div>
   
@@ -869,7 +869,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>微服务常见面试题</div>
-      <div>https://1902756969.github.io/Hexo/2022/03/04/微服务/微服务常见面试题/</div>
+      <div>https://1902756969.github.io/Hexo.github.io/2022/03/04/微服务/微服务常见面试题/</div>
     </div>
     <div class="license-meta">
       
@@ -911,7 +911,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/Hexo/2022/04/09/sql/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20Redis%E9%AB%98%E7%BA%A7/" title="Redis高级">
+                      <a href="/Hexo.github.io/2022/04/09/sql/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20Redis%E9%AB%98%E7%BA%A7/" title="Redis高级">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Redis高级</span>
                         <span class="visible-mobile">上一篇</span>
@@ -921,7 +921,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/Hexo/2022/03/02/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Nacos%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97/" title="Nacos安装使用指南">
+                      <a href="/Hexo.github.io/2022/03/02/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Nacos%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97/" title="Nacos安装使用指南">
                         <span class="hidden-mobile">Nacos安装使用指南</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -1071,8 +1071,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/Hexo/js/events.js" ></script>
-<script  src="/Hexo/js/plugins.js" ></script>
+<script  src="/Hexo.github.io/js/events.js" ></script>
+<script  src="/Hexo.github.io/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -1111,7 +1111,7 @@
 
 
   
-    <script  src="/Hexo/js/img-lazyload.js" ></script>
+    <script  src="/Hexo.github.io/js/img-lazyload.js" ></script>
   
 
 
@@ -1248,7 +1248,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/Hexo/js/local-search.js" ></script>
+  <script  src="/Hexo.github.io/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -1258,7 +1258,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/Hexo/js/boot.js" ></script>
+<script  src="/Hexo.github.io/js/boot.js" ></script>
 
 
   
@@ -1266,5 +1266,5 @@
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<script src="/Hexo/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+<script src="/Hexo.github.io/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo.github.io/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
 </html>

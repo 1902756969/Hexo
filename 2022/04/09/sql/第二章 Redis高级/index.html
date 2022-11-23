@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo/img/csdn.png">
-  <link rel="icon" href="/Hexo/img/csdn.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo.github.io/img/csdn.png">
+  <link rel="icon" href="/Hexo.github.io/img/csdn.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,7 +19,7 @@
     <meta name="description" content="第二章：Redis高级学习目标目标1：能够说出redis中的数据删除策与略淘汰策略 目标2：能够说出主从复制的概念，工作流程以及场景问题及解决方案 目标3：能够说出哨兵的作用以及工作原理，以及如何启用哨兵 目标4：能够说出集群的架构设计，完成集群的搭建 目标5：能够说出缓存预热，雪崩，击穿，穿透的概念，能说出redis的相关监控指标 1.数据删除与淘汰策略1.1 过期数据1.1.1 Redis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis高级">
-<meta property="og:url" content="https://1902756969.github.io/Hexo/2022/04/09/sql/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20Redis%E9%AB%98%E7%BA%A7/index.html">
+<meta property="og:url" content="https://1902756969.github.io/Hexo.github.io/2022/04/09/sql/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20Redis%E9%AB%98%E7%BA%A7/index.html">
 <meta property="og:site_name" content="阿星的博客">
 <meta property="og:description" content="第二章：Redis高级学习目标目标1：能够说出redis中的数据删除策与略淘汰策略 目标2：能够说出主从复制的概念，工作流程以及场景问题及解决方案 目标3：能够说出哨兵的作用以及工作原理，以及如何启用哨兵 目标4：能够说出集群的架构设计，完成集群的搭建 目标5：能够说出缓存预热，雪崩，击穿，穿透的概念，能说出redis的相关监控指标 1.数据删除与淘汰策略1.1 过期数据1.1.1 Redis">
 <meta property="og:locale" content="zh_CN">
@@ -56,12 +56,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/Hexo/css/main.css" />
+<link  rel="stylesheet" href="/Hexo.github.io/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/Hexo/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/Hexo.github.io/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo.github.io/css/highlight-dark.css" />
   
 
 
@@ -70,15 +70,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo.github.io/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo.github.io/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/Hexo/js/utils.js" ></script>
-  <script  src="/Hexo/js/color-schema.js" ></script>
+  <script  src="/Hexo.github.io/js/utils.js" ></script>
+  <script  src="/Hexo.github.io/js/color-schema.js" ></script>
 
   
 <meta name="generator" content="Hexo 6.0.0"></head>
@@ -93,7 +93,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/Hexo/">
+    <a class="navbar-brand" href="/Hexo.github.io/">
       <strong>🐛 ZhaFi人</strong>
     </a>
 
@@ -112,7 +112,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/">
+              <a class="nav-link" href="/Hexo.github.io/">
                 <i class="iconfont icon-home-fill"></i>
                 首页
               </a>
@@ -124,7 +124,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/archives/">
+              <a class="nav-link" href="/Hexo.github.io/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 归档
               </a>
@@ -136,7 +136,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/categories/">
+              <a class="nav-link" href="/Hexo.github.io/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 分类
               </a>
@@ -148,7 +148,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/tags/">
+              <a class="nav-link" href="/Hexo.github.io/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 标签
               </a>
@@ -160,7 +160,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/about/">
+              <a class="nav-link" href="/Hexo.github.io/about/">
                 <i class="iconfont icon-user-fill"></i>
                 关于
               </a>
@@ -172,7 +172,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/links/">
+              <a class="nav-link" href="/Hexo.github.io/links/">
                 <i class="iconfont icon-link-fill"></i>
                 友链
               </a>
@@ -201,7 +201,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/Hexo/img/bg5.png') no-repeat center center; background-size: cover;">
+     style="background: url('/Hexo.github.io/img/bg5.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -312,7 +312,7 @@
 </ul>
 <p><strong>删除策略就是针对已过期数据的处理策略</strong>，已过期的数据是真的就立即删除了吗？其实也不是，我们会有多种删除策略，是分情况的，在不同的场景下使用不同的删除方式会有不同效果，这也正是我们要将的数据的删除策略的问题</p>
 <h4 id="1-1-2-时效性数据的存储结构"><a href="#1-1-2-时效性数据的存储结构" class="headerlink" title="1.1.2 时效性数据的存储结构"></a>1.1.2 时效性数据的存储结构</h4><p>在Redis中，如何给数据设置它的失效周期呢？数据的时效在redis中如何存储呢？看下图：</p>
-<p><img src="https://i0.hdslb.com/bfs/album/1bf6a33adb727509ecbdfb0a48a6cd03cdde020c.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/1bf6a33adb727509ecbdfb0a48a6cd03cdde020c.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>过期数据是一块独立的存储空间，Hash结构，field是内存地址，value是过期时间，保存了所有key的过期描述，在最终进行过期处理的时候，对该空间的数据进行检测， 当时间到期之后通过field找到内存该地址处的数据，然后进行相关操作。</p>
 <h3 id="1-2-数据删除策略"><a href="#1-2-数据删除策略" class="headerlink" title="1.2 数据删除策略"></a>1.2 数据删除策略</h3><h4 id="1-2-1-数据删除策略的目标"><a href="#1-2-1-数据删除策略的目标" class="headerlink" title="1.2.1 数据删除策略的目标"></a>1.2.1 数据删除策略的目标</h4><p>在内存占用与CPU占用之间寻找一种平衡，顾此失彼都会造成整体redis性能的下降，甚至引发服务器宕机或 内存泄露</p>
 <p>针对过期数据要进行删除的时候都有哪些删除策略呢？</p>
@@ -327,7 +327,7 @@
 <li><strong>缺点</strong>：CPU压力很大，无论CPU此时负载量多高，均占用CPU，会影响redis服务器响应时间和指令吞吐量</li>
 <li><strong>总结</strong>：用处理器性能换取存储空间（拿时间换空间）</li>
 </ul>
-<p><img src="https://i0.hdslb.com/bfs/album/8aca4af998b6ed389c2572cdce2ab5062a3f3198.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/8aca4af998b6ed389c2572cdce2ab5062a3f3198.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <h4 id="1-2-3-惰性删除"><a href="#1-2-3-惰性删除" class="headerlink" title="1.2.3 惰性删除"></a>1.2.3 惰性删除</h4><p>数据到达过期时间，不做处理。等下次访问该数据时，我们需要判断</p>
 <ol>
 <li>如果未过期，返回数据</li>
@@ -338,7 +338,7 @@
 <li><strong>缺点</strong>：内存压力很大，出现长期占用内存的数据</li>
 <li><strong>总结</strong>：用存储空间换取处理器性能（拿时间换空间）</li>
 </ul>
-<p><img src="https://i0.hdslb.com/bfs/album/09b3ec373b7b0857fcadca4fe7b809ab6447489e.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/09b3ec373b7b0857fcadca4fe7b809ab6447489e.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <h4 id="1-2-4-定期删除"><a href="#1-2-4-定期删除" class="headerlink" title="1.2.4 定期删除"></a>1.2.4 定期删除</h4><p>定时删除和惰性删除这两种方案都是走的极端，那有没有折中方案？</p>
 <p>我们来讲redis的定期删除方案：</p>
 <ul>
@@ -359,7 +359,7 @@
 <li><p>如果activeExpireCycle()执行时间到期，下次从current_db继续向下执行</p>
 </li>
 </ul>
-<p><img src="https://i0.hdslb.com/bfs/album/eb56c8f1ffd3448cf6d0afe0307c652cc909c052.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/eb56c8f1ffd3448cf6d0afe0307c652cc909c052.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>总的来说：定期删除就是周期性轮询redis库中的时效性数据，采用随机抽取的策略，利用过期数据占比的方式控制删除频度</p>
 <ul>
 <li><strong>特点1</strong>：CPU性能占用设置有峰值，检测频度可自定义设置</li>
@@ -394,7 +394,7 @@
 <p><strong>第一类</strong>：检测易失数据（可能会过期的数据集server.db[i].expires ）</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">volatile-lru：挑选最近最少使用的数据淘汰</span><br><span class="hljs-attr">volatile-lfu：挑选最近使用次数最少的数据淘汰</span><br><span class="hljs-attr">volatile-ttl：挑选将要过期的数据淘汰</span><br><span class="hljs-attr">volatile-random：任意选择数据淘汰</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="https://i0.hdslb.com/bfs/album/1aee801ec621faab25deb200c62c9283d6570729.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/1aee801ec621faab25deb200c62c9283d6570729.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p><strong>第二类</strong>：检测全库数据（所有数据集server.db[i].dict ）</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">allkeys-lru：挑选最近最少使用的数据淘汰</span><br><span class="hljs-attr">allkeLyRs-lfu：：挑选最近使用次数最少的数据淘汰</span><br><span class="hljs-attr">allkeys-random：任意选择数据淘汰，相当于随机</span><br></code></pre></td></tr></table></figure>
 
@@ -422,7 +422,7 @@
 </li>
 </ul>
 <p><strong>可用性</strong>：一年中应用服务正常运行的时间占全年时间的百分比，如下图：表示了应用服务在全年宕机的时间</p>
-<p><img src="https://i0.hdslb.com/bfs/album/77cf50f867d7adcafd37d75f3af38e9de11eb01a.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/77cf50f867d7adcafd37d75f3af38e9de11eb01a.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>我们把这些时间加在一起就是全年应用服务不可用的时间，然后我们可以得到应用服务全年可用的时间</p>
 <blockquote>
 <p>4小时27分15秒+11分36秒+2分16秒&#x3D;4小时41分7秒&#x3D;16867秒</p>
@@ -446,7 +446,7 @@
 <p>结论：</p>
 <p>为了避免单点Redis服务器故障，准备多台服务器，互相连通。将数据复制多个副本保存在不同的服务器上，连接在一起，并保证数据是同步的。即使有其中一台服务器宕机，其他服务器依然可以继续提供服务，实现Redis的高可用，同时实现数据冗余备份。</p>
 <p>多台服务器连接方案：</p>
-<p><img src="https://i0.hdslb.com/bfs/album/60cb19696ea4f9b7f60a5849979221aa416c5d3c.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/60cb19696ea4f9b7f60a5849979221aa416c5d3c.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <ul>
 <li>提供数据方：<strong>master</strong></li>
 </ul>
@@ -483,9 +483,9 @@
 <li>数据同步阶段</li>
 <li>命令传播阶段（反复同步）</li>
 </ul>
-<p><img src="https://i0.hdslb.com/bfs/album/45a96dcfedb1b8b0e02897bfc55863ecc4fbcbc3.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/45a96dcfedb1b8b0e02897bfc55863ecc4fbcbc3.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>而命令的传播其实有4种，分别如下：</p>
-<p><img src="https://i0.hdslb.com/bfs/album/e985f173ce6200b5066693ba1df89283f7717927.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/e985f173ce6200b5066693ba1df89283f7717927.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <h4 id="2-2-1-主从复制的工作流程（三个阶段）"><a href="#2-2-1-主从复制的工作流程（三个阶段）" class="headerlink" title="2.2.1 主从复制的工作流程（三个阶段）"></a>2.2.1 主从复制的工作流程（三个阶段）</h4><h5 id="2-2-1-1-阶段一：建立连接"><a href="#2-2-1-1-阶段一：建立连接" class="headerlink" title="2.2.1.1 阶段一：建立连接"></a>2.2.1.1 阶段一：建立连接</h5><p>建立slave到master的连接，使master能够识别slave，并保存slave端口号</p>
 <p>流程如下：</p>
 <ol>
@@ -500,7 +500,7 @@
 <p>slave：保存master的地址与端口</p>
 <p>master：保存slave的端口</p>
 <p>总体：之间创建了连接的socket</p>
-<p><img src="https://i0.hdslb.com/bfs/album/ea1deb2e185a3e10a3a7dc857d8e7119073b9681.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/ea1deb2e185a3e10a3a7dc857d8e7119073b9681.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p><strong>master和slave互联</strong></p>
 <p>接下来就要通过某种方式将master和slave连接到一起</p>
 <p>方式一：客户端发送命令</p>
@@ -557,7 +557,7 @@
 <p>slave：具有master端全部数据，包含RDB过程接收的数据</p>
 <p>master：保存slave当前数据同步的位置</p>
 <p>总体：之间完成了数据克隆</p>
-<p><img src="https://i0.hdslb.com/bfs/album/090fb9425f8fce40cb3b67731e39ae975aa57fcb.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/090fb9425f8fce40cb3b67731e39ae975aa57fcb.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p><strong>数据同步阶段master说明</strong></p>
 <p>1：如果master数据量巨大，数据同步阶段应避开流量高峰期，避免造成master阻塞，影响业务正常执行</p>
 <p>2：复制缓冲区大小设定不合理，会导致数据溢出。如进行全量复制周期太长，进行部分复制时发现数据已经存在丢失的情况，必须进行第二次全量复制，致使slave陷入死循环状态。</p>
@@ -566,7 +566,7 @@
 <ol start="3">
 <li>master单机内存占用主机内存的比例不应过大，建议使用50%-70%的内存，留下30%-50%的内存用于执 行bgsave命令和创建复制缓冲区</li>
 </ol>
-<p><img src="/Hexo/./img/11.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="/Hexo.github.io/./img/11.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p><strong>数据同步阶段slave说明</strong></p>
 <ol>
 <li><p>为避免slave进行全量复制、部分复制时服务器响应阻塞或数据不同步，建议关闭此期间的对外服务</p>
@@ -604,7 +604,7 @@
 </ul>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs markdown">概念：复制缓冲区，又名复制积压缓冲区，是一个先进先出（FIFO）的队列，用于存储服务器执行过的命令，每次传播命令，master都会将传播的命令记录下来，并存储在复制缓冲区<br><span class="hljs-code">	复制缓冲区默认数据存储空间大小是1M</span><br><span class="hljs-code">	当入队元素的数量大于队列长度时，最先入队的元素会被弹出，而新元素会被放入队列</span><br><span class="hljs-code">作用：用于保存master收到的所有指令（仅影响数据变更的指令，例如set，select）</span><br><span class="hljs-code"></span><br>数据来源：当master接收到主客户端的指令时，除了将指令执行，会将该指令存储到缓冲区中<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://i0.hdslb.com/bfs/album/ced898899237afea93b62bde5fd3e69387a07364.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/ced898899237afea93b62bde5fd3e69387a07364.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>复制缓冲区内部工作原理：</p>
 <p>组成</p>
 <ul>
@@ -633,9 +633,9 @@
 <li>master记录已发送的信息对应的offset</li>
 <li>slave记录已接收的信息对应的offset</li>
 </ul>
-<p><img src="https://i0.hdslb.com/bfs/album/b7752a7adde435176b6c7ccef8c6f4cd8ccdbd38.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/b7752a7adde435176b6c7ccef8c6f4cd8ccdbd38.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <h4 id="2-2-2-流程更新-全量复制-x2F-部分复制"><a href="#2-2-2-流程更新-全量复制-x2F-部分复制" class="headerlink" title="2.2.2 流程更新(全量复制&#x2F;部分复制)"></a>2.2.2 流程更新(全量复制&#x2F;部分复制)</h4><p>我们再次的总结一下主从复制的三个阶段的工作流程：</p>
-<p><img src="https://i0.hdslb.com/bfs/album/0e0aafef58100e590c79617a34a56c521228a86c.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/0e0aafef58100e590c79617a34a56c521228a86c.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <h4 id="2-2-3-心跳机制"><a href="#2-2-3-心跳机制" class="headerlink" title="2.2.3 心跳机制"></a>2.2.3 心跳机制</h4><p>什么是心跳机制？</p>
 <p>进入命令传播阶段候，master与slave间需要进行信息交换，使用心跳机制进行维护，实现双方连接保持在线</p>
 <p>master心跳：</p>
@@ -666,7 +666,7 @@
 </li>
 </ul>
 <p>至此：我们可以总结出完整的主从复制流程：</p>
-<p><img src="https://i0.hdslb.com/bfs/album/4f6d7ddfaab01afd5f8b47fe48591d3ca1956fc3.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/4f6d7ddfaab01afd5f8b47fe48591d3ca1956fc3.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <h3 id="2-3-主从复制常见问题"><a href="#2-3-主从复制常见问题" class="headerlink" title="2.3 主从复制常见问题"></a>2.3 主从复制常见问题</h3><h4 id="2-3-1-频繁的全量复制"><a href="#2-3-1-频繁的全量复制" class="headerlink" title="2.3.1 频繁的全量复制"></a>2.3.1 频繁的全量复制</h4><ul>
 <li>伴随着系统的运行，master的数据量会越来越大，一旦master重启，runid将发生变化，会导致全部slave的全量复制操作</li>
 </ul>
@@ -721,13 +721,13 @@
 
 <p>开启后仅响应info、slaveof等少数命令（慎用，除非对数据一致性要求很高）</p>
 <h2 id="3-哨兵模式"><a href="#3-哨兵模式" class="headerlink" title="3.哨兵模式"></a>3.哨兵模式</h2><h3 id="3-1-哨兵简介"><a href="#3-1-哨兵简介" class="headerlink" title="3.1 哨兵简介"></a>3.1 哨兵简介</h3><h4 id="3-1-1-哨兵概念"><a href="#3-1-1-哨兵概念" class="headerlink" title="3.1.1 哨兵概念"></a>3.1.1 哨兵概念</h4><p>首先我们来看一个业务场景：如果redis的master宕机了，此时应该怎么办？</p>
-<p><img src="https://i0.hdslb.com/bfs/album/08d8577cccff883e83b649b55f62258e320458bb.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/08d8577cccff883e83b649b55f62258e320458bb.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>那此时我们可能需要从一堆的slave中重新选举出一个新的master，那这个操作过程是什么样的呢？这里面会有什么问题出现呢？</p>
-<p><img src="https://i0.hdslb.com/bfs/album/5da8f1b442ccb714d6d7cfeeb8d4e46d72fe0eb2.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/5da8f1b442ccb714d6d7cfeeb8d4e46d72fe0eb2.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>要实现这些功能，我们就需要redis的哨兵，那哨兵是什么呢？</p>
 <p><strong>哨兵</strong></p>
 <p>哨兵(sentinel) 是一个分布式系统，用于对主从结构中的每台服务器进行<strong>监控</strong>，当出现故障时通过<strong>投票</strong>机制<strong>选择</strong>新的master并将所有slave连接到新的master。</p>
-<p><img src="https://i0.hdslb.com/bfs/album/0773e47beaafb6409fc3dcbe6bcfcd884baf9579.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/0773e47beaafb6409fc3dcbe6bcfcd884baf9579.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <h4 id="3-1-2-哨兵作用"><a href="#3-1-2-哨兵作用" class="headerlink" title="3.1.2 哨兵作用"></a>3.1.2 哨兵作用</h4><p>哨兵的作用：</p>
 <ul>
 <li><p>监控：监控master和slave</p>
@@ -771,7 +771,7 @@
 <li>故障转移</li>
 </ul>
 <h4 id="3-3-1-监控"><a href="#3-3-1-监控" class="headerlink" title="3.3.1 监控"></a>3.3.1 监控</h4><p>用于同步各个节点的状态信息</p>
-<p><img src="https://i0.hdslb.com/bfs/album/4c1dc67a15c55ab90f9d48aa5bc8334d4cf83406.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/4c1dc67a15c55ab90f9d48aa5bc8334d4cf83406.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <ul>
 <li><p>获取各个sentinel的状态（是否在线）</p>
 </li>
@@ -786,13 +786,13 @@
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs markdown">slave属性<br><span class="hljs-code">	prunid</span><br><span class="hljs-code">	prole：slave</span><br><span class="hljs-code">	pmaster_host、master_port</span><br><span class="hljs-code">	poffset</span><br></code></pre></td></tr></table></figure>
 
 <p>其内部的工作原理具体如下：</p>
-<p><img src="https://i0.hdslb.com/bfs/album/4c03dc16702c33abfcbafb3d3727ae88adaa3f96.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/4c03dc16702c33abfcbafb3d3727ae88adaa3f96.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <h4 id="3-3-2-通知"><a href="#3-3-2-通知" class="headerlink" title="3.3.2 通知"></a>3.3.2 通知</h4><p>sentinel在通知阶段要不断的去获取master&#x2F;slave的信息，然后在各个sentinel之间进行共享，具体的流程如下：</p>
-<p><img src="https://i0.hdslb.com/bfs/album/e34aeb6fd7b7cc2689d9adbefb712355a7129b69.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/e34aeb6fd7b7cc2689d9adbefb712355a7129b69.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <h4 id="3-3-3-故障转移"><a href="#3-3-3-故障转移" class="headerlink" title="3.3.3 故障转移"></a>3.3.3 故障转移</h4><p>当master宕机后sentinel是如何知晓并判断出master是真的宕机了呢？我们来看具体的操作流程</p>
-<p><img src="https://i0.hdslb.com/bfs/album/1f4dcda30633c3fc8840a8398ca03d85547bb821.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/1f4dcda30633c3fc8840a8398ca03d85547bb821.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>当sentinel认定master下线之后，此时需要决定更换master，那这件事由哪个sentinel来做呢？这时候sentinel之间要进行选举，如下图所示：</p>
-<p><img src="https://i0.hdslb.com/bfs/album/2ecf361e12e35e177f51c22d8ef8375947aad236.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/2ecf361e12e35e177f51c22d8ef8375947aad236.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>在选举的时候每一个人手里都有一票，而每一个人的又都想当这个处理事故的人，那怎么办？大家就开始抢，于是每个人都会发出一个指令，在内网里边告诉大家我要当选举人，比如说现在的sentinel1和sentinel4发出这个选举指令了，那么sentinel2既能接到sentinel1的也能接到sentinel4的，接到了他们的申请以后呢，sentinel2他就会把他的一票投给其中一方，投给谁呢？谁先过来我投给谁，假设sentinel1先过来，所以这个票就给到了sentinel1。那么给过去以后呢，现在sentinel1就拿到了一票，按照这样的一种形式，最终会有一个选举结果。对应的选举最终得票多的，那自然就成为了处理事故的人。需要注意在这个过程中有可能会存在失败的现象，就是一轮选举完没有选取，那就会接着进行第二轮第三轮直到完成选举。</p>
 <p>接下来就是由选举胜出的sentinel去从slave中选一个新的master出来的工作，这个流程是什么样的呢？</p>
 <p>首先它有一个在服务器列表中挑选备选master的原则</p>
@@ -828,14 +828,14 @@
 <li>使用集群的方式可以快速解决上述问题</li>
 </ul>
 <h3 id="4-1-集群简介"><a href="#4-1-集群简介" class="headerlink" title="4.1 集群简介"></a>4.1 集群简介</h3><p>集群就是使用网络将若干台计算机联通起来，并提供统一的管理方式，使其对外呈现单机的服务效果</p>
-<p><img src="https://i0.hdslb.com/bfs/album/145f8013cb90437e70b7b8d005722d4a134b1e39.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/145f8013cb90437e70b7b8d005722d4a134b1e39.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p><strong>集群作用：</strong></p>
 <ul>
 <li>分散单台服务器的访问压力，实现负载均衡</li>
 <li>分散单台服务器的存储压力，实现可扩展性</li>
 <li>降低单台服务器宕机带来的业务灾难</li>
 </ul>
-<p><img src="https://i0.hdslb.com/bfs/album/39af456882cf5a8302e5fde4831630d9d3ca7c38.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/39af456882cf5a8302e5fde4831630d9d3ca7c38.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <h3 id="4-2-Cluster集群结构设计"><a href="#4-2-Cluster集群结构设计" class="headerlink" title="4.2 Cluster集群结构设计"></a>4.2 Cluster集群结构设计</h3><p><strong>数据存储设计：</strong></p>
 <ol>
 <li><p>通过算法设计，计算出key应该保存的位置</p>
@@ -846,16 +846,16 @@
 <li><p>将key按照计算出的结果放到对应的存储空间</p>
 </li>
 </ol>
-<p><img src="https://i0.hdslb.com/bfs/album/791eb9845c3736869fed35b50cc9868fb835d916.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/791eb9845c3736869fed35b50cc9868fb835d916.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>那redis的集群是如何增强可扩展性的呢？譬如我们要增加一个集群节点</p>
-<p><img src="https://i0.hdslb.com/bfs/album/00580f036b059a00d83d0d9570072325fdd45752.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/00580f036b059a00d83d0d9570072325fdd45752.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>当我们查找数据时，集群是如何操作的呢？</p>
 <ul>
 <li>各个数据库相互通信，保存各个库中槽的编号数据</li>
 <li>一次命中，直接返回</li>
 <li>一次未命中，告知具体位置</li>
 </ul>
-<p><img src="https://i0.hdslb.com/bfs/album/36b30070acc274e87406fbd5e6010be5bdab1467.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/36b30070acc274e87406fbd5e6010be5bdab1467.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <h3 id="4-3-Cluster集群结构搭建"><a href="#4-3-Cluster集群结构搭建" class="headerlink" title="4.3 Cluster集群结构搭建"></a>4.3 Cluster集群结构搭建</h3><p>首先要明确的几个要点：</p>
 <ul>
 <li>配置服务器（3主3从）</li>
@@ -1170,7 +1170,7 @@
 <p>范例2：100个连接，5000次请求对应的性能</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">&gt;redis-benchmark</span> <span class="hljs-string">-c 100 -n 5000</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="https://i0.hdslb.com/bfs/album/6e3a7a0641ae9a772097829342337be07672184f.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/6e3a7a0641ae9a772097829342337be07672184f.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 </blockquote>
 <ul>
 <li><p>redis-cli</p>
@@ -1209,7 +1209,7 @@
     
       <span class="category-chain">
         
-  <a href="/Hexo/categories/Redis/" class="category-chain-item">Redis</a>
+  <a href="/Hexo.github.io/categories/Redis/" class="category-chain-item">Redis</a>
   
   
 
@@ -1224,7 +1224,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/Hexo/tags/Redis/">#Redis</a>
+        <a href="/Hexo.github.io/tags/Redis/">#Redis</a>
       
     </div>
   
@@ -1237,7 +1237,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Redis高级</div>
-      <div>https://1902756969.github.io/Hexo/2022/04/09/sql/第二章 Redis高级/</div>
+      <div>https://1902756969.github.io/Hexo.github.io/2022/04/09/sql/第二章 Redis高级/</div>
     </div>
     <div class="license-meta">
       
@@ -1279,7 +1279,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/Hexo/2022/04/09/sql/%E7%AC%AC%E4%B8%80%E7%AB%A0%20Redis%E5%9F%BA%E7%A1%80/" title="Redis基础">
+                      <a href="/Hexo.github.io/2022/04/09/sql/%E7%AC%AC%E4%B8%80%E7%AB%A0%20Redis%E5%9F%BA%E7%A1%80/" title="Redis基础">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Redis基础</span>
                         <span class="visible-mobile">上一篇</span>
@@ -1289,7 +1289,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/Hexo/2022/03/04/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/" title="微服务常见面试题">
+                      <a href="/Hexo.github.io/2022/03/04/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/" title="微服务常见面试题">
                         <span class="hidden-mobile">微服务常见面试题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -1439,8 +1439,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/Hexo/js/events.js" ></script>
-<script  src="/Hexo/js/plugins.js" ></script>
+<script  src="/Hexo.github.io/js/events.js" ></script>
+<script  src="/Hexo.github.io/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -1479,7 +1479,7 @@
 
 
   
-    <script  src="/Hexo/js/img-lazyload.js" ></script>
+    <script  src="/Hexo.github.io/js/img-lazyload.js" ></script>
   
 
 
@@ -1616,7 +1616,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/Hexo/js/local-search.js" ></script>
+  <script  src="/Hexo.github.io/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -1626,7 +1626,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/Hexo/js/boot.js" ></script>
+<script  src="/Hexo.github.io/js/boot.js" ></script>
 
 
   
@@ -1634,5 +1634,5 @@
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<script src="/Hexo/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+<script src="/Hexo.github.io/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo.github.io/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
 </html>

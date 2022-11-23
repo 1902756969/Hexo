@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo/img/csdn.png">
-  <link rel="icon" href="/Hexo/img/csdn.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo.github.io/img/csdn.png">
+  <link rel="icon" href="/Hexo.github.io/img/csdn.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,37 +19,37 @@
     <meta name="description" content="RabbitMQ1.初识MQ1.1.同步和异步通讯微服务间通讯有同步和异步两种方式： 同步通讯：就像打电话，需要实时响应。 异步通讯：就像发邮件，不需要马上回复。  两种方式各有优劣，打电话可以立即得到响应，但是你却不能跟多个人同时通话。发送邮件可以同时与多个人收发邮件，但是往往响应会有延迟。 1.1.1.同步通讯我们之前学习的Feign调用就属于同步方式，虽然调用可以实时得到结果，但存在下面的问">
 <meta property="og:type" content="website">
 <meta property="og:title" content="page.title">
-<meta property="og:url" content="https://1902756969.github.io/Hexo/pages/RabbitMQ.html">
+<meta property="og:url" content="https://1902756969.github.io/Hexo.github.io/pages/RabbitMQ.html">
 <meta property="og:site_name" content="阿星的博客">
 <meta property="og:description" content="RabbitMQ1.初识MQ1.1.同步和异步通讯微服务间通讯有同步和异步两种方式： 同步通讯：就像打电话，需要实时响应。 异步通讯：就像发邮件，不需要马上回复。  两种方式各有优劣，打电话可以立即得到响应，但是你却不能跟多个人同时通话。发送邮件可以同时与多个人收发邮件，但是往往响应会有延迟。 1.1.1.同步通讯我们之前学习的Feign调用就属于同步方式，虽然调用可以实时得到结果，但存在下面的问">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210717161939695.png">
-<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210717162004285.png">
-<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210422095356088.png">
-<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210717162628635.png">
-<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210717162752376.png">
-<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210717163332646.png">
-<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210717163253264.png">
-<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210717163604330.png">
-<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210717163434647.png">
-<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210717164024967.png">
-<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210717164038678.png">
-<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210717164238910.png">
-<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210717165309625.png">
-<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210717165438225.png">
-<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210717165509466.png">
-<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210717165552676.png">
-<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210717170041447.png">
-<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210717170223317.png">
-<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210717170705380.png">
-<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210717170829229.png">
-<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20200525170410401.png">
-<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210422232835363.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo.github.io/assets/image-20210717161939695.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo.github.io/assets/image-20210717162004285.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo.github.io/assets/image-20210422095356088.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo.github.io/assets/image-20210717162628635.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo.github.io/assets/image-20210717162752376.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo.github.io/assets/image-20210717163332646.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo.github.io/assets/image-20210717163253264.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo.github.io/assets/image-20210717163604330.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo.github.io/assets/image-20210717163434647.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo.github.io/assets/image-20210717164024967.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo.github.io/assets/image-20210717164038678.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo.github.io/assets/image-20210717164238910.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo.github.io/assets/image-20210717165309625.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo.github.io/assets/image-20210717165438225.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo.github.io/assets/image-20210717165509466.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo.github.io/assets/image-20210717165552676.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo.github.io/assets/image-20210717170041447.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo.github.io/assets/image-20210717170223317.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo.github.io/assets/image-20210717170705380.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo.github.io/assets/image-20210717170829229.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo.github.io/assets/image-20200525170410401.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo.github.io/assets/image-20210422232835363.png">
 <meta property="article:published_time" content="2022-11-15T10:35:54.948Z">
 <meta property="article:modified_time" content="2022-11-15T10:26:24.767Z">
 <meta property="article:author" content="星">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://1902756969.github.io/Hexo/assets/image-20210717161939695.png">
+<meta name="twitter:image" content="https://1902756969.github.io/Hexo.github.io/assets/image-20210717161939695.png">
   
   
   <title>page.title - 阿星的博客</title>
@@ -70,12 +70,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/Hexo/css/main.css" />
+<link  rel="stylesheet" href="/Hexo.github.io/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/Hexo/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/Hexo.github.io/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo.github.io/css/highlight-dark.css" />
   
 
 
@@ -84,15 +84,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo.github.io/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo.github.io/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/Hexo/js/utils.js" ></script>
-  <script  src="/Hexo/js/color-schema.js" ></script>
+  <script  src="/Hexo.github.io/js/utils.js" ></script>
+  <script  src="/Hexo.github.io/js/color-schema.js" ></script>
 
   
 <meta name="generator" content="Hexo 6.0.0"></head>
@@ -107,7 +107,7 @@
 <div class="header-inner" style="height: 60vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/Hexo/">
+    <a class="navbar-brand" href="/Hexo.github.io/">
       <strong>🐛 ZhaFi人</strong>
     </a>
 
@@ -126,7 +126,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/">
+              <a class="nav-link" href="/Hexo.github.io/">
                 <i class="iconfont icon-home-fill"></i>
                 首页
               </a>
@@ -138,7 +138,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/archives/">
+              <a class="nav-link" href="/Hexo.github.io/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 归档
               </a>
@@ -150,7 +150,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/categories/">
+              <a class="nav-link" href="/Hexo.github.io/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 分类
               </a>
@@ -162,7 +162,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/tags/">
+              <a class="nav-link" href="/Hexo.github.io/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 标签
               </a>
@@ -174,7 +174,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/about/">
+              <a class="nav-link" href="/Hexo.github.io/about/">
                 <i class="iconfont icon-user-fill"></i>
                 关于
               </a>
@@ -186,7 +186,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/links/">
+              <a class="nav-link" href="/Hexo.github.io/links/">
                 <i class="iconfont icon-link-fill"></i>
                 友链
               </a>
@@ -215,7 +215,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/Hexo/img/bg5.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/Hexo.github.io/img/bg5.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -252,10 +252,10 @@
   <h1 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h1><h1 id="1-初识MQ"><a href="#1-初识MQ" class="headerlink" title="1.初识MQ"></a>1.初识MQ</h1><h2 id="1-1-同步和异步通讯"><a href="#1-1-同步和异步通讯" class="headerlink" title="1.1.同步和异步通讯"></a>1.1.同步和异步通讯</h2><p>微服务间通讯有同步和异步两种方式：</p>
 <p>同步通讯：就像打电话，需要实时响应。</p>
 <p>异步通讯：就像发邮件，不需要马上回复。</p>
-<p><img src="/Hexo/assets/image-20210717161939695.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210717161939695"></p>
+<p><img src="/Hexo.github.io/assets/image-20210717161939695.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20210717161939695"></p>
 <p>两种方式各有优劣，打电话可以立即得到响应，但是你却不能跟多个人同时通话。发送邮件可以同时与多个人收发邮件，但是往往响应会有延迟。</p>
 <h3 id="1-1-1-同步通讯"><a href="#1-1-1-同步通讯" class="headerlink" title="1.1.1.同步通讯"></a>1.1.1.同步通讯</h3><p>我们之前学习的Feign调用就属于同步方式，虽然调用可以实时得到结果，但存在下面的问题：</p>
-<p><img src="/Hexo/assets/image-20210717162004285.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210717162004285"></p>
+<p><img src="/Hexo.github.io/assets/image-20210717162004285.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20210717162004285"></p>
 <p>总结：</p>
 <p>同步调用的优点：</p>
 <ul>
@@ -273,7 +273,7 @@
 <p>在事件模式中，支付服务是事件发布者（publisher），在支付完成后只需要发布一个支付成功的事件（event），事件中带上订单id。</p>
 <p>订单服务和物流服务是事件订阅者（Consumer），订阅支付成功的事件，监听到事件后完成自己业务即可。</p>
 <p>为了解除事件发布者与订阅者之间的耦合，两者并不是直接通信，而是有一个中间人（Broker）。发布者发布事件到Broker，不关心谁来订阅事件。订阅者从Broker订阅事件，不关心谁发来的消息。</p>
-<p><img src="/Hexo/assets/image-20210422095356088.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210422095356088"></p>
+<p><img src="/Hexo.github.io/assets/image-20210422095356088.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20210422095356088"></p>
 <p>Broker 是一个像数据总线一样的东西，所有的服务要接收数据和发送数据都发到这个总线上，这个总线就像协议一样，让服务间的通讯变得标准和可控。</p>
 <p>好处：</p>
 <ul>
@@ -368,9 +368,9 @@
 <p>追求吞吐能力：RocketMQ、Kafka</p>
 <p>追求消息低延迟：RabbitMQ、Kafka</p>
 <h1 id="2-快速入门"><a href="#2-快速入门" class="headerlink" title="2.快速入门"></a>2.快速入门</h1><h2 id="2-1-安装RabbitMQ"><a href="#2-1-安装RabbitMQ" class="headerlink" title="2.1.安装RabbitMQ"></a>2.1.安装RabbitMQ</h2><p>安装RabbitMQ，参考课前资料：</p>
-<p><img src="/Hexo/assets/image-20210717162628635.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210717162628635"></p>
+<p><img src="/Hexo.github.io/assets/image-20210717162628635.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20210717162628635"></p>
 <p>MQ的基本结构：</p>
-<p><img src="/Hexo/assets/image-20210717162752376.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210717162752376"></p>
+<p><img src="/Hexo.github.io/assets/image-20210717162752376.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20210717162752376"></p>
 <p>RabbitMQ中的一些角色：</p>
 <ul>
 <li>publisher：生产者</li>
@@ -380,11 +380,11 @@
 <li>virtualHost：虚拟主机，隔离不同租户的exchange、queue、消息的隔离</li>
 </ul>
 <h2 id="2-2-RabbitMQ消息模型"><a href="#2-2-RabbitMQ消息模型" class="headerlink" title="2.2.RabbitMQ消息模型"></a>2.2.RabbitMQ消息模型</h2><p>RabbitMQ官方提供了5个不同的Demo示例，对应了不同的消息模型：</p>
-<p><img src="/Hexo/assets/image-20210717163332646.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210717163332646"></p>
+<p><img src="/Hexo.github.io/assets/image-20210717163332646.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20210717163332646"></p>
 <h2 id="2-3-导入Demo工程"><a href="#2-3-导入Demo工程" class="headerlink" title="2.3.导入Demo工程"></a>2.3.导入Demo工程</h2><p>课前资料提供了一个Demo工程，mq-demo:</p>
-<p><img src="/Hexo/assets/image-20210717163253264.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210717163253264"></p>
+<p><img src="/Hexo.github.io/assets/image-20210717163253264.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20210717163253264"></p>
 <p>导入后可以看到结构如下：</p>
-<p><img src="/Hexo/assets/image-20210717163604330.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210717163604330"></p>
+<p><img src="/Hexo.github.io/assets/image-20210717163604330.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20210717163604330"></p>
 <p>包括三部分：</p>
 <ul>
 <li>mq-demo：父工程，管理项目依赖</li>
@@ -392,7 +392,7 @@
 <li>consumer：消息的消费者</li>
 </ul>
 <h2 id="2-4-入门案例"><a href="#2-4-入门案例" class="headerlink" title="2.4.入门案例"></a>2.4.入门案例</h2><p>简单队列模式的模型图：</p>
-<p> <img src="/Hexo/assets/image-20210717163434647.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210717163434647"></p>
+<p> <img src="/Hexo.github.io/assets/image-20210717163434647.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20210717163434647"></p>
 <p>官方的HelloWorld是基于最基础的消息队列模型来实现的，只包括三个角色：</p>
 <ul>
 <li>publisher：消息发布者，将消息发送到队列queue</li>
@@ -456,8 +456,8 @@
 </ol>
 <h1 id="3-SpringAMQP"><a href="#3-SpringAMQP" class="headerlink" title="3.SpringAMQP"></a>3.SpringAMQP</h1><p>SpringAMQP是基于RabbitMQ封装的一套模板，并且还利用SpringBoot对其实现了自动装配，使用起来非常方便。</p>
 <p>SpringAmqp的官方地址：<a target="_blank" rel="noopener" href="https://spring.io/projects/spring-amqp">https://spring.io/projects/spring-amqp</a></p>
-<p><img src="/Hexo/assets/image-20210717164024967.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210717164024967"></p>
-<p><img src="/Hexo/assets/image-20210717164038678.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210717164038678"></p>
+<p><img src="/Hexo.github.io/assets/image-20210717164024967.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20210717164024967"></p>
+<p><img src="/Hexo.github.io/assets/image-20210717164038678.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20210717164038678"></p>
 <p>SpringAMQP提供了三个功能：</p>
 <ul>
 <li>自动声明队列、交换机及其绑定关系</li>
@@ -493,7 +493,7 @@
 
 <h3 id="3-1-3-测试"><a href="#3-1-3-测试" class="headerlink" title="3.1.3.测试"></a>3.1.3.测试</h3><p>启动consumer服务，然后在publisher服务中运行测试代码，发送MQ消息</p>
 <h2 id="3-2-WorkQueue"><a href="#3-2-WorkQueue" class="headerlink" title="3.2.WorkQueue"></a>3.2.WorkQueue</h2><p>Work queues，也被称为（Task queues），任务模型。简单来说就是<strong>让多个消费者绑定到一个队列，共同消费队列中的消息</strong>。</p>
-<p><img src="/Hexo/assets/image-20210717164238910.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210717164238910"></p>
+<p><img src="/Hexo.github.io/assets/image-20210717164238910.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20210717164238910"></p>
 <p>当消息处理比较耗时的时候，可能生产消息的速度会远远大于消息的消费速度。长此以往，消息就会堆积越来越多，无法及时处理。</p>
 <p>此时就可以使用work 模型，多个消费者共同处理消息处理，速度就能大大提高了。</p>
 <h3 id="3-2-1-消息发送"><a href="#3-2-1-消息发送" class="headerlink" title="3.2.1.消息发送"></a>3.2.1.消息发送</h3><p>这次我们循环发送，模拟大量消息堆积现象。</p>
@@ -522,7 +522,7 @@
 <li>通过设置prefetch来控制消费者预取的消息数量</li>
 </ul>
 <h2 id="3-3-发布-x2F-订阅"><a href="#3-3-发布-x2F-订阅" class="headerlink" title="3.3.发布&#x2F;订阅"></a>3.3.发布&#x2F;订阅</h2><p>发布订阅的模型如图：</p>
-<p><img src="/Hexo/assets/image-20210717165309625.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210717165309625"></p>
+<p><img src="/Hexo.github.io/assets/image-20210717165309625.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20210717165309625"></p>
 <p>可以看到，在订阅模型中，多了一个exchange角色，而且过程略有变化：</p>
 <ul>
 <li>Publisher：生产者，也就是要发送消息的程序，但是不再发送到队列中，而是发给X（交换机）</li>
@@ -537,7 +537,7 @@
 </ul>
 <p><strong>Exchange（交换机）只负责转发消息，不具备存储消息的能力</strong>，因此如果没有任何队列与Exchange绑定，或者没有符合路由规则的队列，那么消息会丢失！</p>
 <h2 id="3-4-Fanout"><a href="#3-4-Fanout" class="headerlink" title="3.4.Fanout"></a>3.4.Fanout</h2><p>Fanout，英文翻译是扇出，我觉得在MQ中叫广播更合适。</p>
-<p><img src="/Hexo/assets/image-20210717165438225.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210717165438225"></p>
+<p><img src="/Hexo.github.io/assets/image-20210717165438225.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20210717165438225"></p>
 <p>在广播模式下，消息发送流程是这样的：</p>
 <ul>
 <li>1）  可以有多个队列</li>
@@ -551,9 +551,9 @@
 <li>创建一个交换机 itcast.fanout，类型是Fanout</li>
 <li>创建两个队列fanout.queue1和fanout.queue2，绑定到交换机itcast.fanout</li>
 </ul>
-<p><img src="/Hexo/assets/image-20210717165509466.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210717165509466"></p>
+<p><img src="/Hexo.github.io/assets/image-20210717165509466.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20210717165509466"></p>
 <h3 id="3-4-1-声明队列和交换机"><a href="#3-4-1-声明队列和交换机" class="headerlink" title="3.4.1.声明队列和交换机"></a>3.4.1.声明队列和交换机</h3><p>Spring提供了一个接口Exchange，来表示所有不同类型的交换机：</p>
-<p><img src="/Hexo/assets/image-20210717165552676.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210717165552676"></p>
+<p><img src="/Hexo.github.io/assets/image-20210717165552676.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20210717165552676"></p>
 <p>在consumer中创建一个类，声明队列和交换机：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> cn.itcast.mq.config;<br><br><span class="hljs-keyword">import</span> org.springframework.amqp.core.Binding;<br><span class="hljs-keyword">import</span> org.springframework.amqp.core.BindingBuilder;<br><span class="hljs-keyword">import</span> org.springframework.amqp.core.FanoutExchange;<br><span class="hljs-keyword">import</span> org.springframework.amqp.core.Queue;<br><span class="hljs-keyword">import</span> org.springframework.context.annotation.Bean;<br><span class="hljs-keyword">import</span> org.springframework.context.annotation.Configuration;<br><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">FanoutConfig</span> &#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 声明交换机</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> Fanout类型交换机</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> FanoutExchange <span class="hljs-title function_">fanoutExchange</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FanoutExchange</span>(<span class="hljs-string">&quot;itcast.fanout&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 第1个队列</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> Queue <span class="hljs-title function_">fanoutQueue1</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Queue</span>(<span class="hljs-string">&quot;fanout.queue1&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 绑定队列和交换机</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> Binding <span class="hljs-title function_">bindingQueue1</span><span class="hljs-params">(Queue fanoutQueue1, FanoutExchange fanoutExchange)</span>&#123;<br>        <span class="hljs-keyword">return</span> BindingBuilder.bind(fanoutQueue1).to(fanoutExchange);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 第2个队列</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> Queue <span class="hljs-title function_">fanoutQueue2</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Queue</span>(<span class="hljs-string">&quot;fanout.queue2&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 绑定队列和交换机</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> Binding <span class="hljs-title function_">bindingQueue2</span><span class="hljs-params">(Queue fanoutQueue2, FanoutExchange fanoutExchange)</span>&#123;<br>        <span class="hljs-keyword">return</span> BindingBuilder.bind(fanoutQueue2).to(fanoutExchange);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -583,7 +583,7 @@
 <li>Binding</li>
 </ul>
 <h2 id="3-5-Direct"><a href="#3-5-Direct" class="headerlink" title="3.5.Direct"></a>3.5.Direct</h2><p>在Fanout模式中，一条消息，会被所有订阅的队列都消费。但是，在某些场景下，我们希望不同的消息被不同的队列消费。这时就要用到Direct类型的Exchange。</p>
-<p><img src="/Hexo/assets/image-20210717170041447.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210717170041447"></p>
+<p><img src="/Hexo.github.io/assets/image-20210717170041447.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20210717170041447"></p>
 <p> 在Direct模型下：</p>
 <ul>
 <li>队列与交换机的绑定，不能是任意绑定了，而是要指定一个<code>RoutingKey</code>（路由key）</li>
@@ -599,7 +599,7 @@
 <li><p>在publisher中编写测试方法，向itcast. direct发送消息</p>
 </li>
 </ol>
-<p><img src="/Hexo/assets/image-20210717170223317.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210717170223317"></p>
+<p><img src="/Hexo.github.io/assets/image-20210717170223317.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20210717170223317"></p>
 <h3 id="3-5-1-基于注解声明队列和交换机"><a href="#3-5-1-基于注解声明队列和交换机" class="headerlink" title="3.5.1.基于注解声明队列和交换机"></a>3.5.1.基于注解声明队列和交换机</h3><p>基于@Bean的方式声明队列和交换机比较麻烦，Spring还提供了基于注解方式来声明。</p>
 <p>在consumer的SpringRabbitListener中添加两个消费者，同时基于注解来声明队列和交换机：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RabbitListener(bindings = @QueueBinding(</span><br><span class="hljs-meta">    value = @Queue(name = &quot;direct.queue1&quot;),</span><br><span class="hljs-meta">    exchange = @Exchange(name = &quot;itcast.direct&quot;, type = ExchangeTypes.DIRECT),</span><br><span class="hljs-meta">    key = &#123;&quot;red&quot;, &quot;blue&quot;&#125;</span><br><span class="hljs-meta">))</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">listenDirectQueue1</span><span class="hljs-params">(String msg)</span>&#123;<br>    System.out.println(<span class="hljs-string">&quot;消费者接收到direct.queue1的消息：【&quot;</span> + msg + <span class="hljs-string">&quot;】&quot;</span>);<br>&#125;<br><br><span class="hljs-meta">@RabbitListener(bindings = @QueueBinding(</span><br><span class="hljs-meta">    value = @Queue(name = &quot;direct.queue2&quot;),</span><br><span class="hljs-meta">    exchange = @Exchange(name = &quot;itcast.direct&quot;, type = ExchangeTypes.DIRECT),</span><br><span class="hljs-meta">    key = &#123;&quot;red&quot;, &quot;yellow&quot;&#125;</span><br><span class="hljs-meta">))</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">listenDirectQueue2</span><span class="hljs-params">(String msg)</span>&#123;<br>    System.out.println(<span class="hljs-string">&quot;消费者接收到direct.queue2的消息：【&quot;</span> + msg + <span class="hljs-string">&quot;】&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -634,7 +634,7 @@
 <p><code>item.*</code>：只能匹配<code>item.spu</code></p>
 <p>​     </p>
 <p>图示：</p>
-<p> <img src="/Hexo/assets/image-20210717170705380.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210717170705380"></p>
+<p> <img src="/Hexo.github.io/assets/image-20210717170705380.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20210717170705380"></p>
 <p>解释：</p>
 <ul>
 <li>Queue1：绑定的是<code>china.#</code> ，因此凡是以 <code>china.</code>开头的<code>routing key</code> 都会被匹配到。包括china.news和china.weather</li>
@@ -650,7 +650,7 @@
 <li><p>在publisher中编写测试方法，向itcast. topic发送消息</p>
 </li>
 </ol>
-<p><img src="/Hexo/assets/image-20210717170829229.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210717170829229"></p>
+<p><img src="/Hexo.github.io/assets/image-20210717170829229.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20210717170829229"></p>
 <h3 id="3-6-2-消息发送"><a href="#3-6-2-消息发送" class="headerlink" title="3.6.2.消息发送"></a>3.6.2.消息发送</h3><p>在publisher服务的SpringAmqpTest类中添加测试方法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">     * topicExchange</span><br><span class="hljs-comment">     */</span><br><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testSendTopicExchange</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-comment">// 交换机名称</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">exchangeName</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;itcast.topic&quot;</span>;<br>    <span class="hljs-comment">// 消息</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">message</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;喜报！孙悟空大战哥斯拉，胜!&quot;</span>;<br>    <span class="hljs-comment">// 发送消息</span><br>    rabbitTemplate.convertAndSend(exchangeName, <span class="hljs-string">&quot;china.news&quot;</span>, message);<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -671,7 +671,7 @@
 <li><code>*</code>：代表1个词</li>
 </ul>
 <h2 id="3-7-消息转换器"><a href="#3-7-消息转换器" class="headerlink" title="3.7.消息转换器"></a>3.7.消息转换器</h2><p>之前说过，Spring会把你发送的消息序列化为字节发送给MQ，接收消息的时候，还会把字节反序列化为Java对象。</p>
-<p><img src="/Hexo/assets/image-20200525170410401.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20200525170410401"></p>
+<p><img src="/Hexo.github.io/assets/image-20200525170410401.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20200525170410401"></p>
 <p>只不过，默认情况下Spring采用的序列化方式是JDK序列化。众所周知，JDK序列化存在下列问题：</p>
 <ul>
 <li>数据体积过大</li>
@@ -686,7 +686,7 @@
 
 <p>停止consumer服务</p>
 <p>发送消息后查看控制台：</p>
-<p><img src="/Hexo/assets/image-20210422232835363.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210422232835363"></p>
+<p><img src="/Hexo.github.io/assets/image-20210422232835363.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20210422232835363"></p>
 <h3 id="3-7-2-配置JSON转换器"><a href="#3-7-2-配置JSON转换器" class="headerlink" title="3.7.2.配置JSON转换器"></a>3.7.2.配置JSON转换器</h3><p>显然，JDK序列化方式并不合适。我们希望消息体的体积更小、可读性更高，因此可以使用JSON方式来做序列化和反序列化。</p>
 <p>在publisher和consumer两个服务中都引入依赖：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.fasterxml.jackson.dataformat<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jackson-dataformat-xml<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.9.10<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
@@ -811,8 +811,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/Hexo/js/events.js" ></script>
-<script  src="/Hexo/js/plugins.js" ></script>
+<script  src="/Hexo.github.io/js/events.js" ></script>
+<script  src="/Hexo.github.io/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -851,13 +851,13 @@
 
 
   
-    <script  src="/Hexo/js/img-lazyload.js" ></script>
+    <script  src="/Hexo.github.io/js/img-lazyload.js" ></script>
   
 
 
 
 
-  <script  src="/Hexo/js/local-search.js" ></script>
+  <script  src="/Hexo.github.io/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -867,7 +867,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/Hexo/js/boot.js" ></script>
+<script  src="/Hexo.github.io/js/boot.js" ></script>
 
 
   
@@ -875,5 +875,5 @@
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<script src="/Hexo/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+<script src="/Hexo.github.io/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo.github.io/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
 </html>

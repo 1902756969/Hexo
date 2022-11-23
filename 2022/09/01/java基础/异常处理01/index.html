@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo/img/csdn.png">
-  <link rel="icon" href="/Hexo/img/csdn.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo.github.io/img/csdn.png">
+  <link rel="icon" href="/Hexo.github.io/img/csdn.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,7 +19,7 @@
     <meta name="description" content="异常处理在利用Java 语言设计程序时，不可避免地会产生错误，那么，如何处理错误?把错谈交给谁去处理?程序又该如何从错误中恢复?这是任何程序设计语言都要解决的问题。 1.1概念1.异常(Exception)异常指程序运行过程中出现的非正常现象，例如用户输入错误，除数为0,需要处理的文件不存在，数组下标越界等。其他因操作错误或偶然的外在因素导致的一般性问题，可以使用针对性的代码进行处理，例如空指针访">
 <meta property="og:type" content="article">
 <meta property="og:title" content="异常处理①">
-<meta property="og:url" content="https://1902756969.github.io/Hexo/2022/09/01/java%E5%9F%BA%E7%A1%80/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%8601/index.html">
+<meta property="og:url" content="https://1902756969.github.io/Hexo.github.io/2022/09/01/java%E5%9F%BA%E7%A1%80/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%8601/index.html">
 <meta property="og:site_name" content="阿星的博客">
 <meta property="og:description" content="异常处理在利用Java 语言设计程序时，不可避免地会产生错误，那么，如何处理错误?把错谈交给谁去处理?程序又该如何从错误中恢复?这是任何程序设计语言都要解决的问题。 1.1概念1.异常(Exception)异常指程序运行过程中出现的非正常现象，例如用户输入错误，除数为0,需要处理的文件不存在，数组下标越界等。其他因操作错误或偶然的外在因素导致的一般性问题，可以使用针对性的代码进行处理，例如空指针访">
 <meta property="og:locale" content="zh_CN">
@@ -56,12 +56,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/Hexo/css/main.css" />
+<link  rel="stylesheet" href="/Hexo.github.io/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/Hexo/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/Hexo.github.io/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo.github.io/css/highlight-dark.css" />
   
 
 
@@ -70,15 +70,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo.github.io/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo.github.io/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/Hexo/js/utils.js" ></script>
-  <script  src="/Hexo/js/color-schema.js" ></script>
+  <script  src="/Hexo.github.io/js/utils.js" ></script>
+  <script  src="/Hexo.github.io/js/color-schema.js" ></script>
 
   
 <meta name="generator" content="Hexo 6.0.0"></head>
@@ -93,7 +93,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/Hexo/">
+    <a class="navbar-brand" href="/Hexo.github.io/">
       <strong>🐛 ZhaFi人</strong>
     </a>
 
@@ -112,7 +112,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/">
+              <a class="nav-link" href="/Hexo.github.io/">
                 <i class="iconfont icon-home-fill"></i>
                 首页
               </a>
@@ -124,7 +124,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/archives/">
+              <a class="nav-link" href="/Hexo.github.io/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 归档
               </a>
@@ -136,7 +136,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/categories/">
+              <a class="nav-link" href="/Hexo.github.io/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 分类
               </a>
@@ -148,7 +148,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/tags/">
+              <a class="nav-link" href="/Hexo.github.io/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 标签
               </a>
@@ -160,7 +160,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/about/">
+              <a class="nav-link" href="/Hexo.github.io/about/">
                 <i class="iconfont icon-user-fill"></i>
                 关于
               </a>
@@ -172,7 +172,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/links/">
+              <a class="nav-link" href="/Hexo.github.io/links/">
                 <i class="iconfont icon-link-fill"></i>
                 友链
               </a>
@@ -201,7 +201,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/Hexo/img/bg5.png') no-repeat center center; background-size: cover;">
+     style="background: url('/Hexo.github.io/img/bg5.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -336,7 +336,7 @@
 <td align="center">非法参数异常</td>
 </tr>
 </tbody></table>
-<h5 id="IOException异常子类如表所示"><a href="#IOException异常子类如表所示" class="headerlink" title="IOException异常子类如表所示"></a>IOException异常子类如表所示</h5><p><img src="https://img1.imgtp.com/2022/09/27/mTg3v8ZB.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220927220136097"></p>
+<h5 id="IOException异常子类如表所示"><a href="#IOException异常子类如表所示" class="headerlink" title="IOException异常子类如表所示"></a>IOException异常子类如表所示</h5><p><img src="https://img1.imgtp.com/2022/09/27/mTg3v8ZB.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20220927220136097"></p>
 <h5 id="IOException-异常子类"><a href="#IOException-异常子类" class="headerlink" title="IOException 异常子类"></a>IOException 异常子类</h5><table>
 <thead>
 <tr>
@@ -399,7 +399,7 @@
 <p>Error 用来指示运行时环境发生的错误。</p>
 <p>例如，JVM 内存溢出。一般地，程序不会从错误中恢复。</p>
 <p>异常类有两个主要的子类：IOException 类和 RuntimeException 类。</p>
-<p><img src="https://img1.imgtp.com/2022/10/17/0jbEqh0K.png" srcset="/Hexo/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://img1.imgtp.com/2022/10/17/0jbEqh0K.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="img"></p>
 <h2 id="1-3Java-内置异常类"><a href="#1-3Java-内置异常类" class="headerlink" title="1.3Java 内置异常类"></a>1.3Java 内置异常类</h2><p>Java 语言定义了一些异常类在 java.lang 标准包中。</p>
 <p>标准运行时异常类的子类是最常见的异常类。由于 java.lang 包是默认加载到所有的 Java 程序的，所以大部分从运行时异常类继承而来的异常都可以直接使用。</p>
 <p>Java 根据各个类库也定义了一些其他的异常，下面的表中列出了 Java 的非检查性异常。</p>
@@ -616,7 +616,7 @@
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.chongba.exception;<br><br><span class="hljs-comment">// 文件名称 CheckingAccount.java</span><br><span class="hljs-keyword">import</span> java.io.*;<br><br><span class="hljs-comment">//此类模拟银行账户</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CheckingAccount</span><br>&#123;<br>    <span class="hljs-comment">//balance为余额，number为卡号</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">double</span> balance;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> number;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">CheckingAccount</span><span class="hljs-params">(<span class="hljs-type">int</span> number)</span><br>    &#123;<br>        <span class="hljs-built_in">this</span>.number = number;<br>    &#125;<br>    <span class="hljs-comment">//方法：存钱</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">deposit</span><span class="hljs-params">(<span class="hljs-type">double</span> amount)</span><br>    &#123;<br>        balance += amount;<br>    &#125;<br>    <span class="hljs-comment">//方法：取钱</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">withdraw</span><span class="hljs-params">(<span class="hljs-type">double</span> amount)</span> <span class="hljs-keyword">throws</span><br>            InsufficientFundsException<br>    &#123;<br>        <span class="hljs-keyword">if</span>(amount &lt;= balance)<br>        &#123;<br>            balance -= amount;<br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            <span class="hljs-type">double</span> <span class="hljs-variable">needs</span> <span class="hljs-operator">=</span> amount - balance;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">InsufficientFundsException</span>(needs);<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">//方法：返回余额</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">double</span> <span class="hljs-title function_">getBalance</span><span class="hljs-params">()</span><br>    &#123;<br>        <span class="hljs-keyword">return</span> balance;<br>    &#125;<br>    <span class="hljs-comment">//方法：返回卡号</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getNumber</span><span class="hljs-params">()</span><br>    &#123;<br>        <span class="hljs-keyword">return</span> number;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String [] args)</span><br>    &#123;<br>        <span class="hljs-type">CheckingAccount</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">CheckingAccount</span>(<span class="hljs-number">101</span>);<br>        System.out.println(<span class="hljs-string">&quot;存入 $500...&quot;</span>);<br>        c.deposit(<span class="hljs-number">500.00</span>);<br>        <span class="hljs-keyword">try</span><br>        &#123;<br>            System.out.println(<span class="hljs-string">&quot;\n取出 $100...&quot;</span>);<br>            c.withdraw(<span class="hljs-number">100.00</span>);<br>            System.out.println(<span class="hljs-string">&quot;\n取出 $600...&quot;</span>);<br>            c.withdraw(<span class="hljs-number">600.00</span>);<br>        &#125;<span class="hljs-keyword">catch</span>(InsufficientFundsException e)<br>        &#123;<br>            System.out.println(<span class="hljs-string">&quot;不好意思,你的还差$&quot;</span><br>                    + e.getAmount());<br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://img1.imgtp.com/2022/10/17/1MpVYgxL.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20221017105126848"></p>
+<p><img src="https://img1.imgtp.com/2022/10/17/1MpVYgxL.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20221017105126848"></p>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>对于异常和错误情况的处理，统称<br>为异常处理。<br>所有的异常都有一个共同的祖先Throwable,它有两个重要的子类:Exception(异常和Error(错误),二者都是Java 异常处理的重要子类。<br>Java异常处理主要由5个关键字控制:</p>
 <p>try.catch.throw、throws 和 finally.</p>
 <p>(1)<font color='red'>try</font>的意思是试试它所包含的代码段中是否会发生异常。</p>
@@ -643,7 +643,7 @@
     
       <span class="category-chain">
         
-  <a href="/Hexo/categories/java%E5%9F%BA%E7%A1%80/" class="category-chain-item">java基础</a>
+  <a href="/Hexo.github.io/categories/java%E5%9F%BA%E7%A1%80/" class="category-chain-item">java基础</a>
   
   
 
@@ -658,7 +658,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/Hexo/tags/java%E5%9F%BA%E7%A1%80/">#java基础</a>
+        <a href="/Hexo.github.io/tags/java%E5%9F%BA%E7%A1%80/">#java基础</a>
       
     </div>
   
@@ -671,7 +671,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>异常处理①</div>
-      <div>https://1902756969.github.io/Hexo/2022/09/01/java基础/异常处理01/</div>
+      <div>https://1902756969.github.io/Hexo.github.io/2022/09/01/java基础/异常处理01/</div>
     </div>
     <div class="license-meta">
       
@@ -713,7 +713,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/Hexo/2022/09/01/java%E5%9F%BA%E7%A1%80/String%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/" title="String常用方法">
+                      <a href="/Hexo.github.io/2022/09/01/java%E5%9F%BA%E7%A1%80/String%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/" title="String常用方法">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">String常用方法</span>
                         <span class="visible-mobile">上一篇</span>
@@ -723,7 +723,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/Hexo/2022/05/12/spring+boot/springMVC%E9%9D%A2%E8%AF%95/" title="Springmvc面试题 专题部分">
+                      <a href="/Hexo.github.io/2022/05/12/spring+boot/springMVC%E9%9D%A2%E8%AF%95/" title="Springmvc面试题 专题部分">
                         <span class="hidden-mobile">Springmvc面试题 专题部分</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -873,8 +873,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/Hexo/js/events.js" ></script>
-<script  src="/Hexo/js/plugins.js" ></script>
+<script  src="/Hexo.github.io/js/events.js" ></script>
+<script  src="/Hexo.github.io/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -913,7 +913,7 @@
 
 
   
-    <script  src="/Hexo/js/img-lazyload.js" ></script>
+    <script  src="/Hexo.github.io/js/img-lazyload.js" ></script>
   
 
 
@@ -1050,7 +1050,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/Hexo/js/local-search.js" ></script>
+  <script  src="/Hexo.github.io/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -1060,7 +1060,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/Hexo/js/boot.js" ></script>
+<script  src="/Hexo.github.io/js/boot.js" ></script>
 
 
   
@@ -1068,5 +1068,5 @@
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<script src="/Hexo/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+<script src="/Hexo.github.io/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo.github.io/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
 </html>

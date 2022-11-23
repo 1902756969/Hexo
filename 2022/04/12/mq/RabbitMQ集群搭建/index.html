@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo/img/csdn.png">
-  <link rel="icon" href="/Hexo/img/csdn.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo.github.io/img/csdn.png">
+  <link rel="icon" href="/Hexo.github.io/img/csdn.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,7 +19,7 @@
     <meta name="description" content="3.RabbitMQ集群搭建摘要：实际生产应用中都会采用消息队列的集群方案，如果选择RabbitMQ那么有必要了解下它的集群方案原理 一般来说，如果只是为了学习RabbitMQ或者验证业务工程的正确性那么在本地环境或者测试环境上使用其单实例部署就可以了，但是出于MQ中间件本身的可靠性、并发性、吞吐量和消息堆积能力等问题的考虑，在生产环境上一般都会考虑使用RabbitMQ的集群方案。 3.1 集群方">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RabbitMQ基础Skill">
-<meta property="og:url" content="https://1902756969.github.io/Hexo/2022/04/12/mq/RabbitMQ%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/index.html">
+<meta property="og:url" content="https://1902756969.github.io/Hexo.github.io/2022/04/12/mq/RabbitMQ%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/index.html">
 <meta property="og:site_name" content="阿星的博客">
 <meta property="og:description" content="3.RabbitMQ集群搭建摘要：实际生产应用中都会采用消息队列的集群方案，如果选择RabbitMQ那么有必要了解下它的集群方案原理 一般来说，如果只是为了学习RabbitMQ或者验证业务工程的正确性那么在本地环境或者测试环境上使用其单实例部署就可以了，但是出于MQ中间件本身的可靠性、并发性、吞吐量和消息堆积能力等问题的考虑，在生产环境上一般都会考虑使用RabbitMQ的集群方案。 3.1 集群方">
 <meta property="og:locale" content="zh_CN">
@@ -56,12 +56,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/Hexo/css/main.css" />
+<link  rel="stylesheet" href="/Hexo.github.io/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/Hexo/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/Hexo.github.io/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo.github.io/css/highlight-dark.css" />
   
 
 
@@ -70,15 +70,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo.github.io/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo.github.io/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/Hexo/js/utils.js" ></script>
-  <script  src="/Hexo/js/color-schema.js" ></script>
+  <script  src="/Hexo.github.io/js/utils.js" ></script>
+  <script  src="/Hexo.github.io/js/color-schema.js" ></script>
 
   
 <meta name="generator" content="Hexo 6.0.0"></head>
@@ -93,7 +93,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/Hexo/">
+    <a class="navbar-brand" href="/Hexo.github.io/">
       <strong>🐛 ZhaFi人</strong>
     </a>
 
@@ -112,7 +112,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/">
+              <a class="nav-link" href="/Hexo.github.io/">
                 <i class="iconfont icon-home-fill"></i>
                 首页
               </a>
@@ -124,7 +124,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/archives/">
+              <a class="nav-link" href="/Hexo.github.io/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 归档
               </a>
@@ -136,7 +136,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/categories/">
+              <a class="nav-link" href="/Hexo.github.io/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 分类
               </a>
@@ -148,7 +148,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/tags/">
+              <a class="nav-link" href="/Hexo.github.io/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 标签
               </a>
@@ -160,7 +160,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/about/">
+              <a class="nav-link" href="/Hexo.github.io/about/">
                 <i class="iconfont icon-user-fill"></i>
                 关于
               </a>
@@ -172,7 +172,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/links/">
+              <a class="nav-link" href="/Hexo.github.io/links/">
                 <i class="iconfont icon-link-fill"></i>
                 友链
               </a>
@@ -201,7 +201,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/Hexo/img/bg5.png') no-repeat center center; background-size: cover;">
+     style="background: url('/Hexo.github.io/img/bg5.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -299,7 +299,7 @@
               <h1 id="3-RabbitMQ集群搭建"><a href="#3-RabbitMQ集群搭建" class="headerlink" title="3.RabbitMQ集群搭建"></a>3.RabbitMQ集群搭建</h1><p>摘要：实际生产应用中都会采用消息队列的集群方案，如果选择RabbitMQ那么有必要了解下它的集群方案原理</p>
 <p>一般来说，如果只是为了学习RabbitMQ或者验证业务工程的正确性那么在本地环境或者测试环境上使用其单实例部署就可以了，但是出于MQ中间件本身的可靠性、并发性、吞吐量和消息堆积能力等问题的考虑，在生产环境上一般都会考虑使用RabbitMQ的集群方案。</p>
 <h3 id="3-1-集群方案的原理"><a href="#3-1-集群方案的原理" class="headerlink" title="3.1 集群方案的原理"></a>3.1 集群方案的原理</h3><p>RabbitMQ这款消息队列中间件产品本身是基于Erlang编写，Erlang语言天生具备分布式特性（通过同步Erlang集群各节点的magic cookie来实现）。因此，RabbitMQ天然支持Clustering。这使得RabbitMQ本身不需要像ActiveMQ、Kafka那样通过ZooKeeper分别来实现HA方案和保存集群的元数据。集群是保证可靠性的一种方式，同时可以通过水平扩展以达到增加消息吞吐量能力的目的。</p>
-<p><img src="https://pic.imgdb.cn/item/63736e2716f2c2beb173271c.png" srcset="/Hexo/img/loading.gif" lazyload alt="1565245219265"></p>
+<p><img src="https://pic.imgdb.cn/item/63736e2716f2c2beb173271c.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1565245219265"></p>
 <h3 id="3-2-单机多实例部署"><a href="#3-2-单机多实例部署" class="headerlink" title="3.2 单机多实例部署"></a>3.2 单机多实例部署</h3><p>由于某些因素的限制，有时候你不得不在一台机器上去搭建一个rabbitmq集群，这个有点类似zookeeper的单机版。真实生成环境还是要配成多机集群的。有关怎么配置多机集群的可以参考其他的资料，这里主要论述如何在单机中配置多个rabbitmq实例。</p>
 <p>主要参考官方文档：<a target="_blank" rel="noopener" href="https://www.rabbitmq.com/clustering.html">https://www.rabbitmq.com/clustering.html</a></p>
 <p>首先确保RabbitMQ运行没有问题</p>
@@ -334,7 +334,7 @@
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs kotlin">[<span class="hljs-symbol">root@</span><span class="hljs-keyword">super</span> ~]# rabbitmqctl cluster_status -n rabbit1<br>Cluster status of node <span class="hljs-symbol">rabbit1@</span><span class="hljs-keyword">super</span> ...<br>[&#123;nodes,[&#123;disc,[<span class="hljs-symbol">rabbit1@</span><span class="hljs-keyword">super</span>,<span class="hljs-symbol">rabbit2@</span><span class="hljs-keyword">super</span>]&#125;]&#125;,<br> &#123;running_nodes,[<span class="hljs-symbol">rabbit2@</span><span class="hljs-keyword">super</span>,<span class="hljs-symbol">rabbit1@</span><span class="hljs-keyword">super</span>]&#125;,<br> &#123;cluster_name,&lt;&lt;<span class="hljs-string">&quot;rabbit1@super&quot;</span>&gt;&gt;&#125;,<br> &#123;partitions,[]&#125;,<br> &#123;alarms,[&#123;<span class="hljs-symbol">rabbit2@</span><span class="hljs-keyword">super</span>,[]&#125;,&#123;<span class="hljs-symbol">rabbit1@</span><span class="hljs-keyword">super</span>,[]&#125;]&#125;]<br></code></pre></td></tr></table></figure>
 
 <p>web监控：</p>
-<p><img src="https://pic.imgdb.cn/item/63736e2b16f2c2beb1732e55.png" srcset="/Hexo/img/loading.gif" lazyload alt="1566065096459"></p>
+<p><img src="https://pic.imgdb.cn/item/63736e2b16f2c2beb1732e55.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1566065096459"></p>
 <h3 id="3-3-集群管理"><a href="#3-3-集群管理" class="headerlink" title="3.3 集群管理"></a>3.3 集群管理</h3><p><strong>rabbitmqctl join_cluster {cluster_node} [–ram]</strong><br>将节点加入指定集群中。在这个命令执行前需要停止RabbitMQ应用并重置节点。</p>
 <p><strong>rabbitmqctl cluster_status</strong><br>显示集群的状态。</p>
 <p><strong>rabbitmqctl change_cluster_node_type {disc|ram}</strong><br>修改集群节点的类型。在这个命令执行前需要停止RabbitMQ应用。</p>
@@ -351,7 +351,7 @@
 <blockquote>
 <p>rabbitmqctl set_policy my_ha “^” ‘{“ha-mode”:”all”}’</p>
 </blockquote>
-<p><img src="https://pic.imgdb.cn/item/63736e2e16f2c2beb173312d.png" srcset="/Hexo/img/loading.gif" lazyload alt="1566072300852"></p>
+<p><img src="https://pic.imgdb.cn/item/63736e2e16f2c2beb173312d.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1566072300852"></p>
 <blockquote>
 <ul>
 <li>Name:策略名称</li>
@@ -389,7 +389,7 @@
     
       <span class="category-chain">
         
-  <a href="/Hexo/categories/RabbitMQ%F0%9F%90%B1%E2%80%8D%F0%9F%91%A4/" class="category-chain-item">RabbitMQ🐱‍👤</a>
+  <a href="/Hexo.github.io/categories/RabbitMQ%F0%9F%90%B1%E2%80%8D%F0%9F%91%A4/" class="category-chain-item">RabbitMQ🐱‍👤</a>
   
   
 
@@ -404,7 +404,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/Hexo/tags/RabbitMQ/">#RabbitMQ</a>
+        <a href="/Hexo.github.io/tags/RabbitMQ/">#RabbitMQ</a>
       
     </div>
   
@@ -417,7 +417,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>RabbitMQ基础Skill</div>
-      <div>https://1902756969.github.io/Hexo/2022/04/12/mq/RabbitMQ集群搭建/</div>
+      <div>https://1902756969.github.io/Hexo.github.io/2022/04/12/mq/RabbitMQ集群搭建/</div>
     </div>
     <div class="license-meta">
       
@@ -459,9 +459,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/Hexo/2022/04/16/mq/rabbitMQ%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" title="RabbitMQ高级特性">
+                      <a href="/Hexo.github.io/2022/04/12/mq/RabbitMQ%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E%E6%96%87%E6%A1%A3/" title="RabbitMQ安装说明文档">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">RabbitMQ高级特性</span>
+                        <span class="hidden-mobile">RabbitMQ安装说明文档</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -469,7 +469,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/Hexo/2022/04/12/mq/RabbitMQ%20%E8%AE%B2%E4%B9%89/" title="RabbitMQ基础Skill">
+                      <a href="/Hexo.github.io/2022/04/12/mq/RabbitMQ%20%E8%AE%B2%E4%B9%89/" title="RabbitMQ基础Skill">
                         <span class="hidden-mobile">RabbitMQ基础Skill</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -619,8 +619,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/Hexo/js/events.js" ></script>
-<script  src="/Hexo/js/plugins.js" ></script>
+<script  src="/Hexo.github.io/js/events.js" ></script>
+<script  src="/Hexo.github.io/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -659,7 +659,7 @@
 
 
   
-    <script  src="/Hexo/js/img-lazyload.js" ></script>
+    <script  src="/Hexo.github.io/js/img-lazyload.js" ></script>
   
 
 
@@ -796,7 +796,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/Hexo/js/local-search.js" ></script>
+  <script  src="/Hexo.github.io/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -806,7 +806,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/Hexo/js/boot.js" ></script>
+<script  src="/Hexo.github.io/js/boot.js" ></script>
 
 
   
@@ -814,5 +814,5 @@
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<script src="/Hexo/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+<script src="/Hexo.github.io/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo.github.io/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
 </html>

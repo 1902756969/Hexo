@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo/img/csdn.png">
-  <link rel="icon" href="/Hexo/img/csdn.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo.github.io/img/csdn.png">
+  <link rel="icon" href="/Hexo.github.io/img/csdn.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,7 +19,7 @@
     <meta name="description" content="1 进程与线程基本概念1.1 进程产生的背景最初的计算机只能接受一些特定的指令，用户每输入一个指令，计算机就做出一个操作。当用户在思考或者输入时，计算机就在等待。这样效率非常低下，在很多时候，计算机都处在等待状态。 批处理操作系统 后来有了批处理操作体统,把一系列需要操作的指令写下来，形成一个清单，一次性交给计算机。用户将多个需要执行的程序写在磁带上，然后交由计算机去读取并逐个执行这些程序，并将输">
 <meta property="og:type" content="website">
 <meta property="og:title" content="深入浅出java多线程">
-<meta property="og:url" content="https://1902756969.github.io/Hexo/pages%20-%20%E7%BD%91%E5%9B%BE%E7%89%88/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAjava%E5%A4%9A%E7%BA%BF%E7%A8%8B.html">
+<meta property="og:url" content="https://1902756969.github.io/Hexo.github.io/pages%20-%20%E7%BD%91%E5%9B%BE%E7%89%88/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAjava%E5%A4%9A%E7%BA%BF%E7%A8%8B.html">
 <meta property="og:site_name" content="阿星的博客">
 <meta property="og:description" content="1 进程与线程基本概念1.1 进程产生的背景最初的计算机只能接受一些特定的指令，用户每输入一个指令，计算机就做出一个操作。当用户在思考或者输入时，计算机就在等待。这样效率非常低下，在很多时候，计算机都处在等待状态。 批处理操作系统 后来有了批处理操作体统,把一系列需要操作的指令写下来，形成一个清单，一次性交给计算机。用户将多个需要执行的程序写在磁带上，然后交由计算机去读取并逐个执行这些程序，并将输">
 <meta property="og:locale" content="zh_CN">
@@ -50,12 +50,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/Hexo/css/main.css" />
+<link  rel="stylesheet" href="/Hexo.github.io/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/Hexo/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/Hexo.github.io/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo.github.io/css/highlight-dark.css" />
   
 
 
@@ -64,15 +64,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo.github.io/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo.github.io/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/Hexo/js/utils.js" ></script>
-  <script  src="/Hexo/js/color-schema.js" ></script>
+  <script  src="/Hexo.github.io/js/utils.js" ></script>
+  <script  src="/Hexo.github.io/js/color-schema.js" ></script>
 
   
 <meta name="generator" content="Hexo 6.0.0"></head>
@@ -87,7 +87,7 @@
 <div class="header-inner" style="height: 60vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/Hexo/">
+    <a class="navbar-brand" href="/Hexo.github.io/">
       <strong>🐛 ZhaFi人</strong>
     </a>
 
@@ -106,7 +106,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/">
+              <a class="nav-link" href="/Hexo.github.io/">
                 <i class="iconfont icon-home-fill"></i>
                 首页
               </a>
@@ -118,7 +118,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/archives/">
+              <a class="nav-link" href="/Hexo.github.io/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 归档
               </a>
@@ -130,7 +130,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/categories/">
+              <a class="nav-link" href="/Hexo.github.io/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 分类
               </a>
@@ -142,7 +142,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/tags/">
+              <a class="nav-link" href="/Hexo.github.io/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 标签
               </a>
@@ -154,7 +154,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/about/">
+              <a class="nav-link" href="/Hexo.github.io/about/">
                 <i class="iconfont icon-user-fill"></i>
                 关于
               </a>
@@ -166,7 +166,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/links/">
+              <a class="nav-link" href="/Hexo.github.io/links/">
                 <i class="iconfont icon-link-fill"></i>
                 友链
               </a>
@@ -195,7 +195,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/Hexo/img/bg5.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/Hexo.github.io/img/bg5.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -487,7 +487,7 @@
 <blockquote>
 <p>在现在的操作系统中，线程是被视为轻量级进程的，所以<strong>操作系统线程的状态其实和操作系统进程的状态是一致的</strong>。</p>
 </blockquote>
-<p><img src="https://3803541485-files.gitbook.io/~/files/v0/b/gitbook-28427.appspot.com/o/assets%2F-L_5HvtIhTFW9TQlOF8e%2F-L_5TIKcBFHWPtY3OwUo%2F-L_5TJM1VhwmwbNGzqwJ%2F%E7%B3%BB%E7%BB%9F%E8%BF%9B%E7%A8%8B%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2%E5%9B%BE.png?generation=1551665548910935&alt=media" srcset="/Hexo/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://3803541485-files.gitbook.io/~/files/v0/b/gitbook-28427.appspot.com/o/assets%2F-L_5HvtIhTFW9TQlOF8e%2F-L_5TIKcBFHWPtY3OwUo%2F-L_5TJM1VhwmwbNGzqwJ%2F%E7%B3%BB%E7%BB%9F%E8%BF%9B%E7%A8%8B%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2%E5%9B%BE.png?generation=1551665548910935&alt=media" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="img"></p>
 <p>系统进程&#x2F;线程转换图</p>
 <p>操作系统线程主要有以下三个状态：</p>
 <p>- </p>
@@ -769,10 +769,10 @@
 </li>
 </ul>
 <p>这两种模型之间的区别如下表所示：</p>
-<p><img src="/Hexo/../img/202202202056330.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="/Hexo.github.io/../img/202202202056330.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p><strong>在Java中，使用的是共享内存并发模型</strong>。</p>
 <h2 id="6-2-Java内存模型的抽象结构"><a href="#6-2-Java内存模型的抽象结构" class="headerlink" title="6.2 Java内存模型的抽象结构"></a>6.2 Java内存模型的抽象结构</h2><h3 id="6-2-1-运行时内存的划分"><a href="#6-2-1-运行时内存的划分" class="headerlink" title="6.2.1  运行时内存的划分"></a>6.2.1  运行时内存的划分</h3><p>先谈一下运行时数据区，下面这张图相信大家一点都不陌生： </p>
-<p><img src="/Hexo/../img/202202202056859.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="/Hexo.github.io/../img/202202202056859.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>对于每一个线程来说，栈都是私有的，而堆是共有的。</p>
 <p>也就是说在栈中的变量（局部变量、方法定义参数、异常处理器参数）不会在线程之间共享，也就不会有<font color='red'>内存可见性</font>（下文会说到）的问题，也不受内存模型的影响。而在堆中的变量是共享的，本文称为共享变量。</p>
 <p>所以，内存可见性是针对的<strong>共享变量</strong>。</p>
@@ -781,7 +781,7 @@
 <p>线程之间的共享变量存在主内存中，每个线程都有一个私有的本地内存，存储了该线程以读、写共享变量的副本。本地内存是Java内存模型的一个抽象概念，并不真实存在。它涵盖了缓存、写缓冲区、寄存器等。</p>
 </blockquote>
 <p>Java线程之间的通信由Java内存模型（简称JMM）控制，从抽象的角度来说，JMM定义了线程和主内存之间的抽象关系。JMM的抽象示意图如图所示：</p>
-<p><img src="/Hexo/../img/202202202056265.jpeg" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="/Hexo.github.io/../img/202202202056265.jpeg" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>image</p>
 <p>从图中可以看出： 1. 所有的共享变量都存在主内存中。 2. 每个线程都保存了一份该线程使用到的共享变量的副本。 3. 如果线程A与线程B之间要通信的话，必须经历下面2个步骤： 1. 线程A将本地内存A中更新过的共享变量刷新到主内存中去。 2. 线程B到主内存中去读取线程A之前已经更新过的共享变量。</p>
 <p><strong>所以，线程A无法直接访问线程B的工作内存，线程间通信必须经过主内存。</strong></p>
@@ -848,11 +848,11 @@
 </ul>
 <p>为了理解这两个特性，我们举个例子，假设有两个线程A和B并发执行，线程A有3个操作，他们在程序中的顺序是A1-&gt;A2-&gt;A3，线程B也有3个操作，B1-&gt;B2-&gt;B3。</p>
 <p>假设<strong>正确使用了同步</strong>，A线程的3个操作执行后释放锁，B线程获取同一个锁。那么在<strong>顺序一致性模型</strong>中的执行效果如下所示：</p>
-<p><img src="/Hexo/../img/202202202201120.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="/Hexo.github.io/../img/202202202201120.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>正确同步图</p>
 <p>操作的执行整体上有序，并且两个线程都只能看到这个执行顺序。</p>
 <p>假设<strong>没有使用同步</strong>，那么在<strong>顺序一致性模型</strong>中的执行效果如下所示：</p>
-<p><img src="/Hexo/../img/202202202202532.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="/Hexo.github.io/../img/202202202202532.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>没有正确同步图</p>
 <p>操作的执行整体上无序，但是两个线程都只能看到这个执行顺序。之所以可以得到这个保证，是因为顺序一致性模型中的<strong>每个操作必须立即对任意线程可见</strong>。</p>
 <p><strong>但是JMM没有这样的保证。</strong></p>
@@ -1031,9 +1031,9 @@
 <p>下面分别介绍这几种锁以及它们之间的升级。</p>
 <h3 id="9-2-1-Java对象头"><a href="#9-2-1-Java对象头" class="headerlink" title="9.2.1 Java对象头"></a>9.2.1 Java对象头</h3><p>前面我们提到，Java的锁都是基于对象的。首先我们来看看一个对象的“锁”的信息是存放在什么地方的。</p>
 <p>每个Java对象都有对象头。如果是非数组类型，则用2个字宽来存储对象头，如果是数组，则会用3个字宽来存储对象头。在32位处理器中，一个字宽是32位；在64位虚拟机中，一个字宽是64位。对象头的内容如下表：</p>
-<p><img src="/Hexo/../img/202202202215649.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220220221534591"></p>
+<p><img src="/Hexo.github.io/../img/202202202215649.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20220220221534591"></p>
 <p>我们主要来看看Mark Word的格式：</p>
-<p><img src="/Hexo/../img/202202202216854.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220220221616792"></p>
+<p><img src="/Hexo.github.io/../img/202202202216854.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20220220221616792"></p>
 <p>可以看到，当对象状态为偏向锁时，<code>Mark Word</code>存储的是偏向的线程ID；当状态为轻量级锁时，<code>Mark Word</code>存储的是指向线程栈中<code>Lock Record</code>的指针；当状态为重量级锁时，<code>Mark Word</code>为指向堆中的monitor对象的指针。</p>
 <h3 id="9-2-2-偏向锁"><a href="#9-2-2-偏向锁" class="headerlink" title="9.2.2 偏向锁"></a>9.2.2 偏向锁</h3><p>Hotspot的作者经过以往的研究发现大多数情况下<strong>锁不仅不存在多线程竞争，而且总是由同一线程多次获得</strong>，于是引入了偏向锁。</p>
 <p>偏向锁会偏向于第一个访问锁的线程，如果在接下来的运行过程中，该锁没有被其他的线程访问，则持有偏向锁的线程将永远不需要触发同步。也就是说，<strong>偏向锁在资源无竞争情况下消除了同步语句，连CAS操作都不做了，提高了程序的运行性能。</strong></p>
@@ -1051,7 +1051,7 @@
 <p>比较并设置。用于在硬件层面上提供原子性操作。在 Intel 处理器中，比较并交换通过指令cmpxchg实现。 比较是否和给定的数值一致，如果一致则修改，不一致则不修改。</p>
 </blockquote>
 <p>线程竞争偏向锁的过程如下：</p>
-<p><img src="/Hexo/../img/202202202217189.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220220221700114"></p>
+<p><img src="/Hexo.github.io/../img/202202202217189.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20220220221700114"></p>
 <p>图中涉及到了lock record指针指向当前堆栈中的最近一个lock record，是轻量级锁按照先来先服务的模式进行了轻量级锁的加锁。</p>
 <h3 id="撤销偏向锁"><a href="#撤销偏向锁" class="headerlink" title="撤销偏向锁"></a>撤销偏向锁</h3><p>偏向锁使用了一种<strong>等到竞争出现才释放锁的机制</strong>，所以当其他线程尝试竞争偏向锁时， 持有偏向锁的线程才会释放锁。</p>
 <p>偏向锁升级成轻量级锁时，会暂停拥有偏向锁的线程，重置偏向锁标识，这个过程看起来容易，实则开销还是很大的，大概的过程如下：</p>
@@ -1065,7 +1065,7 @@
 
 <p>Copied!</p>
 <p>下面这个经典的图总结了偏向锁的获得和撤销：</p>
-<p><img src="/Hexo/../img/202202202218316.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="/Hexo.github.io/../img/202202202218316.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <h3 id="9-2-3-轻量级锁"><a href="#9-2-3-轻量级锁" class="headerlink" title="9.2.3 轻量级锁"></a>9.2.3 轻量级锁</h3><p>多个线程在不同时段获取同一把锁，即不存在锁竞争的情况，也就没有线程阻塞。针对这种情况，JVM采用轻量级锁来避免线程的阻塞与唤醒。</p>
 <h3 id="轻量级锁的加锁"><a href="#轻量级锁的加锁" class="headerlink" title="轻量级锁的加锁"></a>轻量级锁的加锁</h3><p>JVM会为每个线程在当前线程的栈帧中创建用于存储锁记录的空间，我们称为Displaced Mark Word。如果一个线程获得锁的时候发现是轻量级锁，会把锁的Mark Word复制到自己的Displaced Mark Word里面。</p>
 <p>然后线程尝试用CAS将锁的Mark Word替换为指向锁记录的指针。如果成功，当前线程获得锁，如果失败，表示Mark Word已经被替换成了其他线程的锁记录，说明在与其它线程竞争锁，当前线程就尝试使用自旋来获取锁。</p>
@@ -1078,7 +1078,7 @@
 <p><strong>轻量级锁的释放：</strong></p>
 <p>在释放锁时，当前线程会使用CAS操作将Displaced Mark Word的内容复制回锁的Mark Word里面。如果没有发生竞争，那么这个复制的操作会成功。如果有其他线程因为自旋多次导致轻量级锁升级成了重量级锁，那么CAS操作会失败，此时会释放锁并唤醒被阻塞的线程。</p>
 <p>一张图说明加锁和释放锁的过程：</p>
-<p><img src="/Hexo/../img/202202202219697.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="/Hexo.github.io/../img/202202202219697.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <h3 id="9-2-4-重量级锁"><a href="#9-2-4-重量级锁" class="headerlink" title="9.2.4 重量级锁"></a>9.2.4 重量级锁</h3><p>重量级锁依赖于操作系统的互斥量（mutex） 实现的，而操作系统中线程间状态的转换需要相对比较长的时间，所以重量级锁效率很低，但被阻塞的线程不会消耗CPU。</p>
 <p>前面说到，每一个对象都可以当做一个锁，当多个线程同时请求某个对象锁时，对象锁会设置几种状态用来区分请求的线程：</p>
 <figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">Contention</span> <span class="hljs-built_in">List</span>：所有请求锁的线程将被首先放置到该竞争队列<br><span class="hljs-variable">Entry</span> <span class="hljs-built_in">List</span>：<span class="hljs-variable">Contention</span> <span class="hljs-built_in">List</span>中那些有资格成为候选人的线程被移到<span class="hljs-variable">Entry</span> <span class="hljs-built_in">List</span><br><span class="hljs-variable">Wait</span> <span class="hljs-built_in">Set</span>：那些调用<span class="hljs-variable">wait</span>方法被阻塞的线程被放置到<span class="hljs-variable">Wait</span> <span class="hljs-built_in">Set</span><br><span class="hljs-variable">OnDeck</span>：任何时刻最多只能有一个线程正在竞争锁，该线程称为<span class="hljs-variable">OnDeck</span><br><span class="hljs-variable">Owner</span>：获得锁的线程称为<span class="hljs-variable">Owner</span><br><span class="hljs-operator">!</span><span class="hljs-variable">Owner</span>：释放锁的线程<br></code></pre></td></tr></table></figure>
@@ -1093,7 +1093,7 @@
 <p>第五步，自旋的线程在自旋过程中，成功获得资源(即之前获的资源的线程执行完成并释放了共享资源)，则整个状态依然处于 轻量级锁的状态，如果自旋失败 。</p>
 <p>第六步，进入重量级锁的状态，这个时候，自旋的线程进行阻塞，等待之前线程执行完成并唤醒自己。</p>
 <h3 id="9-2-6-各种锁的优缺点对比"><a href="#9-2-6-各种锁的优缺点对比" class="headerlink" title="9.2.6 各种锁的优缺点对比"></a>9.2.6 各种锁的优缺点对比</h3><p>下表来自《Java并发编程的艺术》：</p>
-<p><img src="/Hexo/../img/202202202220172.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220220222012089"></p>
+<p><img src="/Hexo.github.io/../img/202202202220172.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20220220222012089"></p>
 <p><strong>参考文章</strong></p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9932047a89be">Java锁优化–JVM锁降级</a></li>
@@ -1139,7 +1139,7 @@
 <p>当然，Unsafe类里面还有其它方法用于不同的用途。比如支持线程挂起和恢复的<code>park</code>和<code>unpark</code>， LockSupport类底层就是调用了这两个方法。还有支持反射操作的<code>allocateInstance()</code>方法。</p>
 <h2 id="10-4-原子操作-AtomicInteger类源码简析"><a href="#10-4-原子操作-AtomicInteger类源码简析" class="headerlink" title="10.4 原子操作-AtomicInteger类源码简析"></a>10.4 原子操作-AtomicInteger类源码简析</h2><p>上面介绍了Unsafe类的几个支持CAS的方法。那Java具体是如何使用这几个方法来实现原子操作的呢？</p>
 <p>JDK提供了一些用于原子操作的类，在<code>java.util.concurrent.atomic</code>包下面。在JDK 11中，有如下17个类：</p>
-<p><img src="/Hexo/../img/202202202225701.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220220222547625"></p>
+<p><img src="/Hexo.github.io/../img/202202202225701.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20220220222547625"></p>
 <p>原子类</p>
 <p>从名字就可以看得出来这些类大概的用途：</p>
 <ul>
@@ -1307,8 +1307,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/Hexo/js/events.js" ></script>
-<script  src="/Hexo/js/plugins.js" ></script>
+<script  src="/Hexo.github.io/js/events.js" ></script>
+<script  src="/Hexo.github.io/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -1347,13 +1347,13 @@
 
 
   
-    <script  src="/Hexo/js/img-lazyload.js" ></script>
+    <script  src="/Hexo.github.io/js/img-lazyload.js" ></script>
   
 
 
 
 
-  <script  src="/Hexo/js/local-search.js" ></script>
+  <script  src="/Hexo.github.io/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -1363,7 +1363,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/Hexo/js/boot.js" ></script>
+<script  src="/Hexo.github.io/js/boot.js" ></script>
 
 
   
@@ -1371,5 +1371,5 @@
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<script src="/Hexo/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+<script src="/Hexo.github.io/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo.github.io/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
 </html>

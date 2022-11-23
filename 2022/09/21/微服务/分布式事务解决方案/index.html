@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo/img/csdn.png">
-  <link rel="icon" href="/Hexo/img/csdn.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo.github.io/img/csdn.png">
+  <link rel="icon" href="/Hexo.github.io/img/csdn.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,7 +19,7 @@
     <meta name="description" content="1.分布式事务解决方案-数据一致性问题例如我们在扣减库存与保存订单是在两个服务中存在的，如果扣减库存后订单保存失败了是不会回 滚的，这样就会造成数据不一致的情况，这其实就是我们所说的分布式事务的问题，接下来我们来学习 分布式事务的解决方案。也就是解决数据一致性问题。 1.1 本地事务与分布式事务1.1.1 事务数据库事务(简称：事务，Transaction)是指数据库执行过程中的一个逻辑单位，由一">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分布式事务解决方案-数据一致性问题">
-<meta property="og:url" content="https://1902756969.github.io/Hexo/2022/09/21/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/index.html">
+<meta property="og:url" content="https://1902756969.github.io/Hexo.github.io/2022/09/21/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/index.html">
 <meta property="og:site_name" content="阿星的博客">
 <meta property="og:description" content="1.分布式事务解决方案-数据一致性问题例如我们在扣减库存与保存订单是在两个服务中存在的，如果扣减库存后订单保存失败了是不会回 滚的，这样就会造成数据不一致的情况，这其实就是我们所说的分布式事务的问题，接下来我们来学习 分布式事务的解决方案。也就是解决数据一致性问题。 1.1 本地事务与分布式事务1.1.1 事务数据库事务(简称：事务，Transaction)是指数据库执行过程中的一个逻辑单位，由一">
 <meta property="og:locale" content="zh_CN">
@@ -56,12 +56,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/Hexo/css/main.css" />
+<link  rel="stylesheet" href="/Hexo.github.io/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/Hexo/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/Hexo.github.io/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo.github.io/css/highlight-dark.css" />
   
 
 
@@ -70,15 +70,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo.github.io/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo.github.io/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/Hexo/js/utils.js" ></script>
-  <script  src="/Hexo/js/color-schema.js" ></script>
+  <script  src="/Hexo.github.io/js/utils.js" ></script>
+  <script  src="/Hexo.github.io/js/color-schema.js" ></script>
 
   
 <meta name="generator" content="Hexo 6.0.0"></head>
@@ -93,7 +93,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/Hexo/">
+    <a class="navbar-brand" href="/Hexo.github.io/">
       <strong>🐛 ZhaFi人</strong>
     </a>
 
@@ -112,7 +112,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/">
+              <a class="nav-link" href="/Hexo.github.io/">
                 <i class="iconfont icon-home-fill"></i>
                 首页
               </a>
@@ -124,7 +124,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/archives/">
+              <a class="nav-link" href="/Hexo.github.io/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 归档
               </a>
@@ -136,7 +136,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/categories/">
+              <a class="nav-link" href="/Hexo.github.io/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 分类
               </a>
@@ -148,7 +148,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/tags/">
+              <a class="nav-link" href="/Hexo.github.io/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 标签
               </a>
@@ -160,7 +160,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/about/">
+              <a class="nav-link" href="/Hexo.github.io/about/">
                 <i class="iconfont icon-user-fill"></i>
                 关于
               </a>
@@ -172,7 +172,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/links/">
+              <a class="nav-link" href="/Hexo.github.io/links/">
                 <i class="iconfont icon-link-fill"></i>
                 友链
               </a>
@@ -201,7 +201,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/Hexo/img/bg5.png') no-repeat center center; background-size: cover;">
+     style="background: url('/Hexo.github.io/img/bg5.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -304,31 +304,31 @@
 <p><font color='red'> 隔离性(Isolation)</font>：多个事务并发执行时，一个事务的执行不应影响其他事务的执行，如同只有这一个 操作在被数据库所执行一样。</p>
 <p><font color='red'> 持久性(Durability)</font>：已被提交的事务对数据库的修改应该永久保存在数据库中。在事务结束时，此操 作将不可逆转。</p>
 <h3 id="1-1-2-本地事务"><a href="#1-1-2-本地事务" class="headerlink" title="1.1.2 本地事务"></a>1.1.2 本地事务</h3><p> 起初，事务仅限于对单一数据库资源的访问控制,<font color='cornflowerblue'>架构服务化以后</font>，事务的概念延伸到了服务中。倘若将 一个单一的服务操作作为一个事务，那么整个服务操作只能涉及一个单一的数据库资源,这类基于单个服 务单一数据库资源访问的事务，被称为本地事务(Local Transaction)。</p>
-<p><img src="https://s2.loli.net/2022/07/29/mMicvdYLTKXBDAQ.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220729211835429"></p>
+<p><img src="https://s2.loli.net/2022/07/29/mMicvdYLTKXBDAQ.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20220729211835429"></p>
 <p>分布式事务指事务的参与者、支持事务的服务器、资源服务器以及事务管理器分别位于不同的分布式系 统的不同节点之上,且属于不同的应用，分布式事务需要保证这些操作要么全部成功，要么全部失败。本 质上来说，分布式事务就是为了<font color='cornflowerblue'>保证不同数据库的数据一致性</font>。 最早的分布式事务应用架构很简单，不涉及服务间的访问调用，仅仅是服务内操作涉及到对多个数据库 资源的访问。</p>
-<p><img src="https://s2.loli.net/2022/07/29/9lpC6gyFu8THmBL.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220729212036752">如果一个</p>
+<p><img src="https://s2.loli.net/2022/07/29/9lpC6gyFu8THmBL.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20220729212036752">如果一个</p>
 <p>​    服务操作需要调用另外一个服务，这时的事务就需要跨越多个服务 了。在这种情况下，起始于某个服务的事务在调用另外一个服务的时候，需要以某种机制流转到另外一 个服务，从而使被调用的服务访问的资源也自动加入到该事务当中来。</p>
-<p><img src="https://s2.loli.net/2022/07/29/xUhdZJutkjM65ic.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220729212153762"></p>
+<p><img src="https://s2.loli.net/2022/07/29/xUhdZJutkjM65ic.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20220729212153762"></p>
 <p>这两种场景(一个服务可以调用多个数据库资源，也可以调用其他服务)结合在一起，对此进 行延伸，整个分布式事务的参与者将会组成如下图所示的树形拓扑结构。在一个跨服务的分布式事务 中，事务的发起者和提交均系同一个，它可以是整个调用的客户端，也可以是客户端最先调用的那个服 务。</p>
-<p><img src="https://s2.loli.net/2022/07/29/wWBqLOKmpvxbYus.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220729212301137"></p>
+<p><img src="https://s2.loli.net/2022/07/29/wWBqLOKmpvxbYus.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20220729212301137"></p>
 <p>较之基于单一数据库资源访问的本地事务，分布式事务的应用架构更为复杂。在不同的分布式应用架构 下，实现一个分布式事务要考虑的问题并不完全一样，比如对多资源的协调、事务的跨服务传播等，实 现机制也是复杂多变。</p>
-<h2 id="1-2-分布式事务相关理论"><a href="#1-2-分布式事务相关理论" class="headerlink" title="1.2 分布式事务相关理论"></a>1.2 分布式事务相关理论</h2><h3 id="1-2-1-CAP定理"><a href="#1-2-1-CAP定理" class="headerlink" title="1.2.1 CAP定理"></a>1.2.1 CAP定理</h3><p><img src="https://s2.loli.net/2022/07/29/aBRqAVIbmxij9zQ.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220729212858388"></p>
+<h2 id="1-2-分布式事务相关理论"><a href="#1-2-分布式事务相关理论" class="headerlink" title="1.2 分布式事务相关理论"></a>1.2 分布式事务相关理论</h2><h3 id="1-2-1-CAP定理"><a href="#1-2-1-CAP定理" class="headerlink" title="1.2.1 CAP定理"></a>1.2.1 CAP定理</h3><p><img src="https://s2.loli.net/2022/07/29/aBRqAVIbmxij9zQ.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20220729212858388"></p>
 <p>CAP定理是在 1998年加州大学的计算机科学家 Eric Brewer （埃里克.布鲁尔）提出，分布式系统有三 个指标 </p>
 <p>Consistency 一致性 </p>
 <p>Availability 可用性 </p>
 <p>Partition tolerance 分区容错性</p>
 <p> 它们的第一个字母分别是 C、A、P。Eric Brewer 说，这三个指标不可能同时做到。这个结论就叫做 CAP 定理。</p>
-<h5 id="分区容错-Partition-tolerance"><a href="#分区容错-Partition-tolerance" class="headerlink" title="分区容错 Partition tolerance"></a>分区容错 Partition tolerance</h5><p><img src="/Hexo/../AppData/Roaming/Typora/typora-user-images/image-20220729213000971.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220729213000971"></p>
+<h5 id="分区容错-Partition-tolerance"><a href="#分区容错-Partition-tolerance" class="headerlink" title="分区容错 Partition tolerance"></a>分区容错 Partition tolerance</h5><p><img src="/Hexo.github.io/../AppData/Roaming/Typora/typora-user-images/image-20220729213000971.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20220729213000971"></p>
 <p>上图中，G1 和 G2 是两台跨区的服务器。G1 向 G2 发送一条消息，G2 可能无法收到。系统设计的时 候，必须考虑到这种情况。 一般来说，分区容错无法避免，因此可以认为 CAP 的 P 总是成立。CAP 定理告诉我们，剩下的 C 和 A 无法同时做到。</p>
 <h5 id="可用性-Availability-Availability"><a href="#可用性-Availability-Availability" class="headerlink" title="可用性 Availability Availability"></a>可用性 Availability Availability</h5><p>中文叫做”可用性”，意思是只要收到用户的请求，服务器就必须给出回应。 用户可以选择向 G1 或 G2 发起读操作。不管是哪台服务器，只要收到请求，就必须告诉用户，到底是 v0 还是 v1，否则就不满足可用性。</p>
-<p><img src="https://s2.loli.net/2022/07/29/ueqhaNc6yQMmLY8.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220729213124317"></p>
+<p><img src="https://s2.loli.net/2022/07/29/ueqhaNc6yQMmLY8.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20220729213124317"></p>
 <h5 id="一致性-Consistency-Consistency"><a href="#一致性-Consistency-Consistency" class="headerlink" title="一致性 Consistency Consistency"></a>一致性 Consistency Consistency</h5><p>中文叫做”一致性”。意思是，写操作之后的读操作，必须返回该值。 举例来说，某条记录是 v0，用户向 G1 发起一个写操作，将其改为 v1。</p>
-<p><img src="https://s2.loli.net/2022/07/29/GKiMXVgxWbUyeBO.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220729213214167"></p>
+<p><img src="https://s2.loli.net/2022/07/29/GKiMXVgxWbUyeBO.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20220729213214167"></p>
 <p>问题是，用户有可能向 G2 发起读操作，由于 G2 的值没有发生变化，因此返回的是 v0。G1 和 G2 读 操作的结果不一致，这就不满足一致性了。</p>
-<p><img src="https://s2.loli.net/2022/07/29/7yWkdXSj6IBYhxR.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220729213343383"></p>
-<p><img src="https://s2.loli.net/2022/07/29/7yWkdXSj6IBYhxR.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://s2.loli.net/2022/07/29/7yWkdXSj6IBYhxR.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20220729213343383"></p>
+<p><img src="https://s2.loli.net/2022/07/29/7yWkdXSj6IBYhxR.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>为了让 G2 也能变为 v1，就要在 G1 写操作的时候，让 G1 向 G2 发送一条消息，要求 G2 也改成 v1。</p>
-<p><img src="https://s2.loli.net/2022/07/29/hme2WpcJvDuxHla.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220729213504075"></p>
+<p><img src="https://s2.loli.net/2022/07/29/hme2WpcJvDuxHla.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20220729213504075"></p>
 <h5 id="一致性和可用性的矛盾"><a href="#一致性和可用性的矛盾" class="headerlink" title="一致性和可用性的矛盾"></a>一致性和可用性的矛盾</h5><p>如果保证 G2 的一致性，那么 G1 必须在写操作时，锁定 G2 的读操作和写操作。只有数据同步后，才 能重新开放读写。锁定期间，G2 不能读写，没有可用性。 如果保证 G2 的可用性，那么势必不能锁定 G2，所以一致性不成立。 综上所述，G2 无法同时做到一致性和可用性。系统设计时只能选择一个目标。如果追求一致性，那么 无法保证所有节点的可用性；如果追求所有节点的可用性，那就没法做到一致性。</p>
 <h3 id="1-2-2-BASE理论"><a href="#1-2-2-BASE理论" class="headerlink" title="1.2.2 BASE理论"></a>1.2.2 BASE理论</h3><p>BASE：全称：Basically Available(基本可用)，Soft state（软状态）,和 Eventually consistent（最终一 致性）三个短语的缩写，来自 ebay 的架构师提出。BASE 理论是对 CAP 中一致性和可用性权衡的结 果，其来源于对大型互联网分布式实践的总结，是基于 CAP 定理逐步演化而来的。其核心思想是：</p>
 <p> <font color='cornflowerblue'>既是无法做到强一致性（Strong consistency），但每个应用都可以根据自身的业务特点，采用 适当的方式来使系统达到最终一致性（Eventual consistency）。</font></p>
@@ -342,7 +342,7 @@
 <h5 id="Soft-state（软状态）"><a href="#Soft-state（软状态）" class="headerlink" title="Soft state（软状态）"></a>Soft state（软状态）</h5><p>什么是软状态呢？相对于<font color='cornflowerblue'>原子性</font>而言，要求多个节点的数据副本都是一致的，这是一种 “硬状态”。 软状态指的是：允许系统中的数据存在中间状态，并认为该状态不影响系统的整体可用性，即允许系统 在多个不同节点的数据副本存在<font color='red'>数据延时</font>。</p>
 <h5 id="Eventually-consistent（最终一致性）"><a href="#Eventually-consistent（最终一致性）" class="headerlink" title="Eventually consistent（最终一致性）"></a>Eventually consistent（最终一致性）</h5><p>系统能够保证在没有其他新的更新操作的情况下，数据最终一定能够达到一致的状态，因此所有客户端 对系统的数据访问最终都能够获取到最新的值。</p>
 <h2 id="1-3-分布式事务解决方案"><a href="#1-3-分布式事务解决方案" class="headerlink" title="1.3 分布式事务解决方案"></a>1.3 分布式事务解决方案</h2><h3 id="1-3-1-基于XA协议的两阶段提交-2PC"><a href="#1-3-1-基于XA协议的两阶段提交-2PC" class="headerlink" title="1.3.1 基于XA协议的两阶段提交 2PC"></a>1.3.1 基于XA协议的两阶段提交 2PC</h3><p>首先我们来简要看下分布式事务处理的XA规范 ：</p>
-<p><img src="https://s2.loli.net/2022/07/29/nWBMgTfZeOivlkQ.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20220729215148623"></p>
+<p><img src="https://s2.loli.net/2022/07/29/nWBMgTfZeOivlkQ.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20220729215148623"></p>
 <p>可知XA规范中分布式事务有<font color='red'>AP，RM，TM</font>组成： 其中</p>
 <p><font color='red'>应用程序</font>(Application Program ，简称AP)：AP定义事务边界（定义事务开始和结束）并访问事务 边界内的资源。 </p>
 <p><font color='red'>资源管理器</font>(Resource Manager，简称RM)：Rm管理计算机共享的资源，许多软件都可以去访问这些 资源，资源包含比如数据库、文件系统、打印机服务器等。</p>
@@ -373,7 +373,7 @@
     
       <span class="category-chain">
         
-  <a href="/Hexo/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/" class="category-chain-item">分布式事务</a>
+  <a href="/Hexo.github.io/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/" class="category-chain-item">分布式事务</a>
   
   
 
@@ -388,7 +388,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/Hexo/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">#分布式事务</a>
+        <a href="/Hexo.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">#分布式事务</a>
       
     </div>
   
@@ -401,7 +401,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>分布式事务解决方案-数据一致性问题</div>
-      <div>https://1902756969.github.io/Hexo/2022/09/21/微服务/分布式事务解决方案/</div>
+      <div>https://1902756969.github.io/Hexo.github.io/2022/09/21/微服务/分布式事务解决方案/</div>
     </div>
     <div class="license-meta">
       
@@ -443,7 +443,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/Hexo/2022/11/16/java%E5%9F%BA%E7%A1%80/Aria(%E7%99%BE%E5%BA%A6%E4%BA%91)%E4%B8%8D%E9%99%90%E9%80%9F/" title="百度云不限速">
+                      <a href="/Hexo.github.io/2022/11/16/java%E5%9F%BA%E7%A1%80/Aria(%E7%99%BE%E5%BA%A6%E4%BA%91)%E4%B8%8D%E9%99%90%E9%80%9F/" title="百度云不限速">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">百度云不限速</span>
                         <span class="visible-mobile">上一篇</span>
@@ -453,7 +453,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/Hexo/2022/09/12/java%E5%9F%BA%E7%A1%80/ArrayList%E7%9A%84%E7%90%86%E8%A7%A3/" title="ArrayList理解">
+                      <a href="/Hexo.github.io/2022/09/12/java%E5%9F%BA%E7%A1%80/ArrayList%E7%9A%84%E7%90%86%E8%A7%A3/" title="ArrayList理解">
                         <span class="hidden-mobile">ArrayList理解</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -603,8 +603,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/Hexo/js/events.js" ></script>
-<script  src="/Hexo/js/plugins.js" ></script>
+<script  src="/Hexo.github.io/js/events.js" ></script>
+<script  src="/Hexo.github.io/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -643,7 +643,7 @@
 
 
   
-    <script  src="/Hexo/js/img-lazyload.js" ></script>
+    <script  src="/Hexo.github.io/js/img-lazyload.js" ></script>
   
 
 
@@ -780,7 +780,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/Hexo/js/local-search.js" ></script>
+  <script  src="/Hexo.github.io/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -790,7 +790,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/Hexo/js/boot.js" ></script>
+<script  src="/Hexo.github.io/js/boot.js" ></script>
 
 
   
@@ -798,5 +798,5 @@
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<script src="/Hexo/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+<script src="/Hexo.github.io/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo.github.io/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
 </html>

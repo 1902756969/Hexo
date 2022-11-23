@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo/img/csdn.png">
-  <link rel="icon" href="/Hexo/img/csdn.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo.github.io/img/csdn.png">
+  <link rel="icon" href="/Hexo.github.io/img/csdn.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,7 +19,7 @@
     <meta name="description" content="RabbitMQ高级特性1、消息可靠性投递在使用 RabbitMQ 的时候，作为消息发送方希望杜绝任何消息丢失或者投递失败场景。RabbitMQ 为我们提供了两种方式用来控制消息的投递可靠性模式。 confirm 确认模式1234567&lt;!--消息可靠性投递（生产端）--&gt;&lt;rabbit:queue id&#x3D;&quot;test_queue_confirm&quot; name&#x3D;&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RabbitMQ高级特性">
-<meta property="og:url" content="https://1902756969.github.io/Hexo/2022/04/16/mq/rabbitMQ%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/index.html">
+<meta property="og:url" content="https://1902756969.github.io/Hexo.github.io/2022/04/16/mq/rabbitMQ%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/index.html">
 <meta property="og:site_name" content="阿星的博客">
 <meta property="og:description" content="RabbitMQ高级特性1、消息可靠性投递在使用 RabbitMQ 的时候，作为消息发送方希望杜绝任何消息丢失或者投递失败场景。RabbitMQ 为我们提供了两种方式用来控制消息的投递可靠性模式。 confirm 确认模式1234567&lt;!--消息可靠性投递（生产端）--&gt;&lt;rabbit:queue id&#x3D;&quot;test_queue_confirm&quot; name&#x3D;&amp;">
 <meta property="og:locale" content="zh_CN">
@@ -56,12 +56,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/Hexo/css/main.css" />
+<link  rel="stylesheet" href="/Hexo.github.io/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/Hexo/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/Hexo.github.io/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo.github.io/css/highlight-dark.css" />
   
 
 
@@ -70,15 +70,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo.github.io/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo.github.io/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/Hexo/js/utils.js" ></script>
-  <script  src="/Hexo/js/color-schema.js" ></script>
+  <script  src="/Hexo.github.io/js/utils.js" ></script>
+  <script  src="/Hexo.github.io/js/color-schema.js" ></script>
 
   
 <meta name="generator" content="Hexo 6.0.0"></head>
@@ -93,7 +93,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/Hexo/">
+    <a class="navbar-brand" href="/Hexo.github.io/">
       <strong>🐛 ZhaFi人</strong>
     </a>
 
@@ -112,7 +112,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/">
+              <a class="nav-link" href="/Hexo.github.io/">
                 <i class="iconfont icon-home-fill"></i>
                 首页
               </a>
@@ -124,7 +124,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/archives/">
+              <a class="nav-link" href="/Hexo.github.io/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 归档
               </a>
@@ -136,7 +136,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/categories/">
+              <a class="nav-link" href="/Hexo.github.io/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 分类
               </a>
@@ -148,7 +148,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/tags/">
+              <a class="nav-link" href="/Hexo.github.io/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 标签
               </a>
@@ -160,7 +160,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/about/">
+              <a class="nav-link" href="/Hexo.github.io/about/">
                 <i class="iconfont icon-user-fill"></i>
                 关于
               </a>
@@ -172,7 +172,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/links/">
+              <a class="nav-link" href="/Hexo.github.io/links/">
                 <i class="iconfont icon-link-fill"></i>
                 友链
               </a>
@@ -201,7 +201,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/Hexo/img/bg5.png') no-repeat center center; background-size: cover;">
+     style="background: url('/Hexo.github.io/img/bg5.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -342,7 +342,7 @@
 <p>2.生产方确认Confirm</p>
 <p>3.消费方确认Ack</p>
 <p>4.Broker高可用</p>
-<h2 id="1-3-消费端限流"><a href="#1-3-消费端限流" class="headerlink" title="1.3 消费端限流"></a>1.3 消费端限流</h2><p><img src="https://pic.imgdb.cn/item/63737fcf16f2c2beb18e7972.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20221115194433899"></p>
+<h2 id="1-3-消费端限流"><a href="#1-3-消费端限流" class="headerlink" title="1.3 消费端限流"></a>1.3 消费端限流</h2><p><img src="https://pic.imgdb.cn/item/63737fcf16f2c2beb18e7972.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20221115194433899"></p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--定义监听器容器--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">rabbit:listener-container</span> <span class="hljs-attr">connection-factory</span>=<span class="hljs-string">&quot;connectionFactory&quot;</span> <span class="hljs-attr">acknowledge</span>=<span class="hljs-string">&quot;manual&quot;</span> <span class="hljs-attr">prefetch</span>=<span class="hljs-string">&quot;1&quot;</span> &gt;</span><br></code></pre></td></tr></table></figure>
 
 
@@ -352,7 +352,7 @@
 <h2 id="1-4-TTL"><a href="#1-4-TTL" class="headerlink" title="1.4 TTL"></a>1.4 TTL</h2><p>TTL 全称 Time To Live（存活时间&#x2F;过期时间）。</p>
 <p>当消息到达存活时间后，还没有被消费，会被自动清除。</p>
 <p>RabbitMQ可以对消息设置过期时间，也可以对整个队列（Queue）设置过期时间。</p>
-<p><img src="https://pic.imgdb.cn/item/63737ffd16f2c2beb18f5a54.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20221115200018829"></p>
+<p><img src="https://pic.imgdb.cn/item/63737ffd16f2c2beb18f5a54.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20221115200018829"></p>
 <p>注意</p>
 <p>x-message-ttl默认为String，需要指定类型value-type</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">rabbit:queue-arguments</span>&gt;</span><br>    <span class="hljs-comment">&lt;!--x-message-ttl指队列的过期时间--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">entry</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&quot;x-message-ttl&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;100000&quot;</span> <span class="hljs-attr">value-type</span>=<span class="hljs-string">&quot;java.lang.Integer&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">entry</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">rabbit:queue-arguments</span>&gt;</span><br></code></pre></td></tr></table></figure>
@@ -363,7 +363,7 @@
 <p>设置消息过期时间使用参数：expiration。单位：ms(毫秒)，当该消息在队列头部时（消费时），会单独判断这一消息是否过期。</p>
 <p>如果两者都进行了设置，以时间短的为准。</p>
 <h2 id="1-5-死信队列"><a href="#1-5-死信队列" class="headerlink" title="1.5 死信队列"></a>1.5 死信队列</h2><p>死信队列，英文缩写：DLX 。Dead Letter Exchange（死信交换机），当消息成为Dead message后，可以被重新发送到另一个交换机，这个交换机就是DLX。</p>
-<p><img src="https://pic.imgdb.cn/item/6373800e16f2c2beb18f7f37.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20221115200035155"></p>
+<p><img src="https://pic.imgdb.cn/item/6373800e16f2c2beb18f7f37.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20221115200035155"></p>
 <p><strong>消息成为死信的三种情况：</strong>(面试)</p>
 <ol>
 <li><p>队列消息长度到达限制；</p>
@@ -375,7 +375,7 @@
 </ol>
 <p><strong>队列绑定死信交换机(与普通一样的)：</strong></p>
 <p>给队列设置参数： <font color='cornflowerblue'>x-dead-letter-exchange</font> 和<font color='cornflowerblue'> x-dead-letter-routing-key</font></p>
-<p><img src="https://pic.imgdb.cn/item/6373801b16f2c2beb18f99c6.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20221115200048755"></p>
+<p><img src="https://pic.imgdb.cn/item/6373801b16f2c2beb18f99c6.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20221115200048755"></p>
 <p>死信队列设置步骤：<br>    1.  声明正常的队列(test_queue_dlx)和交换机(test_exchange_dlx)<br>        2. 声明死信队列(queue_dlx)和死信交换机(exchange_dlx)</p>
 <pre><code class="hljs">        3. 正常队列绑定死信交换机
         设置两个参数：
@@ -413,17 +413,17 @@
 <li><p>延迟队列</p>
 </li>
 </ol>
-<p><img src="https://pic.imgdb.cn/item/6373802d16f2c2beb18fd57b.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20221115200105987"></p>
+<p><img src="https://pic.imgdb.cn/item/6373802d16f2c2beb18fd57b.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20221115200105987"></p>
 <p>很可惜，在RabbitMQ中并未提供延迟队列功能。</p>
 <p>但是可以使用：TTL+死信队列 组合实现延迟队列的效果。</p>
-<p><img src="https://pic.imgdb.cn/item/6373803e16f2c2beb19000b4.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20221115200123062"></p>
+<p><img src="https://pic.imgdb.cn/item/6373803e16f2c2beb19000b4.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20221115200123062"></p>
 <h2 id="延迟队列小结"><a href="#延迟队列小结" class="headerlink" title="延迟队列小结"></a><strong>延迟队列小结</strong></h2><ol>
 <li><p>延迟队列 指消息进入队列后，可以被延迟一定时间，再进行消费。</p>
 </li>
 <li><p>RabbitMQ没有提供延迟队列功能，但是可以使用 ： TTL + DLX 来实现延迟队列效果。</p>
 </li>
 </ol>
-<h2 id="1-7-日志与监控"><a href="#1-7-日志与监控" class="headerlink" title="1.7 日志与监控"></a>1.7 日志与监控</h2><h3 id="1-7-1-RabbitMQ日志"><a href="#1-7-1-RabbitMQ日志" class="headerlink" title="1.7.1 RabbitMQ日志"></a><strong>1.7.1 RabbitMQ日志</strong></h3><p>RabbitMQ默认日志存放路径： &#x2F;var&#x2F;log&#x2F;rabbitmq&#x2F;<a href="mailto:&#114;&#x61;&#x62;&#x62;&#x69;&#116;&#64;&#120;&#120;&#120;&#x2e;&#x6c;&#x6f;&#103;">&#114;&#x61;&#x62;&#x62;&#x69;&#116;&#64;&#120;&#120;&#120;&#x2e;&#x6c;&#x6f;&#103;</a></p>
+<h2 id="1-7-日志与监控"><a href="#1-7-日志与监控" class="headerlink" title="1.7 日志与监控"></a>1.7 日志与监控</h2><h3 id="1-7-1-RabbitMQ日志"><a href="#1-7-1-RabbitMQ日志" class="headerlink" title="1.7.1 RabbitMQ日志"></a><strong>1.7.1 RabbitMQ日志</strong></h3><p>RabbitMQ默认日志存放路径： &#x2F;var&#x2F;log&#x2F;rabbitmq&#x2F;<a href="mailto:&#114;&#97;&#98;&#98;&#105;&#116;&#x40;&#120;&#120;&#x78;&#x2e;&#x6c;&#x6f;&#x67;">&#114;&#97;&#98;&#98;&#105;&#116;&#x40;&#120;&#120;&#x78;&#x2e;&#x6c;&#x6f;&#x67;</a></p>
 <p>日志包含了RabbitMQ的版本号、Erlang的版本号、RabbitMQ服务节点名称、cookie的hash值、RabbitMQ配置文件地址、内存限制、磁盘限制、默认账户guest的创建以及权限配置等等。</p>
 <h3 id="1-7-2-web管控台监控"><a href="#1-7-2-web管控台监控" class="headerlink" title="1.7.2 web管控台监控"></a>1.7.2 web管控台监控</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">rabbitmqctl</span> list_vhosts          查看交换机<br></code></pre></td></tr></table></figure>
 
@@ -447,8 +447,8 @@
 
 <h1 id="2-RabbitMQ-应用问题"><a href="#2-RabbitMQ-应用问题" class="headerlink" title="2. RabbitMQ  应用问题"></a><strong>2.</strong> <strong>RabbitMQ</strong>  应用问题</h1><h2 id="2-1-消息可靠性保障"><a href="#2-1-消息可靠性保障" class="headerlink" title="2.1 消息可靠性保障"></a>2.1 消息可靠性保障</h2><p>需求：</p>
 <p> 100%确保消息发送成功</p>
-<p><img src="https://pic.imgdb.cn/item/6373807616f2c2beb1904c5f.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20221115200218855"></p>
-<h2 id="2-2-消息幂等性处理–乐观锁机制"><a href="#2-2-消息幂等性处理–乐观锁机制" class="headerlink" title="2.2  消息幂等性处理–乐观锁机制"></a>2.2  消息幂等性处理–乐观锁机制</h2><p>幂等性指一次和多次请求某一个资源，对于资源本身应该具有同样的结果。也就是说，其任意多次执行对资源本身所产生的影响均与一次执行的影响相同。<br>在MQ中指，消费多条相同的消息，得到与消费该消息一次相同的结果,<img src="https://pic.imgdb.cn/item/6373809e16f2c2beb19081b1.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20221115200259621"></p>
+<p><img src="https://pic.imgdb.cn/item/6373807616f2c2beb1904c5f.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20221115200218855"></p>
+<h2 id="2-2-消息幂等性处理–乐观锁机制"><a href="#2-2-消息幂等性处理–乐观锁机制" class="headerlink" title="2.2  消息幂等性处理–乐观锁机制"></a>2.2  消息幂等性处理–乐观锁机制</h2><p>幂等性指一次和多次请求某一个资源，对于资源本身应该具有同样的结果。也就是说，其任意多次执行对资源本身所产生的影响均与一次执行的影响相同。<br>在MQ中指，消费多条相同的消息，得到与消费该消息一次相同的结果,<img src="https://pic.imgdb.cn/item/6373809e16f2c2beb19081b1.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="image-20221115200259621"></p>
 
               
             </div>
@@ -466,7 +466,7 @@
     
       <span class="category-chain">
         
-  <a href="/Hexo/categories/RabbitMQ%F0%9F%90%B1%E2%80%8D%F0%9F%91%A4/" class="category-chain-item">RabbitMQ🐱‍👤</a>
+  <a href="/Hexo.github.io/categories/RabbitMQ%F0%9F%90%B1%E2%80%8D%F0%9F%91%A4/" class="category-chain-item">RabbitMQ🐱‍👤</a>
   
   
 
@@ -481,7 +481,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/Hexo/tags/RabbitMQ/">#RabbitMQ</a>
+        <a href="/Hexo.github.io/tags/RabbitMQ/">#RabbitMQ</a>
       
     </div>
   
@@ -494,7 +494,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>RabbitMQ高级特性</div>
-      <div>https://1902756969.github.io/Hexo/2022/04/16/mq/rabbitMQ高级特性/</div>
+      <div>https://1902756969.github.io/Hexo.github.io/2022/04/16/mq/rabbitMQ高级特性/</div>
     </div>
     <div class="license-meta">
       
@@ -536,7 +536,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/Hexo/2022/04/19/docker/%E5%AE%89%E8%A3%85docker/" title="Docker安装">
+                      <a href="/Hexo.github.io/2022/04/19/docker/%E5%AE%89%E8%A3%85docker/" title="Docker安装">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Docker安装</span>
                         <span class="visible-mobile">上一篇</span>
@@ -546,8 +546,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/Hexo/2022/04/12/mq/RabbitMQ%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" title="RabbitMQ基础Skill">
-                        <span class="hidden-mobile">RabbitMQ基础Skill</span>
+                      <a href="/Hexo.github.io/2022/04/12/mq/RabbitMQ%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E%E6%96%87%E6%A1%A3/" title="RabbitMQ安装说明文档">
+                        <span class="hidden-mobile">RabbitMQ安装说明文档</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -696,8 +696,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/Hexo/js/events.js" ></script>
-<script  src="/Hexo/js/plugins.js" ></script>
+<script  src="/Hexo.github.io/js/events.js" ></script>
+<script  src="/Hexo.github.io/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -736,7 +736,7 @@
 
 
   
-    <script  src="/Hexo/js/img-lazyload.js" ></script>
+    <script  src="/Hexo.github.io/js/img-lazyload.js" ></script>
   
 
 
@@ -873,7 +873,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/Hexo/js/local-search.js" ></script>
+  <script  src="/Hexo.github.io/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -883,7 +883,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/Hexo/js/boot.js" ></script>
+<script  src="/Hexo.github.io/js/boot.js" ></script>
 
 
   
@@ -891,5 +891,5 @@
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<script src="/Hexo/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+<script src="/Hexo.github.io/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo.github.io/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
 </html>

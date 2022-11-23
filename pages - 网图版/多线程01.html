@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo/img/csdn.png">
-  <link rel="icon" href="/Hexo/img/csdn.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo.github.io/img/csdn.png">
+  <link rel="icon" href="/Hexo.github.io/img/csdn.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,7 +19,7 @@
     <meta name="description" content="1.实现多线程1.1简单了解多线程【理解】是指从软件或者硬件上实现多个线程并发执行的技术。具有多线程能力的计算机因有硬件支持而能够在同一时间执行多个线程，提升性能。  1.2并发和并行【理解】 并行：在同一时刻，有多个指令在多个CPU上同时执行。   并发：在同一时刻，有多个指令在单个CPU上交替执行。    1.3进程和线程【理解】 进程：是正在运行的程序 独立性：进程是一个能独立运行的基本单位">
 <meta property="og:type" content="website">
 <meta property="og:title" content="多线程01">
-<meta property="og:url" content="https://1902756969.github.io/Hexo/pages%20-%20%E7%BD%91%E5%9B%BE%E7%89%88/%E5%A4%9A%E7%BA%BF%E7%A8%8B01.html">
+<meta property="og:url" content="https://1902756969.github.io/Hexo.github.io/pages%20-%20%E7%BD%91%E5%9B%BE%E7%89%88/%E5%A4%9A%E7%BA%BF%E7%A8%8B01.html">
 <meta property="og:site_name" content="阿星的博客">
 <meta property="og:description" content="1.实现多线程1.1简单了解多线程【理解】是指从软件或者硬件上实现多个线程并发执行的技术。具有多线程能力的计算机因有硬件支持而能够在同一时间执行多个线程，提升性能。  1.2并发和并行【理解】 并行：在同一时刻，有多个指令在多个CPU上同时执行。   并发：在同一时刻，有多个指令在单个CPU上交替执行。    1.3进程和线程【理解】 进程：是正在运行的程序 独立性：进程是一个能独立运行的基本单位">
 <meta property="og:locale" content="zh_CN">
@@ -50,12 +50,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/Hexo/css/main.css" />
+<link  rel="stylesheet" href="/Hexo.github.io/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/Hexo/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/Hexo.github.io/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo.github.io/css/highlight-dark.css" />
   
 
 
@@ -64,15 +64,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo.github.io/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo.github.io/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/Hexo/js/utils.js" ></script>
-  <script  src="/Hexo/js/color-schema.js" ></script>
+  <script  src="/Hexo.github.io/js/utils.js" ></script>
+  <script  src="/Hexo.github.io/js/color-schema.js" ></script>
 
   
 <meta name="generator" content="Hexo 6.0.0"></head>
@@ -87,7 +87,7 @@
 <div class="header-inner" style="height: 60vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/Hexo/">
+    <a class="navbar-brand" href="/Hexo.github.io/">
       <strong>🐛 ZhaFi人</strong>
     </a>
 
@@ -106,7 +106,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/">
+              <a class="nav-link" href="/Hexo.github.io/">
                 <i class="iconfont icon-home-fill"></i>
                 首页
               </a>
@@ -118,7 +118,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/archives/">
+              <a class="nav-link" href="/Hexo.github.io/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 归档
               </a>
@@ -130,7 +130,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/categories/">
+              <a class="nav-link" href="/Hexo.github.io/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 分类
               </a>
@@ -142,7 +142,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/tags/">
+              <a class="nav-link" href="/Hexo.github.io/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 标签
               </a>
@@ -154,7 +154,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/about/">
+              <a class="nav-link" href="/Hexo.github.io/about/">
                 <i class="iconfont icon-user-fill"></i>
                 关于
               </a>
@@ -166,7 +166,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/links/">
+              <a class="nav-link" href="/Hexo.github.io/links/">
                 <i class="iconfont icon-link-fill"></i>
                 友链
               </a>
@@ -195,7 +195,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/Hexo/img/bg5.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/Hexo.github.io/img/bg5.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -230,13 +230,13 @@
 
 <article class="page-content">
   <h2 id="1-实现多线程"><a href="#1-实现多线程" class="headerlink" title="1.实现多线程"></a>1.实现多线程</h2><h3 id="1-1简单了解多线程【理解】"><a href="#1-1简单了解多线程【理解】" class="headerlink" title="1.1简单了解多线程【理解】"></a>1.1简单了解多线程【理解】</h3><p>是指从软件或者硬件上实现多个线程并发执行的技术。<br>具有多线程能力的计算机因有硬件支持而能够在同一时间执行多个线程，提升性能。</p>
-<p><img src="/Hexo/../img/20220217162904.png" srcset="/Hexo/img/loading.gif" lazyload alt="01_简单了解多线程"></p>
+<p><img src="/Hexo.github.io/../img/20220217162904.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="01_简单了解多线程"></p>
 <h3 id="1-2并发和并行【理解】"><a href="#1-2并发和并行【理解】" class="headerlink" title="1.2并发和并行【理解】"></a>1.2并发和并行【理解】</h3><ul>
 <li><p>并行：在同一时刻，有多个指令在多个CPU上同时执行。</p>
-<p><img src="/Hexo/../img/20220217162946.png" srcset="/Hexo/img/loading.gif" lazyload alt="02_并行"></p>
+<p><img src="/Hexo.github.io/../img/20220217162946.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="02_并行"></p>
 </li>
 <li><p>并发：在同一时刻，有多个指令在单个CPU上交替执行。</p>
-<p><img src="/Hexo/../img/20220217162949.png" srcset="/Hexo/img/loading.gif" lazyload alt="03_并发"></p>
+<p><img src="/Hexo.github.io/../img/20220217162949.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="03_并发"></p>
 </li>
 </ul>
 <h3 id="1-3进程和线程【理解】"><a href="#1-3进程和线程【理解】" class="headerlink" title="1.3进程和线程【理解】"></a>1.3进程和线程【理解】</h3><ul>
@@ -434,7 +434,7 @@
 </li>
 <li><p>随机性</p>
 <p>假如计算机只有一个 CPU，那么 CPU 在某一个时刻只能执行一条指令，线程只有得到CPU时间片，也就是使用权，才可以执行指令。所以说多线程程序的执行是有随机性，因为谁抢到CPU的使用权是不一定的</p>
-<p><img src="/Hexo/../img/20220217163012.png" srcset="/Hexo/img/loading.gif" lazyload alt="05_多线程示例图"></p>
+<p><img src="/Hexo.github.io/../img/20220217163012.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="05_多线程示例图"></p>
 </li>
 </ul>
 </li>
@@ -703,7 +703,7 @@
 </ul>
 <h3 id="3-4阻塞队列基本使用【理解】"><a href="#3-4阻塞队列基本使用【理解】" class="headerlink" title="3.4阻塞队列基本使用【理解】"></a>3.4阻塞队列基本使用【理解】</h3><ul>
 <li><p>阻塞队列继承结构</p>
-<p><img src="/Hexo/../img/202202171651350.png" srcset="/Hexo/img/loading.gif" lazyload alt="06_阻塞队列继承结构"></p>
+<p><img src="/Hexo.github.io/../img/202202171651350.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="06_阻塞队列继承结构"></p>
 </li>
 <li><p>常见BlockingQueue:</p>
 <p> ArrayBlockingQueue: <font color='red'>底层是数组,</font>有界</p>
@@ -841,8 +841,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/Hexo/js/events.js" ></script>
-<script  src="/Hexo/js/plugins.js" ></script>
+<script  src="/Hexo.github.io/js/events.js" ></script>
+<script  src="/Hexo.github.io/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -881,13 +881,13 @@
 
 
   
-    <script  src="/Hexo/js/img-lazyload.js" ></script>
+    <script  src="/Hexo.github.io/js/img-lazyload.js" ></script>
   
 
 
 
 
-  <script  src="/Hexo/js/local-search.js" ></script>
+  <script  src="/Hexo.github.io/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -897,7 +897,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/Hexo/js/boot.js" ></script>
+<script  src="/Hexo.github.io/js/boot.js" ></script>
 
 
   
@@ -905,5 +905,5 @@
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<script src="/Hexo/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+<script src="/Hexo.github.io/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo.github.io/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
 </html>

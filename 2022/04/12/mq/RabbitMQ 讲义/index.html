@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo/img/csdn.png">
-  <link rel="icon" href="/Hexo/img/csdn.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo.github.io/img/csdn.png">
+  <link rel="icon" href="/Hexo.github.io/img/csdn.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,7 +19,7 @@
     <meta name="description" content="1. 消息中间件概述1.1. 什么是消息中间件MQ全称为Message Queue，消息队列是应用程序和应用程序之间的通信方法。  为什么使用MQ 在项目中，可将一些无需即时返回且耗时的操作提取出来，进行异步处理，而这种异步处理的方式大大的节省了服务器的请求响应时间，从而提高了系统的吞吐量。  开发中消息队列通常有如下应用场景： 1、任务异步处理 将不需要同步处理的并且耗时长的操作由消息队列通知消">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RabbitMQ基础Skill">
-<meta property="og:url" content="https://1902756969.github.io/Hexo/2022/04/12/mq/RabbitMQ%20%E8%AE%B2%E4%B9%89/index.html">
+<meta property="og:url" content="https://1902756969.github.io/Hexo.github.io/2022/04/12/mq/RabbitMQ%20%E8%AE%B2%E4%B9%89/index.html">
 <meta property="og:site_name" content="阿星的博客">
 <meta property="og:description" content="1. 消息中间件概述1.1. 什么是消息中间件MQ全称为Message Queue，消息队列是应用程序和应用程序之间的通信方法。  为什么使用MQ 在项目中，可将一些无需即时返回且耗时的操作提取出来，进行异步处理，而这种异步处理的方式大大的节省了服务器的请求响应时间，从而提高了系统的吞吐量。  开发中消息队列通常有如下应用场景： 1、任务异步处理 将不需要同步处理的并且耗时长的操作由消息队列通知消">
 <meta property="og:locale" content="zh_CN">
@@ -56,12 +56,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/Hexo/css/main.css" />
+<link  rel="stylesheet" href="/Hexo.github.io/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/Hexo/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/Hexo.github.io/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo.github.io/css/highlight-dark.css" />
   
 
 
@@ -70,15 +70,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo.github.io/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo.github.io/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/Hexo/js/utils.js" ></script>
-  <script  src="/Hexo/js/color-schema.js" ></script>
+  <script  src="/Hexo.github.io/js/utils.js" ></script>
+  <script  src="/Hexo.github.io/js/color-schema.js" ></script>
 
   
 <meta name="generator" content="Hexo 6.0.0"></head>
@@ -93,7 +93,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/Hexo/">
+    <a class="navbar-brand" href="/Hexo.github.io/">
       <strong>🐛 ZhaFi人</strong>
     </a>
 
@@ -112,7 +112,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/">
+              <a class="nav-link" href="/Hexo.github.io/">
                 <i class="iconfont icon-home-fill"></i>
                 首页
               </a>
@@ -124,7 +124,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/archives/">
+              <a class="nav-link" href="/Hexo.github.io/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 归档
               </a>
@@ -136,7 +136,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/categories/">
+              <a class="nav-link" href="/Hexo.github.io/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 分类
               </a>
@@ -148,7 +148,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/tags/">
+              <a class="nav-link" href="/Hexo.github.io/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 标签
               </a>
@@ -160,7 +160,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/about/">
+              <a class="nav-link" href="/Hexo.github.io/about/">
                 <i class="iconfont icon-user-fill"></i>
                 关于
               </a>
@@ -172,7 +172,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/links/">
+              <a class="nav-link" href="/Hexo.github.io/links/">
                 <i class="iconfont icon-link-fill"></i>
                 友链
               </a>
@@ -201,7 +201,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/Hexo/img/bg5.png') no-repeat center center; background-size: cover;">
+     style="background: url('/Hexo.github.io/img/bg5.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -308,11 +308,11 @@
 <p>MQ相当于一个中介，生产方通过MQ与消费方交互，它将应用程序进行解耦合。</p>
 <p>3、<strong>削峰填谷</strong></p>
 <p>如订单系统，在下单的时候就会往数据库写数据。但是数据库只能支撑每秒1000左右的并发写入，并发量再高就容易宕机。低峰期的时候并发也就100多个，但是在高峰期时候，并发量会突然激增到5000以上，这个时候数据库肯定卡死了。</p>
-<p><img src="https://pic.imgdb.cn/item/63736d8816f2c2beb1725fc8.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://pic.imgdb.cn/item/63736d8816f2c2beb1725fc8.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>消息被MQ保存起来了，然后系统就可以按照自己的消费能力来消费，比如每秒1000个数据，这样慢慢写入数据库，这样就不会卡死数据库了。</p>
-<p><img src="https://pic.imgdb.cn/item/63736d8916f2c2beb1726149.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://pic.imgdb.cn/item/63736d8916f2c2beb1726149.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>但是使用了MQ之后，限制消费消息的速度为1000，但是这样一来，高峰期产生的数据势必会被积压在MQ中，高峰就被“削”掉了。但是因为消息积压，在高峰期过后的一段时间内，消费消息的速度还是会维持在1000QPS，直到消费完积压的消息,这就叫做“填谷”</p>
-<p><img src="https://pic.imgdb.cn/item/63736d8b16f2c2beb17262fb.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://pic.imgdb.cn/item/63736d8b16f2c2beb17262fb.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 </li>
 </ul>
 <h2 id="1-2-AMQP-和-JMS"><a href="#1-2-AMQP-和-JMS" class="headerlink" title="1.2. AMQP 和 JMS"></a>1.2. AMQP 和 JMS</h2><p>MQ是消息通信的模型；实现MQ的大致有两种主流方式：AMQP、JMS。</p>
@@ -335,10 +335,10 @@
 <p>RabbitMQ官方地址：<a target="_blank" rel="noopener" href="http://www.rabbitmq.com/">http://www.rabbitmq.com/</a></p>
 <p>RabbitMQ提供了6种模式：简单模式，work模式，Publish&#x2F;Subscribe发布与订阅模式，Routing路由模式，Topics主题模式，RPC远程调用模式（远程调用，不太算MQ；暂不作介绍）；</p>
 <p>官网对应模式介绍：<a target="_blank" rel="noopener" href="https://www.rabbitmq.com/getstarted.html">https://www.rabbitmq.com/getstarted.html</a></p>
-<p><img src="https://pic.imgdb.cn/item/63736d8d16f2c2beb17264f4.png" srcset="/Hexo/img/loading.gif" lazyload alt="1555988678324"></p>
+<p><img src="https://pic.imgdb.cn/item/63736d8d16f2c2beb17264f4.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1555988678324"></p>
 <h1 id="2-安装及配置RabbitMQ"><a href="#2-安装及配置RabbitMQ" class="headerlink" title="2. 安装及配置RabbitMQ"></a>2. 安装及配置RabbitMQ</h1><p>详细查看 <code>资料/软件/安装RabbitMQ.md</code> 文档。</p>
-<h1 id="3-RabbitMQ入门"><a href="#3-RabbitMQ入门" class="headerlink" title="3. RabbitMQ入门"></a>3. RabbitMQ入门</h1><h2 id="3-1-搭建示例工程"><a href="#3-1-搭建示例工程" class="headerlink" title="3.1. 搭建示例工程"></a>3.1. 搭建示例工程</h2><h3 id="3-1-1-创建工程"><a href="#3-1-1-创建工程" class="headerlink" title="3.1.1. 创建工程"></a>3.1.1. 创建工程</h3><p><img src="https://pic.imgdb.cn/item/63736d9816f2c2beb1726ec5.png" srcset="/Hexo/img/loading.gif" lazyload alt="1555991321159"></p>
-<p><img src="https://pic.imgdb.cn/item/63736d9916f2c2beb172700d.png" srcset="/Hexo/img/loading.gif" lazyload alt="1555991353704"></p>
+<h1 id="3-RabbitMQ入门"><a href="#3-RabbitMQ入门" class="headerlink" title="3. RabbitMQ入门"></a>3. RabbitMQ入门</h1><h2 id="3-1-搭建示例工程"><a href="#3-1-搭建示例工程" class="headerlink" title="3.1. 搭建示例工程"></a>3.1. 搭建示例工程</h2><h3 id="3-1-1-创建工程"><a href="#3-1-1-创建工程" class="headerlink" title="3.1.1. 创建工程"></a>3.1.1. 创建工程</h3><p><img src="https://pic.imgdb.cn/item/63736d9816f2c2beb1726ec5.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1555991321159"></p>
+<p><img src="https://pic.imgdb.cn/item/63736d9916f2c2beb172700d.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1555991353704"></p>
 <h3 id="3-1-2-添加依赖"><a href="#3-1-2-添加依赖" class="headerlink" title="3.1.2. 添加依赖"></a>3.1.2. 添加依赖</h3><p>往heima-rabbitmq的pom.xml文件中添加如下依赖：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.rabbitmq<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>amqp-client<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.6.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
@@ -350,8 +350,8 @@
 
 
 <p>在执行上述的消息发送之后；可以登录rabbitMQ的管理控制台，可以发现队列和其消息：</p>
-<p><img src="https://pic.imgdb.cn/item/63736d9d16f2c2beb17272db.png" srcset="/Hexo/img/loading.gif" lazyload alt="1556006638979"></p>
-<p><img src="https://pic.imgdb.cn/item/63736d9e16f2c2beb1727441.png" srcset="/Hexo/img/loading.gif" lazyload alt="1556006647177"></p>
+<p><img src="https://pic.imgdb.cn/item/63736d9d16f2c2beb17272db.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1556006638979"></p>
+<p><img src="https://pic.imgdb.cn/item/63736d9e16f2c2beb1727441.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1556006647177"></p>
 <h2 id="3-3-编写消费者"><a href="#3-3-编写消费者" class="headerlink" title="3.3. 编写消费者"></a>3.3. 编写消费者</h2><p>抽取创建connection的工具类com.itheima.rabbitmq.util.ConnectionUtil；</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.itheima.rabbitmq.util;<br><br><span class="hljs-keyword">import</span> com.rabbitmq.client.Connection;<br><span class="hljs-keyword">import</span> com.rabbitmq.client.ConnectionFactory;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ConnectionUtil</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Connection <span class="hljs-title function_">getConnection</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-comment">//创建连接工厂</span><br>        <span class="hljs-type">ConnectionFactory</span> <span class="hljs-variable">connectionFactory</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConnectionFactory</span>();<br>        <span class="hljs-comment">//主机地址;默认为 localhost</span><br>        connectionFactory.setHost(<span class="hljs-string">&quot;localhost&quot;</span>);<br>        <span class="hljs-comment">//连接端口;默认为 5672</span><br>        connectionFactory.setPort(<span class="hljs-number">5672</span>);<br>        <span class="hljs-comment">//虚拟主机名称;默认为 /</span><br>        connectionFactory.setVirtualHost(<span class="hljs-string">&quot;/itcast&quot;</span>);<br>        <span class="hljs-comment">//连接用户名；默认为guest</span><br>        connectionFactory.setUsername(<span class="hljs-string">&quot;heima&quot;</span>);<br>        <span class="hljs-comment">//连接密码；默认为guest</span><br>        connectionFactory.setPassword(<span class="hljs-string">&quot;heima&quot;</span>);<br><br>        <span class="hljs-comment">//创建连接</span><br>        <span class="hljs-keyword">return</span> connectionFactory.newConnection();<br>    &#125;<br><br>&#125;<br><br></code></pre></td></tr></table></figure>
 
@@ -363,7 +363,7 @@
 
 
 <h2 id="3-4-小结"><a href="#3-4-小结" class="headerlink" title="3.4. 小结"></a>3.4. 小结</h2><p>上述的入门案例中中其实使用的是如下的简单模式：</p>
-<p><img src="https://pic.imgdb.cn/item/63736db316f2c2beb172885a.png" srcset="/Hexo/img/loading.gif" lazyload alt="1555991074575"></p>
+<p><img src="https://pic.imgdb.cn/item/63736db316f2c2beb172885a.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1555991074575"></p>
 <p>在上图的模型中，有以下概念：</p>
 <ul>
 <li>P：生产者，也就是要发送消息的程序</li>
@@ -435,13 +435,13 @@
 </ol>
 </li>
 </ul>
-<p><img src="https://pic.imgdb.cn/item/63736db716f2c2beb1728bb9.png" srcset="/Hexo/img/loading.gif" lazyload alt="1565105223969"></p>
+<p><img src="https://pic.imgdb.cn/item/63736db716f2c2beb1728bb9.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1565105223969"></p>
 <h2 id="4-3-生产者流转过程说明"><a href="#4-3-生产者流转过程说明" class="headerlink" title="4.3. 生产者流转过程说明"></a>4.3. 生产者流转过程说明</h2><ol>
 <li>客户端与代理服务器Broker建立连接。会调用newConnection() 方法,这个方法会进一步封装Protocol Header 0-9-1 的报文头发送给Broker ，以此通知Broker 本次交互采用的是AMQPO-9-1 协议，紧接着Broker 返回Connection.Start 来建立连接，在连接的过程中涉及Connection.Start&#x2F;.Start-OK 、Connection.Tune&#x2F;.Tune-Ok ，Connection.Open&#x2F; .Open-Ok 这6 个命令的交互。</li>
 <li>客户端调用connection.createChannel方法。此方法开启信道，其包装的channel.open命令发送给Broker,等待channel.basicPublish方法，对应的AMQP命令为Basic.Publish,这个命令包含了content Header 和content Body()。content Header 包含了消息体的属性，例如:投递模式，优先级等，content Body 包含了消息体本身。</li>
 <li>客户端发送完消息需要关闭资源时，涉及到Channel.Close和Channl.Close-Ok 与Connetion.Close和Connection.Close-Ok的命令交互。</li>
 </ol>
-<p><img src="https://pic.imgdb.cn/item/63736db916f2c2beb1728ecf.png" srcset="/Hexo/img/loading.gif" lazyload alt="生产者流转过程图"></p>
+<p><img src="https://pic.imgdb.cn/item/63736db916f2c2beb1728ecf.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="生产者流转过程图"></p>
 <h2 id="4-4-消费者流转过程说明"><a href="#4-4-消费者流转过程说明" class="headerlink" title="4.4. 消费者流转过程说明"></a>4.4. 消费者流转过程说明</h2><ol>
 <li>消费者客户端与代理服务器Broker建立连接。会调用newConnection() 方法,这个方法会进一步封装Protocol Header 0-9-1 的报文头发送给Broker ，以此通知Broker 本次交互采用的是AMQPO-9-1 协议，紧接着Broker 返回Connection.Start 来建立连接，在连接的过程中涉及Connection.Start&#x2F;.Start-OK 、Connection.Tune&#x2F;.Tune-Ok ，Connection.Open&#x2F; .Open-Ok 这6 个命令的交互。</li>
 <li>消费者客户端调用connection.createChannel方法。和生产者客户端一样，协议涉及Channel . Open&#x2F;Open-Ok命令。</li>
@@ -450,8 +450,8 @@
 <li>消费者接收到消息并正确消费之后，向Broker 发送确认，即Basic.Ack 命令。</li>
 <li>客户端发送完消息需要关闭资源时，涉及到Channel.Close和Channl.Close-Ok 与Connetion.Close和Connection.Close-Ok的命令交互。</li>
 </ol>
-<p><img src="https://pic.imgdb.cn/item/63736dbb16f2c2beb17290e5.png" srcset="/Hexo/img/loading.gif" lazyload alt="消费者流转过程图"></p>
-<h1 id="5-RabbitMQ工作模式"><a href="#5-RabbitMQ工作模式" class="headerlink" title="5. RabbitMQ工作模式"></a>5. RabbitMQ工作模式</h1><h2 id="4-1-Work-queues工作队列模式"><a href="#4-1-Work-queues工作队列模式" class="headerlink" title="4.1. Work queues工作队列模式"></a>4.1. Work queues工作队列模式</h2><h3 id="4-1-1-模式说明"><a href="#4-1-1-模式说明" class="headerlink" title="4.1.1. 模式说明"></a>4.1.1. 模式说明</h3><p><img src="https://pic.imgdb.cn/item/63736dbc16f2c2beb1729136.png" srcset="/Hexo/img/loading.gif" lazyload alt="1556009144848"></p>
+<p><img src="https://pic.imgdb.cn/item/63736dbb16f2c2beb17290e5.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="消费者流转过程图"></p>
+<h1 id="5-RabbitMQ工作模式"><a href="#5-RabbitMQ工作模式" class="headerlink" title="5. RabbitMQ工作模式"></a>5. RabbitMQ工作模式</h1><h2 id="4-1-Work-queues工作队列模式"><a href="#4-1-Work-queues工作队列模式" class="headerlink" title="4.1. Work queues工作队列模式"></a>4.1. Work queues工作队列模式</h2><h3 id="4-1-1-模式说明"><a href="#4-1-1-模式说明" class="headerlink" title="4.1.1. 模式说明"></a>4.1.1. 模式说明</h3><p><img src="https://pic.imgdb.cn/item/63736dbc16f2c2beb1729136.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1556009144848"></p>
 <p><code>Work Queues</code>与入门程序的<code>简单模式</code>相比，多了一个或一些消费端，多个消费端共同消费同一个队列中的消息。</p>
 <p><strong>应用场景</strong>：对于 任务过重或任务较多情况使用工作队列可以提高任务处理的速度。</p>
 <h3 id="4-1-2-代码"><a href="#4-1-2-代码" class="headerlink" title="4.1.2. 代码"></a>4.1.2. 代码</h3><p><code>Work Queues</code>与入门程序的<code>简单模式</code>的代码是几乎一样的；可以完全复制，并复制多一个消费者进行多个消费者同时消费消息的测试。</p>
@@ -464,11 +464,11 @@
 
 
 <h3 id="4-1-3-测试"><a href="#4-1-3-测试" class="headerlink" title="4.1.3. 测试"></a>4.1.3. 测试</h3><p>启动两个消费者，然后再启动生产者发送消息；到IDEA的两个消费者对应的控制台查看是否竞争性的接收到消息。</p>
-<p><img src="https://pic.imgdb.cn/item/63736dc116f2c2beb1729695.png" srcset="/Hexo/img/loading.gif" lazyload alt="1556014310859"></p>
-<p><img src="https://pic.imgdb.cn/item/63736dc316f2c2beb172995d.png" srcset="/Hexo/img/loading.gif" lazyload alt="1556014318106"></p>
+<p><img src="https://pic.imgdb.cn/item/63736dc116f2c2beb1729695.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1556014310859"></p>
+<p><img src="https://pic.imgdb.cn/item/63736dc316f2c2beb172995d.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1556014318106"></p>
 <h3 id="4-1-4-小结"><a href="#4-1-4-小结" class="headerlink" title="4.1.4. 小结"></a>4.1.4. 小结</h3><p>在一个队列中如果有多个消费者，那么消费者之间对于同一个消息的关系是<strong>竞争</strong>的关系。</p>
 <h2 id="4-2-订阅模式类型"><a href="#4-2-订阅模式类型" class="headerlink" title="4.2. 订阅模式类型"></a>4.2. 订阅模式类型</h2><p>订阅模式示例图：</p>
-<p><img src="https://pic.imgdb.cn/item/63736dc516f2c2beb1729bbb.png" srcset="/Hexo/img/loading.gif" lazyload alt="1556014499573"></p>
+<p><img src="https://pic.imgdb.cn/item/63736dc516f2c2beb1729bbb.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1556014499573"></p>
 <p>前面2个案例中，只有3个角色：</p>
 <ul>
 <li>P：生产者，也就是要发送消息的程序</li>
@@ -488,7 +488,7 @@
 </li>
 </ul>
 <p><strong>Exchange（交换机）只负责转发消息，不具备存储消息的能力</strong>，因此如果没有任何队列与Exchange绑定，或者没有符合路由规则的队列，那么消息会丢失！</p>
-<h2 id="4-3-Publish-x2F-Subscribe发布与订阅模式"><a href="#4-3-Publish-x2F-Subscribe发布与订阅模式" class="headerlink" title="4.3. Publish&#x2F;Subscribe发布与订阅模式"></a>4.3. Publish&#x2F;Subscribe发布与订阅模式</h2><h3 id="4-3-1-模式说明"><a href="#4-3-1-模式说明" class="headerlink" title="4.3.1. 模式说明"></a>4.3.1. 模式说明</h3><p><img src="https://pic.imgdb.cn/item/63736dc716f2c2beb1729e75.png" srcset="/Hexo/img/loading.gif" lazyload alt="1556010329032"></p>
+<h2 id="4-3-Publish-x2F-Subscribe发布与订阅模式"><a href="#4-3-Publish-x2F-Subscribe发布与订阅模式" class="headerlink" title="4.3. Publish&#x2F;Subscribe发布与订阅模式"></a>4.3. Publish&#x2F;Subscribe发布与订阅模式</h2><h3 id="4-3-1-模式说明"><a href="#4-3-1-模式说明" class="headerlink" title="4.3.1. 模式说明"></a>4.3.1. 模式说明</h3><p><img src="https://pic.imgdb.cn/item/63736dc716f2c2beb1729e75.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1556010329032"></p>
 <p>发布订阅模式：<br>1、每个消费者监听自己的队列。<br>2、生产者将消息发给broker，由交换机将消息转发到绑定此交换机的每个队列，每个绑定交换机的队列都将接收<br>到消息</p>
 <h3 id="4-3-2-代码"><a href="#4-3-2-代码" class="headerlink" title="4.3.2. 代码"></a>4.3.2. 代码</h3><h4 id="1）生产者-1"><a href="#1）生产者-1" class="headerlink" title="1）生产者"></a>1）生产者</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.itheima.rabbitmq.ps;<br><br><span class="hljs-keyword">import</span> com.itheima.rabbitmq.util.ConnectionUtil;<br><span class="hljs-keyword">import</span> com.rabbitmq.client.BuiltinExchangeType;<br><span class="hljs-keyword">import</span> com.rabbitmq.client.Channel;<br><span class="hljs-keyword">import</span> com.rabbitmq.client.Connection;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 发布与订阅使用的交换机类型为：fanout</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Producer</span> &#123;<br><br>    <span class="hljs-comment">//交换机名称</span><br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">FANOUT_EXCHAGE</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;fanout_exchange&quot;</span>;<br>    <span class="hljs-comment">//队列名称</span><br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">FANOUT_QUEUE_1</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;fanout_queue_1&quot;</span>;<br>    <span class="hljs-comment">//队列名称</span><br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">FANOUT_QUEUE_2</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;fanout_queue_2&quot;</span>;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br><br>        <span class="hljs-comment">//创建连接</span><br>        <span class="hljs-type">Connection</span> <span class="hljs-variable">connection</span> <span class="hljs-operator">=</span> ConnectionUtil.getConnection();<br><br>        <span class="hljs-comment">// 创建频道</span><br>        <span class="hljs-type">Channel</span> <span class="hljs-variable">channel</span> <span class="hljs-operator">=</span> connection.createChannel();<br><br>        <span class="hljs-comment">/**</span><br><span class="hljs-comment">         * 声明交换机</span><br><span class="hljs-comment">         * 参数1：交换机名称</span><br><span class="hljs-comment">         * 参数2：交换机类型，fanout、topic、direct、headers</span><br><span class="hljs-comment">         */</span><br>        channel.exchangeDeclare(FANOUT_EXCHAGE, BuiltinExchangeType.FANOUT);<br><br>        <span class="hljs-comment">// 声明（创建）队列</span><br>        <span class="hljs-comment">/**</span><br><span class="hljs-comment">         * 参数1：队列名称</span><br><span class="hljs-comment">         * 参数2：是否定义持久化队列</span><br><span class="hljs-comment">         * 参数3：是否独占本次连接</span><br><span class="hljs-comment">         * 参数4：是否在不使用的时候自动删除队列</span><br><span class="hljs-comment">         * 参数5：队列其它参数</span><br><span class="hljs-comment">         */</span><br>        channel.queueDeclare(FANOUT_QUEUE_1, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">null</span>);<br>        channel.queueDeclare(FANOUT_QUEUE_2, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">null</span>);<br><br>        <span class="hljs-comment">//队列绑定交换机</span><br>        channel.queueBind(FANOUT_QUEUE_1, FANOUT_EXCHAGE, <span class="hljs-string">&quot;&quot;</span>);<br>        channel.queueBind(FANOUT_QUEUE_2, FANOUT_EXCHAGE, <span class="hljs-string">&quot;&quot;</span>);<br><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">10</span>; i++) &#123;<br>            <span class="hljs-comment">// 发送信息</span><br>            <span class="hljs-type">String</span> <span class="hljs-variable">message</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;你好；小兔子！发布订阅模式--&quot;</span> + i;<br>            <span class="hljs-comment">/**</span><br><span class="hljs-comment">             * 参数1：交换机名称，如果没有指定则使用默认Default Exchage</span><br><span class="hljs-comment">             * 参数2：路由key,简单模式可以传递队列名称</span><br><span class="hljs-comment">             * 参数3：消息其它属性</span><br><span class="hljs-comment">             * 参数4：消息内容</span><br><span class="hljs-comment">             */</span><br>            channel.basicPublish(FANOUT_EXCHAGE, <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-literal">null</span>, message.getBytes());<br>            System.out.println(<span class="hljs-string">&quot;已发送消息：&quot;</span> + message);<br>        &#125;<br><br>        <span class="hljs-comment">// 关闭资源</span><br>        channel.close();<br>        connection.close();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -501,7 +501,7 @@
 
 <h3 id="4-3-3-测试"><a href="#4-3-3-测试" class="headerlink" title="4.3.3. 测试"></a>4.3.3. 测试</h3><p>启动所有消费者，然后使用生产者发送消息；在每个消费者对应的控制台可以查看到生产者发送的所有消息；到达<strong>广播</strong>的效果。</p>
 <p>在执行完测试代码后，其实到RabbitMQ的管理后台找到<code>Exchanges</code>选项卡，点击 <code>fanout_exchange</code> 的交换机，可以查看到如下的绑定：</p>
-<p><img src="/Hexo/assets/1556015006220.png" srcset="/Hexo/img/loading.gif" lazyload alt="1556015006220"></p>
+<p><img src="/Hexo.github.io/assets/1556015006220.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1556015006220"></p>
 <h3 id="4-3-4-小结"><a href="#4-3-4-小结" class="headerlink" title="4.3.4. 小结"></a>4.3.4. 小结</h3><p>交换机需要与队列进行绑定，绑定之后；一个消息可以被多个消费者都收到。</p>
 <p><strong>发布订阅模式与工作队列模式的区别</strong></p>
 <p>1、工作队列模式不用定义交换机，而发布&#x2F;订阅模式需要定义交换机。 </p>
@@ -513,7 +513,7 @@
 <li>消息的发送方在 向 Exchange发送消息时，也必须指定消息的 <code>RoutingKey</code>。</li>
 <li>Exchange不再把消息交给每一个绑定的队列，而是根据消息的<code>Routing Key</code>进行判断，只有队列的<code>Routingkey</code>与消息的 <code>Routing key</code>完全一致，才会接收到消息</li>
 </ul>
-<p><img src="/Hexo/assets/1556029284397.png" srcset="/Hexo/img/loading.gif" lazyload alt="1556029284397"></p>
+<p><img src="/Hexo.github.io/assets/1556029284397.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1556029284397"></p>
 <p>图解：</p>
 <ul>
 <li>P：生产者，向Exchange发送消息，发送消息时，会指定一个routing key。</li>
@@ -529,7 +529,7 @@
 
 <h3 id="4-4-3-测试"><a href="#4-4-3-测试" class="headerlink" title="4.4.3. 测试"></a>4.4.3. 测试</h3><p>启动所有消费者，然后使用生产者发送消息；在消费者对应的控制台可以查看到生产者发送对应routing key对应队列的消息；到达<strong>按照需要接收</strong>的效果。</p>
 <p>在执行完测试代码后，其实到RabbitMQ的管理后台找到<code>Exchanges</code>选项卡，点击 <code>direct_exchange</code> 的交换机，可以查看到如下的绑定：</p>
-<p><img src="https://pic.imgdb.cn/item/63736dd116f2c2beb172aa66.png" srcset="/Hexo/img/loading.gif" lazyload alt="1556031175744"></p>
+<p><img src="https://pic.imgdb.cn/item/63736dd116f2c2beb172aa66.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1556031175744"></p>
 <h3 id="4-4-4-小结"><a href="#4-4-4-小结" class="headerlink" title="4.4.4. 小结"></a>4.4.4. 小结</h3><p>Routing模式要求队列在绑定交换机时要指定routing key，消息会转发到符合routing key的队列。</p>
 <h2 id="4-5-Topics通配符模式"><a href="#4-5-Topics通配符模式" class="headerlink" title="4.5. Topics通配符模式"></a>4.5. Topics通配符模式</h2><h3 id="4-5-1-模式说明"><a href="#4-5-1-模式说明" class="headerlink" title="4.5.1. 模式说明"></a>4.5.1. 模式说明</h3><p><code>Topic</code>类型与<code>Direct</code>相比，都是可以根据<code>RoutingKey</code>把消息路由到不同的队列。只不过<code>Topic</code>类型<code>Exchange</code>可以让队列在绑定<code>Routing key</code> 的时候<strong>使用通配符</strong>！</p>
 <p><code>Routingkey</code> 一般都是有一个或多个单词组成，多个单词之间以”.”分割，例如： <code>item.insert</code></p>
@@ -539,8 +539,8 @@
 <p>举例：</p>
 <p><code>item.#</code>：能够匹配<code>item.insert.abc</code> 或者 <code>item.insert</code></p>
 <p><code>item.*</code>：只能匹配<code>item.insert</code></p>
-<p><img src="https://pic.imgdb.cn/item/63736dd416f2c2beb172ade7.png" srcset="/Hexo/img/loading.gif" lazyload alt="1556031362048"></p>
-<p><img src="https://pic.imgdb.cn/item/63736dd316f2c2beb172ac79.png" srcset="/Hexo/img/loading.gif" lazyload alt="1556031519931"></p>
+<p><img src="https://pic.imgdb.cn/item/63736dd416f2c2beb172ade7.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1556031362048"></p>
+<p><img src="https://pic.imgdb.cn/item/63736dd316f2c2beb172ac79.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1556031519931"></p>
 <p>图解：</p>
 <ul>
 <li>红色Queue：绑定的是<code>usa.#</code> ，因此凡是以 <code>usa.</code>开头的<code>routing key</code> 都会被匹配到</li>
@@ -555,15 +555,15 @@
 
 <h3 id="4-5-3-测试"><a href="#4-5-3-测试" class="headerlink" title="4.5.3. 测试"></a>4.5.3. 测试</h3><p>启动所有消费者，然后使用生产者发送消息；在消费者对应的控制台可以查看到生产者发送对应routing key对应队列的消息；到达<strong>按照需要接收</strong>的效果；并且这些routing key可以使用通配符。</p>
 <p>在执行完测试代码后，其实到RabbitMQ的管理后台找到<code>Exchanges</code>选项卡，点击 <code>topic_exchange</code> 的交换机，可以查看到如下的绑定：</p>
-<p><img src="/Hexo/assets/1556032433333.png" srcset="/Hexo/img/loading.gif" lazyload alt="1556032433333"></p>
+<p><img src="/Hexo.github.io/assets/1556032433333.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1556032433333"></p>
 <h3 id="4-5-4-小结"><a href="#4-5-4-小结" class="headerlink" title="4.5.4. 小结"></a>4.5.4. 小结</h3><p>Topic主题模式可以实现 <code>Publish/Subscribe发布与订阅模式</code> 和 <code> Routing路由模式</code> 的功能；只是Topic在配置routing key 的时候可以使用通配符，显得更加灵活。</p>
 <h2 id="4-6-模式总结"><a href="#4-6-模式总结" class="headerlink" title="4.6. 模式总结"></a>4.6. 模式总结</h2><p>RabbitMQ工作模式：<br><strong>1、简单模式 HelloWorld</strong><br>一个生产者、一个消费者，不需要设置交换机（使用默认的交换机）</p>
 <p><strong>2、工作队列模式 Work Queue</strong><br>一个生产者、多个消费者（竞争关系），不需要设置交换机（使用默认的交换机）</p>
 <p><strong>3、发布订阅模式 Publish&#x2F;subscribe</strong><br>需要设置类型为fanout的交换机，并且交换机和队列进行绑定，当发送消息到交换机后，交换机会将消息发送到绑定的队列</p>
 <p><strong>4、路由模式 Routing</strong><br>需要设置类型为direct的交换机，交换机和队列进行绑定，并且指定routing key，当发送消息到交换机后，交换机会根据routing key将消息发送到对应的队列</p>
 <p><strong>5、通配符模式 Topic</strong><br>需要设置类型为topic的交换机，交换机和队列进行绑定，并且指定通配符方式的routing key，当发送消息到交换机后，交换机会根据routing key将消息发送到对应的队列</p>
-<h1 id="5-Spring-整合RabbitMQ"><a href="#5-Spring-整合RabbitMQ" class="headerlink" title="5. Spring 整合RabbitMQ"></a>5. Spring 整合RabbitMQ</h1><h2 id="5-1-搭建生产者工程"><a href="#5-1-搭建生产者工程" class="headerlink" title="5.1. 搭建生产者工程"></a>5.1. 搭建生产者工程</h2><h3 id="5-1-1-创建工程"><a href="#5-1-1-创建工程" class="headerlink" title="5.1.1. 创建工程"></a>5.1.1. 创建工程</h3><p><img src="/Hexo/assets/1565149342994.png" srcset="/Hexo/img/loading.gif" lazyload alt="1565149342994"></p>
-<p><img src="/Hexo/assets/1565144326498.png" srcset="/Hexo/img/loading.gif" lazyload alt="1565144326498"></p>
+<h1 id="5-Spring-整合RabbitMQ"><a href="#5-Spring-整合RabbitMQ" class="headerlink" title="5. Spring 整合RabbitMQ"></a>5. Spring 整合RabbitMQ</h1><h2 id="5-1-搭建生产者工程"><a href="#5-1-搭建生产者工程" class="headerlink" title="5.1. 搭建生产者工程"></a>5.1. 搭建生产者工程</h2><h3 id="5-1-1-创建工程"><a href="#5-1-1-创建工程" class="headerlink" title="5.1.1. 创建工程"></a>5.1.1. 创建工程</h3><p><img src="/Hexo.github.io/assets/1565149342994.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1565149342994"></p>
+<p><img src="/Hexo.github.io/assets/1565144326498.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1565144326498"></p>
 <h3 id="5-1-2-添加依赖"><a href="#5-1-2-添加依赖" class="headerlink" title="5.1.2. 添加依赖"></a>5.1.2. 添加依赖</h3><p>修改pom.xml文件内容为如下：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">project</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">modelVersion</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">modelVersion</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.itheima<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-rabbitmq-producer<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-context<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.1.7.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.amqp<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-rabbit<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.1.8.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>4.12<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-test<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.1.7.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
@@ -588,8 +588,8 @@
 
 
 
-<h2 id="5-2-搭建消费者工程"><a href="#5-2-搭建消费者工程" class="headerlink" title="5.2. 搭建消费者工程"></a>5.2. 搭建消费者工程</h2><h3 id="5-2-1-创建工程"><a href="#5-2-1-创建工程" class="headerlink" title="5.2.1. 创建工程"></a>5.2.1. 创建工程</h3><p><img src="https://pic.imgdb.cn/item/63736dda16f2c2beb172b3bb.png" srcset="/Hexo/img/loading.gif" lazyload alt="1565149374831"></p>
-<p><img src="https://pic.imgdb.cn/item/63736ddc16f2c2beb172b4ef.png" srcset="/Hexo/img/loading.gif" lazyload alt="1565144775216"></p>
+<h2 id="5-2-搭建消费者工程"><a href="#5-2-搭建消费者工程" class="headerlink" title="5.2. 搭建消费者工程"></a>5.2. 搭建消费者工程</h2><h3 id="5-2-1-创建工程"><a href="#5-2-1-创建工程" class="headerlink" title="5.2.1. 创建工程"></a>5.2.1. 创建工程</h3><p><img src="https://pic.imgdb.cn/item/63736dda16f2c2beb172b3bb.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1565149374831"></p>
+<p><img src="https://pic.imgdb.cn/item/63736ddc16f2c2beb172b4ef.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1565144775216"></p>
 <h3 id="5-2-2-添加依赖"><a href="#5-2-2-添加依赖" class="headerlink" title="5.2.2. 添加依赖"></a>5.2.2. 添加依赖</h3><p>修改pom.xml文件内容为如下：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">project</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">modelVersion</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">modelVersion</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.itheima<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-rabbitmq-consumer<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-context<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.1.7.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.amqp<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-rabbit<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.1.8.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
@@ -647,8 +647,8 @@
 </li>
 </ol>
 <h2 id="5-2-搭建生产者工程"><a href="#5-2-搭建生产者工程" class="headerlink" title="5.2. 搭建生产者工程"></a>5.2. 搭建生产者工程</h2><h3 id="5-2-1-创建工程-1"><a href="#5-2-1-创建工程-1" class="headerlink" title="5.2.1. 创建工程"></a>5.2.1. 创建工程</h3><p>创建生产者工程springboot-rabbitmq-producer</p>
-<p><img src="https://pic.imgdb.cn/item/63736de416f2c2beb172bcbf.png" srcset="/Hexo/img/loading.gif" lazyload alt="1556072078816"></p>
-<p><img src="https://pic.imgdb.cn/item/63736de316f2c2beb172bb2a.png" srcset="/Hexo/img/loading.gif" lazyload alt="1556072084653"></p>
+<p><img src="https://pic.imgdb.cn/item/63736de416f2c2beb172bcbf.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1556072078816"></p>
+<p><img src="https://pic.imgdb.cn/item/63736de316f2c2beb172bb2a.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1556072084653"></p>
 <h3 id="5-2-2-添加依赖-1"><a href="#5-2-2-添加依赖-1" class="headerlink" title="5.2.2. 添加依赖"></a>5.2.2. 添加依赖</h3><p>修改pom.xml文件内容为如下：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">project</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">modelVersion</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">modelVersion</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">parent</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.1.4.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">parent</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.itheima<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>springboot-rabbitmq-producer<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-amqp<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
@@ -669,8 +669,8 @@
 
 
 <h2 id="5-3-搭建消费者工程"><a href="#5-3-搭建消费者工程" class="headerlink" title="5.3. 搭建消费者工程"></a>5.3. 搭建消费者工程</h2><h3 id="5-3-1-创建工程"><a href="#5-3-1-创建工程" class="headerlink" title="5.3.1. 创建工程"></a>5.3.1. 创建工程</h3><p>创建消费者工程springboot-rabbitmq-consumer</p>
-<p><img src="https://pic.imgdb.cn/item/63736de916f2c2beb172c222.png" srcset="/Hexo/img/loading.gif" lazyload alt="1556073553841"></p>
-<p><img src="https://pic.imgdb.cn/item/63736de816f2c2beb172c0c4.png" srcset="/Hexo/img/loading.gif" lazyload alt="1556073567786"></p>
+<p><img src="https://pic.imgdb.cn/item/63736de916f2c2beb172c222.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1556073553841"></p>
+<p><img src="https://pic.imgdb.cn/item/63736de816f2c2beb172c0c4.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1556073567786"></p>
 <h3 id="5-3-2-添加依赖"><a href="#5-3-2-添加依赖" class="headerlink" title="5.3.2. 添加依赖"></a>5.3.2. 添加依赖</h3><p>修改pom.xml文件内容为如下：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">project</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">modelVersion</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">modelVersion</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">parent</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.1.4.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">parent</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.itheima<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>springboot-rabbitmq-consumer<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-amqp<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
@@ -697,7 +697,7 @@
 
 <p>先运行上述测试程序（交换机和队列才能先被声明和绑定），然后启动消费者；在消费者工程springboot-rabbitmq-consumer中控制台查看是否接收到对应消息。</p>
 <p>另外；也可以在RabbitMQ的管理控制台中查看到交换机与队列的绑定：</p>
-<p><img src="https://pic.imgdb.cn/item/63736dec16f2c2beb172c5c6.png" srcset="/Hexo/img/loading.gif" lazyload alt="1556074827222"></p>
+<p><img src="https://pic.imgdb.cn/item/63736dec16f2c2beb172c5c6.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="1556074827222"></p>
 
               
             </div>
@@ -715,7 +715,7 @@
     
       <span class="category-chain">
         
-  <a href="/Hexo/categories/RabbitMQ%F0%9F%90%B1%E2%80%8D%F0%9F%91%A4/" class="category-chain-item">RabbitMQ🐱‍👤</a>
+  <a href="/Hexo.github.io/categories/RabbitMQ%F0%9F%90%B1%E2%80%8D%F0%9F%91%A4/" class="category-chain-item">RabbitMQ🐱‍👤</a>
   
   
 
@@ -730,7 +730,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/Hexo/tags/RabbitMQ/">#RabbitMQ</a>
+        <a href="/Hexo.github.io/tags/RabbitMQ/">#RabbitMQ</a>
       
     </div>
   
@@ -743,7 +743,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>RabbitMQ基础Skill</div>
-      <div>https://1902756969.github.io/Hexo/2022/04/12/mq/RabbitMQ 讲义/</div>
+      <div>https://1902756969.github.io/Hexo.github.io/2022/04/12/mq/RabbitMQ 讲义/</div>
     </div>
     <div class="license-meta">
       
@@ -785,7 +785,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/Hexo/2022/04/12/mq/RabbitMQ%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" title="RabbitMQ基础Skill">
+                      <a href="/Hexo.github.io/2022/04/12/mq/RabbitMQ%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" title="RabbitMQ基础Skill">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">RabbitMQ基础Skill</span>
                         <span class="visible-mobile">上一篇</span>
@@ -795,8 +795,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/Hexo/2022/04/12/mq/RabbitMQ%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E%E6%96%87%E6%A1%A3/" title="RabbitMQ安装说明文档">
-                        <span class="hidden-mobile">RabbitMQ安装说明文档</span>
+                      <a href="/Hexo.github.io/2022/04/11/spring+boot/02-SpringBoot%E9%AB%98%E7%BA%A7/" title="SpringBoot高级">
+                        <span class="hidden-mobile">SpringBoot高级</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -945,8 +945,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/Hexo/js/events.js" ></script>
-<script  src="/Hexo/js/plugins.js" ></script>
+<script  src="/Hexo.github.io/js/events.js" ></script>
+<script  src="/Hexo.github.io/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -985,7 +985,7 @@
 
 
   
-    <script  src="/Hexo/js/img-lazyload.js" ></script>
+    <script  src="/Hexo.github.io/js/img-lazyload.js" ></script>
   
 
 
@@ -1122,7 +1122,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/Hexo/js/local-search.js" ></script>
+  <script  src="/Hexo.github.io/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -1132,7 +1132,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/Hexo/js/boot.js" ></script>
+<script  src="/Hexo.github.io/js/boot.js" ></script>
 
 
   
@@ -1140,5 +1140,5 @@
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<script src="/Hexo/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+<script src="/Hexo.github.io/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo.github.io/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
 </html>

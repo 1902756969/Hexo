@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo/img/csdn.png">
-  <link rel="icon" href="/Hexo/img/csdn.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo.github.io/img/csdn.png">
+  <link rel="icon" href="/Hexo.github.io/img/csdn.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,7 +19,7 @@
     <meta name="description" content="1.网络编程入门1.1 网络编程概述【理解】 计算机网络 是指将地理位置不同的具有独立功能的多台计算机及其外部设备，通过通信线路连接起来，在网络操作系统，网络管理软件及网络通信协议的管理和协调下，实现资源共享和信息传递的计算机系统  网络编程 在网络通信协议下，不同计算机上运行的程序，可以进行数据传输   1.2 网络编程三要素【理解】 IP地址 要想让网络中的计算机能够互相通信，必须为每台计算机">
 <meta property="og:type" content="article">
 <meta property="og:title" content="网络编程01">
-<meta property="og:url" content="https://1902756969.github.io/Hexo/2021/04/06/java%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B01/index.html">
+<meta property="og:url" content="https://1902756969.github.io/Hexo.github.io/2021/04/06/java%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B01/index.html">
 <meta property="og:site_name" content="阿星的博客">
 <meta property="og:description" content="1.网络编程入门1.1 网络编程概述【理解】 计算机网络 是指将地理位置不同的具有独立功能的多台计算机及其外部设备，通过通信线路连接起来，在网络操作系统，网络管理软件及网络通信协议的管理和协调下，实现资源共享和信息传递的计算机系统  网络编程 在网络通信协议下，不同计算机上运行的程序，可以进行数据传输   1.2 网络编程三要素【理解】 IP地址 要想让网络中的计算机能够互相通信，必须为每台计算机">
 <meta property="og:locale" content="zh_CN">
@@ -56,12 +56,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/Hexo/css/main.css" />
+<link  rel="stylesheet" href="/Hexo.github.io/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/Hexo/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/Hexo.github.io/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo.github.io/css/highlight-dark.css" />
   
 
 
@@ -70,15 +70,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo.github.io/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo.github.io/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/Hexo/js/utils.js" ></script>
-  <script  src="/Hexo/js/color-schema.js" ></script>
+  <script  src="/Hexo.github.io/js/utils.js" ></script>
+  <script  src="/Hexo.github.io/js/color-schema.js" ></script>
 
   
 <meta name="generator" content="Hexo 6.0.0"></head>
@@ -93,7 +93,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/Hexo/">
+    <a class="navbar-brand" href="/Hexo.github.io/">
       <strong>🐛 ZhaFi人</strong>
     </a>
 
@@ -112,7 +112,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/">
+              <a class="nav-link" href="/Hexo.github.io/">
                 <i class="iconfont icon-home-fill"></i>
                 首页
               </a>
@@ -124,7 +124,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/archives/">
+              <a class="nav-link" href="/Hexo.github.io/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 归档
               </a>
@@ -136,7 +136,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/categories/">
+              <a class="nav-link" href="/Hexo.github.io/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 分类
               </a>
@@ -148,7 +148,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/tags/">
+              <a class="nav-link" href="/Hexo.github.io/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 标签
               </a>
@@ -160,7 +160,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/about/">
+              <a class="nav-link" href="/Hexo.github.io/about/">
                 <i class="iconfont icon-user-fill"></i>
                 关于
               </a>
@@ -172,7 +172,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/links/">
+              <a class="nav-link" href="/Hexo.github.io/links/">
                 <i class="iconfont icon-link-fill"></i>
                 友链
               </a>
@@ -201,7 +201,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/Hexo/img/bg5.png') no-repeat center center; background-size: cover;">
+     style="background: url('/Hexo.github.io/img/bg5.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -663,10 +663,10 @@
 <li><p>三次握手和四次挥手</p>
 <ul>
 <li><p>三次握手</p>
-<p><img src="https://pic.imgdb.cn/item/623e9bf427f86abb2aee4ee6.png" srcset="/Hexo/img/loading.gif" lazyload alt="07_TCP三次握手"></p>
+<p><img src="https://pic.imgdb.cn/item/623e9bf427f86abb2aee4ee6.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="07_TCP三次握手"></p>
 </li>
 <li><p>四次挥手</p>
-<p><img src="https://pic.imgdb.cn/item/623e9bf427f86abb2aee4f59.png" srcset="/Hexo/img/loading.gif" lazyload alt="08_TCP四次挥手"></p>
+<p><img src="https://pic.imgdb.cn/item/623e9bf427f86abb2aee4f59.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="08_TCP四次挥手"></p>
 </li>
 </ul>
 </li>
@@ -804,7 +804,7 @@
 </li>
 <li><p>选择器</p>
 <p>监视通道状态</p>
-<p><img src="https://pic.imgdb.cn/item/623e9bf427f86abb2aee5019.png" srcset="/Hexo/img/loading.gif" lazyload alt="09_三大模块"></p>
+<p><img src="https://pic.imgdb.cn/item/623e9bf427f86abb2aee5019.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="09_三大模块"></p>
 </li>
 </ul>
 <h3 id="4-4NIO创建缓冲区对象【应用】"><a href="#4-4NIO创建缓冲区对象【应用】" class="headerlink" title="4.4NIO创建缓冲区对象【应用】"></a>4.4NIO创建缓冲区对象【应用】</h3><ul>
@@ -831,7 +831,7 @@
 </ul>
 <h3 id="4-5NIO缓冲区添加数据【应用】"><a href="#4-5NIO缓冲区添加数据【应用】" class="headerlink" title="4.5NIO缓冲区添加数据【应用】"></a>4.5NIO缓冲区添加数据【应用】</h3><ul>
 <li><p>方法介绍</p>
-<p><img src="https://pic.imgdb.cn/item/623e9bf427f86abb2aee503f.png" srcset="/Hexo/img/loading.gif" lazyload alt="10_NIO缓冲区添加数据"></p>
+<p><img src="https://pic.imgdb.cn/item/623e9bf427f86abb2aee503f.png" srcset="/Hexo.github.io/img/loading.gif" lazyload alt="10_NIO缓冲区添加数据"></p>
 </li>
 <li><p>代码示例</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ByteBufferDemo2</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br><span class="hljs-comment">//        int position()		  当前要操作的索引</span><br><span class="hljs-comment">//        int limit() 		  最多能操作到哪个索引</span><br><span class="hljs-comment">//        int capacity()		  缓冲区的总长度</span><br>        <span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">byteBuffer</span> <span class="hljs-operator">=</span> ByteBuffer.allocate(<span class="hljs-number">10</span>);<br>        System.out.println(byteBuffer.position());<span class="hljs-comment">//0</span><br>        System.out.println(byteBuffer.limit());<span class="hljs-comment">//10</span><br>        System.out.println(byteBuffer.capacity());<span class="hljs-comment">//10</span><br><br><span class="hljs-comment">//        put(byte b)		  一次添加一个字节</span><br><span class="hljs-comment">//        byteBuffer.put((byte) 97);</span><br><span class="hljs-comment">//        System.out.println(byteBuffer.position());</span><br><span class="hljs-comment">//        System.out.println(byteBuffer.limit());</span><br><span class="hljs-comment">//        System.out.println(byteBuffer.capacity());</span><br><br><span class="hljs-comment">//        put(byte[] src)		 一次添加一个字节数组</span><br><span class="hljs-comment">//        byteBuffer.put(&quot;aaa&quot;.getBytes());</span><br><span class="hljs-comment">//        System.out.println(byteBuffer.position());//3</span><br><span class="hljs-comment">//        System.out.println(byteBuffer.limit());//10</span><br><span class="hljs-comment">//        System.out.println(byteBuffer.capacity());//10</span><br><br><span class="hljs-comment">//        position(int newPosition) 修改position</span><br><span class="hljs-comment">//        byteBuffer.position(1);</span><br><br><span class="hljs-comment">//        limit(int newLimit)	  修改limit</span><br><span class="hljs-comment">//        byteBuffer.limit(5);</span><br><span class="hljs-comment">//        System.out.println(byteBuffer.position());</span><br><span class="hljs-comment">//        System.out.println(byteBuffer.limit());</span><br><span class="hljs-comment">//        System.out.println(byteBuffer.capacity());</span><br><br><span class="hljs-comment">//        int remaining()		  还有多少能操作</span><br><span class="hljs-comment">//        boolean hasRemaining()	  是否还有能操作的</span><br><br>        byteBuffer.put(<span class="hljs-string">&quot;0123456789&quot;</span>.getBytes());<br>        System.out.println(byteBuffer.remaining());<br>        System.out.println(byteBuffer.hasRemaining());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
@@ -910,7 +910,7 @@
     
       <span class="category-chain">
         
-  <a href="/Hexo/categories/java%E5%9F%BA%E7%A1%80%F0%9F%90%B1%E2%80%8D%F0%9F%91%A4/" class="category-chain-item">java基础🐱‍👤</a>
+  <a href="/Hexo.github.io/categories/java%E5%9F%BA%E7%A1%80%F0%9F%90%B1%E2%80%8D%F0%9F%91%A4/" class="category-chain-item">java基础🐱‍👤</a>
   
   
 
@@ -925,7 +925,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/Hexo/tags/Java%E5%9F%BA%E7%A1%80/">#Java基础</a>
+        <a href="/Hexo.github.io/tags/Java%E5%9F%BA%E7%A1%80/">#Java基础</a>
       
     </div>
   
@@ -938,7 +938,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>网络编程01</div>
-      <div>https://1902756969.github.io/Hexo/2021/04/06/java基础/网络编程01/</div>
+      <div>https://1902756969.github.io/Hexo.github.io/2021/04/06/java基础/网络编程01/</div>
     </div>
     <div class="license-meta">
       
@@ -980,7 +980,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/Hexo/2021/04/08/java%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B02/" title="网络编程_2">
+                      <a href="/Hexo.github.io/2021/04/08/java%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B02/" title="网络编程_2">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">网络编程_2</span>
                         <span class="visible-mobile">上一篇</span>
@@ -990,7 +990,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/Hexo/2021/04/01/sql/MySql%E9%9D%A2%E8%AF%95%E9%A2%98/" title="Mysql面试题">
+                      <a href="/Hexo.github.io/2021/04/01/sql/MySql%E9%9D%A2%E8%AF%95%E9%A2%98/" title="Mysql面试题">
                         <span class="hidden-mobile">Mysql面试题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -1140,8 +1140,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/Hexo/js/events.js" ></script>
-<script  src="/Hexo/js/plugins.js" ></script>
+<script  src="/Hexo.github.io/js/events.js" ></script>
+<script  src="/Hexo.github.io/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -1180,7 +1180,7 @@
 
 
   
-    <script  src="/Hexo/js/img-lazyload.js" ></script>
+    <script  src="/Hexo.github.io/js/img-lazyload.js" ></script>
   
 
 
@@ -1317,7 +1317,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/Hexo/js/local-search.js" ></script>
+  <script  src="/Hexo.github.io/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -1327,7 +1327,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/Hexo/js/boot.js" ></script>
+<script  src="/Hexo.github.io/js/boot.js" ></script>
 
 
   
@@ -1335,5 +1335,5 @@
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<script src="/Hexo/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+<script src="/Hexo.github.io/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo.github.io/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
 </html>

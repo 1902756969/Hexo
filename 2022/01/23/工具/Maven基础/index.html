@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo/img/csdn.png">
-  <link rel="icon" href="/Hexo/img/csdn.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo.github.io/img/csdn.png">
+  <link rel="icon" href="/Hexo.github.io/img/csdn.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,7 +19,7 @@
     <meta name="description" content="Maven基础学习目标目标1：能够说出maven的作用，POM的概念 目标2：完成maven的下载，安装和环境配置 目标3：能够说出仓库，坐标的概念，完成仓库的配置 目标4：完成手动搭建maven项目的案例 目标5：完成IDEA工具搭建maven项目的案例 目标6：能够说出依赖的传递方式和如何解决依赖传递冲突 目标7：能够说出maven的生命周期 1.Maven简介1.1 Maven是什么在学">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Maven基础">
-<meta property="og:url" content="https://1902756969.github.io/Hexo/2022/01/23/%E5%B7%A5%E5%85%B7/Maven%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:url" content="https://1902756969.github.io/Hexo.github.io/2022/01/23/%E5%B7%A5%E5%85%B7/Maven%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="阿星的博客">
 <meta property="og:description" content="Maven基础学习目标目标1：能够说出maven的作用，POM的概念 目标2：完成maven的下载，安装和环境配置 目标3：能够说出仓库，坐标的概念，完成仓库的配置 目标4：完成手动搭建maven项目的案例 目标5：完成IDEA工具搭建maven项目的案例 目标6：能够说出依赖的传递方式和如何解决依赖传递冲突 目标7：能够说出maven的生命周期 1.Maven简介1.1 Maven是什么在学">
 <meta property="og:locale" content="zh_CN">
@@ -56,12 +56,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/Hexo/css/main.css" />
+<link  rel="stylesheet" href="/Hexo.github.io/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/Hexo/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/Hexo.github.io/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/Hexo.github.io/css/highlight-dark.css" />
   
 
 
@@ -70,15 +70,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo.github.io/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo.github.io/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/Hexo/js/utils.js" ></script>
-  <script  src="/Hexo/js/color-schema.js" ></script>
+  <script  src="/Hexo.github.io/js/utils.js" ></script>
+  <script  src="/Hexo.github.io/js/color-schema.js" ></script>
 
   
 <meta name="generator" content="Hexo 6.0.0"></head>
@@ -93,7 +93,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/Hexo/">
+    <a class="navbar-brand" href="/Hexo.github.io/">
       <strong>🐛 ZhaFi人</strong>
     </a>
 
@@ -112,7 +112,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/">
+              <a class="nav-link" href="/Hexo.github.io/">
                 <i class="iconfont icon-home-fill"></i>
                 首页
               </a>
@@ -124,7 +124,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/archives/">
+              <a class="nav-link" href="/Hexo.github.io/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 归档
               </a>
@@ -136,7 +136,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/categories/">
+              <a class="nav-link" href="/Hexo.github.io/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 分类
               </a>
@@ -148,7 +148,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/tags/">
+              <a class="nav-link" href="/Hexo.github.io/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 标签
               </a>
@@ -160,7 +160,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/about/">
+              <a class="nav-link" href="/Hexo.github.io/about/">
                 <i class="iconfont icon-user-fill"></i>
                 关于
               </a>
@@ -172,7 +172,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/Hexo/links/">
+              <a class="nav-link" href="/Hexo.github.io/links/">
                 <i class="iconfont icon-link-fill"></i>
                 友链
               </a>
@@ -201,7 +201,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/Hexo/img/bg5.png') no-repeat center center; background-size: cover;">
+     style="background: url('/Hexo.github.io/img/bg5.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -306,7 +306,7 @@
 <p>目标6：能够说出依赖的传递方式和如何解决依赖传递冲突</p>
 <p>目标7：能够说出maven的生命周期</p>
 <h2 id="1-Maven简介"><a href="#1-Maven简介" class="headerlink" title="1.Maven简介"></a>1.Maven简介</h2><h3 id="1-1-Maven是什么"><a href="#1-1-Maven是什么" class="headerlink" title="1.1 Maven是什么"></a>1.1 Maven是什么</h3><p>在学习Maven之前，我们先来看一下我们现在做的项目都有哪些问题。假设你现在做了一个crm的系统，项目中肯定要用到一些jar包，比如说mybatis，log4j，JUnit等，除了这些之外，你有可能用到你的同事开发的其他的东西，比如说别人做了一个财务模块或做了一个结算的模块，你在这里边有可能要用到这些东西。</p>
-<p><img src="https://i0.hdslb.com/bfs/album/748bd6869a1a6fddf1fcb7d3c3b4af254ed6d9ad.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/748bd6869a1a6fddf1fcb7d3c3b4af254ed6d9ad.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>假如有一天你们的项目中mybatis进行了一个升级，但是它内部使用的JUnit没有升级，你升级以后的mybatis假如要用5.0的JUnit，而你项目中目前用的是4.0的，会不会冲突？必然会出问题！这个时候管理起来会比较麻烦，你需要各种调整。更有甚者，假如同事做的这些东西升级了但又没有通知你，这个时候，就会出现几种严重的问题：</p>
 <p>（1）jar包不统一，jar不兼容</p>
 <p>（2）工程升级维护过程操作繁琐</p>
@@ -314,7 +314,7 @@
 <p>那<strong>Maven是什么</strong>？</p>
 <p>​    <strong>Maven的本质是一个项目管理工具，将项目开发和管理过程抽象成一个项目对象模型（POM）</strong></p>
 <p>Maven是用Java语言编写的。他管理的东西统统以面向对象的形式进行设计，最终他把一个项目看成一个对象，而这个对象叫做POM(project  object model)，即项目对象模型</p>
-<p><img src="https://i0.hdslb.com/bfs/album/a140c2f4736945f0c84be8b79b884bb34bc3309c.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/a140c2f4736945f0c84be8b79b884bb34bc3309c.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>我们说一个项目就是一个对象，作为对象的行为、对象的属性都有哪些呢？</p>
 <p>Maven说我们需要编写一个pom.xml文件，Maven通过加载这个配置文件就可以知道我们项目的相关信息了！到这里我们知道了Maven离不开一个叫pom.xml的文件。因为这个文件代表就一个项目。</p>
 <blockquote>
@@ -329,7 +329,7 @@
 <p>（1）项目构建：提供标准的，跨平台的自动化构建项目的方式</p>
 <p>（2）依赖管理：方便快捷的管理项目依赖的资源（jar包），避免资源间的版本冲突等问题</p>
 <p>（3）统一开发结构：提供标准的，统一的项目开发结构，如下图所示：</p>
-<p><img src="https://i0.hdslb.com/bfs/album/bcbc541488ed7a1a8d6f05611c171ecfdd64cff6.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/bcbc541488ed7a1a8d6f05611c171ecfdd64cff6.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>各目录存放资源类型说明：</p>
 <p><strong>src&#x2F;main&#x2F;java</strong>：项目java源码</p>
 <p><strong>src&#x2F;main&#x2F;resources</strong>：项目的相关配置文件（比如mybatis配置，xml映射配置，自定义配置文件等）</p>
@@ -339,12 +339,12 @@
 <p>src&#x2F;pom.xml：项目pom文件</p>
 <h2 id="2-Maven环境搭建"><a href="#2-Maven环境搭建" class="headerlink" title="2.Maven环境搭建"></a>2.Maven环境搭建</h2><p>maven的官网：<a target="_blank" rel="noopener" href="http://maven.apache.org/">http://maven.apache.org/</a></p>
 <h3 id="2-1-下载"><a href="#2-1-下载" class="headerlink" title="2.1 下载"></a>2.1 下载</h3><p>官方下载地址：<a target="_blank" rel="noopener" href="http://maven.apache.org/download.cgi">http://maven.apache.org/download.cgi</a></p>
-<p><img src="https://i0.hdslb.com/bfs/album/890890eeac17241cf3276c1939e47988991dfb71.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/890890eeac17241cf3276c1939e47988991dfb71.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>在今日课程资料<code>安装程序</code>中给大家提供了已经下载好的包，我们可以直接使用</p>
 <h3 id="2-2-安装"><a href="#2-2-安装" class="headerlink" title="2.2 安装"></a>2.2 安装</h3><p>maven是一个绿色软件，解压即安装，非常容易，</p>
 <p>我们找到今日课程资料中的<code>安装程序</code>，将里面的<code>apache-maven-3.6.1-bin.zip</code>直接解压到D盘根目录下即可</p>
 <p>解压完成后我们可以查看一下maven自己的一个目录结构如下</p>
-<p><img src="https://i0.hdslb.com/bfs/album/28af01067376dd1948a1492b586c1882ee9c0e03.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/28af01067376dd1948a1492b586c1882ee9c0e03.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>各目录结构说明：</p>
 <p>bin：可执行程序目录，</p>
 <p>boot：maven自身的启动加载器</p>
@@ -353,15 +353,15 @@
 <h3 id="2-3-环境配置"><a href="#2-3-环境配置" class="headerlink" title="2.3 环境配置"></a>2.3 环境配置</h3><p>maven的运行需要java的环境，需要我们配置<code>JAVA_HOME</code>环境变量，这个相信大家已经存在了</p>
 <p>下面在去配置<code>MAVEN_HOME</code>的环境变量</p>
 <p>1：<code>我的电脑</code>——–&gt;<code>属性</code>———&gt;<code>高级系统设置</code>———-&gt;<code>新建系统变量MAVEN_HOME</code>，</p>
-<p><img src="https://i0.hdslb.com/bfs/album/cd8473234810706783c64436bb08fb89e001d369.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/cd8473234810706783c64436bb08fb89e001d369.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>系统变量值就是maven软件的根目录，我们刚刚已经将maven解压到D盘了，因此变量值就如图中所示</p>
 <p>2：环境变量配置好之后需要测试环境配置结果，我们需要在DOS命令窗口下输入以下命令查看输出</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">mvn -v<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://i0.hdslb.com/bfs/album/c598755bb6c3a8185bc8970e317db7ea8884fb10.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/c598755bb6c3a8185bc8970e317db7ea8884fb10.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>如果能够看到输出的maven的版本信息代表配置成功</p>
 <h2 id="3-Maven基础概念"><a href="#3-Maven基础概念" class="headerlink" title="3.Maven基础概念"></a>3.Maven基础概念</h2><h3 id="3-1-仓库"><a href="#3-1-仓库" class="headerlink" title="3.1 仓库"></a>3.1 仓库</h3><p>仓库：用于存储资源，主要是各种jar包</p>
-<p><img src="https://i0.hdslb.com/bfs/album/efbb58ca56498da68b06933a2a8a9b3d085322cf.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/efbb58ca56498da68b06933a2a8a9b3d085322cf.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>关于仓库，我们前面讲到了有三种：本地仓库，私服，中央仓库，其中私服和中央仓库都属于远程仓库</p>
 <p><strong>中央仓库</strong>：maven团队自身维护的仓库，属于开源的</p>
 <p><strong>私服</strong>：各公司&#x2F;部门等小范围内存储资源的仓库，私服也可以从中央仓库获取资源</p>
@@ -386,11 +386,11 @@
 <p>如果要查询maven某一个资源的坐标，我们通常可以去maven的仓库进行查询，</p>
 <p><a target="_blank" rel="noopener" href="https://mvnrepository.com/">https://mvnrepository.com/</a>，在该网站中可直接搜索想要的资源，然后就能得到该资源的坐标</p>
 <p>输入资源名称进行检索</p>
-<p><img src="https://i0.hdslb.com/bfs/album/e27407f6b17db73d931538e116094c9eb1794269.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/e27407f6b17db73d931538e116094c9eb1794269.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>点击你想要的资源进行查看</p>
-<p><img src="https://i0.hdslb.com/bfs/album/33351a66e39f7705db74f7933ef46ccff26b10a4.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/33351a66e39f7705db74f7933ef46ccff26b10a4.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>选择版本查看坐标</p>
-<p><img src="https://i0.hdslb.com/bfs/album/1e9294d2a99a8dd6101e3164d67c8726c008b437.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/1e9294d2a99a8dd6101e3164d67c8726c008b437.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p><strong>maven坐标的作用：</strong></p>
 <p>使用唯一标识，唯一性定义资源位置，通过该标识可以将资源的识别与下载工作交由机器完成。</p>
 <h3 id="3-3-仓库配置"><a href="#3-3-仓库配置" class="headerlink" title="3.3 仓库配置"></a>3.3 仓库配置</h3><p>开发者要在自己电脑上做开发，首先要做的就是配置本地仓库</p>
@@ -406,15 +406,15 @@
 
 <p>如果是局部用户配置：在仓库的同级目录也可以包含一个<code>settings.xml</code>配置文件，在里面也可以进行指定</p>
 <p>注意：局部用户配置优先与全局配置（遇见相同配置项的时候）</p>
-<p><img src="https://i0.hdslb.com/bfs/album/8a669a3242f4fa0478e907c910700eeca75307b9.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/8a669a3242f4fa0478e907c910700eeca75307b9.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>另外大家需要注意：maven默认连接的远程仓库位置是：（即中央仓库）</p>
-<p><img src="/Hexo/./img/18.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="/Hexo.github.io/./img/18.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>此站点并不在国内，因此有时候下载速度非常慢，因此我们可以配置一个国内站点镜像，可用于加速下载资源</p>
 <p>我们在<code>conf/settings.xml</code>配置文件中找到<code>&lt;mirrors&gt;</code>标签，在这组标签下添加镜像的配置，如下</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">mirror</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>nexus-aliyun<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">mirrorOf</span>&gt;</span>central<span class="hljs-tag">&lt;/<span class="hljs-name">mirrorOf</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>Nexus aliyun<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public<span class="hljs-tag">&lt;/<span class="hljs-name">url</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">mirror</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="4-Maven项目搭建"><a href="#4-Maven项目搭建" class="headerlink" title="4.Maven项目搭建"></a>4.Maven项目搭建</h2><p>我们回顾一下maven规范的目录结构：</p>
-<p><img src="https://i0.hdslb.com/bfs/album/70fd5fcd3a1ac1cfbc67c778c63a8d8d8e936337.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/70fd5fcd3a1ac1cfbc67c778c63a8d8d8e936337.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <h3 id="4-1-手动搭建maven项目"><a href="#4-1-手动搭建maven项目" class="headerlink" title="4.1 手动搭建maven项目"></a>4.1 手动搭建maven项目</h3><p>我们先使用手动的方式来创建maven项目</p>
 <p>（1）在D盘下创建目录<code>mvnproject</code>并进入该目录，作为我们的操作目录</p>
 <p>（2）创建我们的maven项目，创建一个目录<code>project-java</code>作为我们的项目文件夹，并进入到该目录</p>
@@ -442,49 +442,49 @@
 <p><code>mvn install</code>：安装到本地仓库</p>
 <p>下面我们来进行操作：</p>
 <p>（1）在项目<code>project-java</code>所在的DOS命令窗口下执行<code>mvn compile</code>进行源码编译，当然首次执行需要先下载相关插件</p>
-<p><img src="https://i0.hdslb.com/bfs/album/a0a1a61709e9b69d06c37b9be62688aaf612839e.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/a0a1a61709e9b69d06c37b9be62688aaf612839e.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>编辑结果如下：</p>
-<p><img src="https://i0.hdslb.com/bfs/album/5a410fbd5e27a1c342b114f6db9ebc364844d05f.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/5a410fbd5e27a1c342b114f6db9ebc364844d05f.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>编译完成后在项目<code>project-java</code>下多了一个目录<code>target</code>，在这个目录下就存放的是maven编译好的一些东西</p>
-<p><img src="https://i0.hdslb.com/bfs/album/e699538c69bf8c60857911d4181bfdd37c7156e9.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/e699538c69bf8c60857911d4181bfdd37c7156e9.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>我们可以进入到<code>target</code>目录查看</p>
-<p><img src="https://i0.hdslb.com/bfs/album/fbdacd02a339c1011584c7ad1818eb08938b4106.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/fbdacd02a339c1011584c7ad1818eb08938b4106.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>其中生成的<code>classes</code>目录就是编译好的字节码文件</p>
 <p>（2）当然如果我们想清理掉这些东西，我们只需执行<code>mvn clean</code>命令即可，清理掉后<code>target</code>目录也就消失了</p>
 <p>（3）如果我们要执行测试包中的测试程序，我们只需执行<code>mvn test</code>命令即可</p>
-<p><img src="https://i0.hdslb.com/bfs/album/595e41dc042cd691bfe258dc4a943c0b37904516.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/595e41dc042cd691bfe258dc4a943c0b37904516.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>此时在看<code>target</code>目录会多一些东西</p>
-<p><img src="https://i0.hdslb.com/bfs/album/e61db5051ce3ba7661ec4a64f1bed19dc91ada6c.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/e61db5051ce3ba7661ec4a64f1bed19dc91ada6c.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>其中产生的<code>test-classes</code>就是测试代码的字节码文件，<code>surefire-reports</code>是它产生的测试报告</p>
-<p><img src="https://i0.hdslb.com/bfs/album/993129cb53466a2d9529c5ad1ec838cf133cf025.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/993129cb53466a2d9529c5ad1ec838cf133cf025.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>（4）使用<code>mvn package</code>命令进行打包，如下</p>
-<p><img src="https://i0.hdslb.com/bfs/album/82d2678571ecb4a4a3bae24fb47581ba0ed8205a.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/82d2678571ecb4a4a3bae24fb47581ba0ed8205a.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>在生成的<code>target</code>目录中可以看到打包的结果</p>
-<p><img src="https://i0.hdslb.com/bfs/album/ae8a79ce54e9179a2a97be63aabb4c942379eae4.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/ae8a79ce54e9179a2a97be63aabb4c942379eae4.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>当然，如果仔细看DOS窗口输出的我们会发现，<code>mvn package</code>命令的时候maven会把前面两个命令<code>mvn compile,mvn test</code>都执行一遍</p>
 <p>（5）使用<code>mvn install</code>命令进行安装，将项目打好的包存入本地仓库</p>
-<p><img src="https://i0.hdslb.com/bfs/album/7093dbf38e13983499e2e95683f26ae7af620fff.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/7093dbf38e13983499e2e95683f26ae7af620fff.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <blockquote>
 <p>仔细查看输出会发现<code>mvn install</code>命令执行的时候也会将前面的命令都执行一遍</p>
 </blockquote>
 <p>此时我们可以去本地仓库中查找，如何查找？这个很重要</p>
 <p>maven是按照<code>groupId/artifactId/version</code>的结构在本地仓库进行存储</p>
-<p><img src="https://i0.hdslb.com/bfs/album/cd365bd8f65b4bda45f8fd13013b1d9e33ee484d.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/cd365bd8f65b4bda45f8fd13013b1d9e33ee484d.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>前面我们是通过手动的方式创建的maven项目，相对来说比较的麻烦，maven本身也是这样觉得的，因此maven本身就给我们提供了相关的插件来帮助我们快速构建项目，当然这是一些命令：</p>
-<p><img src="https://i0.hdslb.com/bfs/album/b55b6e0a3107add2cef229e570a142d3478a940f.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/b55b6e0a3107add2cef229e570a142d3478a940f.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>这些命令不用记，因为实际操作的时候也用不着，因为实际开发的时候我们基本都是用过一些IDE工具来进行项目开发，这些IDE工具基本都集成了Maven，我们操作起来非常简单。</p>
 <h3 id="4-2-IDEA工具搭建maven项目"><a href="#4-2-IDEA工具搭建maven项目" class="headerlink" title="4.2 IDEA工具搭建maven项目"></a>4.2 IDEA工具搭建maven项目</h3><p>前面学习的基本都是通过命令来构建和管理项目，但是这在实际开发过程中基本不常用，常用的是通过相关IDE工具来进行项目的构建和管理，因此我们使用IDEA工具进行maven项目的搭建</p>
 <p>需要注意的是：Maven和IDEA在版本上存在一些兼容性问题，因为要合理的选择Maven和IDEA的版本，本课程中提供安装maven-3.6.1版本是可用的</p>
 <h4 id="4-2-1-不使用原型创建项目"><a href="#4-2-1-不使用原型创建项目" class="headerlink" title="4.2.1 不使用原型创建项目"></a>4.2.1 不使用原型创建项目</h4><p>（1）在IDEA中配置Maven</p>
-<p><img src="https://i0.hdslb.com/bfs/album/69fd36419387cc1001b4450ff927ec27d8053eea.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/69fd36419387cc1001b4450ff927ec27d8053eea.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>（2）创建maven工程</p>
-<p><img src="https://i0.hdslb.com/bfs/album/d9ea4f8a7903430bc2068124dddb5e8c60aac081.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/d9ea4f8a7903430bc2068124dddb5e8c60aac081.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>（3）填写本项目的坐标</p>
-<p><img src="https://i0.hdslb.com/bfs/album/105442a0a723d100f24a3c41a2165802522febd9.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/105442a0a723d100f24a3c41a2165802522febd9.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>（4）查看各目录颜色标记是否正确</p>
-<p><img src="https://i0.hdslb.com/bfs/album/f8d9276aaf8c697df1b9308b271291630aba5344.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/f8d9276aaf8c697df1b9308b271291630aba5344.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>（5）IDEA右侧有一个maven管理界面，可点开查看</p>
-<p><img src="https://i0.hdslb.com/bfs/album/1492ae45302010725c2ab91d332ecdc67d647b90.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/1492ae45302010725c2ab91d332ecdc67d647b90.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>（6）在项目的pom.xml文件中添加项目资源依赖</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>4.12<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
@@ -494,21 +494,21 @@
 <p>（8）创建测试代码：com.itheima.DemoTest</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.itheima;<br><br><span class="hljs-keyword">import</span> org.junit.Assert;<br><span class="hljs-keyword">import</span> org.junit.Test;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Created by 传智播客*黑马程序员.</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DemoTest</span>&#123;<br><br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testSay</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-type">Demo</span> <span class="hljs-variable">d</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Demo</span>();<br>        <span class="hljs-type">String</span> <span class="hljs-variable">ret</span> <span class="hljs-operator">=</span> d.say(<span class="hljs-string">&quot;maven&quot;</span>);<br>        Assert.assertEquals(<span class="hljs-string">&quot;hello maven&quot;</span>,ret);<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://i0.hdslb.com/bfs/album/1e06b3815d1e3f171702401a979059e0a30db4f4.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/1e06b3815d1e3f171702401a979059e0a30db4f4.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>然后可以进行测试运行</p>
 <p>运行的时候可以编辑运行模板：</p>
-<p><img src="https://i0.hdslb.com/bfs/album/87a66b294f94ca0de64407980131b6bada5e93ef.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/87a66b294f94ca0de64407980131b6bada5e93ef.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>然后点击运行：</p>
-<p><img src="https://i0.hdslb.com/bfs/album/560753bc49b2da94b07a753cb17bd87e136f6a27.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/560753bc49b2da94b07a753cb17bd87e136f6a27.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <h4 id="4-2-2-使用原型创建项目"><a href="#4-2-2-使用原型创建项目" class="headerlink" title="4.2.2 使用原型创建项目"></a>4.2.2 使用原型创建项目</h4><ul>
 <li>首先我们来看普通的java工程如何创建：</li>
 </ul>
 <p>（1）创建maven项目的时候选择使用原型骨架</p>
-<p><img src="https://i0.hdslb.com/bfs/album/b5c8b97c5e438a5cae0a583a4a4a23388af76f8c.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/b5c8b97c5e438a5cae0a583a4a4a23388af76f8c.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>（2）创建完成后发现通过这种方式缺少一些目录，如下图</p>
-<p><img src="https://i0.hdslb.com/bfs/album/c32e00b253ae90f2b98cf33046cd0f3db4ec922d.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/c32e00b253ae90f2b98cf33046cd0f3db4ec922d.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p><strong>我们需要手动去补全目录，并且要对补全的目录进行标记，切记</strong></p>
-<p><img src="https://i0.hdslb.com/bfs/album/837bec53d9b166d46dfa7049f004e57fbf3f7414.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/837bec53d9b166d46dfa7049f004e57fbf3f7414.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <ul>
 <li>然后我们在来看web工程如何创建：</li>
 </ul>
@@ -516,39 +516,39 @@
 <blockquote>
 <p>有很多的webapp原型骨架，选择哪个基本都差不多，包括前面创建普通项目也是一样，quickstart原型也有很多</p>
 </blockquote>
-<p><img src="https://i0.hdslb.com/bfs/album/c908afcc7940f20a5ced37ac247b95b27c9fc0f2.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/c908afcc7940f20a5ced37ac247b95b27c9fc0f2.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>（2）和前面创建普通项目一样，通过原型创建web项目得到的目录结构是不全的，因此需要我们自行补全，同时要标记正确，最终需要得到如下结构</p>
-<p><img src="https://i0.hdslb.com/bfs/album/492a299126e7d608ae2bb24f82ba1bd2daaa77b3.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/492a299126e7d608ae2bb24f82ba1bd2daaa77b3.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>（3）web工程创建好之后需要启动运行，需要使用一个tomcat插件来运行我们的项目，在<code>pom.xml</code>中添加插件的坐标即可，最终改好的<code>pom.xml</code>如下</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">project</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">modelVersion</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">modelVersion</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.itheima<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>web01<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">packaging</span>&gt;</span>war<span class="hljs-tag">&lt;/<span class="hljs-name">packaging</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>web01 Maven Webapp<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">url</span>&gt;</span>http://www.example.com<span class="hljs-tag">&lt;/<span class="hljs-name">url</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="hljs-tag">&lt;/<span class="hljs-name">project.build.sourceEncoding</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">maven.compiler.source</span>&gt;</span>1.8<span class="hljs-tag">&lt;/<span class="hljs-name">maven.compiler.source</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">maven.compiler.target</span>&gt;</span>1.8<span class="hljs-tag">&lt;/<span class="hljs-name">maven.compiler.target</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>4.12<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">build</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">finalName</span>&gt;</span>web01<span class="hljs-tag">&lt;/<span class="hljs-name">finalName</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">plugins</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">plugin</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.tomcat.maven<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>tomcat7-maven-plugin<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">plugins</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">build</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>（4）插件配置好后，在IDEA右侧<code>maven-project</code>操作面板上可以看到该插件，并且可以利用该插件启动项目</p>
-<p><img src="https://i0.hdslb.com/bfs/album/ce3296736cf33325fc71c5357358772f4ae672f2.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/ce3296736cf33325fc71c5357358772f4ae672f2.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>运行后该插件会给我们一个可运行地址：</p>
-<p><img src="https://i0.hdslb.com/bfs/album/d4077c655ea8d84d5b2888810fd781aec1c85285.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/d4077c655ea8d84d5b2888810fd781aec1c85285.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>如果我们想更换端口，只需要在<code>pom.xml</code>中配置该插件即可</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">plugins</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">plugin</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.tomcat.maven<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>tomcat7-maven-plugin<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">port</span>&gt;</span>80<span class="hljs-tag">&lt;/<span class="hljs-name">port</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>（5）同时为了运行方便我们也可以创建运行模板：</p>
-<p><img src="https://i0.hdslb.com/bfs/album/9a5895021e62372c78168a105b4c3c89632a9994.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/9a5895021e62372c78168a105b4c3c89632a9994.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <h2 id="5-Maven依赖管理"><a href="#5-Maven依赖管理" class="headerlink" title="5.Maven依赖管理"></a>5.Maven依赖管理</h2><h3 id="5-1-依赖配置与依赖传递"><a href="#5-1-依赖配置与依赖传递" class="headerlink" title="5.1 依赖配置与依赖传递"></a>5.1 依赖配置与依赖传递</h3><p>依赖是指在当前项目中运行所需的jar，依赖配置的格式如下图</p>
-<p><img src="https://i0.hdslb.com/bfs/album/e504e53104b3c858575dc5b59e881bae50d7a48e.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/e504e53104b3c858575dc5b59e881bae50d7a48e.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p><strong>依赖传递：</strong></p>
 <p>依赖具有传递性，分两种</p>
 <p>（1）直接依赖：在当前项目中通过依赖配置建立的依赖关系</p>
 <p>（2）间接依赖：被依赖的资源如果依赖其他资源，则表明当前项目间接依赖其他资源</p>
 <p>注意：直接依赖和间接依赖其实也是一个相对关系</p>
-<p><img src="https://i0.hdslb.com/bfs/album/ff6419d94729cb8f7af7928c467274fd851a05bc.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/ff6419d94729cb8f7af7928c467274fd851a05bc.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p><strong>依赖传递的冲突问题：</strong></p>
 <p>在依赖传递过程中产生了冲突，我们有三种优先法则</p>
 <p>（1）路径优先：当依赖中出现相同资源时，层级越深，优先级越低，反之则越高</p>
 <p>（2）声明优先：当资源在相同层级被依赖时，配置顺序靠前的覆盖靠后的</p>
 <p>（3）特殊优先：当同级配置了相同资源的不同版本时，后配置的覆盖先配置的</p>
-<p><img src="https://i0.hdslb.com/bfs/album/2843ad54853ea84dd66d4f837b6fcb6bd170b683.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/2843ad54853ea84dd66d4f837b6fcb6bd170b683.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p><strong>可选依赖</strong>：</p>
-<p><img src="https://i0.hdslb.com/bfs/album/d4aabf5dda4614804bde8e954fab8af02be84256.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/d4aabf5dda4614804bde8e954fab8af02be84256.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p><strong>排除依赖：</strong></p>
-<p><img src="https://i0.hdslb.com/bfs/album/4fb88a9cded151b532a9f690ac6fe6cd01e07d4f.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/4fb88a9cded151b532a9f690ac6fe6cd01e07d4f.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <h3 id="5-2-依赖范围"><a href="#5-2-依赖范围" class="headerlink" title="5.2 依赖范围"></a>5.2 依赖范围</h3><p>依赖的jar默认情况可以在任何地方可用，可以通过<code>scope</code>标签设定其作用范围</p>
 <p>这里的范围主要是指以下三种范围</p>
 <p>（1）主程序范围有效（src&#x2F;main目录范围内）</p>
@@ -556,12 +556,12 @@
 <p>（3）是否参与打包（package指令范围内）</p>
 <p>此外：<code>scope</code>标签的取值有四种：<code>compile,test,provided,runtime</code></p>
 <p>这四种取值与范围的对应情况如下：</p>
-<p><img src="https://i0.hdslb.com/bfs/album/c6dbba0fbf96d86a7e22b454cc4375dce08931d6.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/c6dbba0fbf96d86a7e22b454cc4375dce08931d6.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p><strong>依赖范围的传递性：</strong></p>
-<p><img src="https://i0.hdslb.com/bfs/album/b69979950ce4f41960f4c04f6bfd2bd61bbbf5d0.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/b69979950ce4f41960f4c04f6bfd2bd61bbbf5d0.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <h2 id="6-Maven生命周期与插件"><a href="#6-Maven生命周期与插件" class="headerlink" title="6.Maven生命周期与插件"></a>6.Maven生命周期与插件</h2><h3 id="6-1-生命周期"><a href="#6-1-生命周期" class="headerlink" title="6.1 生命周期"></a>6.1 生命周期</h3><p>maven的构建生命周期描述的是一次构建过程经历了多少个事件</p>
 <p>比如我们项目最常用的一套流程如下：</p>
-<p><img src="https://i0.hdslb.com/bfs/album/e88fc1943c8a49b32e6f12f07a2f0df567e78d18.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/e88fc1943c8a49b32e6f12f07a2f0df567e78d18.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>当然maven的生命周期不止这一套，总共分为3套，每套里面包含的事件如下</p>
 <p>（1）clean：清理工作</p>
 <blockquote>
@@ -572,7 +572,7 @@
 <p>（2）default：核心工作，例如编译，测试，打包，部署等</p>
 <blockquote>
 <p>这里面的事件非常的多，如下图</p>
-<p><img src="https://i0.hdslb.com/bfs/album/892b2e3f50acb88701103e0a15113e308d65e7a1.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/892b2e3f50acb88701103e0a15113e308d65e7a1.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 </blockquote>
 <p><strong>对于default生命周期，每个事件在执行之前都会将之前的所有事件依次执行一遍</strong></p>
 <p>（3）site：产生报告，发布站点等</p>
@@ -590,7 +590,7 @@
 <li>插件还可以完成一些自定义功能</li>
 </ul>
 <p>插件的配置方式如下：</p>
-<p><img src="https://i0.hdslb.com/bfs/album/d75155efc5730ebdf069c606ef65b96b42d2a116.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p><img src="https://i0.hdslb.com/bfs/album/d75155efc5730ebdf069c606ef65b96b42d2a116.png" srcset="/Hexo.github.io/img/loading.gif" lazyload></p>
 <p>在maven官网中有对插件的介绍：</p>
 <p><a target="_blank" rel="noopener" href="http://maven.apache.org/plugins/index.html">http://maven.apache.org/plugins/index.html</a></p>
 
@@ -610,7 +610,7 @@
     
       <span class="category-chain">
         
-  <a href="/Hexo/categories/Maven/" class="category-chain-item">Maven</a>
+  <a href="/Hexo.github.io/categories/Maven/" class="category-chain-item">Maven</a>
   
   
 
@@ -625,7 +625,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/Hexo/tags/Maven/">#Maven</a>
+        <a href="/Hexo.github.io/tags/Maven/">#Maven</a>
       
     </div>
   
@@ -638,7 +638,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Maven基础</div>
-      <div>https://1902756969.github.io/Hexo/2022/01/23/工具/Maven基础/</div>
+      <div>https://1902756969.github.io/Hexo.github.io/2022/01/23/工具/Maven基础/</div>
     </div>
     <div class="license-meta">
       
@@ -680,9 +680,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/Hexo/2022/01/23/zookeeper/Zookeeper%E5%AE%89%E8%A3%85/" title="zookeeper安装">
+                      <a href="/Hexo.github.io/2022/01/23/%E5%B7%A5%E5%85%B7/Maven%E9%AB%98%E7%BA%A7/" title="Maven高级">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">zookeeper安装</span>
+                        <span class="hidden-mobile">Maven高级</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -690,8 +690,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/Hexo/2022/01/23/%E5%B7%A5%E5%85%B7/Maven%E9%AB%98%E7%BA%A7/" title="Maven高级">
-                        <span class="hidden-mobile">Maven高级</span>
+                      <a href="/Hexo.github.io/2021/12/23/sql/Mybatis%E5%85%A5%E9%97%A8/" title="Mybatis入门">
+                        <span class="hidden-mobile">Mybatis入门</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -840,8 +840,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/Hexo/js/events.js" ></script>
-<script  src="/Hexo/js/plugins.js" ></script>
+<script  src="/Hexo.github.io/js/events.js" ></script>
+<script  src="/Hexo.github.io/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -880,7 +880,7 @@
 
 
   
-    <script  src="/Hexo/js/img-lazyload.js" ></script>
+    <script  src="/Hexo.github.io/js/img-lazyload.js" ></script>
   
 
 
@@ -1017,7 +1017,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/Hexo/js/local-search.js" ></script>
+  <script  src="/Hexo.github.io/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -1027,7 +1027,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/Hexo/js/boot.js" ></script>
+<script  src="/Hexo.github.io/js/boot.js" ></script>
 
 
   
@@ -1035,5 +1035,5 @@
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<script src="/Hexo/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
+<script src="/Hexo.github.io/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/Hexo.github.io/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":120,"height":300},"mobile":{"show":false},"log":false});</script></body>
 </html>
