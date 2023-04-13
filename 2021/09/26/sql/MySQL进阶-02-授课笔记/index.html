@@ -1,0 +1,1166 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" >
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo/img/csdn.png">
+  <link rel="icon" href="/Hexo/img/csdn.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#DAA520">
+  <meta name="author" content="星">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="MySQL进阶-02-授课笔记一、约束1.外键约束 外键约束概念  让表和表之间产生关系，从而保证数据的准确性！   建表时添加外键约束  为什么要有外键约束  123456789101112131415161718192021222324252627282930-- 创建db2数据库CREATE DATABASE db2;-- 使用db2数据库USE db2;-- 创建user用户表CREA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL进阶">
+<meta property="og:url" content="https://1902756969.github.io/Hexo/2021/09/26/sql/MySQL%E8%BF%9B%E9%98%B6-02-%E6%8E%88%E8%AF%BE%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="⭐⭐⭐">
+<meta property="og:description" content="MySQL进阶-02-授课笔记一、约束1.外键约束 外键约束概念  让表和表之间产生关系，从而保证数据的准确性！   建表时添加外键约束  为什么要有外键约束  123456789101112131415161718192021222324252627282930-- 创建db2数据库CREATE DATABASE db2;-- 使用db2数据库USE db2;-- 创建user用户表CREA">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2014/03/mysql.jpg">
+<meta property="article:published_time" content="2021-09-26T08:29:54.000Z">
+<meta property="article:modified_time" content="2022-12-13T09:29:12.692Z">
+<meta property="article:author" content="星">
+<meta property="article:tag" content="Mysql🐱‍👤">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.runoob.com/wp-content/uploads/2014/03/mysql.jpg">
+  
+  
+  <title>MySQL进阶 - ⭐⭐⭐</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/Hexo/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/Hexo/css/highlight.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/Hexo/js/utils.js" ></script>
+  <script  src="/Hexo/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/Hexo/">
+      <strong>🐛</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                目录
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/Hexo/img/bg5.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="MySQL进阶"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        星
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-09-26 16:29" pubdate>
+          2021年9月26日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          16k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          137 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">MySQL进阶</h1>
+            
+            <div class="markdown-body">
+              
+              <meta name="referrer" content="no-referrer">
+
+<h1 id="MySQL进阶-02-授课笔记"><a href="#MySQL进阶-02-授课笔记" class="headerlink" title="MySQL进阶-02-授课笔记"></a>MySQL进阶-02-授课笔记</h1><h3 id="一、约束"><a href="#一、约束" class="headerlink" title="一、约束"></a>一、约束</h3><h4 id="1-外键约束"><a href="#1-外键约束" class="headerlink" title="1.外键约束"></a>1.外键约束</h4><ul>
+<li><p>外键约束概念</p>
+<ul>
+<li>让表和表之间产生关系，从而保证数据的准确性！</li>
+</ul>
+</li>
+<li><p>建表时添加外键约束</p>
+<ul>
+<li>为什么要有外键约束</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 创建db2数据库<br>CREATE DATABASE db2;<br>-- 使用db2数据库<br>USE db2;<br><br>-- 创建user用户表<br>CREATE TABLE USER(<br>	id INT PRIMARY KEY AUTO_INCREMENT,    -- id<br>	NAME VARCHAR(20) NOT NULL             -- 姓名<br>);<br>-- 添加用户数据<br>INSERT INTO USER VALUES (NULL,&#x27;张三&#x27;),(NULL,&#x27;李四&#x27;),(NULL,&#x27;王五&#x27;);<br><br>-- 创建orderlist订单表<br>CREATE TABLE orderlist(<br>	id INT PRIMARY KEY AUTO_INCREMENT,    -- id<br>	number VARCHAR(20) NOT NULL,          -- 订单编号<br>	uid INT                               -- 订单所属用户<br>);<br>-- 添加订单数据<br>INSERT INTO orderlist VALUES (NULL,&#x27;hm001&#x27;,1),(NULL,&#x27;hm002&#x27;,1),<br>(NULL,&#x27;hm003&#x27;,2),(NULL,&#x27;hm004&#x27;,2),<br>(NULL,&#x27;hm005&#x27;,3),(NULL,&#x27;hm006&#x27;,3);<br><br>-- 添加一个订单，但是没有所属用户。这合理吗？<br>INSERT INTO orderlist VALUES (NULL,&#x27;hm007&#x27;,8);<br>-- 删除王五这个用户，但是订单表中王五还有很多个订单呢。这合理吗？<br>DELETE FROM USER WHERE NAME=&#x27;王五&#x27;;<br><br>-- 所以我们需要添加外键约束，让两张表产生关系<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>外键约束格式</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">CONSTRAINT 外键名 FOREIGN KEY (本表外键列名) REFERENCES 主表名(主表主键列名)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>创建表添加外键约束</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 创建user用户表<br>CREATE TABLE USER(<br>	id INT PRIMARY KEY AUTO_INCREMENT,    -- id<br>	NAME VARCHAR(20) NOT NULL             -- 姓名<br>);<br>-- 添加用户数据<br>INSERT INTO USER VALUES (NULL,&#x27;张三&#x27;),(NULL,&#x27;李四&#x27;),(NULL,&#x27;王五&#x27;);<br><br>-- 创建orderlist订单表<br>CREATE TABLE orderlist(<br>	id INT PRIMARY KEY AUTO_INCREMENT,    -- id<br>	number VARCHAR(20) NOT NULL,          -- 订单编号<br>	uid INT,                              -- 订单所属用户<br>	CONSTRAINT ou_fk1 FOREIGN KEY (uid) REFERENCES USER(id)   -- 添加外键约束<br>);<br>-- 添加订单数据<br>INSERT INTO orderlist VALUES (NULL,&#x27;hm001&#x27;,1),(NULL,&#x27;hm002&#x27;,1),<br>(NULL,&#x27;hm003&#x27;,2),(NULL,&#x27;hm004&#x27;,2),<br>(NULL,&#x27;hm005&#x27;,3),(NULL,&#x27;hm006&#x27;,3);<br><br>-- 添加一个订单，但是没有所属用户。无法添加<br>INSERT INTO orderlist VALUES (NULL,&#x27;hm007&#x27;,8);<br>-- 删除王五这个用户，但是订单表中王五还有很多个订单呢。无法删除<br>DELETE FROM USER WHERE NAME=&#x27;王五&#x27;;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>删除外键约束</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 标准语法<br>ALTER TABLE 表名 DROP FOREIGN KEY 外键名;<br><br>-- 删除外键<br>ALTER TABLE orderlist DROP FOREIGN KEY ou_fk1;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>建表后添加外键约束</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 标准语法<br>ALTER TABLE 表名 ADD CONSTRAINT 外键名 FOREIGN KEY (本表外键列名) REFERENCES 主表名(主键列名);<br><br>-- 添加外键约束<br>ALTER TABLE orderlist ADD CONSTRAINT ou_fk1 FOREIGN KEY (uid) REFERENCES USER(id);<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-外键的级联更新和级联删除-了解"><a href="#2-外键的级联更新和级联删除-了解" class="headerlink" title="2.外键的级联更新和级联删除(了解)"></a>2.外键的级联更新和级联删除(了解)</h4><ul>
+<li>什么是级联更新和级联删除<ul>
+<li>当我想把user用户表中的某个用户删掉，我希望该用户所有的订单也随之被删除</li>
+<li>当我想把user用户表中的某个用户id修改，我希望订单表中该用户所属的订单用户编号也随之修改</li>
+</ul>
+</li>
+<li>添加级联更新和级联删除</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 添加外键约束，同时添加级联更新  标准语法<br>ALTER TABLE 表名 ADD CONSTRAINT 外键名 FOREIGN KEY (本表外键列名) REFERENCES 主表名(主键列名) ON UPDATE CASCADE;<br><br>-- 添加外键约束，同时添加级联删除  标准语法<br>ALTER TABLE 表名 ADD CONSTRAINT 外键名 FOREIGN KEY (本表外键列名) REFERENCES 主表名(主键列名) ON DELETE CASCADE;<br><br>-- 添加外键约束，同时添加级联更新和级联删除  标准语法<br>ALTER TABLE 表名 ADD CONSTRAINT 外键名 FOREIGN KEY (本表外键列名) REFERENCES 主表名(主键列名) ON UPDATE CASCADE ON DELETE CASCADE;<br><br><br>-- 删除外键约束<br>ALTER TABLE orderlist DROP FOREIGN KEY ou_fk1;<br><br>-- 添加外键约束，同时添加级联更新和级联删除<br>ALTER TABLE orderlist ADD CONSTRAINT ou_fk1 FOREIGN KEY (uid) REFERENCES USER(id) ON UPDATE CASCADE ON DELETE CASCADE;<br><br>-- 将王五用户的id修改为5    订单表中的uid也随之被修改<br>UPDATE USER SET id=5 WHERE id=3;<br><br>-- 将王五用户删除     订单表中该用户所有订单也随之删除<br>DELETE FROM USER WHERE id=5;<br></code></pre></td></tr></table></figure>
+
+<h3 id="二、多表设计"><a href="#二、多表设计" class="headerlink" title="二、多表设计"></a>二、多表设计</h3><h4 id="1-一对一-了解"><a href="#1-一对一-了解" class="headerlink" title="1.一对一(了解)"></a>1.一对一(了解)</h4><ul>
+<li>分析<ul>
+<li>人和身份证。一个人只有一个身份证，一个身份证只能对应一个人！</li>
+</ul>
+</li>
+<li>实现原则<ul>
+<li>在任意一个表建立外键，去关联另外一个表的主键</li>
+</ul>
+</li>
+<li>SQL演示</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 创建db5数据库<br>CREATE DATABASE db5;<br>-- 使用db5数据库<br>USE db5;<br><br>-- 创建person表<br>CREATE TABLE person(<br>	id INT PRIMARY KEY AUTO_INCREMENT,<br>	NAME VARCHAR(20)<br>);<br>-- 添加数据<br>INSERT INTO person VALUES (NULL,&#x27;张三&#x27;),(NULL,&#x27;李四&#x27;);<br><br>-- 创建card表<br>CREATE TABLE card(<br>	id INT PRIMARY KEY AUTO_INCREMENT,<br>	number VARCHAR(50),<br>	pid INT UNIQUE,<br>	CONSTRAINT cp_fk1 FOREIGN KEY (pid) REFERENCES person(id) -- 添加外键<br>);<br>-- 添加数据<br>INSERT INTO card VALUES (NULL,&#x27;12345&#x27;,1),(NULL,&#x27;56789&#x27;,2);<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>图解</li>
+</ul>
+<p><img src="https://i0.hdslb.com/bfs/album/6cba7b622a1f0c655abf1c08ef448ca8e1e2157f.png" srcset="/Hexo/img/loading.gif" lazyload alt="01"></p>
+<h4 id="2-一对多"><a href="#2-一对多" class="headerlink" title="2.一对多"></a>2.一对多</h4><ul>
+<li>分析<ul>
+<li>用户和订单。一个用户可以有多个订单！</li>
+<li>商品分类和商品。一个分类下可以有多个商品！</li>
+</ul>
+</li>
+<li>实现原则<ul>
+<li>在多的一方，建立外键约束，来关联一的一方主键</li>
+</ul>
+</li>
+<li>SQL演示</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs mysql">/*<br>	用户和订单<br>*/<br>-- 创建user表<br>CREATE TABLE USER(<br>	id INT PRIMARY KEY AUTO_INCREMENT,<br>	NAME VARCHAR(20)<br>);<br>-- 添加数据<br>INSERT INTO USER VALUES (NULL,&#x27;张三&#x27;),(NULL,&#x27;李四&#x27;);<br><br>-- 创建orderlist表<br>CREATE TABLE orderlist(<br>	id INT PRIMARY KEY AUTO_INCREMENT,<br>	number VARCHAR(20),<br>	uid INT,<br>	CONSTRAINT ou_fk1 FOREIGN KEY (uid) REFERENCES USER(id)  -- 添加外键约束<br>);<br>-- 添加数据<br>INSERT INTO orderlist VALUES (NULL,&#x27;hm001&#x27;,1),(NULL,&#x27;hm002&#x27;,1),(NULL,&#x27;hm003&#x27;,2),(NULL,&#x27;hm004&#x27;,2);<br><br><br>/*<br>	商品分类和商品<br>*/<br>-- 创建category表<br>CREATE TABLE category(<br>	id INT PRIMARY KEY AUTO_INCREMENT,<br>	NAME VARCHAR(10)<br>);<br>-- 添加数据<br>INSERT INTO category VALUES (NULL,&#x27;手机数码&#x27;),(NULL,&#x27;电脑办公&#x27;);<br><br>-- 创建product表<br>CREATE TABLE product(<br>	id INT PRIMARY KEY AUTO_INCREMENT,<br>	NAME VARCHAR(30),<br>	cid INT,<br>	CONSTRAINT pc_fk1 FOREIGN KEY (cid) REFERENCES category(id)  -- 添加外键约束<br>);<br>-- 添加数据<br>INSERT INTO product VALUES (NULL,&#x27;华为P30&#x27;,1),(NULL,&#x27;小米note3&#x27;,1),<br>(NULL,&#x27;联想电脑&#x27;,2),(NULL,&#x27;苹果电脑&#x27;,2);<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>图解</li>
+</ul>
+<p><img src="https://i0.hdslb.com/bfs/album/4569425417fc7a7f9189797aae259cf33172a623.png" srcset="/Hexo/img/loading.gif" lazyload alt="02"></p>
+<h4 id="3-多对多"><a href="#3-多对多" class="headerlink" title="3.多对多"></a>3.多对多</h4><ul>
+<li>分析<ul>
+<li>学生和课程。一个学生可以选择多个课程，一个课程也可以被多个学生选择！</li>
+</ul>
+</li>
+<li>实现原则<ul>
+<li>需要借助第三张表中间表，中间表至少包含两个列，这两个列作为中间表的外键，分别关联两张表的主键</li>
+</ul>
+</li>
+<li>SQL演示</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 创建student表<br>CREATE TABLE student(<br>	id INT PRIMARY KEY AUTO_INCREMENT,<br>	NAME VARCHAR(20)<br>);<br>-- 添加数据<br>INSERT INTO student VALUES (NULL,&#x27;张三&#x27;),(NULL,&#x27;李四&#x27;);<br><br>-- 创建course表<br>CREATE TABLE course(<br>	id INT PRIMARY KEY AUTO_INCREMENT,<br>	NAME VARCHAR(10)<br>);<br>-- 添加数据<br>INSERT INTO course VALUES (NULL,&#x27;语文&#x27;),(NULL,&#x27;数学&#x27;);<br><br>-- 创建中间表<br>CREATE TABLE stu_course(<br>	id INT PRIMARY KEY AUTO_INCREMENT,<br>	sid INT, -- 用于和student表的id进行外键关联<br>	cid INT, -- 用于和course表的id进行外键关联<br>	CONSTRAINT sc_fk1 FOREIGN KEY (sid) REFERENCES student(id), -- 添加外键约束<br>	CONSTRAINT sc_fk2 FOREIGN KEY (cid) REFERENCES course(id)   -- 添加外键约束<br>);<br>-- 添加数据<br>INSERT INTO stu_course VALUES (NULL,1,1),(NULL,1,2),(NULL,2,1),(NULL,2,2);<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>图解</li>
+</ul>
+<p><img src="https://i0.hdslb.com/bfs/album/62d2d99e6924a3d06c607a974d8b07d11d360d7a.png" srcset="/Hexo/img/loading.gif" lazyload alt="03"></p>
+<h3 id="三、多表查询"><a href="#三、多表查询" class="headerlink" title="三、多表查询"></a>三、多表查询</h3><h4 id="1-多表查询-数据准备"><a href="#1-多表查询-数据准备" class="headerlink" title="1.多表查询-数据准备"></a>1.多表查询-数据准备</h4><ul>
+<li>SQL语句</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 创建db6数据库<br>CREATE DATABASE db6;<br>-- 使用db6数据库<br>USE db6;<br><br>-- 创建user表<br>CREATE TABLE USER(<br>	id INT PRIMARY KEY AUTO_INCREMENT,	-- 用户id<br>	NAME VARCHAR(20),			        -- 用户姓名<br>	age INT                             -- 用户年龄<br>);<br>-- 添加数据<br>INSERT INTO USER VALUES (1,&#x27;张三&#x27;,23);<br>INSERT INTO USER VALUES (2,&#x27;李四&#x27;,24);<br>INSERT INTO USER VALUES (3,&#x27;王五&#x27;,25);<br>INSERT INTO USER VALUES (4,&#x27;赵六&#x27;,26);<br><br><br>-- 订单表<br>CREATE TABLE orderlist(<br>	id INT PRIMARY KEY AUTO_INCREMENT,	-- 订单id<br>	number VARCHAR(30),					-- 订单编号<br>	uid INT,    -- 外键字段<br>	CONSTRAINT ou_fk1 FOREIGN KEY (uid) REFERENCES USER(id)<br>);<br>-- 添加数据<br>INSERT INTO orderlist VALUES (1,&#x27;hm001&#x27;,1);<br>INSERT INTO orderlist VALUES (2,&#x27;hm002&#x27;,1);<br>INSERT INTO orderlist VALUES (3,&#x27;hm003&#x27;,2);<br>INSERT INTO orderlist VALUES (4,&#x27;hm004&#x27;,2);<br>INSERT INTO orderlist VALUES (5,&#x27;hm005&#x27;,3);<br>INSERT INTO orderlist VALUES (6,&#x27;hm006&#x27;,3);<br>INSERT INTO orderlist VALUES (7,&#x27;hm007&#x27;,NULL);<br><br><br>-- 商品分类表<br>CREATE TABLE category(<br>	id INT PRIMARY KEY AUTO_INCREMENT,  -- 商品分类id<br>	NAME VARCHAR(10)                    -- 商品分类名称<br>);<br>-- 添加数据<br>INSERT INTO category VALUES (1,&#x27;手机数码&#x27;);<br>INSERT INTO category VALUES (2,&#x27;电脑办公&#x27;);<br>INSERT INTO category VALUES (3,&#x27;烟酒茶糖&#x27;);<br>INSERT INTO category VALUES (4,&#x27;鞋靴箱包&#x27;);<br><br><br>-- 商品表<br>CREATE TABLE product(<br>	id INT PRIMARY KEY AUTO_INCREMENT,   -- 商品id<br>	NAME VARCHAR(30),                    -- 商品名称<br>	cid INT, -- 外键字段<br>	CONSTRAINT cp_fk1 FOREIGN KEY (cid) REFERENCES category(id)<br>);<br>-- 添加数据<br>INSERT INTO product VALUES (1,&#x27;华为手机&#x27;,1);<br>INSERT INTO product VALUES (2,&#x27;小米手机&#x27;,1);<br>INSERT INTO product VALUES (3,&#x27;联想电脑&#x27;,2);<br>INSERT INTO product VALUES (4,&#x27;苹果电脑&#x27;,2);<br>INSERT INTO product VALUES (5,&#x27;中华香烟&#x27;,3);<br>INSERT INTO product VALUES (6,&#x27;玉溪香烟&#x27;,3);<br>INSERT INTO product VALUES (7,&#x27;计生用品&#x27;,NULL);<br><br><br>-- 中间表<br>CREATE TABLE us_pro(<br>	upid INT PRIMARY KEY AUTO_INCREMENT,  -- 中间表id<br>	uid INT, -- 外键字段。需要和用户表的主键产生关联<br>	pid INT, -- 外键字段。需要和商品表的主键产生关联<br>	CONSTRAINT up_fk1 FOREIGN KEY (uid) REFERENCES USER(id),<br>	CONSTRAINT up_fk2 FOREIGN KEY (pid) REFERENCES product(id)<br>);<br>-- 添加数据<br>INSERT INTO us_pro VALUES (NULL,1,1);<br>INSERT INTO us_pro VALUES (NULL,1,2);<br>INSERT INTO us_pro VALUES (NULL,1,3);<br>INSERT INTO us_pro VALUES (NULL,1,4);<br>INSERT INTO us_pro VALUES (NULL,1,5);<br>INSERT INTO us_pro VALUES (NULL,1,6);<br>INSERT INTO us_pro VALUES (NULL,1,7);<br>INSERT INTO us_pro VALUES (NULL,2,1);<br>INSERT INTO us_pro VALUES (NULL,2,2);<br>INSERT INTO us_pro VALUES (NULL,2,3);<br>INSERT INTO us_pro VALUES (NULL,2,4);<br>INSERT INTO us_pro VALUES (NULL,2,5);<br>INSERT INTO us_pro VALUES (NULL,2,6);<br>INSERT INTO us_pro VALUES (NULL,2,7);<br>INSERT INTO us_pro VALUES (NULL,3,1);<br>INSERT INTO us_pro VALUES (NULL,3,2);<br>INSERT INTO us_pro VALUES (NULL,3,3);<br>INSERT INTO us_pro VALUES (NULL,3,4);<br>INSERT INTO us_pro VALUES (NULL,3,5);<br>INSERT INTO us_pro VALUES (NULL,3,6);<br>INSERT INTO us_pro VALUES (NULL,3,7);<br>INSERT INTO us_pro VALUES (NULL,4,1);<br>INSERT INTO us_pro VALUES (NULL,4,2);<br>INSERT INTO us_pro VALUES (NULL,4,3);<br>INSERT INTO us_pro VALUES (NULL,4,4);<br>INSERT INTO us_pro VALUES (NULL,4,5);<br>INSERT INTO us_pro VALUES (NULL,4,6);<br>INSERT INTO us_pro VALUES (NULL,4,7);<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>架构器图解</li>
+</ul>
+<p><img src="https://i0.hdslb.com/bfs/album/0f12b7683906f69ed58f04268cd3f2b7183f70a2.png" srcset="/Hexo/img/loading.gif" lazyload alt="04"></p>
+<h4 id="2-多表查询-笛卡尔积查询-了解"><a href="#2-多表查询-笛卡尔积查询-了解" class="headerlink" title="2.多表查询-笛卡尔积查询(了解)"></a>2.多表查询-笛卡尔积查询(了解)</h4><ul>
+<li>有两张表，获取这两个表的所有组合情况</li>
+<li>要完成多表查询，需要消除这些没有用的数据</li>
+<li>多表查询格式</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT<br>	列名列表<br>FROM<br>	表名列表<br>WHERE<br>	条件...<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>笛卡尔积查询</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 标准语法<br>SELECT 列名 FROM 表名1,表名2,...;<br><br>-- 查询user表和orderlist表<br>SELECT * FROM USER,orderlist;<br></code></pre></td></tr></table></figure>
+
+<h4 id="3-多表查询-内连接查询"><a href="#3-多表查询-内连接查询" class="headerlink" title="3.多表查询-内连接查询"></a>3.多表查询-内连接查询</h4><ul>
+<li>查询原理<ul>
+<li>内连接查询的是两张表有交集的部分数据(有主外键关联的数据)</li>
+</ul>
+</li>
+<li>显式内连接</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 标准语法<br>SELECT 列名 FROM 表名1 [INNER] JOIN 表名2 ON 条件;<br><br>-- 查询用户信息和对应的订单信息<br>SELECT * FROM USER INNER JOIN orderlist ON user.id=orderlist.uid;<br>SELECT * FROM USER JOIN orderlist ON user.id=orderlist.uid;<br><br>-- 查询用户信息和对应的订单信息，起别名<br>SELECT * FROM USER u JOIN orderlist o ON u.id=o.uid;<br><br>-- 查询用户姓名，年龄。和订单编号<br>SELECT<br>	u.`name`,	-- 姓名<br>	u.`age`,	-- 年龄<br>	o.`number`	-- 订单编号<br>FROM<br>	USER u          -- 用户表<br>JOIN<br>	orderlist o     -- 订单表<br>ON <br>	u.`id` = o.`uid`;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>隐式内连接</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 标准语法<br>SELECT 列名 FROM 表名1,表名2 WHERE 条件;<br><br>-- 查询用户姓名，年龄。和订单编号<br>SELECT<br>	u.`name`,	-- 姓名<br>	u.`age`,	-- 年龄<br>	o.`number`	-- 订单编号<br>FROM<br>	USER u,		-- 用户表<br>	orderlist o     -- 订单表<br>WHERE<br>	u.`id`=o.`uid`;<br></code></pre></td></tr></table></figure>
+
+<h4 id="4-多表查询-外连接查询"><a href="#4-多表查询-外连接查询" class="headerlink" title="4.多表查询-外连接查询"></a>4.多表查询-外连接查询</h4><ul>
+<li><p>左外连接</p>
+<ul>
+<li>查询原理<ul>
+<li>查询左表的全部数据，和左右两张表有交集部分的数据</li>
+</ul>
+</li>
+<li>基本演示</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 标准语法<br>SELECT 列名 FROM 表名1 LEFT [OUTER] JOIN 表名2 ON 条件;<br><br>-- 查询所有用户信息，以及用户对应的订单信息<br>SELECT<br>	u.`name`,	-- 姓名<br>	u.`age`,	-- 年龄<br>	o.`number`	-- 订单编号<br>FROM<br>	USER u          -- 用户表<br>LEFT OUTER JOIN<br>	orderlist o     -- 订单表<br>ON<br>	u.`id`=o.`uid`;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>右外连接</p>
+<ul>
+<li>查询原理<ul>
+<li>查询右表的全部数据，和左右两张表有交集部分的数据</li>
+</ul>
+</li>
+<li>基本演示</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 基本语法<br>SELECT 列名 FROM 表名1 RIGHT [OUTER] JOIN 表名2 ON 条件;<br><br>-- 查询所有订单信息，以及订单所属的用户信息<br>SELECT<br>	u.`name`,	-- 姓名<br>	u.`age`,	-- 年龄<br>	o.`number`	-- 订单编号<br>FROM<br>	USER u          -- 用户表<br>RIGHT OUTER JOIN<br>	orderlist o     -- 订单表<br>ON<br>	u.`id`=o.`uid`;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="5-多表查询-子查询"><a href="#5-多表查询-子查询" class="headerlink" title="5.多表查询-子查询"></a>5.多表查询-子查询</h4><ul>
+<li><p>子查询介绍</p>
+<ul>
+<li>查询语句中嵌套了查询语句。我们就将嵌套查询称为子查询！</li>
+</ul>
+</li>
+<li><p>子查询-结果是单行单列的</p>
+<ul>
+<li>可以作为条件，使用运算符进行判断！</li>
+<li>基本演示</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 标准语法<br>SELECT 列名 FROM 表名 WHERE 列名=(SELECT 聚合函数(列名) FROM 表名 [WHERE 条件]);<br><br>-- 查询年龄最高的用户姓名<br>SELECT MAX(age) FROM USER;              -- 查询出最高年龄<br>SELECT NAME,age FROM USER WHERE age=26; -- 根据查询出来的最高年龄，查询姓名和年龄<br>SELECT NAME,age FROM USER WHERE age = (SELECT MAX(age) FROM USER);<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>子查询-结果是多行单列的</p>
+<ul>
+<li>可以作为条件，使用运算符in或not in进行判断！</li>
+<li>基本演示</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 标准语法<br>SELECT 列名 FROM 表名 WHERE 列名 [NOT] IN (SELECT 列名 FROM 表名 [WHERE 条件]); <br><br>-- 查询张三和李四的订单信息<br>SELECT id FROM USER WHERE NAME=&#x27;张三&#x27; OR NAME=&#x27;李四&#x27;;   -- 查询张三和李四用户的id<br>SELECT number,uid FROM orderlist WHERE uid=1 OR uid=2; -- 根据id查询订单<br>SELECT number,uid FROM orderlist WHERE uid IN (SELECT id FROM USER WHERE NAME=&#x27;张三&#x27; OR NAME=&#x27;李四&#x27;);<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>子查询-结果是多行多列的</p>
+<ul>
+<li>可以作为一张虚拟表参与查询！</li>
+<li>基本演示</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 标准语法<br>SELECT 列名 FROM 表名 [别名],(SELECT 列名 FROM 表名 [WHERE 条件]) [别名] [WHERE 条件];<br><br>-- 查询订单表中id大于4的订单信息和所属用户信息<br>SELECT * FROM USER u,(SELECT * FROM orderlist WHERE id&gt;4) o WHERE u.id=o.uid;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="6-多表查询练习"><a href="#6-多表查询练习" class="headerlink" title="6.多表查询练习"></a>6.多表查询练习</h4><ul>
+<li>查询用户的编号、姓名、年龄。订单编号</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs mysql">/*<br>分析：<br>	用户的编号、姓名、年龄  user表     订单编号 orderlist表<br>	条件：user.id = orderlist.uid<br>*/<br>SELECT<br>	t1.`id`,	-- 用户编号<br>	t1.`name`,	-- 用户姓名<br>	t1.`age`,	-- 用户年龄<br>	t2.`number`	-- 订单编号<br>FROM<br>	USER t1,       -- 用户表<br>	orderlist t2   -- 订单表<br>WHERE<br>	t1.`id` = t2.`uid`;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>查询所有的用户。用户的编号、姓名、年龄。订单编号</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs mysql">/*<br>分析：<br>	用户的编号、姓名、年龄 user表     订单编号 orderlist表<br>	条件：user.id = orderlist.uid<br>	查询所有用户，使用左外连接<br>*/<br>SELECT<br>	t1.`id`,	-- 用户编号<br>	t1.`name`,	-- 用户姓名<br>	t1.`age`,	-- 用户年龄<br>	t2.`number`	-- 订单编号<br>FROM<br>	USER t1        -- 用户表<br>LEFT OUTER JOIN<br>	orderlist t2   -- 订单表<br>ON<br>	t1.`id` = t2.`uid`;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>查询所有的订单。用户的编号、姓名、年龄。订单编号</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs mysql">/*<br>分析：<br>	用户的编号、姓名、年龄 user表     订单编号 orderlist表<br>	条件：user.id = orderlist.uid<br>	查询所有订单，使用右外连接<br>*/<br>SELECT<br>	t1.`id`,	-- 用户编号<br>	t1.`name`,	-- 用户姓名<br>	t1.`age`,	-- 用户年龄<br>	t2.`number`	-- 订单编号<br>FROM<br>	USER t1         -- 用户表<br>RIGHT OUTER JOIN<br>	orderlist t2    -- 订单表<br>ON<br>	t1.`id` = t2.`uid`;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>查询用户年龄大于23岁的信息。显示用户的编号、姓名、年龄。订单编号</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs mysql">/*<br>分析：<br>	用户的编号、姓名、年龄 user表     订单编号 orderlist表<br>	条件：user.age &gt; 23 AND user.id = orderlist.uid<br>*/<br>/*<br>select<br>	t1.`id`,	-- 用户编号<br>	t1.`name`,	-- 用户姓名<br>	t1.`age`,	-- 用户年龄<br>	t2.`number`	-- 订单编号<br>from<br>	user t1,     -- 用户表<br>	orderlist t2 -- 订单表<br>where<br>	t1.`age` &gt; 23<br>	and<br>	t1.`id` = t2.`uid`;<br>*/<br>SELECT<br>	t1.`id`,	-- 用户编号<br>	t1.`name`,	-- 用户姓名<br>	t1.`age`,	-- 用户年龄<br>	t2.`number`	-- 订单编号<br>FROM<br>	USER t1       -- 用户表<br>LEFT OUTER JOIN<br>	orderlist t2  -- 订单表<br>ON<br>	t1.`id` = t2.`uid`<br>WHERE<br>	t1.`age` &gt; 23;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>查询张三和李四用户的信息。显示用户的编号、姓名、年龄。订单编号</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs mysql">/*<br>分析：<br>	用户的编号、姓名、年龄 user表     订单编号 orderlist表<br>	条件：user.id = orderlist.uid AND user.name IN (&#x27;张三&#x27;,&#x27;李四&#x27;);<br>*/<br>SELECT<br>	t1.`id`,	-- 用户编号<br>	t1.`name`,	-- 用户姓名<br>	t1.`age`,	-- 用户年龄<br>	t2.`number`	-- 订单编号<br>FROM<br>	USER t1,        -- 用户表<br>	orderlist t2    -- 订单表<br>WHERE<br>	t1.`id` = t2.`uid`<br>	AND<br>	-- (t1.`name` = &#x27;张三&#x27; OR t1.`name` = &#x27;李四&#x27;);<br>	t1.`name` IN (&#x27;张三&#x27;,&#x27;李四&#x27;);<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>查询商品分类的编号、分类名称。分类下的商品名称</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs mysql">/*<br>分析：<br>	商品分类的编号、分类名称 category表     分类下的商品名称 product表<br>	条件：category.id = product.cid<br>*/<br>SELECT<br>	t1.`id`,	-- 分类编号<br>	t1.`name`,	-- 分类名称<br>	t2.`name`	-- 商品名称<br>FROM<br>	category t1,	-- 商品分类表<br>	product t2	    -- 商品表<br>WHERE<br>	t1.`id` = t2.`cid`;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>查询所有的商品分类。商品分类的编号、分类名称。分类下的商品名称</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs mysql">/*<br>分析：<br>	商品分类的编号、分类名称 category表     分类下的商品名称 product表<br>	条件：category.id = product.cid<br>	查询所有的商品分类，使用左外连接<br>*/<br>SELECT<br>	t1.`id`,	-- 分类编号<br>	t1.`name`,	-- 分类名称<br>	t2.`name`	-- 商品名称<br>FROM<br>	category t1	-- 商品分类表<br>LEFT OUTER JOIN<br>	product t2	-- 商品表<br>ON<br>	t1.`id` = t2.`cid`;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>查询所有的商品信息。商品分类的编号、分类名称。分类下的商品名称</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs mysql">/*<br>分析：<br>	商品分类的编号、分类名称 category表     分类下的商品名称 product表<br>	条件：category.id = product.cid<br>	查询所有的商品信息，使用右外连接<br>*/<br>SELECT<br>	t1.`id`,	-- 分类编号<br>	t1.`name`,	-- 分类名称<br>	t2.`name`	-- 商品名称<br>FROM<br>	category t1	-- 商品分类表<br>RIGHT OUTER JOIN<br>	product t2	-- 商品表<br>ON<br>	t1.`id` = t2.`cid`;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>查询所有的用户和所有的商品。显示用户的编号、姓名、年龄。商品名称</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs mysql">/*<br>分析：<br>	用户的编号、姓名、年龄 user表   商品名称 product表   中间表 us_pro<br>	条件：us_pro.uid = user.id AND us_pro.pid = product.id<br>*/<br>SELECT<br>	t1.`id`,	-- 用户编号<br>	t1.`name`,	-- 用户名称<br>	t1.`age`,	-- 用户年龄<br>	t2.`name`	-- 商品名称<br>FROM<br>	USER t1,	-- 用户表<br>	product t2,	-- 商品表<br>	us_pro t3	-- 中间表<br>WHERE<br>	t3.`uid` = t1.`id`<br>	AND<br>	t3.`pid` = t2.`id`;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>查询张三和李四这两个用户可以看到的商品。显示用户的编号、姓名、年龄。商品名称</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs mysql">/*<br>分析：<br>	用户的编号、姓名、年龄 user表   商品名称 product表   中间表 us_pro<br>	条件：us_pro.uid = user.id AND us_pro.pid = product.id AND user.name IN (&#x27;张三&#x27;,&#x27;李四&#x27;)<br>*/<br>SELECT<br>	t1.`id`,	-- 用户编号<br>	t1.`name`,	-- 用户名称<br>	t1.`age`,	-- 用户年龄<br>	t2.`name`	-- 商品名称<br>FROM<br>	USER t1,	-- 用户表<br>	product t2,	-- 商品表<br>	us_pro t3	-- 中间表<br>WHERE<br>	(t3.`uid` = t1.`id` AND t3.`pid` = t2.`id`)<br>	AND<br>	-- (t1.`name` = &#x27;张三&#x27; or t1.`name` = &#x27;李四&#x27;);<br>	t1.`name` IN (&#x27;张三&#x27;,&#x27;李四&#x27;);<br></code></pre></td></tr></table></figure>
+
+<h4 id="7-多表查询-自关联查询"><a href="#7-多表查询-自关联查询" class="headerlink" title="7.多表查询-自关联查询"></a>7.多表查询-自关联查询</h4><ul>
+<li>自关联查询介绍<ul>
+<li>同一张表中有数据关联。可以多次查询这同一个表！</li>
+</ul>
+</li>
+<li>自关联查询演示</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 创建员工表<br>CREATE TABLE employee(<br>	id INT PRIMARY KEY AUTO_INCREMENT,<br>	NAME VARCHAR(20),<br>	mgr INT,<br>	salary DOUBLE<br>);<br>-- 添加数据<br>INSERT INTO employee VALUES (1001,&#x27;孙悟空&#x27;,1005,9000.00),<br>(1002,&#x27;猪八戒&#x27;,1005,8000.00),<br>(1003,&#x27;沙和尚&#x27;,1005,8500.00),<br>(1004,&#x27;小白龙&#x27;,1005,7900.00),<br>(1005,&#x27;唐僧&#x27;,NULL,15000.00),<br>(1006,&#x27;武松&#x27;,1009,7600.00),<br>(1007,&#x27;李逵&#x27;,1009,7400.00),<br>(1008,&#x27;林冲&#x27;,1009,8100.00),<br>(1009,&#x27;宋江&#x27;,NULL,16000.00);<br><br>-- 查询所有员工的姓名及其直接上级的姓名，没有上级的员工也需要查询<br>/*<br>分析：<br>	员工姓名 employee表        直接上级姓名 employee表<br>	条件：employee.mgr = employee.id<br>	查询左表的全部数据，和左右两张表交集部分数据，使用左外连接<br>*/<br>SELECT<br>	t1.name,	-- 员工姓名<br>	t1.mgr,		-- 上级编号<br>	t2.id,		-- 员工编号<br>	t2.name     -- 员工姓名<br>FROM<br>	employee t1  -- 员工表<br>LEFT OUTER JOIN<br>	employee t2  -- 员工表<br>ON<br>	t1.mgr = t2.id;<br></code></pre></td></tr></table></figure>
+
+<h3 id="四、视图"><a href="#四、视图" class="headerlink" title="四、视图"></a>四、视图</h3><h4 id="1-视图的概念"><a href="#1-视图的概念" class="headerlink" title="1.视图的概念"></a>1.视图的概念</h4><ul>
+<li>视图是一种虚拟存在的数据表</li>
+<li>这个虚拟的表并不在数据库中实际存在</li>
+<li>作用是将一些比较复杂的查询语句的结果，封装到一个虚拟表中。后期再有相同复杂查询时，直接查询这张虚拟表即可</li>
+<li>说白了，视图就是将一条SELECT查询语句的结果封装到了一个虚拟表中，所以我们在创建视图的时候，工作重心就要放在这条SELECT查询语句上</li>
+</ul>
+<h4 id="2-视图的好处"><a href="#2-视图的好处" class="headerlink" title="2.视图的好处"></a>2.视图的好处</h4><ul>
+<li>简单<ul>
+<li>对于使用视图的用户不需要关心表的结构、关联条件和筛选条件。因为这张虚拟表中保存的就是已经过滤好条件的结果集</li>
+</ul>
+</li>
+<li>安全<ul>
+<li>视图可以设置权限 , 致使访问视图的用户只能访问他们被允许查询的结果集</li>
+</ul>
+</li>
+<li>数据独立<ul>
+<li>一旦视图的结构确定了，可以屏蔽表结构变化对用户的影响，源表增加列对视图没有影响；源表修改列名，则可以通过修改视图来解决，不会造成对访问者的影响</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-视图数据准备"><a href="#3-视图数据准备" class="headerlink" title="3.视图数据准备"></a>3.视图数据准备</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 创建db7数据库<br>CREATE DATABASE db7;<br><br>-- 使用db7数据库<br>USE db7;<br><br>-- 创建country表<br>CREATE TABLE country(<br>	id INT PRIMARY KEY AUTO_INCREMENT,<br>	country_name VARCHAR(30)<br>);<br>-- 添加数据<br>INSERT INTO country VALUES (NULL,&#x27;中国&#x27;),(NULL,&#x27;美国&#x27;),(NULL,&#x27;俄罗斯&#x27;);<br><br>-- 创建city表<br>CREATE TABLE city(<br>	id INT PRIMARY KEY AUTO_INCREMENT,<br>	city_name VARCHAR(30),<br>	cid INT, -- 外键列。关联country表的主键列id<br>	CONSTRAINT cc_fk1 FOREIGN KEY (cid) REFERENCES country(id)<br>);<br>-- 添加数据<br>INSERT INTO city VALUES (NULL,&#x27;北京&#x27;,1),(NULL,&#x27;上海&#x27;,1),(NULL,&#x27;纽约&#x27;,2),(NULL,&#x27;莫斯科&#x27;,3);<br></code></pre></td></tr></table></figure>
+
+<h4 id="4-视图的创建"><a href="#4-视图的创建" class="headerlink" title="4.视图的创建"></a>4.视图的创建</h4><ul>
+<li>创建视图语法</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 标准语法<br>CREATE VIEW 视图名称 [(列名列表)] AS 查询语句;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>普通多表查询，查询城市和所属国家</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 普通多表查询，查询城市和所属国家<br>SELECT<br>	t1.*,<br>	t2.country_name<br>FROM<br>	city t1,<br>	country t2<br>WHERE<br>	t1.cid = t2.id;<br>	<br>-- 经常需要查询这样的数据，就可以创建一个视图<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>创建视图基本演示</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 创建一个视图。将查询出来的结果保存到这张虚拟表中<br>CREATE<br>VIEW<br>	city_country<br>AS<br>	SELECT t1.*,t2.country_name FROM city t1,country t2 WHERE t1.cid=t2.id;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>创建视图并指定列名基本演示</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 创建一个视图，指定列名。将查询出来的结果保存到这张虚拟表中<br>CREATE<br>VIEW<br>	city_country2 (city_id,city_name,cid,country_name) <br>AS<br>	SELECT t1.*,t2.country_name FROM city t1,country t2 WHERE t1.cid=t2.id;<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="5-视图的查询"><a href="#5-视图的查询" class="headerlink" title="5.视图的查询"></a>5.视图的查询</h4><ul>
+<li>查询视图语法</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 标准语法<br>SELECT * FROM 视图名称;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>查询视图基本演示</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 查询视图。查询这张虚拟表，就等效于查询城市和所属国家<br>SELECT * FROM city_country;<br><br>-- 查询指定列名的视图<br>SELECT * FROM city_country2;<br><br>-- 查询所有数据表，视图也会查询出来<br>SHOW TABLES;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>查询视图创建语法</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 标准语法<br>SHOW CREATE VIEW 视图名称;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>查询视图创建语句基本演示</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SHOW CREATE VIEW city_country;<br></code></pre></td></tr></table></figure>
+
+<h4 id="6-视图的修改"><a href="#6-视图的修改" class="headerlink" title="6.视图的修改"></a>6.视图的修改</h4><ul>
+<li>修改视图表中的数据</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 标准语法<br>UPDATE 视图名称 SET 列名=值 WHERE 条件;<br><br>-- 修改视图表中的城市名称北京为北京市<br>UPDATE city_country SET city_name=&#x27;北京市&#x27; WHERE city_name=&#x27;北京&#x27;;<br><br>-- 查询视图<br>SELECT * FROM city_country;<br><br>-- 查询city表,北京也修改为了北京市<br>SELECT * FROM city;<br><br>-- 注意：视图表数据修改，会自动修改源表中的数据<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>修改视图表结构</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 标准语法<br>ALTER VIEW 视图名称 [(列名列表)] AS 查询语句;<br><br>-- 查询视图2<br>SELECT * FROM city_country2;<br><br>-- 修改视图2的列名city_id为id<br>ALTER<br>VIEW<br>	city_country2 (id,city_name,cid,country_name)<br>AS<br>	SELECT t1.*,t2.country_name FROM city t1,country t2 WHERE t1.cid=t2.id;<br></code></pre></td></tr></table></figure>
+
+<h4 id="7-视图的删除"><a href="#7-视图的删除" class="headerlink" title="7.视图的删除"></a>7.视图的删除</h4><ul>
+<li>删除视图</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 标准语法<br>DROP VIEW [IF EXISTS] 视图名称;<br><br>-- 删除视图<br>DROP VIEW city_country;<br><br>-- 删除视图2，如果存在则删除<br>DROP VIEW IF EXISTS city_country2;<br></code></pre></td></tr></table></figure>
+
+<h4 id="8-视图的总结"><a href="#8-视图的总结" class="headerlink" title="8.视图的总结"></a>8.视图的总结</h4><ul>
+<li>视图是一种虚拟存在的数据表</li>
+<li>这个虚拟的表并不在数据库中实际存在</li>
+<li>说白了，视图就是将一条SELECT查询语句的结果封装到了一个虚拟表中，所以我们在创建视图的时候，工作重心就要放在这条SELECT查询语句上</li>
+<li>视图的好处<ul>
+<li>简单</li>
+<li>安全</li>
+<li>数据独立</li>
+</ul>
+</li>
+</ul>
+<h3 id="五、备份与还原"><a href="#五、备份与还原" class="headerlink" title="五、备份与还原"></a>五、备份与还原</h3><h4 id="1-命令行方式"><a href="#1-命令行方式" class="headerlink" title="1.命令行方式"></a>1.命令行方式</h4><ul>
+<li><p>备份</p>
+<ul>
+<li>使用SecureCRT工具连接到Linux系统，输入：mysqldump -u root -p 数据库名称 &gt; 文件保存路径</li>
+</ul>
+<p><img src="https://i0.hdslb.com/bfs/album/de9df73fc5c4b9a42d971a367e8704f4c507f5be.png" srcset="/Hexo/img/loading.gif" lazyload alt="12"></p>
+<ul>
+<li>进入文件保存路径，查看文件是否存在</li>
+</ul>
+<p><img src="https://i0.hdslb.com/bfs/album/dd168a3d5835c28f444894400cd5cefd84d8acfb.png" srcset="/Hexo/img/loading.gif" lazyload alt="13"></p>
+<p><img src="https://i0.hdslb.com/bfs/album/c209fd9de625b755b31ef2f2af59c331eff1126e.png" srcset="/Hexo/img/loading.gif" lazyload alt="14"></p>
+</li>
+<li><p>恢复</p>
+<ul>
+<li>登录mysql数据库</li>
+</ul>
+<p><img src="https://i0.hdslb.com/bfs/album/b3e76b47d9e2a4f8f971414a5da5827883685482.png" srcset="/Hexo/img/loading.gif" lazyload alt="15"></p>
+<ul>
+<li>删除已经备份的数据库</li>
+</ul>
+<p><img src="https://i0.hdslb.com/bfs/album/d0907fb0c92960560f746a23b27f0f43fa3d63b7.png" srcset="/Hexo/img/loading.gif" lazyload alt="16"></p>
+<ul>
+<li>重新创建名称相同的数据库</li>
+</ul>
+<p><img src="https://i0.hdslb.com/bfs/album/f26d973c94dca0e37cbfc1a4a3c45d2321f93ea4.png" srcset="/Hexo/img/loading.gif" lazyload alt="17"></p>
+<ul>
+<li>使用该数据库</li>
+</ul>
+<p><img src="https://i0.hdslb.com/bfs/album/57c1608f39d03889bfa6da133ecb8da83b7c0c58.png" srcset="/Hexo/img/loading.gif" lazyload alt="18"></p>
+<ul>
+<li>导入文件执行：source 备份文件路径;</li>
+</ul>
+<p><img src="https://i0.hdslb.com/bfs/album/a5d3db8e9b98d7d69ced7a102a21f0c66ab8d553.png" srcset="/Hexo/img/loading.gif" lazyload alt="19"></p>
+</li>
+</ul>
+<h4 id="2-图形化界面方式"><a href="#2-图形化界面方式" class="headerlink" title="2.图形化界面方式"></a>2.图形化界面方式</h4><ul>
+<li>备份</li>
+</ul>
+<p><img src="https://i0.hdslb.com/bfs/album/ff7995f230d2ff6b9779d9867c4840b3384170c1.png" srcset="/Hexo/img/loading.gif" lazyload alt="05"></p>
+<p><img src="https://i0.hdslb.com/bfs/album/bec1de03ec69463b2a526c67e54b6b5517b0e447.png" srcset="/Hexo/img/loading.gif" lazyload alt="06"></p>
+<p><img src="https://i0.hdslb.com/bfs/album/4dde8eca8c837a8de4a563ab1adc8967b96f968d.png" srcset="/Hexo/img/loading.gif" lazyload alt="07"></p>
+<ul>
+<li>恢复</li>
+</ul>
+<p><img src="https://i0.hdslb.com/bfs/album/cfbdf26f6cc85203ef678910137ae45531d18d77.png" srcset="/Hexo/img/loading.gif" lazyload alt="08"></p>
+<p><img src="/Hexo/MySQL%E8%BF%9B%E9%98%B6-02-%E6%8E%88%E8%AF%BE%E7%AC%94%E8%AE%B0.assets/09.png" srcset="/Hexo/img/loading.gif" lazyload alt="09"></p>
+<p><img src="https://i0.hdslb.com/bfs/album/a9ccd849487306bc5d59f671f48125d44ecda0c6.png" srcset="/Hexo/img/loading.gif" lazyload alt="10"></p>
+<p><img src="https://i0.hdslb.com/bfs/album/15a52205b2e4c645ab15aa978918871268aa8569.png" srcset="/Hexo/img/loading.gif" lazyload alt="11"></p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/Hexo/categories/Mysql%F0%9F%90%B1%E2%80%8D%F0%9F%91%A4/" class="category-chain-item">Mysql🐱‍👤</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/Hexo/tags/Mysql%F0%9F%90%B1%E2%80%8D%F0%9F%91%A4/">#Mysql🐱‍👤</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>MySQL进阶</div>
+      <div>https://1902756969.github.io/Hexo/2021/09/26/sql/MySQL进阶-02-授课笔记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>星</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年9月26日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Hexo/2021/09/26/sql/MySQL%E5%9F%BA%E7%A1%80-01-%E6%8E%88%E8%AF%BE%E7%AC%94%E8%AE%B0/" title="MySQL基础">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MySQL基础</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Hexo/2021/09/26/sql/MySQL%E9%AB%98%E7%BA%A7-03-%E6%8E%88%E8%AF%BE%E7%AC%94%E8%AE%B0/" title="MySQL高级1">
+                        <span class="hidden-mobile">MySQL高级1</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.16/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"7pHw1e3olQLxNfcNQy79zuU7-gzGzoHsz","appKey":"wJBz7rwsu1OJktQVGA4chIcS","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":15,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      
+
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      粤ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/Hexo/img/police_beian.png" srcset="/Hexo/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>粤公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/Hexo/js/events.js" ></script>
+<script  src="/Hexo/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  
+    <script  src="/Hexo/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/Hexo/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/Hexo/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

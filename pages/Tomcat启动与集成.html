@@ -1,0 +1,463 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" >
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo/img/csdn.png">
+  <link rel="icon" href="/Hexo/img/csdn.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#DAA520">
+  <meta name="author" content="星">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、web简介1.软件架构 1. C&#x2F;S：客户端&#x2F;服务器端       22. B&#x2F;S：浏览器&#x2F;服务器端  2.资源分类 1. 静态资源：所有用户访问后，得到的结果都是一样的，称为静态资源.静态资源可以直接被浏览器解析  * 如： html,css,JavaScript     2. 动态资源:每个用户访问相同资源后，得到的结果可能不一样。称为动态资源。动态资源被访问后，需要先转换为静态资源，在返">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tomcat启动与idea工具集成">
+<meta property="og:url" content="https://1902756969.github.io/Hexo/pages/Tomcat%E5%90%AF%E5%8A%A8%E4%B8%8E%E9%9B%86%E6%88%90.html">
+<meta property="og:site_name" content="⭐⭐⭐">
+<meta property="og:description" content="一、web简介1.软件架构 1. C&#x2F;S：客户端&#x2F;服务器端       22. B&#x2F;S：浏览器&#x2F;服务器端  2.资源分类 1. 静态资源：所有用户访问后，得到的结果都是一样的，称为静态资源.静态资源可以直接被浏览器解析  * 如： html,css,JavaScript     2. 动态资源:每个用户访问相同资源后，得到的结果可能不一样。称为动态资源。动态资源被访问后，需要先转换为静态资源，在返">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/lin-liangxing/pictuer/raw/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220214190417.png">
+<meta property="article:published_time" content="2021-05-15T10:29:54.000Z">
+<meta property="article:modified_time" content="2022-02-14T11:05:48.785Z">
+<meta property="article:author" content="星">
+<meta property="article:tag" content="Tomcat">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/lin-liangxing/pictuer/raw/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220214190417.png">
+  
+  
+  <title>Tomcat启动与idea工具集成 - ⭐⭐⭐</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/Hexo/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/Hexo/css/highlight.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/Hexo/js/utils.js" ></script>
+  <script  src="/Hexo/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/Hexo/">
+      <strong>🐛</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                目录
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/Hexo/img/bg5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Tomcat启动与idea工具集成"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<article class="page-content">
+  <h1 id="一、web简介"><a href="#一、web简介" class="headerlink" title="一、web简介"></a>一、web简介</h1><h2 id="1-软件架构"><a href="#1-软件架构" class="headerlink" title="1.软件架构"></a>1.软件架构</h2><pre><code class="hljs"> 1. C/S：客户端/服务器端
+      22. B/S：浏览器/服务器端
+</code></pre>
+<h2 id="2-资源分类"><a href="#2-资源分类" class="headerlink" title="2.资源分类"></a>2.资源分类</h2><pre><code class="hljs"> 1. 静态资源：所有用户访问后，得到的结果都是一样的，称为静态资源.静态资源可以直接被浏览器解析
+</code></pre>
+<p>* 如： html,css,JavaScript<br>     2. 动态资源:每个用户访问相同资源后，得到的结果可能不一样。称为动态资源。动态资源被访问后，需要先转换为静态资源，在返回给浏览器<br>              * 如：servlet&#x2F;jsp,php,asp…</p>
+<h2 id="3-网络通信三要素"><a href="#3-网络通信三要素" class="headerlink" title="3.网络通信三要素"></a>3.网络通信三要素</h2><pre><code class="hljs"> 1. IP：电子设备(计算机)在网络中的唯一标识。
+      2. 端口：应用程序在计算机中的唯一标识。 0~65536
+      3. 传输协议：规定了数据传输的规则
+                 1. 基础协议：
+     1. tcp:安全协议，三次握手。 速度稍慢
+     2. udp：不安全协议。 速度快
+</code></pre>
+<h2 id="4-服务器：安装了服务器软件的计算机"><a href="#4-服务器：安装了服务器软件的计算机" class="headerlink" title="4.服务器：安装了服务器软件的计算机"></a>4.服务器：安装了服务器软件的计算机</h2><p>   * 服务器软件：接收用户的请求，处理请求，做出响应<br>   * web服务器软件：接收用户的请求，处理请求，做出响应。<br>     * 在web服务器软件中，可以部署web项目，让用户通过浏览器来访问这些项目<br>     * web容器</p>
+<h2 id="5-常见的java相关的web服务器软件："><a href="#5-常见的java相关的web服务器软件：" class="headerlink" title="5.常见的java相关的web服务器软件："></a>5.常见的java相关的web服务器软件：</h2><p>​     * webLogic：oracle公司，大型的JavaEE服务器，支持所有的JavaEE规范，收费的。<br>​     * webSphere：IBM公司，大型的JavaEE服务器，支持所有的JavaEE规范，收费的。<br>​     * JBOSS：JBOSS公司的，大型的JavaEE服务器，支持所有的JavaEE规范，收费的。<br>​     * Tomcat：Apache基金组织，中小型的JavaEE服务器，仅仅支持少量的JavaEE规范servlet&#x2F;jsp。开源的，免费的。</p>
+<p>Tomcat 下载：<a target="_blank" rel="noopener" href="http://tomcat.apache.org/">http://tomcat.apache.org/</a></p>
+<p>解压后进入目录</p>
+<p><img src="https://img-blog.csdnimg.cn/cf47a96acc9f476b9cbdbb0796ac119f.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA7oy1IO6MtSDujLU=,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/Hexo/img/loading.gif" lazyload alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<p> 进入bin目录，找到startup.bat，双击打开( 不要关闭)</p>
+<p>如果出现一闪而退的现象，说明为正常配置JDK环境变量</p>
+<p>可参考<a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-environment-setup.html">Java 开发环境配置 | 菜鸟教程</a></p>
+<h1 id="二、Tomcat启动分析"><a href="#二、Tomcat启动分析" class="headerlink" title="二、Tomcat启动分析"></a>二、Tomcat启动分析</h1><p>进入startup.bat，可以看到代码路径均指向叫catalina.bat的文件</p>
+<p><img src="https://img-blog.csdnimg.cn/c099ff2233f2415a8b8b815ad327a42a.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA7oy1IO6MtSDujLU=,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/Hexo/img/loading.gif" lazyload alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<p>于是我们进入该文件</p>
+<p><img src="https://img-blog.csdnimg.cn/0f8bea9e2ca245a689cc64ff1a375160.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA7oy1IO6MtSDujLU=,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/Hexo/img/loading.gif" lazyload alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<p>看到改文件使用的环境变量是JAVA_HOME。</p>
+<p>所以需要正确配置JAVA_HOME后才可以正常启动Tomcat</p>
+<p><img src="https://img-blog.csdnimg.cn/0c30673f1a1a4ace927dae90cb032a22.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA7oy1IO6MtSDujLU=,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/Hexo/img/loading.gif" lazyload alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<p> 访问本机tomcat地址，如图为安装成功！</p>
+<p><img src="https://img-blog.csdnimg.cn/4f2e449b1e97479c8bdf1351a887d4af.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA7oy1IO6MtSDujLU=,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/Hexo/img/loading.gif" lazyload alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<h1 id="三、Tomcat与idea集成"><a href="#三、Tomcat与idea集成" class="headerlink" title="三、Tomcat与idea集成"></a>三、Tomcat与idea集成</h1><p>找到run </p>
+<p><img src="https://img-blog.csdnimg.cn/8b3122bb73c04ffe8e2f2c25793cae7c.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA7oy1IO6MtSDujLU=,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/Hexo/img/loading.gif" lazyload alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<p><img src="https://img-blog.csdnimg.cn/1a2c407c85a7428989ffdc5c0241103f.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA7oy1IO6MtSDujLU=,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/Hexo/img/loading.gif" lazyload alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<p>找到+号点击</p>
+<p> <img src="https://img-blog.csdnimg.cn/0e8e21f6f8784ddd85d915e0b5fbb2ae.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA7oy1IO6MtSDujLU=,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/Hexo/img/loading.gif" lazyload alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<p>找到Tomcat Server下的local</p>
+<p> <img src="https://img-blog.csdnimg.cn/888fde0286044095ac087825ec685ea4.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA7oy1IO6MtSDujLU=,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/Hexo/img/loading.gif" lazyload alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<p> <img src="https://img-blog.csdnimg.cn/18cb38283f984264808f4f8722d00b3e.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA7oy1IO6MtSDujLU=,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/Hexo/img/loading.gif" lazyload alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<p> <img src="https://img-blog.csdnimg.cn/b048df669b6f4586bcf6bdfde0bd1fca.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA7oy1IO6MtSDujLU=,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/Hexo/img/loading.gif" lazyload alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<p> <img src="https://img-blog.csdnimg.cn/8fa4edbe60d2432883f104be3ad29db3.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA7oy1IO6MtSDujLU=,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/Hexo/img/loading.gif" lazyload alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<p> 然后点击ok ok  ok  ok</p>
+<p><img src="https://img-blog.csdnimg.cn/57ccad9b0ab54385a23ddc33101424d6.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA7oy1IO6MtSDujLU=,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/Hexo/img/loading.gif" lazyload alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/Hexo/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+
+
+  
+
+</article>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      
+
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      粤ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/Hexo/img/police_beian.png" srcset="/Hexo/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>粤公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/Hexo/js/events.js" ></script>
+<script  src="/Hexo/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  
+    <script  src="/Hexo/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/Hexo/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/Hexo/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,880 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" >
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo/img/csdn.png">
+  <link rel="icon" href="/Hexo/img/csdn.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#DAA520">
+  <meta name="author" content="星">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="延迟任务系统设计4.1.延迟任务需求分析延迟任务的概念我们在2.2节中已经阐述，在充吧项目中延迟任务的业务场景有：  场景一： 订单下单之后30分钟后，如果用户没有付钱，则系统自动取消订单；如果期间下单成功，任务取消  场景二：接口对接出现网络问题，1分钟后重试，如果失败，2分钟重试，直到出现阈值终止 总结下来：简单的理解延迟任务可以认为是在某个设定的时间之后做某一件事情。 4.2.延迟任务单机版">
+<meta property="og:type" content="article">
+<meta property="og:title" content="⭐⭐⭐">
+<meta property="og:url" content="https://1902756969.github.io/Hexo/2023/02/11/%E7%94%B5%E5%95%86%E6%96%B9%E6%A1%88/%E5%BB%B6%E6%97%B6%E4%BB%BB%E5%8A%A1%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%B9%E6%A1%88%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:site_name" content="⭐⭐⭐">
+<meta property="og:description" content="延迟任务系统设计4.1.延迟任务需求分析延迟任务的概念我们在2.2节中已经阐述，在充吧项目中延迟任务的业务场景有：  场景一： 订单下单之后30分钟后，如果用户没有付钱，则系统自动取消订单；如果期间下单成功，任务取消  场景二：接口对接出现网络问题，1分钟后重试，如果失败，2分钟重试，直到出现阈值终止 总结下来：简单的理解延迟任务可以认为是在某个设定的时间之后做某一件事情。 4.2.延迟任务单机版">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jsd.cdn.zzko.cn/gh/1902756969/picgo_imgs@master/image.6ri9lrr9b340.webp">
+<meta property="og:image" content="https://cdn.staticaly.com/gh/1902756969/picgo_imgs@master/image.6vhts7agxmg0.webp">
+<meta property="og:image" content="https://cdn.staticaly.com/gh/1902756969/picgo_imgs@master/image.55hxz2tyyx80.webp">
+<meta property="og:image" content="https://cdn.staticaly.com/gh/1902756969/picgo_imgs@master/image.xaptlq6b8dc.webp">
+<meta property="og:image" content="https://cdn.staticaly.com/gh/1902756969/picgo_imgs@master/image.1l4xgoyi7ev4.webp">
+<meta property="og:image" content="https://cdn.staticaly.com/gh/1902756969/picgo_imgs@master/image.3ve4w9nxji40.webp">
+<meta property="og:image" content="https://cdn.staticaly.com/gh/1902756969/picgo_imgs@master/image.xz1d429v59c.webp">
+<meta property="article:published_time" content="2023-02-11T13:46:01.250Z">
+<meta property="article:modified_time" content="2023-02-12T15:16:20.525Z">
+<meta property="article:author" content="星">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://jsd.cdn.zzko.cn/gh/1902756969/picgo_imgs@master/image.6ri9lrr9b340.webp">
+  
+  
+  <title>⭐⭐⭐</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/Hexo/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/Hexo/css/highlight.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/Hexo/js/utils.js" ></script>
+  <script  src="/Hexo/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/Hexo/">
+      <strong>🐛</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                目录
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/Hexo/img/bg5.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        星
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-02-11 21:46" pubdate>
+          2023年2月11日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          13k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          105 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"></h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="延迟任务系统设计"><a href="#延迟任务系统设计" class="headerlink" title="延迟任务系统设计"></a>延迟任务系统设计</h1><h2 id="4-1-延迟任务需求分析"><a href="#4-1-延迟任务需求分析" class="headerlink" title="4.1.延迟任务需求分析"></a>4.1.延迟任务需求分析</h2><p>延迟任务的概念我们在2.2节中已经阐述，在充吧项目中延迟任务的业务场景有：</p>
+<p> 场景一： 订单下单之后30分钟后，如果用户没有付钱，则系统自动取消订单；如果期间下单成功，任务取消 </p>
+<p>场景二：接口对接出现网络问题，1分钟后重试，如果失败，2分钟重试，直到出现阈值终止 总结下来：简单的理解延迟任务可以认为是在某个设定的时间之后做某一件事情。</p>
+<h2 id="4-2-延迟任务单机版实现方案"><a href="#4-2-延迟任务单机版实现方案" class="headerlink" title="4.2.延迟任务单机版实现方案"></a>4.2.延迟任务单机版实现方案</h2><h3 id="4-2-1-Timer定时器"><a href="#4-2-1-Timer定时器" class="headerlink" title="4.2.1.Timer定时器"></a>4.2.1.Timer定时器</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TimerTaskTest</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">//创建timer</span><br>        <span class="hljs-type">Timer</span> <span class="hljs-variable">timer</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Timer</span>();<br>        <br>        <span class="hljs-comment">/*timer.schedule(new TimerTask() &#123;</span><br><span class="hljs-comment">            @Override</span><br><span class="hljs-comment">            public void run() &#123;</span><br><span class="hljs-comment">                System.out.println(System.currentTimeMillis()/1000+&quot;执行了任务&quot;);</span><br><span class="hljs-comment">            &#125;</span><br><span class="hljs-comment">        &#125;,1000L);</span><br><span class="hljs-comment">        System.out.println(System.currentTimeMillis()/1000);*/</span><br>        <span class="hljs-comment">// 如果任务的执行时间&lt;=当前时间,任务会立刻执行</span><br>       <span class="hljs-comment">/* timer.schedule(new TimerTask() &#123;</span><br><span class="hljs-comment">            @Override</span><br><span class="hljs-comment">            public void run() &#123;</span><br><span class="hljs-comment">                System.out.println(System.currentTimeMillis()/1000+&quot;执行了任务&quot;);</span><br><span class="hljs-comment">            &#125;</span><br><span class="hljs-comment">        &#125;,new Date(System.currentTimeMillis()-1000L));</span><br><span class="hljs-comment">        System.out.println(System.currentTimeMillis()/1000);*/</span><br><br>        <span class="hljs-comment">/*timer.schedule(new TimerTask() &#123;</span><br><span class="hljs-comment">            @Override</span><br><span class="hljs-comment">            public void run() &#123;</span><br><span class="hljs-comment">                System.out.println(System.currentTimeMillis()/1000+&quot;执行了任务&quot;);</span><br><span class="hljs-comment">            &#125;</span><br><span class="hljs-comment">        &#125;,1000L,2000L);</span><br><span class="hljs-comment">        System.out.println(System.currentTimeMillis()/1000);*/</span><br><br>        <span class="hljs-comment">/*timer.schedule(new TimerTask() &#123;</span><br><span class="hljs-comment">            @Override</span><br><span class="hljs-comment">            public void run() &#123;</span><br><span class="hljs-comment">                System.out.println(System.currentTimeMillis()/1000+&quot;执行了任务&quot;);</span><br><span class="hljs-comment">            &#125;</span><br><span class="hljs-comment">        &#125;,new Date(System.currentTimeMillis()-2000L),2000L);</span><br><span class="hljs-comment">        System.out.println(System.currentTimeMillis()/1000);*/</span><br>        <br>        timer.scheduleAtFixedRate(<span class="hljs-keyword">new</span> <span class="hljs-title class_">TimerTask</span>() &#123;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>                System.out.println(System.currentTimeMillis()/<span class="hljs-number">1000</span>+<span class="hljs-string">&quot;执行了任务&quot;</span>);<br>            &#125;<br>        &#125;,<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(System.currentTimeMillis() - <span class="hljs-number">3000L</span>),<span class="hljs-number">1000L</span>);<br>        System.out.println(System.currentTimeMillis()/<span class="hljs-number">1000</span>);<br>        <span class="hljs-comment">//  2 3 4 5</span><br>    &#125;<br>    <br>&#125;<br><br><span class="hljs-number">1.</span> schedule() ，<span class="hljs-number">2</span>个参数方法： 在执行任务时，如果指定的计划执行时间scheduledExecutionTime &lt;=<br>systemCurrentTime，则task会被立即执行。 <span class="hljs-number">2.</span> schedule() ，<span class="hljs-number">3</span>个参数方法： 在执行任务时，如果指定的计划执<br>行时间scheduledExecutionTime &lt;= systemCurrentTime，则task会被立即执行，之后按period参数固定重复执<br>行。 <span class="hljs-number">3.</span> scheduleAtFixedRate() ，<span class="hljs-number">3</span>个参数方法： 在执行任务时，如果指定的计划执行时间<br>scheduledExecutionTime&lt;= systemCurrentTime，则task会首先按执行一次；然后按照执行时间、系统当前时间<br>和period参数计算出过期该执行的次数，计算按照： (systemCurrentTime-scheduledExecutionTime)/period，<br>再次执行计算出的次数；最后按period参数固定重复执行。 <span class="hljs-number">4.</span> schedule() 和scheduleAtFixedRate() schedule()<br>方法更注重保持间隔时间的稳定。 scheduleAtFixedRate()方法更注重保持执行频率的稳定。<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TimerTaskTest2</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">Timer</span> <span class="hljs-variable">timer</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Timer</span>();<br>        <br>        <span class="hljs-comment">/*for(int i=0;i&lt;100;i++)&#123;</span><br><span class="hljs-comment">            int finalI = i;</span><br><span class="hljs-comment">            timer.schedule(new TimerTask() &#123;</span><br><span class="hljs-comment">                @Override</span><br><span class="hljs-comment">                public void run() &#123;</span><br><span class="hljs-comment">                    System.out.println(finalI);</span><br><span class="hljs-comment">                    if( finalI == 20)&#123;</span><br><span class="hljs-comment">                        throw  new RuntimeException();</span><br><span class="hljs-comment">                    &#125;</span><br><span class="hljs-comment">                &#125;</span><br><span class="hljs-comment">            &#125;,1000L);</span><br><span class="hljs-comment">        &#125; */</span><br>        <span class="hljs-type">ScheduledExecutorService</span> <span class="hljs-variable">executorService</span> <span class="hljs-operator">=</span> Executors.newScheduledThreadPool(<span class="hljs-number">5</span>);<br>        <br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">100</span>;i++)&#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">finalI</span> <span class="hljs-operator">=</span> i;<br>            executorService.schedule(<span class="hljs-keyword">new</span> <span class="hljs-title class_">TimerTask</span>() &#123;<br>                <span class="hljs-meta">@Override</span><br>                <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>                    System.out.println(finalI);<br>                    <span class="hljs-keyword">if</span>( finalI == <span class="hljs-number">20</span>)&#123;<br>                        <span class="hljs-keyword">throw</span>  <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>();<br>                    &#125;<br>                &#125;<br>            &#125;,<span class="hljs-number">1</span>, TimeUnit.SECONDS);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>另外对于ScheduledExecutorService还有其他的AP</p>
+<p>scheduledExecutorService.scheduleAtFixedRate() 按照固定频率 scheduledExecutorService.scheduleWithFixedDelay() 如果任务时间超过固定频率，按照任务实际时间延后</p>
+<h3 id="4-2-2-DelayQueue"><a href="#4-2-2-DelayQueue" class="headerlink" title="4.2.2.DelayQueue"></a>4.2.2.DelayQueue</h3><p>DelayQueue 是一个支持延时获取元素的阻塞队列， 内部采用优先队列 PriorityQueue 存储元素，同时元素 必须实现 Delayed 接口；在创建元素时可以指定多久才可以从队列中获取当前元素，只有在延迟期满时才能从队 列中提取元素。</p>
+<p><img src="https://jsd.cdn.zzko.cn/gh/1902756969/picgo_imgs@master/image.6ri9lrr9b340.webp" srcset="/Hexo/img/loading.gif" lazyload alt="image"></p>
+<p>DelayQueue属于排序队列，它的特殊之处在于队列的元素必须实现Delayed接口，该接口需要实现 compareTo和getDelay方法 </p>
+<p>getDelay方法：获取元素在队列中的剩余时间，只有当剩余时间为0时元素才可以出队列。 compareTo方法：用于排序，确定元素出队列的顺序。</p>
+<p>实现：</p>
+<p> 1：在测试包jdk下创建延迟任务元素对象DelayedTask，实现compareTo和getDelay方法，</p>
+<p> 2：在main方法中创建DelayQueue并向延迟队列中添加三个延迟任务，</p>
+<p> 3：循环的从延迟队列中拉取任务</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DelayedTask</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Delayed</span>&#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> executeTime;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">DelayedTask</span><span class="hljs-params">(<span class="hljs-type">int</span> delay)</span>&#123;<br>        <span class="hljs-type">Calendar</span> <span class="hljs-variable">calendar</span> <span class="hljs-operator">=</span> Calendar.getInstance();<br>        calendar.add(Calendar.SECOND,delay);<br>        <span class="hljs-built_in">this</span>.executeTime = (<span class="hljs-type">int</span>)(calendar.getTimeInMillis()/<span class="hljs-number">1000</span>);<br>    &#125;<br>    <br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 获得任务对象在队列中的剩余时间</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> unit</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">long</span> <span class="hljs-title function_">getDelay</span><span class="hljs-params">(TimeUnit unit)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">delay</span> <span class="hljs-operator">=</span> executeTime - (<span class="hljs-type">int</span>)(System.currentTimeMillis()/<span class="hljs-number">1000</span>);<br>        <span class="hljs-keyword">return</span> delay;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 用于不同的任务对象之间的排序比较</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> o</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">compareTo</span><span class="hljs-params">(Delayed o)</span> &#123;<br>        <span class="hljs-type">long</span> <span class="hljs-variable">l</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">this</span>.getDelay(TimeUnit.SECONDS) - o.getDelay(TimeUnit.SECONDS);<br>        <span class="hljs-keyword">return</span> l==<span class="hljs-number">0</span>? <span class="hljs-number">0</span> :( l &lt; <span class="hljs-number">0</span> ? -<span class="hljs-number">1</span>:<span class="hljs-number">1</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        DelayQueue&lt;DelayedTask&gt; queue = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DelayQueue</span>&lt;DelayedTask&gt;();<br>        <span class="hljs-comment">//向队列中添加任务</span><br>        queue.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">DelayedTask</span>(<span class="hljs-number">5</span>));<br>        queue.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">DelayedTask</span>(<span class="hljs-number">10</span>));<br>        queue.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">DelayedTask</span>(<span class="hljs-number">15</span>));<br>        <span class="hljs-comment">//消费任务</span><br>        System.out.println(System.currentTimeMillis()/<span class="hljs-number">1000</span>+<span class="hljs-string">&quot;开始消费任务&quot;</span>);<br>        <br>        <span class="hljs-keyword">while</span> (queue.size() !=<span class="hljs-number">0</span>)&#123;<br>            <span class="hljs-type">DelayedTask</span> <span class="hljs-variable">task</span> <span class="hljs-operator">=</span> queue.poll();<br>            <span class="hljs-keyword">if</span>(task !=<span class="hljs-literal">null</span>)&#123;<br>                System.out.println(System.currentTimeMillis()/<span class="hljs-number">1000</span>+<span class="hljs-string">&quot;消费了任务&quot;</span>);<br>            &#125;<br>            <span class="hljs-comment">//每隔1秒钟消费一次</span><br>            <span class="hljs-keyword">try</span> &#123;<br>                Thread.sleep(<span class="hljs-number">1000</span>);<br>            &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                e.printStackTrace();<br>            &#125;<br>        &#125;<br>        <br>        <br>        <br>        <br>        <br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>DelayQueue实现完成之后思考一个问题：</p>
+<p>使用线程池或者原生DelayQueue程序挂掉之后，任务都是放在内存，需要考虑未处理消息的丢失带来的影响，如何保 证数据不丢失，需要持久化（磁盘）</p>
+<h2 id="4-4-数据库方案介绍"><a href="#4-4-数据库方案介绍" class="headerlink" title="4.4.数据库方案介绍"></a>4.4.数据库方案介绍</h2><p><img src="https://cdn.staticaly.com/gh/1902756969/picgo_imgs@master/image.6vhts7agxmg0.webp" srcset="/Hexo/img/loading.gif" lazyload alt="image"></p>
+<p>首先要将延迟任务信息写入数据库，然后用一个线程去扫描任务库，然后根据执行情况更改数据库 </p>
+<p>从数据库查询任务的条件为：select * from taskinfo where execute_time&lt; now(); </p>
+<p>该方案的优势：建立独立任务表可以系统解耦，简化系统开发 </p>
+<p>该方案的不足：小型系统如果只有几万任务，采用上述方案即可，如果稍大规模系统，任务量过大，对数据库 造成的压力过大</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs">知识小贴士：如果数据库的访问压力过大该如何优化？ <br><br>1：数据库自身优化策略：建立索引，索引的思想是用空间换时间, 缺点如果数据量太大，过多索引占用大量磁盘空 间，所以一般只对关键字段，经常需要检索的字段设置索引。 <br><br>2：如果任务量过大，需要考虑分库分表，如果一天100万延迟任务，一月就3000万，一年就4亿2千万数据，对于 mysql，单表超过2万千，就算做了索引查询也非常慢，所以后续需要规划分库分表。<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.staticaly.com/gh/1902756969/picgo_imgs@master/image.55hxz2tyyx80.webp" srcset="/Hexo/img/loading.gif" lazyload alt="image"></p>
+<h1 id="延迟任务系统数据库方案实现"><a href="#延迟任务系统数据库方案实现" class="headerlink" title="延迟任务系统数据库方案实现"></a>延迟任务系统数据库方案实现</h1><h2 id="MyBatis-Plus介绍"><a href="#MyBatis-Plus介绍" class="headerlink" title="MyBatis-Plus介绍"></a>MyBatis-Plus介绍</h2><meta name="referrer" content="no-referrer">
+
+<p> MyBatis-Plus]（简称 MP）是一个MyBatis的增强工具，在 MyBatis 的基础上只做增强不做改变，为简化开 发、提高效率而生。</p>
+<p> GitHub项目地址：<a target="_blank" rel="noopener" href="https://github.com/baomidou/mybatis-plus">https://github.com/baomidou/mybatis-plus</a> </p>
+<p>官方文档：<a target="_blank" rel="noopener" href="https://mybatis.plus/">https://mybatis.plus/</a></p>
+<p>无侵入：只做增强不做改变，引入它不会对现有工程产生影响，如丝般顺滑</p>
+<p> 损耗小：启动即会自动注入基本 CURD，性能基本无损耗，直接面向对象操作 强大的 CRUD 操作：内置通用 Mapper、通用 Service，仅仅通过少量配置即可实现单表大部分 CRUD 操作，更有强大的条件构造器，满足各类使用需求 </p>
+<p>支持 Lambda 形式调用：通过 Lambda 表达式，方便的编写各类查询条件，无需再担心字段写错 支持主键自动生成：</p>
+<p>支持多达 4 种主键策略（内含分布式唯一 ID 生成器 - Sequence），可自由配置， 完美解决主键问题 支持 ActiveRecord 模式：</p>
+<p>支持 ActiveRecord 形式调用，实体类只需继承 Model 类即可进行强大的 CRUD 操作 支持自定义全局通用操作：支持全局通用方法注入（ Write once, use anywhere ） </p>
+<p>内置代码生成器：采用代码或者 Maven 插件可快速生成 Mapper 、 Model 、 Service 、 Controller 层 代码，支持模板引擎，更有超多自定义配置等您来使用 </p>
+<p>内置分页插件：基于 MyBatis 物理分页，开发者无需关心具体操作，配置好插件之后，写分页等同于普 通 List 查询 </p>
+<p>分页插件支持多种数据库：支持 MySQL、MariaDB、Oracle、DB2、H2、HSQL、SQLite、Postgre、 SQLServer2005、SQLServer 等多种数据库 </p>
+<p>内置性能分析插件：可输出 Sql 语句以及其执行时间，建议开发测试时启用该功能，能快速揪出慢查询 </p>
+<p>内置全局拦截插件：提供全表 delete 、 update 操作智能分析阻断，也可自定义拦截规则，预防误操作 </p>
+<p>接入企业：<a target="_blank" rel="noopener" href="https://mp.baomidou.com/guide/#%E4%BC%98%E7%A7%80%E6%A1%88%E4%BE%8B">https://mp.baomidou.com/guide/#优秀案例</a></p>
+<h2 id="任务信息表集成MP"><a href="#任务信息表集成MP" class="headerlink" title="任务信息表集成MP"></a>任务信息表集成MP</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- mybatis-plus支持 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.baomidou<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mybatis-plus-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.1.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-comment">&lt;!-- mysql 驱动包 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>mysql<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mysql-connector-java<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">application:</span>  <br>    <span class="hljs-attr">name:</span> <span class="hljs-string">schedule-service</span> <span class="hljs-comment">#服务名</span><br>  <span class="hljs-attr">datasource:</span><br>    <span class="hljs-attr">url:</span> <span class="hljs-string">jdbc:mysql://192.168.200.129:3306/chongba_schedule?serverTimezone=Asia/Shanghai</span><br>    <span class="hljs-attr">driver-class-name:</span> <span class="hljs-string">com.mysql.cj.jdbc.Driver</span><br>    <span class="hljs-attr">username:</span> <span class="hljs-string">root</span><br>    <span class="hljs-attr">password:</span> <span class="hljs-number">123456</span><br>    <br>  <span class="hljs-attr">redis:</span><br>    <span class="hljs-attr">host:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.200</span><span class="hljs-number">.129</span><br>    <span class="hljs-attr">password:</span> <span class="hljs-string">chongba</span><br>    <span class="hljs-attr">port:</span> <span class="hljs-number">6379</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><br>实体类TaskInfoEntity<br> <span class="hljs-meta">@Data</span> <span class="hljs-comment">// </span><br><span class="hljs-meta">@ToString</span><br><span class="hljs-meta">@NoArgsConstructor</span><br><br><span class="hljs-meta">@TableName(&quot;taskinfo&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TaskInfoEntity</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span>&#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">serialVersionUID</span> <span class="hljs-operator">=</span> -<span class="hljs-number">3218564191925663119L</span>;<br>    <br>    <span class="hljs-meta">@TableId(type = IdType.ID_WORKER)</span><br>    <span class="hljs-keyword">private</span> Long taskId;<br>    <br>    <span class="hljs-meta">@TableField</span><br>    <span class="hljs-keyword">private</span> Date executeTime;<br>    <br>    <span class="hljs-meta">@TableField</span><br>    <span class="hljs-keyword">private</span> Integer priority;<br>    <br>    <span class="hljs-meta">@TableField</span><br>    <span class="hljs-keyword">private</span> Integer taskType;<br>    <br>    <span class="hljs-meta">@TableField</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">byte</span>[] parameters;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>mybatis-plus 主键生成策略 默认使用全局唯一的数字类型</p>
+<p><img src="https://cdn.staticaly.com/gh/1902756969/picgo_imgs@master/image.xaptlq6b8dc.webp" srcset="/Hexo/img/loading.gif" lazyload alt="image-20230206220630716"></p>
+<p>这几种生成策略分别是：</p>
+<p><font color='green'>AUTO 数据库ID自增</font></p>
+<p><font color='green'>INPUT 用户输入ID </font></p>
+<p><font color='green'>ID_WORKER 全局唯一ID，Long类型的主键</font></p>
+<p><font color='green'>ID_WORKER_STR 字符串全局唯一ID </font></p>
+<p><font color='green'>UUID 全局唯一ID，UUID类型的主键 </font></p>
+<p><font color='green'>NONE 该类型为未设置主键类型</font></p>
+<p>什么情况下需要序列化？ </p>
+<p><font color='red'>1：当你想把的内存中的对象状态保存到一个文件中或者数据库中时候；</font></p>
+<p><font color='red'> 2：当你想用套接字在网络上传送对象的时候； </font></p>
+<p><font color='red'>3：当你想通过RMI传输对象的时候；</font></p>
+<p>​		Java 提供了一种对象序列化的机制，该机制中，一个对象可以被表示为一个字节序列，该字节序列包括该对象的 数据、有关对象的类型的信息和存储在对象中数据的类型。将序列化对象写入文件之后，可以从文件中读取出来，并 且对它进行反序列化</p>
+<p><img src="https://cdn.staticaly.com/gh/1902756969/picgo_imgs@master/image.1l4xgoyi7ev4.webp" srcset="/Hexo/img/loading.gif" lazyload alt="image"></p>
+<p>配置好之后在类名处：ALT+ENTER</p>
+<p><img src="https://cdn.staticaly.com/gh/1902756969/picgo_imgs@master/image.3ve4w9nxji40.webp" srcset="/Hexo/img/loading.gif" lazyload alt="image"></p>
+<p>4：创建包com.chongba.schedule.mapper并在该包下创建Mapper接口TaskInfoMapper，只需要继承下 mybatis-plus 提供的 BaseMapper&lt;&gt;在泛型中指定操作的实体，数据库基本增删改差基本不需要写了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">TaskInfoMapper</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">BaseMapper</span>&#123; &#125;<br></code></pre></td></tr></table></figure>
+
+<p>5：在springboot启动类中，扫描mapper接口所在的包</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@SpringBootApplication</span><br><span class="hljs-meta">@ComponentScan(&#123;&quot;com.chongba.schedule&quot;,&quot;com.chongba.cache&quot;&#125;)</span><br><span class="hljs-meta">@MapperScan(&quot;com.chongba.schedule.mapper&quot;)</span><br><span class="hljs-meta">@EnableScheduling</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ScheduleApplication</span> &#123;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        SpringApplication.run(ScheduleApplication.class,args);<br>    &#125;<br>    <br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> OptimisticLockerInterceptor <span class="hljs-title function_">optimisticLockerInterceptor</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">OptimisticLockerInterceptor</span>();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>mybatis-plus集成完毕 对mapper做相关单元测试</p>
+<p> 6：在测试包com.chongba.schedule下创建测试类TaskInfoMapperTest，测试基本的增删改查</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RunWith(SpringRunner.class)</span><br><span class="hljs-meta">@SpringBootTest(classes = ScheduleApplication.class)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TaskInfoMapperTest</span> &#123;<br>    <br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> TaskInfoMapper taskInfoMapper;<br>    <br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test1</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-comment">//保存</span><br>        <span class="hljs-type">TaskInfoEntity</span> <span class="hljs-variable">taskInfoEntity</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TaskInfoEntity</span>();<br>        taskInfoEntity.setExecuteTime(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>());<br>        taskInfoEntity.setPriority(<span class="hljs-number">1</span>);<br>        taskInfoEntity.setTaskType(<span class="hljs-number">1001</span>);<br>        taskInfoEntity.setParameters(<span class="hljs-string">&quot;test&quot;</span>.getBytes());<br>        taskInfoMapper.insert(taskInfoEntity);<br>        System.out.println(<span class="hljs-string">&quot;保存完成后返回主键值:&quot;</span>+taskInfoEntity.getTaskId());<br><br><br>        <span class="hljs-type">TaskInfoEntity</span> <span class="hljs-variable">infoEntity</span> <span class="hljs-operator">=</span> taskInfoMapper.selectById(taskInfoEntity.getTaskId());<br>        System.out.println(<span class="hljs-string">&quot;根据主键查询得到的数据:&quot;</span>+infoEntity);<br><br><br>        infoEntity.setTaskType(<span class="hljs-number">1002</span>);<br>        infoEntity.setPriority(<span class="hljs-number">10</span>);<br>        taskInfoMapper.updateById(infoEntity);<br>    &#125;<br>    <br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test2</span><span class="hljs-params">()</span>&#123;<br>        taskInfoMapper.deleteById(<span class="hljs-number">1181473027074838529L</span>);<br>    &#125;<br>    <br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">public</span>  <span class="hljs-keyword">void</span> <span class="hljs-title function_">test3</span><span class="hljs-params">()</span>&#123;<br>        List&lt;TaskInfoEntity&gt; entities = taskInfoMapper.selectList(<span class="hljs-literal">null</span>);<br>        <span class="hljs-keyword">for</span> (TaskInfoEntity entity : entities) &#123;<br>            System.out.println(entity);<br>        &#125;<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p>idea 接口飘红问题，这不是错误，因为Mapper接口我们并没有提供实现类在容器中，而是在程序运行的过程 中动态生成的代理，idea的检测机制并不知道这一原理，如果看的难受可修改idea配置</p>
+<p><img src="https://cdn.staticaly.com/gh/1902756969/picgo_imgs@master/image.xz1d429v59c.webp" srcset="/Hexo/img/loading.gif" lazyload alt="image"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">TaskInfoMapper</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">BaseMapper</span>&#123; <br><br><span class="hljs-meta">@Select(&quot;select * from taskinfo&quot;)</span><br><br> <span class="hljs-keyword">public</span> List <span class="hljs-title function_">selectAll</span><span class="hljs-params">()</span>;<br><br> &#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>在TaskInfoMapperTest测试类中添加测试方法进行测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span> <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test3</span><span class="hljs-params">()</span>&#123;<br><br>	 <span class="hljs-type">List</span> <span class="hljs-variable">selectAll</span> <span class="hljs-operator">=</span> taskInfoMapper.selectAll();<br><br>	 <span class="hljs-keyword">for</span> (TaskInfoEntity taskInfoEntity : selectAll) &#123; <br><br>	System.out.println(taskInfoEntity); <br><br>			&#125;<br> &#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="6-3-任务信息历史表集成MP"><a href="#6-3-任务信息历史表集成MP" class="headerlink" title="6.3.任务信息历史表集成MP"></a>6.3.任务信息历史表集成MP</h2><p>1：在chongba_schedule_service 工程中 编写与taskinfo_logs表对应的实体TaskInfoLogsEntity， 可以直接 继承 TaskInfoEntity</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Data</span><br><span class="hljs-meta">@ToString</span><br><span class="hljs-meta">@NoArgsConstructor</span><br><span class="hljs-meta">@EqualsAndHashCode(callSuper = false)</span> <span class="hljs-comment">//不继承equals和hashcode方法</span><br><br><span class="hljs-meta">@TableName(&quot;taskinfo_logs&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TaskInfoLogsEntity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">TaskInfoEntity</span>&#123;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     *  `version` INT(11) NOT NULL COMMENT &#x27;版本号,用乐观锁&#x27;,</span><br><span class="hljs-comment">     `status` INT(11) DEFAULT &#x27;0&#x27; COMMENT &#x27;状态 0=初始化状态 1=EXECUTED 2=CANCELLED&#x27;,</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Version</span><br>    <span class="hljs-keyword">private</span> Integer version;<br>    <br>    <span class="hljs-meta">@TableField</span><br>    <span class="hljs-keyword">private</span> Integer status;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>​		数据库自身解决并发两种策略</p>
+<p>​		悲观锁(Pessimistic Lock)</p>
+<p>​		顾名思义，就是很悲观，每次去拿数据的时候都认为别人会修改，所以每次在拿数据的时候都会上锁，这样别 人想拿这个数据就会block直到它拿到锁。传统的关系型数据库里边就用到了很多这种锁机制，比如行锁，表锁 等，读锁，写锁等，都是在做操作之前先上锁。</p>
+<p>​		乐观锁(Optimistic Lock)</p>
+<p>​		顾名思义，就是很乐观，每次去拿数据的时候都认为别人不会修改，所以不会上锁，但是在更新的时候会判断 一下在此期间别人有没有去更新这个数据，可以使用版本号等机制。乐观锁适用于多读的应用类型，这样可以提高 吞吐量，像数据库如果提供类似于write_condition机制的其实都是提供的乐观锁。</p>
+<p>​	2：mybatis-plus对乐观锁的支持，在启动类中向容器中放入乐观锁的拦截器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs JAVA"><span class="hljs-meta">@SpringBootApplication</span><br><span class="hljs-meta">@ComponentScan(&#123;&quot;com.chongba.schedule&quot;,&quot;com.chongba.cache&quot;&#125;)</span><br><span class="hljs-meta">@MapperScan(&quot;com.chongba.schedule.mapper&quot;)</span><br><span class="hljs-meta">@EnableScheduling</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ScheduleApplication</span> &#123;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        SpringApplication.run(ScheduleApplication.class,args);<br>    &#125;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * mybatis-plus乐观锁支持</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> OptimisticLockerInterceptor <span class="hljs-title function_">optimisticLockerInterceptor</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">OptimisticLockerInterceptor</span>();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>​	</p>
+<p>​	3：在com.chongba.schedule.mapper下创建接口TaskInfoLogsMapper</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs JAVA"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">TaskInfoLogsMapper</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">BaseMapper</span>&lt;TaskInfoLogsEntity&gt; &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>4：在测试包com.chongba.schedule下创建测试类TaskInfoLogsMapperTest</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs JAVA"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test2</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-type">TaskInfoLogsEntity</span> <span class="hljs-variable">taskInfoLogsEntity</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TaskInfoLogsEntity</span>();<br>    taskInfoLogsEntity.setTaskType(<span class="hljs-number">1003</span>);<br>    taskInfoLogsEntity.setPriority(<span class="hljs-number">3</span>);<br>    taskInfoLogsEntity.setParameters(<span class="hljs-string">&quot;log&quot;</span>.getBytes());<br>    taskInfoLogsEntity.setExecuteTime(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>());<br>    taskInfoLogsEntity.setVersion(<span class="hljs-number">1</span>);<br>    taskInfoLogsEntity.setStatus(<span class="hljs-number">0</span>);<br>    logsMapper.insert(taskInfoLogsEntity);<br>    <br>    taskInfoLogsEntity = logsMapper.selectById(taskInfoLogsEntity.getTaskId());<br>    System.out.println(<span class="hljs-string">&quot;数据插入:&quot;</span>+taskInfoLogsEntity);<br>    taskInfoLogsEntity.setStatus(<span class="hljs-number">1</span>);<br>    logsMapper.updateById(taskInfoLogsEntity);<br>    taskInfoLogsEntity = logsMapper.selectById(taskInfoLogsEntity.getTaskId());<br>    System.out.println(<span class="hljs-string">&quot;第一次更新后查询:&quot;</span>+taskInfoLogsEntity);<br>    taskInfoLogsEntity.setPriority(<span class="hljs-number">5</span>);<br>    logsMapper.updateById(taskInfoLogsEntity);<br>    taskInfoLogsEntity = logsMapper.selectById(taskInfoLogsEntity.getTaskId());<br>    System.out.println(<span class="hljs-string">&quot;第二次更新后查询:&quot;</span>+taskInfoLogsEntity);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>测试结果：主要看版本号</p>
+<p>​	数据插入:TaskInfoLogsEntity(version&#x3D;1, status&#x3D;0)<br>​	第一次更新后查询:TaskInfoLogsEntity(version&#x3D;2, status&#x3D;1)<br>​	第二次更新后查询:TaskInfoLogsEntity(version&#x3D;3, status&#x3D;1)</p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>https://1902756969.github.io/Hexo/2023/02/11/电商方案/延时任务系统数据库方案实现/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>星</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年2月11日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Hexo/2023/02/11/%E7%94%B5%E5%95%86%E6%96%B9%E6%A1%88/%E7%94%B5%E5%95%86%E7%A7%92%E6%9D%80%E4%B8%8B/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Hexo/2022/11/30/%E5%A4%9A%E7%BA%BF%E7%A8%8B/java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80%E6%8A%80%E6%9C%AF%E2%91%A1/" title="多线程基础技术②">
+                        <span class="hidden-mobile">多线程基础技术②</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.16/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"7pHw1e3olQLxNfcNQy79zuU7-gzGzoHsz","appKey":"wJBz7rwsu1OJktQVGA4chIcS","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":15,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      
+
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      粤ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/Hexo/img/police_beian.png" srcset="/Hexo/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>粤公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/Hexo/js/events.js" ></script>
+<script  src="/Hexo/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  
+    <script  src="/Hexo/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/Hexo/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/Hexo/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

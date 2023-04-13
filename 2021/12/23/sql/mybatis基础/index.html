@@ -1,0 +1,1023 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" >
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo/img/csdn.png">
+  <link rel="icon" href="/Hexo/img/csdn.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#DAA520">
+  <meta name="author" content="星">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一.Mybatis快速入门1.1 框架介绍 框架是一款半成品软件，我们可以基于这个半成品软件继续开发，来完成我们个性化的需求！  如图:    1.2 ORM介绍 ORM(Object Relational Mapping)： 对象关系映射  指的是持久化数据和实体对象的映射模式，为了解决面向对象与关系型数据库存在的互不匹配的现象的技术。  如图:   具体映射关系如下图:    1.3 原始jd">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mybatis基础">
+<meta property="og:url" content="https://1902756969.github.io/Hexo/2021/12/23/sql/mybatis%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="⭐⭐⭐">
+<meta property="og:description" content="一.Mybatis快速入门1.1 框架介绍 框架是一款半成品软件，我们可以基于这个半成品软件继续开发，来完成我们个性化的需求！  如图:    1.2 ORM介绍 ORM(Object Relational Mapping)： 对象关系映射  指的是持久化数据和实体对象的映射模式，为了解决面向对象与关系型数据库存在的互不匹配的现象的技术。  如图:   具体映射关系如下图:    1.3 原始jd">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.w3cschool.cn/attachments/image/20170807/1502093784622523.png">
+<meta property="article:published_time" content="2021-12-23T07:30:03.000Z">
+<meta property="article:modified_time" content="2022-11-24T10:29:21.827Z">
+<meta property="article:author" content="星">
+<meta property="article:tag" content="Mybatis">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.w3cschool.cn/attachments/image/20170807/1502093784622523.png">
+  
+  
+  <title>Mybatis基础 - ⭐⭐⭐</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/Hexo/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/Hexo/css/highlight.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/Hexo/js/utils.js" ></script>
+  <script  src="/Hexo/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/Hexo/">
+      <strong>🐛</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                目录
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/Hexo/img/bg5.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Mybatis基础"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        星
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-12-23 15:30" pubdate>
+          2021年12月23日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          63 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Mybatis基础</h1>
+            
+            <div class="markdown-body">
+              
+              <h3 id="一-Mybatis快速入门"><a href="#一-Mybatis快速入门" class="headerlink" title="一.Mybatis快速入门"></a>一.Mybatis快速入门</h3><h4 id="1-1-框架介绍"><a href="#1-1-框架介绍" class="headerlink" title="1.1 框架介绍"></a>1.1 框架介绍</h4><ul>
+<li><p>框架是一款半成品软件，我们可以基于这个半成品软件继续开发，来完成我们个性化的需求！</p>
+</li>
+<li><p>如图:</p>
+<p><img src="https://www.jianguoyun.com/c/tblv2/x0-zwJnMZ7VhcnBHoyVXB2grsEYO5tCSDdnz63lSZwE25BdTHLGB6rJAHnSU8sCzuWOPagJB/P8xveYrNPefZU4UAh4C7PQ/l" srcset="/Hexo/img/loading.gif" lazyload alt="1590919723185"></p>
+</li>
+</ul>
+<h4 id="1-2-ORM介绍"><a href="#1-2-ORM介绍" class="headerlink" title="1.2 ORM介绍"></a>1.2 ORM介绍</h4><ul>
+<li><p>ORM(Object Relational Mapping)： 对象关系映射</p>
+</li>
+<li><p>指的是持久化数据和实体对象的映射模式，为了解决面向对象与关系型数据库存在的互不匹配的现象的技术。</p>
+</li>
+<li><p>如图:</p>
+<p><img src="https://www.jianguoyun.com/c/tblv2/co0_G9P4Kc4vKdePfu_H19ir_4diKGDqRT3b4u9TfYsycvHhsUnxZgn9XRxmZwrzAubL-JqR/yvK4W9J--LDrFQdJOc-Txg/l" srcset="/Hexo/img/loading.gif" lazyload alt="1590919786415"></p>
+</li>
+<li><p>具体映射关系如下图:</p>
+</li>
+</ul>
+<p><img src="https://www.jianguoyun.com/c/tblv2/cvUg_0Cymsb3ilxZJPMdllH3B04KAs8N_rl7GydhxxwgP4Lh1tug0eKzwCVnLep-a4IXRuOv/L1FwMxhG6WFC5sMkFzmgmw/l" srcset="/Hexo/img/loading.gif" lazyload alt="1590919824416"></p>
+<h4 id="1-3-原始jdbc操作（查询数据）"><a href="#1-3-原始jdbc操作（查询数据）" class="headerlink" title="1.3 原始jdbc操作（查询数据）"></a>1.3 原始jdbc操作（查询数据）</h4><p><img src="https://www.jianguoyun.com/c/tblv2/yt8UjwbZK5RSZU68itjXVWH2a5_gAsLYpTOHxKJoqkG6aNyblbzDqJendvT0M2B7YgZHT1OY/J7lujY94eKOZm58IA1h7QQ/l" srcset="/Hexo/img/loading.gif" lazyload alt="1590915350408"></p>
+<h4 id="1-4原始jdbc操作（插入数据）"><a href="#1-4原始jdbc操作（插入数据）" class="headerlink" title="1.4原始jdbc操作（插入数据）"></a>1.4原始jdbc操作（插入数据）</h4><p><img src="https://www.jianguoyun.com/c/tblv2/Toz9QdRm2-EN9gkqkKxD6xecjb2F2ucmI6ScPUvUtPwLZkxYoGcREwKwLoW59gkDFEA4b7Z_/AEpqG5hxQ8TQdUh86YCx5Q/l" srcset="/Hexo/img/loading.gif" lazyload alt="1590915389449"></p>
+<h4 id="1-5-原始jdbc操作的分析"><a href="#1-5-原始jdbc操作的分析" class="headerlink" title="1.5 原始jdbc操作的分析"></a>1.5 原始jdbc操作的分析</h4><ul>
+<li><p>原始 JDBC 的操作问题分析 </p>
+<p>​    1.频繁创建和销毁数据库的连接会造成系统资源浪费从而影响系统性能。</p>
+<ol start="2">
+<li>sql 语句在代码中硬编码，如果要修改 sql 语句，就需要修改 java 代码，造成代码不易维护。</li>
+<li>查询操作时，需要手动将结果集中的数据封装到实体对象中。</li>
+<li>增删改查操作需要参数时，需要手动将实体对象的数据设置到 sql 语句的占位符。 </li>
+</ol>
+</li>
+<li><p>原始 JDBC 的操作问题解决方案 </p>
+<p>​    1.使用数据库连接池初始化连接资源。 </p>
+<ol start="2">
+<li>将 sql 语句抽取到配置文件中。 </li>
+<li>使用反射、内省等底层技术，将实体与表进行属性与字段的自动映射</li>
+</ol>
+</li>
+</ul>
+<h4 id="1-6-什么是Mybatis"><a href="#1-6-什么是Mybatis" class="headerlink" title="1.6 什么是Mybatis"></a>1.6 什么是Mybatis</h4><p>mybatis 是一个优秀的基于java的持久层框架，它内部封装了jdbc，使开发者只需要关注sql语句本身，而不需要花费精力去处理加载驱动、创建连接、创建statement等繁杂的过程。</p>
+<p>mybatis通过xml或注解的方式将要执行的各种 statement配置起来，并通过java对象和statement中sql的动态参数进行映射生成最终执行的sql语句。</p>
+<p>最后mybatis框架执行sql并将结果映射为java对象并返回。采用ORM思想解决了实体和数据库映射的问题，对jdbc 进行了封装，屏蔽了jdbc api 底层访问细节，使我们不用与jdbc api 打交道，就可以完成对数据库的持久化操作。</p>
+<p>MyBatis官网地址：<a target="_blank" rel="noopener" href="http://www.mybatis.org/mybatis-3/">http://www.mybatis.org/mybatis-3/</a> </p>
+<h4 id="1-7-Mybatis的快速入门"><a href="#1-7-Mybatis的快速入门" class="headerlink" title="1.7  Mybatis的快速入门"></a>1.7  Mybatis的快速入门</h4><p><strong>MyBatis开发步骤：</strong></p>
+<p>①添加MyBatis的jar包</p>
+<p>②创建Student数据表</p>
+<p>③编写Studentr实体类 </p>
+<p>④编写映射文件StudentMapper.xml</p>
+<p>⑤编写核心文件MyBatisConfig.xml</p>
+<p>⑥编写测试类</p>
+<h5 id="1-7-1-环境搭建"><a href="#1-7-1-环境搭建" class="headerlink" title="1.7.1  环境搭建"></a>1.7.1  环境搭建</h5><p>1)导入MyBatis的jar包</p>
+<ul>
+<li>mysql-connector-java-5.1.37-bin.jar</li>
+<li>mybatis-3.5.3.jar</li>
+<li>log4j-1.2.17.jar</li>
+</ul>
+<ol start="2">
+<li>创建student数据表</li>
+</ol>
+<p><img src="https://www.jianguoyun.com/c/tblv2/_vbyMzTpXP4xrbxzzFpcuKQEHdEU6Ytg_xejhxdHjaEqfaPl_LhnZ4sSyQzns6lD/Nezig_UhFOVcMcURhMjydg/l" srcset="/Hexo/img/loading.gif" lazyload alt="1590916243454"></p>
+<ol start="3">
+<li>编写Student实体</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> &#123;<br>    <span class="hljs-keyword">private</span> Integer id;<br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-keyword">private</span> Integer age;<br>    <span class="hljs-comment">//省略get个set方法</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>4)编写StudentMapper.xml映射文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span> ?&gt;</span><br><span class="hljs-comment">&lt;!--MyBatis的DTD约束--&gt;</span><br><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">mapper</span></span><br><span class="hljs-meta">        <span class="hljs-keyword">PUBLIC</span> <span class="hljs-string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span><br><span class="hljs-meta">        <span class="hljs-string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span><br><br><span class="hljs-comment">&lt;!--</span><br><span class="hljs-comment">    mapper：核心根标签</span><br><span class="hljs-comment">    namespace属性：名称空间</span><br><span class="hljs-comment">--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">&quot;StudentMapper&quot;</span>&gt;</span><br>    <span class="hljs-comment">&lt;!--</span><br><span class="hljs-comment">        select：查询功能的标签</span><br><span class="hljs-comment">        id属性：唯一标识</span><br><span class="hljs-comment">        resultType属性：指定结果映射对象类型</span><br><span class="hljs-comment">        parameterType属性：指定参数映射对象类型</span><br><span class="hljs-comment">    --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectAll&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;student&quot;</span>&gt;</span><br>        SELECT * FROM student<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>编写MyBatis核心文件</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span> ?&gt;</span><br><span class="hljs-comment">&lt;!--MyBatis的DTD约束--&gt;</span><br><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">configuration</span> <span class="hljs-keyword">PUBLIC</span> <span class="hljs-string">&quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span> <span class="hljs-string">&quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;</span>&gt;</span><br><br><span class="hljs-comment">&lt;!--configuration 核心根标签--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!--引入数据库连接的配置文件--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">properties</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">&quot;jdbc.properties&quot;</span>/&gt;</span><br><br>    <span class="hljs-comment">&lt;!--配置LOG4J--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">settings</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">setting</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;logImpl&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;log4j&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">settings</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!--起别名--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">typeAliases</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">typeAlias</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;com.itheima.bean.Student&quot;</span> <span class="hljs-attr">alias</span>=<span class="hljs-string">&quot;student&quot;</span>/&gt;</span><br>        <span class="hljs-comment">&lt;!--&lt;package name=&quot;com.itheima.bean&quot;/&gt;--&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">typeAliases</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!--environments配置数据库环境，环境可以有多个。default属性指定使用的是哪个--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">environments</span> <span class="hljs-attr">default</span>=<span class="hljs-string">&quot;mysql&quot;</span>&gt;</span><br>        <span class="hljs-comment">&lt;!--environment配置数据库环境  id属性唯一标识--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">environment</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;mysql&quot;</span>&gt;</span><br>            <span class="hljs-comment">&lt;!-- transactionManager事务管理。  type属性，采用JDBC默认的事务--&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">transactionManager</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;JDBC&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">transactionManager</span>&gt;</span><br>            <span class="hljs-comment">&lt;!-- dataSource数据源信息   type属性 连接池--&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">dataSource</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;POOLED&quot;</span>&gt;</span><br>                <span class="hljs-comment">&lt;!-- property获取数据库连接的配置信息 --&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;driver&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;$&#123;driver&#125;&quot;</span> /&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;url&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;$&#123;url&#125;&quot;</span> /&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;username&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;$&#123;username&#125;&quot;</span> /&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;password&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;$&#123;password&#125;&quot;</span> /&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">dataSource</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">environment</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">environments</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!-- mappers引入映射配置文件 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">mappers</span>&gt;</span><br>        <span class="hljs-comment">&lt;!-- mapper 引入指定的映射配置文件   resource属性指定映射配置文件的名称 --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">&quot;StudentMapper.xml&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">mappers</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
+
+<h5 id="1-7-2编写测试代码"><a href="#1-7-2编写测试代码" class="headerlink" title="1.7.2编写测试代码"></a>1.7.2编写测试代码</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/*</span><br><span class="hljs-comment">    控制层测试类</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">StudentController</span> &#123;<br>    <span class="hljs-comment">//创建业务层对象</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">StudentService</span> <span class="hljs-variable">service</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StudentServiceImpl</span>();<br><br>    <span class="hljs-comment">//查询全部功能测试</span><br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">selectAll</span><span class="hljs-params">()</span> &#123;<br>        List&lt;Student&gt; students = service.selectAll();<br>        <span class="hljs-keyword">for</span> (Student stu : students) &#123;<br>            System.out.println(stu);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="1-8-知识小结"><a href="#1-8-知识小结" class="headerlink" title="1.8 知识小结"></a>1.8 知识小结</h4><ul>
+<li><p>框架       </p>
+<p> 框架是一款半成品软件，我们可以基于框架继续开发，从而完成一些个性化的需求。</p>
+</li>
+<li><p>ORM        </p>
+<p>对象关系映射，数据和实体对象的映射。</p>
+</li>
+<li><p>MyBatis       </p>
+<p> 是一个优秀的基于 Java 的持久层框架，它内部封装了 JDBC。</p>
+</li>
+</ul>
+<h3 id="二-MyBatis的相关api"><a href="#二-MyBatis的相关api" class="headerlink" title="二. MyBatis的相关api"></a>二. MyBatis的相关api</h3><h4 id="2-1-Resources"><a href="#2-1-Resources" class="headerlink" title="2.1 Resources"></a>2.1 Resources</h4><ul>
+<li><p>org.apache.ibatis.io.Resources：加载资源的工具类。</p>
+</li>
+<li><p>核心方法</p>
+<p><img src="https://www.jianguoyun.com/c/tblv2/WFRH9fHTAuYWMETSZ0jCkU1c51xdw60jN23gRo9mfpzQIHDVc2_lvxSoeFSl9FrE/El7es8vXwuzGrjJwRyYZyw/l" srcset="/Hexo/img/loading.gif" lazyload alt="1590917572321"></p>
+</li>
+</ul>
+<h4 id="2-2-构建器SqlSessionFactoryBuilder"><a href="#2-2-构建器SqlSessionFactoryBuilder" class="headerlink" title="2.2 构建器SqlSessionFactoryBuilder"></a>2.2 构建器SqlSessionFactoryBuilder</h4><ul>
+<li><p>org.apache.ibatis.session.SqlSessionFactoryBuilder：获取 SqlSessionFactory 工厂对象的功能类</p>
+</li>
+<li><p>核心方法</p>
+<p><img src="/Hexo/img/1590916852504.png" srcset="/Hexo/img/loading.gif" lazyload alt="1590916852504"></p>
+</li>
+<li><p>通过加载mybatis的核心文件的输入流的形式构建一个SqlSessionFactory对象</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">resource</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;org/mybatis/builder/mybatis-config.xml&quot;</span>; <br><span class="hljs-type">InputStream</span> <span class="hljs-variable">inputStream</span> <span class="hljs-operator">=</span> Resources.getResourceAsStream(resource); <br><span class="hljs-type">SqlSessionFactoryBuilder</span> <span class="hljs-variable">builder</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SqlSessionFactoryBuilder</span>(); <br><span class="hljs-type">SqlSessionFactory</span> <span class="hljs-variable">factory</span> <span class="hljs-operator">=</span> builder.build(inputStream);<br></code></pre></td></tr></table></figure>
+
+<p>其中， Resources 工具类，这个类在 org.apache.ibatis.io 包中。Resources 类帮助你从类路径下、文件系统或一个 web URL 中加载资源文件。</p>
+<h4 id="2-3-工厂对象SqlSessionFactory"><a href="#2-3-工厂对象SqlSessionFactory" class="headerlink" title="2.3 工厂对象SqlSessionFactory"></a>2.3 工厂对象SqlSessionFactory</h4><ul>
+<li><p>org.apache.ibatis.session.SqlSessionFactory：获取 SqlSession 构建者对象的工厂接口。</p>
+</li>
+<li><p>核心api</p>
+<p><img src="https://www.jianguoyun.com/c/tblv2/MVKYQi1X2IucP_83OBd2eGh3bRB_fkrnj_8_8_D6LFkZWr-PWy6g8NFMuee0IwSDOrRtZjvX/l7zacmB0iYEpdxLUlzELEQ/l" srcset="/Hexo/img/loading.gif" lazyload alt="1590917006637"></p>
+</li>
+</ul>
+<h4 id="2-4-SqlSession会话对象"><a href="#2-4-SqlSession会话对象" class="headerlink" title="2.4 SqlSession会话对象"></a>2.4 SqlSession会话对象</h4><ul>
+<li><p>org.apache.ibatis.session.SqlSession：构建者对象接口。用于执行 SQL、管理事务、接口代理。</p>
+</li>
+<li><p>核心api</p>
+<p><img src="https://www.jianguoyun.com/c/tblv2/cARUczuUfiRtXqd59WNztD2z-5rqBePMTTVlUabV8jrvOipZppq-nGSgZ7VUFFLwCpMzK8MV/MpiDhVxTruqC3ht7UJaDEA/l" srcset="/Hexo/img/loading.gif" lazyload alt="1590917052849"></p>
+</li>
+</ul>
+<p>SqlSession 实例在 MyBatis 中是非常强大的一个类。在这里你会看到所有执行语句、提交或回滚事务和获取映射器实例的方法。</p>
+<h3 id="三-MyBatis-映射配置文件"><a href="#三-MyBatis-映射配置文件" class="headerlink" title="三.MyBatis 映射配置文件"></a>三.MyBatis 映射配置文件</h3><h4 id="3-1-映射配置文件介绍"><a href="#3-1-映射配置文件介绍" class="headerlink" title="3.1 映射配置文件介绍"></a>3.1 映射配置文件介绍</h4><ul>
+<li><p>映射配置文件包含了数据和对象之间的映射关系以及要执行的 SQL 语句</p>
+<p><img src="https://www.jianguoyun.com/c/tblv2/Ov4fWZwfKuS2qU3VvOVvL0JwwZ_nGNVIwTu_pS1HCIKer9boac_XMwdiQT2PK_N2QBGe4oXX/j-bTLIbnXE4squRpcOWegw/l" srcset="/Hexo/img/loading.gif" lazyload alt="1590917306615"></p>
+</li>
+</ul>
+<h4 id="3-2-查询功能"><a href="#3-2-查询功能" class="headerlink" title="3.2 查询功能"></a>3.2 查询功能</h4><ul>
+<li><p><select>：查询功能标签。</p>
+</li>
+<li><p>属性        </p>
+<p> id：唯一标识， 配合名称空间使用。     </p>
+<p> parameterType：指定参数映射的对象类型。       </p>
+<p> resultType：指定结果映射的对象类型。</p>
+</li>
+<li><p>SQL 获取参数:        #{属性名}</p>
+</li>
+<li><p>示例</p>
+<p><img src="https://www.jianguoyun.com/c/tblv2/8dsPo2koA3ytNngQUSGgR7Z5u9DLiPjd6yc5alwQfvYjdtz8UvHcsm8ua5GBDjaPt80vJxXs/Ewo7p-6MJ0bTgm8pPTRWPg/l" srcset="/Hexo/img/loading.gif" lazyload alt="1590917699865"></p>
+</li>
+</ul>
+<p>####3.3 新增功能 </p>
+<ul>
+<li><p><insert>：新增功能标签。</p>
+</li>
+<li><p>属性        </p>
+<p>id：唯一标识， 配合名称空间使用。     </p>
+<p>parameterType：指定参数映射的对象类型。       </p>
+<p>resultType：指定结果映射的对象类型。</p>
+</li>
+<li><p>SQL 获取参数:        #{属性名}</p>
+</li>
+</ul>
+<ul>
+<li>示例</li>
+</ul>
+<p><img src="https://www.jianguoyun.com/c/tblv2/vXcqu4Q7ZQ_yDcTLyMQF_1TpK3n-rg_Yp8qGfCNN8aXRmGgW5SnCE2Wru7d4uWq3Vb5kHF48/QyhM-UGlrVCKHorDxvvZuw/l" srcset="/Hexo/img/loading.gif" lazyload alt="1590918390112"></p>
+<h4 id="3-4-修改功能"><a href="#3-4-修改功能" class="headerlink" title="3.4 修改功能"></a>3.4 修改功能</h4><ul>
+<li><p><update>：修改功能标签。</p>
+</li>
+<li><p>属性        </p>
+<p>id：唯一标识， 配合名称空间使用。     </p>
+<p>parameterType：指定参数映射的对象类型。       </p>
+<p>resultType：指定结果映射的对象类型。</p>
+</li>
+<li><p>SQL 获取参数:        #{属性名}</p>
+</li>
+</ul>
+<ul>
+<li>示例</li>
+</ul>
+<p><img src="https://www.jianguoyun.com/c/tblv2/OPmKDvEV2IENqrH8-FXR1um7dleOeC1mxy0tZeF2lTsGSL4JZQWmZ1VxvGGGs_cw2R9mDSi9/HTsH5gyo_YSvhHxNDRFbgg/l" srcset="/Hexo/img/loading.gif" lazyload alt="1590918538863"></p>
+<h4 id="3-5-删除功能"><a href="#3-5-删除功能" class="headerlink" title="3.5 删除功能"></a>3.5 删除功能</h4><ul>
+<li><p><delete>：查询功能标签。</p>
+</li>
+<li><p>属性        </p>
+<p>id：唯一标识， 配合名称空间使用。     </p>
+<p>parameterType：指定参数映射的对象类型。       </p>
+<p>resultType：指定结果映射的对象类型。</p>
+</li>
+<li><p>SQL 获取参数:        #{属性名}</p>
+</li>
+</ul>
+<ul>
+<li><p>示例</p>
+<p><img src="https://www.jianguoyun.com/c/tblv2/aD5yyPPgECGtjEwuZhgthWx2cKn58ARpc8ec52VzgGpcoAqA5vp9IB_VdciSFbGim6ZfzIby/u1W7qRmPFJS97LjvI8NeNA/l" srcset="/Hexo/img/loading.gif" lazyload alt="1590918458329"></p>
+</li>
+<li><p>总结： 大家可以发现crud操作，除了标签名称以及sql语句不一样之外，其他属性参数基本一致。</p>
+</li>
+</ul>
+<h4 id="3-6-映射配置文件小结"><a href="#3-6-映射配置文件小结" class="headerlink" title="3.6 映射配置文件小结"></a>3.6 映射配置文件小结</h4><p><img src="/Hexo/img/1590918743943.png" srcset="/Hexo/img/loading.gif" lazyload alt="1590918743943"></p>
+<h3 id="四-Mybatis核心配置文件介绍"><a href="#四-Mybatis核心配置文件介绍" class="headerlink" title="四.Mybatis核心配置文件介绍"></a>四.Mybatis核心配置文件介绍</h3><h4 id="4-1-核心配置文件介绍"><a href="#4-1-核心配置文件介绍" class="headerlink" title="4.1 核心配置文件介绍"></a>4.1 核心配置文件介绍</h4><p>核心配置文件包含了 MyBatis 最核心的设置和属性信息。如数据库的连接、事务、连接池信息等。</p>
+<p>如下图:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span> ?&gt;</span><br><span class="hljs-comment">&lt;!--MyBatis的DTD约束--&gt;</span><br><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">configuration</span> <span class="hljs-keyword">PUBLIC</span> <span class="hljs-string">&quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span> <span class="hljs-string">&quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;</span>&gt;</span><br><br><span class="hljs-comment">&lt;!--configuration 核心根标签--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!--environments配置数据库环境，环境可以有多个。default属性指定使用的是哪个--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">environments</span> <span class="hljs-attr">default</span>=<span class="hljs-string">&quot;mysql&quot;</span>&gt;</span><br>        <span class="hljs-comment">&lt;!--environment配置数据库环境  id属性唯一标识--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">environment</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;mysql&quot;</span>&gt;</span><br>            <span class="hljs-comment">&lt;!-- transactionManager事务管理。  type属性，采用JDBC默认的事务--&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">transactionManager</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;JDBC&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">transactionManager</span>&gt;</span><br>            <span class="hljs-comment">&lt;!-- dataSource数据源信息   type属性 连接池--&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">dataSource</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;POOLED&quot;</span>&gt;</span><br>                <span class="hljs-comment">&lt;!-- property获取数据库连接的配置信息 --&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;driver&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;com.mysql.jdbc.Driver&quot;</span> /&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;url&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;jdbc:mysql:///db1&quot;</span> /&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;username&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;root&quot;</span> /&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;password&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;root&quot;</span> /&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">dataSource</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">environment</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">environments</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!-- mappers引入映射配置文件 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">mappers</span>&gt;</span><br>        <span class="hljs-comment">&lt;!-- mapper 引入指定的映射配置文件   resource属性指定映射配置文件的名称 --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">&quot;StudentMapper.xml&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">mappers</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="4-2-数据库连接配置文件引入"><a href="#4-2-数据库连接配置文件引入" class="headerlink" title="4.2 数据库连接配置文件引入"></a>4.2 数据库连接配置文件引入</h4><ul>
+<li><p>properties标签引入外部文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--引入数据库连接的配置文件--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">properties</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">&quot;jdbc.properties&quot;</span>/&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>具体使用，如下配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- property获取数据库连接的配置信息 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;driver&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;$&#123;driver&#125;&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;url&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;$&#123;url&#125;&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;username&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;$&#123;username&#125;&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;password&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;$&#123;password&#125;&quot;</span> /&gt;</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="4-3-起别名"><a href="#4-3-起别名" class="headerlink" title="4.3 起别名"></a>4.3 起别名</h4><ul>
+<li><p><typeAliases>：为全类名起别名的父标签。</p>
+</li>
+<li><p><typeAlias>：为全类名起别名的子标签。</p>
+</li>
+<li><p>属性      </p>
+<p> type：指定全类名      </p>
+<p> alias：指定别名</p>
+</li>
+<li><p><package>：为指定包下所有类起别名的子标签。(别名就是类名)</p>
+</li>
+<li><p>如下图：</p>
+<p><img src="https://www.jianguoyun.com/c/tblv2/-XAdecwuKESGajktNnr6MbeFgY8t9XicGL8VcV0uEUE_riX8WSDSF2wjffU0h94x/uTSzU9OWilIkCVHsfsqaNQ/l" srcset="/Hexo/img/loading.gif" lazyload alt="1590919106324"></p>
+</li>
+<li><p>具体如下配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--起别名--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">typeAliases</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">typeAlias</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;com.itheima.bean.Student&quot;</span> <span class="hljs-attr">alias</span>=<span class="hljs-string">&quot;student&quot;</span>/&gt;</span><br>    <span class="hljs-comment">&lt;!--&lt;package name=&quot;com.itheima.bean&quot;/&gt;--&gt;</span><br>&lt;/typeAliase<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="4-4-总结"><a href="#4-4-总结" class="headerlink" title="4.4 总结"></a>4.4 总结</h4><p><img src="/Hexo/img/1590919367790.png" srcset="/Hexo/img/loading.gif" lazyload alt="1590919367790"></p>
+<h3 id="五-Mybatis传统方式开发"><a href="#五-Mybatis传统方式开发" class="headerlink" title="五.Mybatis传统方式开发"></a>五.Mybatis传统方式开发</h3><h4 id="5-1-Dao-层传统实现方式"><a href="#5-1-Dao-层传统实现方式" class="headerlink" title="5.1 Dao 层传统实现方式"></a>5.1 Dao 层传统实现方式</h4><ul>
+<li><p>分层思想：控制层(controller)、业务层(service)、持久层(dao)。</p>
+</li>
+<li><p>调用流程</p>
+<p><img src="https://www.jianguoyun.com/c/tblv2/q3zJPxhuAZhdVgBBvX_twJXfB7F8rv2dZzHh_uauusWsAa6B6w0fxm_SweFrTw1O/59bWOZCLNVa2UNQRgR8h9w/l" srcset="/Hexo/img/loading.gif" lazyload alt="1590919558066"></p>
+</li>
+</ul>
+<h4 id="5-2-LOG4J的配置和使用"><a href="#5-2-LOG4J的配置和使用" class="headerlink" title="5.2 LOG4J的配置和使用"></a>5.2 LOG4J的配置和使用</h4><ul>
+<li><p>在日常开发过程中，排查问题时难免需要输出 MyBatis 真正执行的 SQL 语句、参数、结果等信息，我们就可以借助 LOG4J 的功能来实现执行信息的输出。</p>
+</li>
+<li><p>使用步骤：</p>
+<p><img src="https://www.jianguoyun.com/c/tblv2/dc17Y8rPHNQ0Ugcz4NpYp2SU5tFotvRWpKQm926yBYAdcNx4Y0EqcNZ1UqJ4imltMq0WbVjt/LLZEwmkwmSe0hnfE9VSFPQ/l" srcset="/Hexo/img/loading.gif" lazyload alt="1590919638466"></p>
+</li>
+</ul>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/Hexo/categories/%E6%8C%81%E4%B9%85%E5%B1%82%E6%A1%86%E6%9E%B6/" class="category-chain-item">持久层框架</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/Hexo/tags/Mybatis/">#Mybatis</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Mybatis基础</div>
+      <div>https://1902756969.github.io/Hexo/2021/12/23/sql/mybatis基础/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>星</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年12月23日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Hexo/2022/01/23/%E5%B7%A5%E5%85%B7/Maven%E5%9F%BA%E7%A1%80/" title="Maven基础">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Maven基础</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Hexo/2021/12/23/sql/mybatis%E8%BF%9B%E9%98%B6/" title="Mybatis进阶">
+                        <span class="hidden-mobile">Mybatis进阶</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.16/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"7pHw1e3olQLxNfcNQy79zuU7-gzGzoHsz","appKey":"wJBz7rwsu1OJktQVGA4chIcS","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":15,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      
+
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      粤ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/Hexo/img/police_beian.png" srcset="/Hexo/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>粤公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/Hexo/js/events.js" ></script>
+<script  src="/Hexo/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  
+    <script  src="/Hexo/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/Hexo/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/Hexo/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

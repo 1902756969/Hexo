@@ -1,0 +1,527 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" >
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo/img/csdn.png">
+  <link rel="icon" href="/Hexo/img/csdn.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#DAA520">
+  <meta name="author" content="星">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Nacos安装指南1.Windows安装开发阶段采用单机安装即可。 1.1.下载安装包在Nacos的GitHub页面，提供有下载链接，可以下载编译好的Nacos服务端或者源代码： GitHub主页：https:&#x2F;&#x2F;github.com&#x2F;alibaba&#x2F;nacos GitHub的Release下载页：https:&#x2F;&#x2F;github.com&#x2F;alibaba&#x2F;nacos&#x2F;releases 如图：  本课程">
+<meta property="og:type" content="website">
+<meta property="og:title" content="page.title">
+<meta property="og:url" content="https://1902756969.github.io/Hexo/pages/Nacos%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97.html">
+<meta property="og:site_name" content="⭐⭐⭐">
+<meta property="og:description" content="Nacos安装指南1.Windows安装开发阶段采用单机安装即可。 1.1.下载安装包在Nacos的GitHub页面，提供有下载链接，可以下载编译好的Nacos服务端或者源代码： GitHub主页：https:&#x2F;&#x2F;github.com&#x2F;alibaba&#x2F;nacos GitHub的Release下载页：https:&#x2F;&#x2F;github.com&#x2F;alibaba&#x2F;nacos&#x2F;releases 如图：  本课程">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210402161102887.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210402161130261.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210402161843337.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210402162008280.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210402162251093.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210402162350977.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210402162526774.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210402162630427.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210402162709515.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210402172334810.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210402161102887.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210402161130261.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210402163715580.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210402163858429.png">
+<meta property="og:image" content="https://1902756969.github.io/Hexo/assets/image-20210402164414827.png">
+<meta property="article:published_time" content="2023-03-01T12:07:09.451Z">
+<meta property="article:modified_time" content="2022-11-15T10:18:44.863Z">
+<meta property="article:author" content="星">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://1902756969.github.io/Hexo/assets/image-20210402161102887.png">
+  
+  
+  <title>page.title - ⭐⭐⭐</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/Hexo/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/Hexo/css/highlight.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/Hexo/js/utils.js" ></script>
+  <script  src="/Hexo/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/Hexo/">
+      <strong>🐛</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                目录
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/Hexo/img/bg5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="page.title"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<article class="page-content">
+  <h1 id="Nacos安装指南"><a href="#Nacos安装指南" class="headerlink" title="Nacos安装指南"></a>Nacos安装指南</h1><h1 id="1-Windows安装"><a href="#1-Windows安装" class="headerlink" title="1.Windows安装"></a>1.Windows安装</h1><p>开发阶段采用单机安装即可。</p>
+<h2 id="1-1-下载安装包"><a href="#1-1-下载安装包" class="headerlink" title="1.1.下载安装包"></a>1.1.下载安装包</h2><p>在Nacos的GitHub页面，提供有下载链接，可以下载编译好的Nacos服务端或者源代码：</p>
+<p>GitHub主页：<a target="_blank" rel="noopener" href="https://github.com/alibaba/nacos">https://github.com/alibaba/nacos</a></p>
+<p>GitHub的Release下载页：<a target="_blank" rel="noopener" href="https://github.com/alibaba/nacos/releases">https://github.com/alibaba/nacos/releases</a></p>
+<p>如图：</p>
+<p><img src="/Hexo/assets/image-20210402161102887.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210402161102887"></p>
+<p>本课程采用1.4.1.版本的Nacos，课前资料已经准备了安装包：</p>
+<p><img src="/Hexo/assets/image-20210402161130261.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210402161130261"></p>
+<p>windows版本使用<code>nacos-server-1.4.1.zip</code>包即可。</p>
+<h2 id="1-2-解压"><a href="#1-2-解压" class="headerlink" title="1.2.解压"></a>1.2.解压</h2><p>将这个包解压到任意非中文目录下，如图：</p>
+<p><img src="/Hexo/assets/image-20210402161843337.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210402161843337"></p>
+<p>目录说明：</p>
+<ul>
+<li>bin：启动脚本</li>
+<li>conf：配置文件</li>
+</ul>
+<h2 id="1-3-端口配置"><a href="#1-3-端口配置" class="headerlink" title="1.3.端口配置"></a>1.3.端口配置</h2><p>Nacos的默认端口是8848，如果你电脑上的其它进程占用了8848端口，请先尝试关闭该进程。</p>
+<p><strong>如果无法关闭占用8848端口的进程</strong>，也可以进入nacos的conf目录，修改配置文件中的端口：</p>
+<p><img src="/Hexo/assets/image-20210402162008280.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210402162008280"></p>
+<p>修改其中的内容：</p>
+<p><img src="/Hexo/assets/image-20210402162251093.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210402162251093"></p>
+<h2 id="1-4-启动"><a href="#1-4-启动" class="headerlink" title="1.4.启动"></a>1.4.启动</h2><p>启动非常简单，进入bin目录，结构如下：</p>
+<p><img src="/Hexo/assets/image-20210402162350977.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210402162350977"></p>
+<p>然后执行命令即可：</p>
+<ul>
+<li><p>windows命令：</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dos">startup.<span class="hljs-built_in">cmd</span> -m standalone<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>执行后的效果如图：</p>
+<p><img src="/Hexo/assets/image-20210402162526774.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210402162526774"></p>
+<h2 id="1-5-访问"><a href="#1-5-访问" class="headerlink" title="1.5.访问"></a>1.5.访问</h2><p>在浏览器输入地址：<a target="_blank" rel="noopener" href="http://127.0.0.1:8848/nacos%E5%8D%B3%E5%8F%AF%EF%BC%9A">http://127.0.0.1:8848/nacos即可：</a></p>
+<p><img src="/Hexo/assets/image-20210402162630427.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210402162630427"></p>
+<p>默认的账号和密码都是nacos，进入后：</p>
+<p><img src="/Hexo/assets/image-20210402162709515.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210402162709515"></p>
+<h1 id="2-Linux安装"><a href="#2-Linux安装" class="headerlink" title="2.Linux安装"></a>2.Linux安装</h1><p>Linux或者Mac安装方式与Windows类似。</p>
+<h2 id="2-1-安装JDK"><a href="#2-1-安装JDK" class="headerlink" title="2.1.安装JDK"></a>2.1.安装JDK</h2><p>Nacos依赖于JDK运行，索引Linux上也需要安装JDK才行。</p>
+<p>上传jdk安装包：</p>
+<p><img src="/Hexo/assets/image-20210402172334810.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210402172334810"></p>
+<p>上传到某个目录，例如：<code>/usr/local/</code></p>
+<p>然后解压缩：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">tar -xvf jdk-8u144-linux-x64.tar.gz<br></code></pre></td></tr></table></figure>
+
+<p>然后重命名为java</p>
+<p>配置环境变量：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">export</span> JAVA_HOME=/usr/local/java<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$JAVA_HOME</span>/bin<br></code></pre></td></tr></table></figure>
+
+<p>设置环境变量：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">source</span> /etc/profile<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="2-2-上传安装包"><a href="#2-2-上传安装包" class="headerlink" title="2.2.上传安装包"></a>2.2.上传安装包</h2><p>如图：</p>
+<p><img src="/Hexo/assets/image-20210402161102887.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210402161102887"></p>
+<p>也可以直接使用课前资料中的tar.gz：</p>
+<p><img src="/Hexo/assets/image-20210402161130261.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210402161130261"></p>
+<p>上传到Linux服务器的某个目录，例如<code>/usr/local/src</code>目录下：</p>
+<p><img src="/Hexo/assets/image-20210402163715580.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210402163715580"></p>
+<h2 id="2-3-解压"><a href="#2-3-解压" class="headerlink" title="2.3.解压"></a>2.3.解压</h2><p>命令解压缩安装包：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">tar -xvf nacos-server-1.4.1.tar.gz<br></code></pre></td></tr></table></figure>
+
+<p>然后删除安装包：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">rm</span> -rf nacos-server-1.4.1.tar.gz<br></code></pre></td></tr></table></figure>
+
+<p>目录中最终样式：</p>
+<p><img src="/Hexo/assets/image-20210402163858429.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210402163858429"></p>
+<p>目录内部：</p>
+<p><img src="/Hexo/assets/image-20210402164414827.png" srcset="/Hexo/img/loading.gif" lazyload alt="image-20210402164414827"></p>
+<h2 id="2-4-端口配置"><a href="#2-4-端口配置" class="headerlink" title="2.4.端口配置"></a>2.4.端口配置</h2><p>与windows中类似</p>
+<h2 id="2-5-启动"><a href="#2-5-启动" class="headerlink" title="2.5.启动"></a>2.5.启动</h2><p>在nacos&#x2F;bin目录中，输入命令启动Nacos：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sh startup.sh -m standalone<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h1 id="3-Nacos的依赖"><a href="#3-Nacos的依赖" class="headerlink" title="3.Nacos的依赖"></a>3.Nacos的依赖</h1><p>父工程：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-alibaba-dependencies<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.5.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">type</span>&gt;</span>pom<span class="hljs-tag">&lt;/<span class="hljs-name">type</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>import<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p>客户端：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- nacos客户端依赖包 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+  
+
+</article>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      
+
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      粤ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/Hexo/img/police_beian.png" srcset="/Hexo/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>粤公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/Hexo/js/events.js" ></script>
+<script  src="/Hexo/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  
+    <script  src="/Hexo/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/Hexo/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/Hexo/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

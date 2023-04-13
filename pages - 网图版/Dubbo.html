@@ -1,0 +1,650 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" >
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/Hexo/img/csdn.png">
+  <link rel="icon" href="/Hexo/img/csdn.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#DAA520">
+  <meta name="author" content="星">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1-今日内容 分布式系统中的相关概念 dubbo 概述 dubbo快速入门 dubbo的高级特性 2-相关概念2.1-互联网项目架构-特点互联网项目架构-特点  用户多  流量大，并发高  海量数据  易受攻击  功能繁琐  变更快   传统项目和互联网项目的不同  用户体验：    美观、功能、速度、稳定性 衡量一个网站速度是否快:    打开一个新页面一瞬间完成;页面内跳转，-刹那间完成。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="double快速入门-高级特性">
+<meta property="og:url" content="https://1902756969.github.io/Hexo/pages%20-%20%E7%BD%91%E5%9B%BE%E7%89%88/Dubbo.html">
+<meta property="og:site_name" content="⭐⭐⭐">
+<meta property="og:description" content="1-今日内容 分布式系统中的相关概念 dubbo 概述 dubbo快速入门 dubbo的高级特性 2-相关概念2.1-互联网项目架构-特点互联网项目架构-特点  用户多  流量大，并发高  海量数据  易受攻击  功能繁琐  变更快   传统项目和互联网项目的不同  用户体验：    美观、功能、速度、稳定性 衡量一个网站速度是否快:    打开一个新页面一瞬间完成;页面内跳转，-刹那间完成。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.imgdb.cn/item/623e9bfa27f86abb2aee7d5e.png">
+<meta property="article:published_time" content="2022-01-25T02:30:03.000Z">
+<meta property="article:modified_time" content="2022-03-26T05:47:07.231Z">
+<meta property="article:author" content="星">
+<meta property="article:tag" content="分布式dubbo">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/623e9bfa27f86abb2aee7d5e.png">
+  
+  
+  <title>double快速入门-高级特性 - ⭐⭐⭐</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/Hexo/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/Hexo/css/highlight.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"1902756969.github.io","root":"/Hexo/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":" ❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/Hexo/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/Hexo/js/utils.js" ></script>
+  <script  src="/Hexo/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/Hexo/">
+      <strong>🐛</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                目录
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Hexo/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/Hexo/img/bg5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="double快速入门-高级特性"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<article class="page-content">
+  <h2 id="1-今日内容"><a href="#1-今日内容" class="headerlink" title="1-今日内容"></a><strong>1-今日内容</strong></h2><p> 分布式系统中的相关概念</p>
+<p>dubbo 概述</p>
+<p>dubbo快速入门</p>
+<p>dubbo的高级特性</p>
+<h2 id="2-相关概念"><a href="#2-相关概念" class="headerlink" title="2-相关概念"></a><strong>2-相关概念</strong></h2><h3 id="2-1-互联网项目架构-特点"><a href="#2-1-互联网项目架构-特点" class="headerlink" title="2.1-互联网项目架构-特点"></a>2.1-互联网项目架构-特点</h3><p>互联网项目架构-特点</p>
+<ol>
+<li><p>用户多</p>
+</li>
+<li><p>流量大，并发高</p>
+</li>
+<li><p>海量数据</p>
+</li>
+<li><p>易受攻击</p>
+</li>
+<li><p>功能繁琐</p>
+</li>
+<li><p>变更快</p>
+</li>
+</ol>
+<p><strong>传统项目和互联网项目的不同</strong></p>
+<p><img src="/Hexo/../img/202203121453819.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581310475046"></p>
+<p><strong>用户体验</strong>：<br>    美观、功能、速度、稳定性</p>
+<p><strong>衡量一个网站速度是否快:</strong><br>    打开一个新页面一瞬间完成;页面内跳转，-刹那间完成。<br>    根据佛经《僧衹律》记载:一 刹那者为-念,二十念为-瞬,二十瞬为-弹<br>    指，二十弹指为-罗预， 二十罗预为-须臾，一日一夜有三十须臾。</p>
+<h3 id="2-2-互联网项目架构-目标"><a href="#2-2-互联网项目架构-目标" class="headerlink" title="2.2-互联网项目架构-目标"></a>2.2-互联网项目架构-目标</h3><p><strong>衡量网站的性能指标:</strong><br>    **响应时间:**指执行一个请求从开始到最后收到响应数据所花费的总体时间。<br>    **并发数:**指系统同时能处理的请求数量。<br>    <strong>并发连接数:</strong> 指的是客户端向服务器发起请求，并建立了TCP连接。每秒钟服务器连接的总TCP数量<br>    **请求数:**也称为QPS(Query Per Second)指每秒多少请求.<br>    **并发用户数:**单位时间内有多少用户<br>    **吞吐量:**指单位时间内系统能处理的请求数量。</p>
+<pre><code class="hljs">●QPS: Query Per Second每秒查询数。
+●TPS: Transactions Per Second每秒事务数。
+●一个事务是指一 个客户机向服务器发送请求然后服务器做出反应的过程。客户机在发送请求时开始计时，收到服务器响应后结束
+计时，以此来计算使用的时间和完成的事务个数。
+●一个页面的一次访问，只会形成一 个TPS; 但-次页面请求，可能产生多次对服务器的请求，就会有多个QPS
+  QPS&gt;=并发连接数&gt;= TPS
+</code></pre>
+<p><strong>大型互联网项目架构目标</strong>:</p>
+<pre><code class="hljs">●**高性能:**提供快速的访问体验。
+●**高可用:**网站服务- 可以正常访问
+</code></pre>
+<h3 id="2-3-集群和分布式"><a href="#2-3-集群和分布式" class="headerlink" title="2.3-集群和分布式"></a>2.3-集群和分布式</h3><p>集群和分布式，<br>●集群:很多“人”一起，干一样的事。<br>●一个业务模块，部署在多台服务器上。<br>●分布式:很多”人”一起，干不样的事。这些不一样的事， 合起来是一件大事。</p>
+<p><img src="/Hexo/../img/202203121454557.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<h3 id="2-4-架构演进"><a href="#2-4-架构演进" class="headerlink" title="2.4-架构演进"></a>2.4-架构演进</h3><p><strong>单体架构：</strong></p>
+<p><strong>优点:</strong><br>    简单:开发部署都很方便，小型项目首选<br><strong>缺点:</strong><br>●项目启动慢<br>●可靠性差</p>
+<p><img src="/Hexo/../img/202203121454708.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581313584459"></p>
+<p><strong>垂直架构：</strong>垂直架构是指将单体架构中的多个模块拆分为多个独立的项目。形成多个独立的单体架构。</p>
+<p><strong>单体架构存在的问题:</strong></p>
+<ul>
+<li><p>项目启动慢</p>
+</li>
+<li><p>可靠性差</p>
+</li>
+<li><p>可伸缩性差</p>
+</li>
+<li><p>扩展性和可维护性差</p>
+</li>
+<li><p>性能低</p>
+</li>
+</ul>
+<p><strong>垂直架构存在的问题:</strong> 重复功能太多</p>
+<p><img src="/Hexo/../img/202203121454460.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581313910427"></p>
+<p><strong>分布式架构：</strong>是指在垂直架构的基础上,将公共业务模块抽取出来,作为独立的服务供其他调用者消费，以实现服务的共享和重用。底层通过RPC（远程过程调用实现）<br>    <strong>RPC:</strong> Remote Procedure Call远程过程调用。有非常多的协议和技术来都实现了RPC的过程。比如: HTTP REST风格，Java RMI规范、WebService SOAP协议Hession等等。<br><strong>垂直架构存在的问题:</strong><br>    ●重复功能太多</p>
+<p><strong>分布式架构存在的问题:</strong><br>    ●服务提供方- -旦产生变更,所有消费方都需要变更。</p>
+<p><img src="/Hexo/../img/202203121454268.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p>**SOA: (Service- Oriented Architecture,面向服务的架构)**：是一个组件模型,它将应用程序的不同功能单元(称为服务)进行拆分，并通过这些服务之间定义良好的接口和契约联系起来。</p>
+<p>**ESB: (Enterparise Servce Bus)**：企业服务总线,服务中介。主要是提供了一一个服<br>务于服务之间的交互。ESB包含的功能如:负载均衡，流量控制，加密处理，服务<br>的监控，异常处理，监控告急等等。</p>
+<p><img src="/Hexo/../img/202203121454550.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581314362523"></p>
+<p><strong>微服务架构：</strong></p>
+<p>●微服务架构是在SOA上做的升华,微服务架构强调的一个重点是“业务需要彻底的组件化和服务化”，原有的单个<br>业务系统会拆分为多个可以独立开发、设计、运行的小应用。这些小应用之间通过服务完成交互和集成。</p>
+<p>●微服务架构&#x3D; 80%的SOA服务架构思想+ 100%的组件化架构思想+ 80%的领域建模思想</p>
+<p><strong>特点:</strong><br>●服务实现组件化:开发者可以自由选择开发技术。也不需要协调其他团队<br>●服务之间交互一 般使用REST API<br>●去中心化:每个微服务有自己私有的数据库持久化业务数据<br>●自动化部署:把应用拆分成为一 个-个独立的单个服务,方便自动化部署、测试、运维</p>
+<p><img src="/Hexo/../img/202203121454467.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<h2 id="3-dubbo-概述"><a href="#3-dubbo-概述" class="headerlink" title="3-dubbo 概述"></a>3-dubbo 概述</h2><p><strong>Dubbo概念</strong></p>
+<p>●Dubbo是阿里巴巴公司开源的一个高性能、轻量级的Java RPC框架。<br>●致力于提供高性能和透明化的RPC远程服务调用方案,以及SOA服务治理方案。<br>●官网: htp:&#x2F;&#x2F;ubbo.apache.orgo</p>
+<p><img src="/Hexo/../img/202203121454793.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p>节点角色说明: .<br>●Provider: 暴露服务的服务提供方<br>●Contahier: 服务运行容器<br>●Consumer: 调用远程服务的服务消费方<br>●Registry: 服务注册与发现的注册中心<br>●Monitor:统计服务的调用次数和调用时间的监控中心</p>
+<h2 id="4-dubbo快速入门"><a href="#4-dubbo快速入门" class="headerlink" title="4-dubbo快速入门"></a>4-dubbo快速入门</h2><h3 id="4-1zookeeper安装"><a href="#4-1zookeeper安装" class="headerlink" title="4.1zookeeper安装"></a>4.1zookeeper安装</h3><p>安装步骤：</p>
+<p>第一步：安装 jdk（略）<br>第二步：把 zookeeper 的压缩包（zookeeper-3.4.6.tar.gz）上传到 linux 系统<br>第三步：解压缩压缩包</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">tar -zxvf  zookeeper-3.4.6.tar.gz<br></code></pre></td></tr></table></figure>
+
+<p>第四步：进入zookeeper-3.4.6目录，创建data目录</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">mkdir</span> data<br></code></pre></td></tr></table></figure>
+
+<p>第五步：进入conf目录 ，把zoo_sample.cfg 改名为zoo.cfg</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cd</span> conf<br><span class="hljs-built_in">mv</span> zoo_sample.cfg zoo.cfg<br></code></pre></td></tr></table></figure>
+
+<p>第六步：打开zoo.cfg文件,  修改data属性：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">dataDir=/root/zookeeper-3.4.6/data<br></code></pre></td></tr></table></figure>
+
+
+
+<p>进入Zookeeper的bin目录，启动服务命令</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">./zkServer.sh start<br></code></pre></td></tr></table></figure>
+
+<p><img src="/Hexo/../img/202203121454613.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581315609244"></p>
+<p>停止服务命令</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">./zkServer.sh stop<br></code></pre></td></tr></table></figure>
+
+
+
+<p>查看服务状态：standalone 单节点</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">./zkServer.sh status<br></code></pre></td></tr></table></figure>
+
+<p><img src="/Hexo/../img/202203121454683.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581315645227"></p>
+<h3 id="4-2spring和springmvc整合"><a href="#4-2spring和springmvc整合" class="headerlink" title="4.2spring和springmvc整合"></a>4.2spring和springmvc整合</h3><p>实施步骤：</p>
+<p>1.创建服务提供者Provider模块<br>2.创建服务消费者Consumer模块<br>3.在服务提供者模块编写UserServicelmpl提供服务<br>4.在服务消费者中的UserC ontroller远程调用<br>5.UserServicelmpl提供的服务<br>6.分别启动两个服务，测试</p>
+<p>Dubbo作为一个RPC框架，其最核心的功能就是要实现跨网络的远程调用。本小节就是要创建两个应用，一个作为服务的提供方，一个作为服务的消费方。通过Dubbo来实现服务消费方远程调用服务提供方的方法。</p>
+<p>1 服务提供方开发</p>
+<p>开发步骤：</p>
+<p>（1）创建maven工程（打包方式为war）dubbodemo_provider，在pom.xml文件中导入如下坐标</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="hljs-tag">&lt;/<span class="hljs-name">project.build.sourceEncoding</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">maven.compiler.source</span>&gt;</span>1.8<span class="hljs-tag">&lt;/<span class="hljs-name">maven.compiler.source</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">maven.compiler.target</span>&gt;</span>1.8<span class="hljs-tag">&lt;/<span class="hljs-name">maven.compiler.target</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">spring.version</span>&gt;</span>5.0.5.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">spring.version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-context<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-beans<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-webmvc<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-jdbc<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-aspects<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-jms<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-context-support<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- dubbo相关 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>dubbo<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.6.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.zookeeper<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>zookeeper<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.4.6<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.github.sgroschupf<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>zkclient<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>0.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>javassist<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>javassist<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.12.1.GA<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>fastjson<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.2.47<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">build</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">plugins</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">plugin</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.3.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">source</span>&gt;</span>1.8<span class="hljs-tag">&lt;/<span class="hljs-name">source</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">target</span>&gt;</span>1.8<span class="hljs-tag">&lt;/<span class="hljs-name">target</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">plugin</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.tomcat.maven<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>tomcat7-maven-plugin<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span><br>        <span class="hljs-comment">&lt;!-- 指定端口 --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">port</span>&gt;</span>8081<span class="hljs-tag">&lt;/<span class="hljs-name">port</span>&gt;</span><br>        <span class="hljs-comment">&lt;!-- 请求路径 --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">path</span>&gt;</span>/<span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">plugins</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">build</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>（2）配置web.xml文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">web-app</span> <span class="hljs-keyword">PUBLIC</span></span><br><span class="hljs-meta"> <span class="hljs-string">&quot;-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN&quot;</span></span><br><span class="hljs-meta"> <span class="hljs-string">&quot;http://java.sun.com/dtd/web-app_2_3.dtd&quot;</span> &gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">web-app</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">display-name</span>&gt;</span>Archetype Created Web Application<span class="hljs-tag">&lt;/<span class="hljs-name">display-name</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">context-param</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>contextConfigLocation<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>classpath:applicationContext*.xml<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">context-param</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">listener</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">listener-class</span>&gt;</span>org.springframework.web.context.ContextLoaderListener<span class="hljs-tag">&lt;/<span class="hljs-name">listener-class</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">listener</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
+
+<p>（3）创建服务接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.itheima.service;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">HelloService</span> &#123;<br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">sayHello</span><span class="hljs-params">(String name)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>（4）创建服务实现类</p>
+<p><strong>注意：</strong>服务实现类上使用的Service注解是Dubbo提供的，用于对外发布服务</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.itheima.service.impl;<br><span class="hljs-keyword">import</span> com.alibaba.dubbo.config.annotation.Service;<br><span class="hljs-keyword">import</span> com.itheima.service.HelloService;<br><br><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HelloServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">HelloService</span> &#123;<br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">sayHello</span><span class="hljs-params">(String name)</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;hello &quot;</span> + name;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<p>tomcat7:run</p>
+<p>2 服务消费方开发</p>
+<p>开发步骤：</p>
+<p>（1）创建maven工程（打包方式为war）dubbodemo_consumer，pom.xml配置和上面服务提供者相同，只需要将Tomcat插件的端口号改为8082即可</p>
+<p>（2）配置web.xml文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">web-app</span> <span class="hljs-keyword">PUBLIC</span></span><br><span class="hljs-meta"> <span class="hljs-string">&quot;-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN&quot;</span></span><br><span class="hljs-meta"> <span class="hljs-string">&quot;http://java.sun.com/dtd/web-app_2_3.dtd&quot;</span> &gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">web-app</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">display-name</span>&gt;</span>Archetype Created Web Application<span class="hljs-tag">&lt;/<span class="hljs-name">display-name</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">servlet</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>springmvc<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-class</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 指定加载的配置文件 ，通过参数contextConfigLocation加载 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">init-param</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>contextConfigLocation<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>classpath:applicationContext-web.xml<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">init-param</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">load-on-startup</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">load-on-startup</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">servlet</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">servlet-mapping</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>springmvc<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>*.do<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>（3）将服务提供者工程中的HelloService接口复制到当前工程</p>
+<p>（4）编写Controller</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.itheima.controller;<br><span class="hljs-keyword">import</span> com.alibaba.dubbo.config.annotation.Reference;<br><span class="hljs-keyword">import</span> com.itheima.service.HelloService;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Controller;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;<br><span class="hljs-meta">@Controller</span><br><span class="hljs-meta">@RequestMapping(&quot;/demo&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HelloController</span> &#123;<br>    <span class="hljs-meta">@Reference</span><br>    <span class="hljs-keyword">private</span> HelloService helloService;<br>    <span class="hljs-meta">@RequestMapping(&quot;/hello&quot;)</span><br>    <span class="hljs-meta">@ResponseBody</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getName</span><span class="hljs-params">(String name)</span>&#123;<br>        <span class="hljs-comment">//远程调用</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> helloService.sayHello(name);<br>        System.out.println(result);<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>注意：Controller中注入HelloService使用的是Dubbo提供的@Reference注解</p>
+<p><font color='red'><strong>远程注入</strong></font></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">1.</span> 从zookeeper注册中心获取userService的访问url<br><span class="hljs-bullet">2.</span> 进行远程调用RPC<br><span class="hljs-bullet">3.</span> 将结果封装为一个代理对象。给变量赋值<br></code></pre></td></tr></table></figure>
+
+<p><img src="/Hexo/../img/202203121454264.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<h3 id="4-3服务提供者"><a href="#4-3服务提供者" class="headerlink" title="4.3服务提供者"></a>4.3服务提供者</h3><p>在dubbodemo_provider工程中src&#x2F;main&#x2F;resources下创建applicationContext-service.xml </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans&quot;</span></span><br><span class="hljs-tag">		<span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">	    <span class="hljs-attr">xmlns:p</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/p&quot;</span></span><br><span class="hljs-tag">		<span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/context&quot;</span></span><br><span class="hljs-tag">		<span class="hljs-attr">xmlns:dubbo</span>=<span class="hljs-string">&quot;http://code.alibabatech.com/schema/dubbo&quot;</span></span><br><span class="hljs-tag">	    <span class="hljs-attr">xmlns:mvc</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/mvc&quot;</span></span><br><span class="hljs-tag">		<span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans</span></span><br><span class="hljs-string"><span class="hljs-tag">		http://www.springframework.org/schema/beans/spring-beans.xsd</span></span><br><span class="hljs-string"><span class="hljs-tag">         http://www.springframework.org/schema/mvc</span></span><br><span class="hljs-string"><span class="hljs-tag">         http://www.springframework.org/schema/mvc/spring-mvc.xsd</span></span><br><span class="hljs-string"><span class="hljs-tag">         http://code.alibabatech.com/schema/dubbo</span></span><br><span class="hljs-string"><span class="hljs-tag">         http://code.alibabatech.com/schema/dubbo/dubbo.xsd</span></span><br><span class="hljs-string"><span class="hljs-tag">         http://www.springframework.org/schema/context</span></span><br><span class="hljs-string"><span class="hljs-tag">         http://www.springframework.org/schema/context/spring-context.xsd&quot;</span>&gt;</span><br>	<span class="hljs-comment">&lt;!-- 当前应用名称，用于注册中心计算应用间依赖关系，注意：消费者和提供者应用名不要一样 --&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">dubbo:application</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;dubbodemo_provider&quot;</span> /&gt;</span><br>	<span class="hljs-comment">&lt;!-- 连接服务注册中心zookeeper ip为zookeeper所在服务器的ip地址--&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">dubbo:registry</span> <span class="hljs-attr">address</span>=<span class="hljs-string">&quot;zookeeper://192.168.134.129:2181&quot;</span>/&gt;</span><br>	<span class="hljs-comment">&lt;!-- 注册  协议和port   端口默认是20880 --&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">dubbo:protocol</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;dubbo&quot;</span> <span class="hljs-attr">port</span>=<span class="hljs-string">&quot;20881&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">dubbo:protocol</span>&gt;</span><br>    <br>	<span class="hljs-comment">&lt;!-- 扫描指定包，加上@Service注解的类会被发布为服务  --&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">dubbo:annotation</span> <span class="hljs-attr">package</span>=<span class="hljs-string">&quot;com.itheima.service.impl&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-4服务消费者"><a href="#4-4服务消费者" class="headerlink" title="4.4服务消费者"></a>4.4服务消费者</h3><p>在dubbodemo_consumer工程中src&#x2F;main&#x2F;resources下创建applicationContext-web.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans&quot;</span></span><br><span class="hljs-tag">	<span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">	<span class="hljs-attr">xmlns:p</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/p&quot;</span></span><br><span class="hljs-tag">	<span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/context&quot;</span></span><br><span class="hljs-tag">	<span class="hljs-attr">xmlns:dubbo</span>=<span class="hljs-string">&quot;http://code.alibabatech.com/schema/dubbo&quot;</span></span><br><span class="hljs-tag">	<span class="hljs-attr">xmlns:mvc</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/mvc&quot;</span></span><br><span class="hljs-tag">	<span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans</span></span><br><span class="hljs-string"><span class="hljs-tag">			http://www.springframework.org/schema/beans/spring-beans.xsd</span></span><br><span class="hljs-string"><span class="hljs-tag">			http://www.springframework.org/schema/mvc</span></span><br><span class="hljs-string"><span class="hljs-tag">			http://www.springframework.org/schema/mvc/spring-mvc.xsd</span></span><br><span class="hljs-string"><span class="hljs-tag">			http://code.alibabatech.com/schema/dubbo</span></span><br><span class="hljs-string"><span class="hljs-tag">			http://code.alibabatech.com/schema/dubbo/dubbo.xsd</span></span><br><span class="hljs-string"><span class="hljs-tag">			http://www.springframework.org/schema/context</span></span><br><span class="hljs-string"><span class="hljs-tag">			http://www.springframework.org/schema/context/spring-context.xsd&quot;</span>&gt;</span><br><br>	<span class="hljs-comment">&lt;!-- 当前应用名称，用于注册中心计算应用间依赖关系，注意：消费者和提供者应用名不要一样 --&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">dubbo:application</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;dubbodemo-consumer&quot;</span> /&gt;</span><br>	<span class="hljs-comment">&lt;!-- 连接服务注册中心zookeeper ip为zookeeper所在服务器的ip地址--&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">dubbo:registry</span> <span class="hljs-attr">address</span>=<span class="hljs-string">&quot;zookeeper://192.168.134.129:2181&quot;</span>/&gt;</span><br>	<span class="hljs-comment">&lt;!-- 包扫描的方式 引用服务 扫描@Reference --&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">dubbo:annotation</span> <span class="hljs-attr">package</span>=<span class="hljs-string">&quot;com.itheima.controller&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p>运行测试</p>
+<p>tomcat7:run启动</p>
+<p>在浏览器输入<a target="_blank" rel="noopener" href="http://localhost:8082/demo/hello.do?name=Jack%EF%BC%8C%E6%9F%A5%E7%9C%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C">http://localhost:8082/demo/hello.do?name=Jack，查看浏览器输出结果</a></p>
+<h2 id="5-dubbo高级特性"><a href="#5-dubbo高级特性" class="headerlink" title="5-dubbo高级特性"></a>5-dubbo高级特性</h2><h3 id="5-1dubbo-admin安装"><a href="#5-1dubbo-admin安装" class="headerlink" title="5.1dubbo-admin安装"></a>5.1dubbo-admin安装</h3><p>dubbo- admin<br>    ●dubbo-admin管理平台，是图形化的服务管理页面<br>    ●从注册中心中获取到所有的提供者 &#x2F;消费者进行配置管理<br>    ●路由规则、动态配置、服务降级、访问控制、权重调整、负载均衡等管理功能<br>    ●dubbo- admin是一个前后端分离的项目。前端使用vue，后端使用springboot<br>    ●安装dubbo-admin其实就是部署该项目</p>
+<p>具体安装参见：dubbo-admin.md</p>
+<h3 id="5-2-dubbo-admin使用"><a href="#5-2-dubbo-admin使用" class="headerlink" title="5.2-dubbo-admin使用"></a>5.2-dubbo-admin使用</h3><p>具体安装参见：dubbo-admin.md</p>
+<h3 id="5-3序列化"><a href="#5-3序列化" class="headerlink" title="5.3序列化"></a>5.3序列化</h3><ol>
+<li>dubbo 内部已经将序列化和反序列化的过程内部封装了</li>
+<li>我们只需要在定义pojo类时<strong>实现seriali zable接口</strong>即可</li>
+<li>一般会定义一 个公共的pojo模块,让生产者和消费者都依赖该模块。</li>
+</ol>
+<p><img src="/Hexo/../img/202203121454676.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581317650919"></p>
+<p>User对象未实现seriali zable接口</p>
+<p>错误信息：</p>
+<p><img src="/Hexo/../img/202203121454462.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581317583708"></p>
+<p>解决办法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">User <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-4地址缓存"><a href="#5-4地址缓存" class="headerlink" title="5.4地址缓存"></a>5.4地址缓存</h3><p><strong>注册中心挂了，服务是否可以正常访问？</strong></p>
+<ol>
+<li>可以，因为dubbo服务消费者在第一-次调用时，会将服务提供方地址缓存到本地，以后在调用则不会访问注册中心。</li>
+<li>当服务提供者地址发生变化时，注册中心会通知服务消费者。</li>
+</ol>
+<p><img src="/Hexo/../img/202203121454069.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<h3 id="5-5-超时"><a href="#5-5-超时" class="headerlink" title="5.5 超时"></a>5.5 超时</h3><p><img src="/Hexo/../img/202203121454067.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<ul>
+<li>服务消费者在调用服务提供者的时候发生了阻塞、等待的情形,这个时候,服务消费者会直等待下去。</li>
+<li>在某个峰值时刻，大量的请求都在同时请求服务消费者,会造成线程的大量堆积，势必会造成雪崩。</li>
+<li>dubbo利用超时机制来解决这个问题，设置-个超时时间, 在这个时间段内，无法完成服务访问,则自动断开连接。</li>
+<li>使用timeout属性配置超时时间，默认值1000，单位毫秒</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//timeout 超时时间 单位毫秒  retries 重试次数</span><br><span class="hljs-meta">@Service(timeout = 3000,retries=0)</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-6重试"><a href="#5-6重试" class="headerlink" title="5.6重试"></a>5.6重试</h3><p><img src="/Hexo/../img/202203121454861.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581322543136"></p>
+<ol>
+<li>设置了超时时间，在这个时间段内，无法完成服务访问,则自动断开连接。</li>
+<li>如果出现网络抖动,则这一-次请求就会失败。</li>
+<li>Dubbo提供重试机制来避免类似问题的发生。</li>
+<li>通过retries属性来设置重试次数。默认为2次</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//timeout 超时时间 单位毫秒  retries 重试次数</span><br><span class="hljs-meta">@Service(timeout = 3000,retries=0)</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="5-7多版本"><a href="#5-7多版本" class="headerlink" title="5.7多版本"></a>5.7多版本</h3><p><img src="/Hexo/../img/202203121454544.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p>**灰度发布:**当出现新功能时,会让一部分用户先使用新功能，用户反馈没问题时，再将所有用户迁移到新功能。</p>
+<p>dubbo中使用version属性来设置和调用同一个接口的不同版本</p>
+<p>生产者配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service(version=&quot;v2.0&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserServiceImp12</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">UserService</span> &#123;...&#125;<br></code></pre></td></tr></table></figure>
+
+<p>消费者配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Reference(version = &quot;v2.0&quot;)</span><span class="hljs-comment">//远程注入</span><br><span class="hljs-keyword">private</span> UserService userService;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-8负载均衡"><a href="#5-8负载均衡" class="headerlink" title="5.8负载均衡"></a>5.8负载均衡</h3><p><strong>负载均衡策略(4种) :</strong><br>**Random:**按权重随机，默认值。按权重设置随机概率。</p>
+<p><strong>RoundRobin:</strong> 按权重轮询。</p>
+<p><strong>LeastActive:</strong> 最少活跃调用数,相同活跃数的随机。</p>
+<p>**ConsistentHash:**一 致性Hash,相同参数的请求总是发到同一提供者。</p>
+<p><img src="/Hexo/../img/202203121454803.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p>服务提供者配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service(weight = 100)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserServiceImp12</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">UserService</span> &#123;...&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>application.xml 配置parameter key</p>
+<p><img src="/Hexo/img/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p>消费者配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-comment">//@Reference(loadbalance = &quot;roundrobin&quot;)</span><br><span class="hljs-comment">//@Reference(loadbalance = &quot;leastactive&quot;)</span><br><span class="hljs-comment">//@Reference(loadbalance = &quot;consistenthash&quot;)</span><br><span class="hljs-meta">@Reference(loadbalance = &quot;random&quot;)</span><span class="hljs-comment">//默认 按权重随机</span><br><span class="hljs-keyword">private</span> UserService userService;<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-9集群容错"><a href="#5-9集群容错" class="headerlink" title="5.9集群容错"></a>5.9集群容错</h3><p><img src="/Hexo/../img/202203121454691.png" srcset="/Hexo/img/loading.gif" lazyload alt="1581324308044"></p>
+<p><strong>集群容错模式:</strong><br>    **Failover Cluster:**失败重试。默认值。当出现失败，重试其它服务器，默认重试2次，使用retries配置。一般用于读操作<br>    **Failfast Cluster :**快速失败,发起-次调用，失败立即报错。通常用于写操作。<br>    **Failsafe Cluster:**失败安全，出现异常时，直接忽略。返回一个空结果。<br>    **Failback Cluster:**失败自动恢复,后台记录失败请求,定时重发。<br>    **Forking Cluster :**并行调用多个服务器，只要一个成功即返回。<br>    <strong>Broadcast Cluster:</strong> 广播调用所有提供者,逐个调用，任意一台报错则报错。</p>
+<p>消费者配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Reference(cluster = &quot;failover&quot;)</span><span class="hljs-comment">//远程注入</span><br><span class="hljs-keyword">private</span> UserService userService;<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-10服务降级"><a href="#5-10服务降级" class="headerlink" title="5.10服务降级"></a>5.10服务降级</h3><p><strong>服务降级</strong>：当服务器压力剧增的情况下，根据实际业务情况及流量，对一些服务和页面有策略的不处理或换种简单的方式处理，从而释放服务器资源以保证<strong>核心交易</strong>正常运作或高效运作</p>
+<p><strong>服务降级方式:</strong><br><strong>mock&#x3D; force:return null</strong>：表示消费方对该服务的方法调用都直接返回null值,不发起远程调用。用来屏蔽不重要服务不可用时对调用方的影响。</p>
+<p><strong>mock&#x3D;fail:return null</strong>：表示消费方对该服务的方法调用在失败后，再返回null值,不抛异常。用来容忍不重要服务不稳定时对调用方的影响</p>
+<p><img src="/Hexo/../img/202203121455003.png" srcset="/Hexo/img/loading.gif" lazyload></p>
+<p>消费方配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//远程注入</span><br><span class="hljs-meta">@Reference(mock =“ force :return null&quot;)</span><span class="hljs-comment">//不再调用userService的服务</span><br><span class="hljs-keyword">private</span> UserService userService;<br></code></pre></td></tr></table></figure>
+
+  
+
+</article>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      
+
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      粤ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/Hexo/img/police_beian.png" srcset="/Hexo/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>粤公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/Hexo/js/events.js" ></script>
+<script  src="/Hexo/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  
+    <script  src="/Hexo/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/Hexo/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/Hexo/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
